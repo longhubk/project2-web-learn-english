@@ -1,0 +1,71 @@
+*{
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+}
+.question {
+  float: left;
+  border: 2px solid dodgerblue;
+  width: 20%;
+  overflow: auto;
+  margin-top: 20px;
+  border-radius: 20px;
+}
+.question h2{
+  text-align: center;
+
+}
+.question li {
+  margin-top: 20px;
+}
+.qs-title{
+  color : dodgerblue;
+}
+.qs-list li a{
+ color: black; 
+}
+.vid1{
+  margin: 30px 50px;
+}
+.tips h3{
+  color: yellow;
+  font-weight: bold;
+  font-size: 30px;
+  margin: 20px 50px;
+}
+
+
+article{
+  margin: 20px 40px;
+  float: left;
+  background-color: gray;
+  width: 54%;
+  height: auto;
+
+}
+article h1{
+  color: yellow;
+  font-size: 50px;
+  margin: 10px 50px;
+  text-align: left;
+  
+}
+article p{
+  color: white;
+  font-size: 20px;
+  margin: 10px 50px;
+}
+article img{
+  height: 400px;
+  width: 600px;
+  margin: 20px 50px;
+}
+section:after{
+  content: "";
+  display: table;
+  clear: both;
+
+}
+
+
