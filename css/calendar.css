@@ -1,19 +1,19 @@
 .calendar{
   position: relative;
-  background-color: aquamarine;
+  background-color: rgb(98, 223, 181);
   height: 20%;
-  width: 245px;
+  width: 300px;
   border: 3px double dodgerblue;
   display: inline-block;
   margin-top: 3%;
-  padding: 0 0 1.3% 1.5%;
+  padding: 0 0 1.3% 0.8%;
   border-radius: 20px;
   
 }
 .calendar > .title{
   text-align: center;
   background-color:greenyellow;
-  width: 220px;
+  width: 270px;
   margin-top: 20px;
   padding-top: 5px;
   font-size: 20px;
@@ -22,43 +22,69 @@
   height: 30px;
   display: inline-block;
 }
-.calendar > .day{
+.calendar .title .time{
+  float: left;
+}
+.calendar > #day{
   display: flex;
-  width: 200px;
-  height: 200px;
+  width: 270px;
+  height: 220px;
   flex-wrap: wrap;
   align-items: center;
   background-color: dodgerblue;
-  padding: 10px;
+  padding: 10px 20px 10px 20px;
+
 }
-.calendar > .day > div{
+.calendar > #day > div{
   background-color:white;
   margin: 4px 4px;
   width: 24px;
-  height: 24px;
+  height: 21px;
   justify-content: center;
   text-align: center;
-}
-#day14{
-  background-color: yellowgreen;
-  color: red;
-}
-.month{
-  display: flex;
-  background-color: burlywood;
-  width: 220px;
-  justify-content: center;
-  align-items: center;
-  height: 30px;
 
 }
-.month > div {
-  text-align: center;
-  color: purple;
-  font-weight: bold;
-  
-  margin: 0px 35px;
+.calendar #day div:hover{
+  border: 1px solid red;
 }
-.month > button {
+.calendar #day #today{
+  background-color: rgb(173, 233, 52);
+  font-weight: 900;
+  color: red;
+}
+
+.calendar .month{
+  display: flex;
+  background-color: burlywood;
+  width: 270px;
+  height: 30px;
+  justify-content: center;
+  padding: 4px;
+
+}
+.calendar .month > div {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  margin: 3px 35px;
+}
+.calendar .month > button {
   border-radius: 20px;
+  border: none;
+  color: white;
+  background-color: rgb(28, 155, 233);
+}
+.calendar .month #mon-prev{
+  padding: 4px 8px;
+}
+.calendar .month #mon-next{
+  padding: 4px 8px;
+  margin-right: 5px;
+}
+
+.calendar .month #mon-prev:hover{
+  border: 1px solid white;
+}
+.calendar .month #mon-next:hover{
+  border: 1px solid white;
 }

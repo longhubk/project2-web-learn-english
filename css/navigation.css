@@ -1,52 +1,86 @@
 
-nav {
-  float: left; 
-  width: auto;
-  height: auto;
-
-}
-nav ul{
-  list-style-type: none;
-
-}
-nav ul li{
-  background-color: green;
-  margin: 10px 5px;
-  padding: 20px;
-}
-nav ul li a{
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-}
-.btn{
-  background-color: burlywood;
-  border-radius: 13px;
-}
 .nav{
-  display: flex;
-  height: 60px;
-  background-color: rgb(97, 97, 97);
+  background-color: gray;
+  min-height: 35px;
+  z-index: 0;
+}
+.hori-nav{
+  height: 40px;
+  list-style-type: none;
   align-items: center;
   border-radius: 5px;
+  padding: 0;
+  margin: 0;
+  float: left;
 }
-.nav > div{
-  background-color: rgb(70,160,73);
-  margin: 10px 10px;
-  line-height: 20px;
-  padding: 10px;
+.hori-nav > li{
+  float: left;
 }
-.nav > div:hover{
-  background-color: forestgreen;
-}
-.nav > div > a{
+
+.hori-nav li a, .dropbtn{
   text-decoration: none;
-  font-size: 19px;
+  font-size: 18px;
+  font-family: 'Segoe UI';
+  text-align: center;
+  display: inline-block;
   color: white;
+  padding: 5px 20px;
+  font-weight: 500;
+}
+.hori-nav li a:hover, .dropbtn:hover{
+  background-color: rgb(28, 155, 233);
+}
+li.tutorial{
+  display: inline-block;
+}
+.hori-nav .tutorial .inner-content{
+  list-style-type: none;
+  display: none;
+  background-color: whitesmoke;
+  position: absolute;
+  z-index: 1;
+  box-shadow: 0px 0px 8px 0px;
+}
+.hori-nav .tutorial .inner-content a{
+  display: block;
+  padding: 10px 23px;
+  background-color: whitesmoke;
+  color: black;
+  text-align: left;
+}
+.hori-nav .tutorial .inner-content a:hover {
+  color:white;
+  background-color: red;
+}
+
+.hori-nav .tutorial:hover .inner-content{
+  display: block;
+
 }
 
 
 .search-box{
+  float: right;
+  border-radius: 5px;
+  margin : 0px 20px 15px 10px;
+  padding: 5px;
+}
+#search{
+  width: 200px;
+  height: 20px
+}
+.btn-search{
+  background-color: rgb(80,80,80);
+  color: white;
+  padding: 5px;
   border-radius: 10px;
-  border: 1px solid white;
+  border: none;
+  font-size: 11px;
+  margin: 0px 0px 0px 4px;
+}
+.btn-search:hover{
+  background-color: rgb(28, 155, 233);
+}
+.fa , .fa-search{
+  margin-right: 5px;
 }
