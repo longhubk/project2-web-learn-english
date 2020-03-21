@@ -62,6 +62,9 @@ li.tutorial{
 
 }
 
+#search_area{
+  float:right;
+}
 
 .search-box{
   float: right;

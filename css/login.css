@@ -1,4 +1,4 @@
-button:hover , input[name="submit"]:hover{
+button:hover , input[type="submit"]:hover{
   opacity: 0.8;
 
 }
@@ -24,7 +24,7 @@ button:hover , input[name="submit"]:hover{
   padding: 20px;
 }
 .login-form .login-main .login-label{
-  padding: 10px 0px;
+  padding: 5px 0px;
   display: block;
 }
 .login-img{
@@ -37,14 +37,15 @@ button:hover , input[name="submit"]:hover{
 
 }
 
-input[name="username"], input[name="password"]{
+input[name="username"], input[name="password"]
+,input[name="email"], input[name="password_again"]{
   box-sizing: border-box;
   width: 100%;
   border: 1px solid dodgerblue;
-  padding: 10px 20px;
+  padding: 5px 20px;
   margin: 0 0 20px 0;
 }
-input[name="submit"]{
+input[type="submit"]{
   display: block;
   margin: 20px 0 0 0;
   width: 100%;

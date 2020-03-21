@@ -4,11 +4,16 @@
 a{
   text-decoration: none;
 }
+#intro{
+  border: 1px solid gray;
+}
 
 .main-container{
   margin: 50px 0 0 250px;
   border: 1px solid gray;
+  background-color: rgb(220,220,220);
   width: 720px;
+  padding: 20px 0 40px 0;
   height: fit-content;
   border-radius: 5px;
   display: block;
@@ -62,17 +67,31 @@ a{
 
 .video-card .verb-video{
   display: block;
-  border: 1px solid green;
+  border-radius: 5px;
   width: fit-content;
   padding: 20px;
   margin: 30px 30px 30px 50px;
 }
 iframe{
-  border: 1px solid red;
+  border: 1px solid gray;
 }
 
 .subtitle{
-  border: 1px solid red;
+  margin: 25px 0 0 0;
+  border: 1px solid gray;
   overflow-y: scroll;
   height: 200px;
+}
+
+.knowledge{
+  border: 1px solid gray;
+  margin: 20px 70px 20px 50px;
+  border-radius: 5px;
+  padding: 20px;
+}
+.point-main{
+  background-color: #CCFF99;
+  color: black;
+  border: 1px solid gray;
+  padding: 5px;
 }
