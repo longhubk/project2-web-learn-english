@@ -1,21 +1,25 @@
 
 .question {
-  float: left;
   border: 2px solid dodgerblue;
-  width: 22%;
+  width: 270px;
   height: 200px;
   overflow: auto;
-  margin-top: 20px;
-  border-radius: 0px;
-  overflow: scroll;
+  margin: 20px 0 0 15px;
+  overflow-y: scroll;
+  display: block;
 }
-.question h3{
+.question .qs-title{
   text-align: center;
+  color: red;
+  font-weight: bold;
   font-family: "Segoe UI";
 
 }
-.question li {
-  margin-top: 20px;
+.question .qs-list {
+  margin-top: 0px;
+}
+.question .qs-list li{
+  margin: 5px 8px 10px 0px;
 }
 .qs-title{
   color : dodgerblue;

@@ -5,6 +5,21 @@ a{
   text-decoration: none;
 }
 
+.main-container{
+  margin: 50px 0 0 250px;
+  border: 1px solid gray;
+  width: 720px;
+  height: fit-content;
+  border-radius: 5px;
+  display: block;
+  overflow: auto;
+}
+.main-container:after{
+  content: "";
+  display: table;
+  clear: both;
+
+}
 
 .vid1{
   margin: 30px 50px;
@@ -18,10 +33,9 @@ a{
 
 
 .video-card{
-  margin: 20px 40px;
-  float: left;
+  margin: 0px 0px;
   background-color: rgb(220,220,220);
-  width: 52%;
+  width: 100%;
   height: auto;
   border-radius: 5px;
 
@@ -44,11 +58,21 @@ a{
   width: 600px;
   margin: 20px 50px;
 }
-.main-container:after{
-  content: "";
-  display: table;
-  clear: both;
 
+
+.video-card .verb-video{
+  display: block;
+  border: 1px solid green;
+  width: fit-content;
+  padding: 20px;
+  margin: 30px 30px 30px 50px;
+}
+iframe{
+  border: 1px solid red;
 }
 
-
+.subtitle{
+  border: 1px solid red;
+  overflow-y: scroll;
+  height: 200px;
+}

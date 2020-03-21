@@ -1,0 +1,14 @@
+.right-nav{
+  position: fixed;
+	z-index: 50;
+	top: 100px;
+	right: 30px;
+	width: 300px;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	-webkit-transition: right .2s ease-in;
+	-o-transition: right .2s ease-in;
+	transition: right .2s ease-in;
+
+}

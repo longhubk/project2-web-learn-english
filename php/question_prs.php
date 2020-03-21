@@ -1,5 +1,6 @@
 <?php 
-  $user_question = fopen("../data/user_question.json", "r") or die("Can't open file");
-  echo fread($user_question, filesize("../data/user_question.json"));
-  fclose($user_question)
+  $file =  read_json("../data/user_question.json");
+  foreach($file as $name_user => $question){
+    echo "<li><a href='#'> $question</a></li>";
+  }
 ?>

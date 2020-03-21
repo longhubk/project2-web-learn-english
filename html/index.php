@@ -1,3 +1,7 @@
+<?php
+  include "../php/read_json.php";
+  $general_nav_bar = "";
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -10,22 +14,29 @@
     <link href="../css/header.css" rel="stylesheet" type="text/css">
     <link href="../css/ver-nav.css" rel="stylesheet" type="text/css">
     <link href="../css/question_right.css" rel="stylesheet" type="text/css">
+    <link href="../css/right_nav.css" rel="stylesheet" type="text/css">
     <link href="../css/footer.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <script src="../js/calendar.js" type="text/javascript"></script>
-    <script src="../js/login.js"></script>
+    <script src="../js/scroll_nav.js" type="text/javascript"></script>
+    <script src="../js/login.js" type="text/javascript"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-
+  
     <script type="text/javascript">
       window.onload = function(){
         generateDay();
         generateTime();
       }
+      window.onscroll = function(){
+        scrollFunction();
+      }
     </script>
   </head>
   <body>
+
     <div id="log-1" class="login-container-2">
+
       <form class="login-form animate animate2" method="POST" action="../php/login-success.php">
         <div class="login-img">
           <i class="fas fa-user"></i>
@@ -47,10 +58,12 @@
           </span>
         </div>
       </form>
-      </div>
-    <div class = "header">
+    </div>
+
+    <div id="top_head" class = "header">
+
       <div title="English free for every one" class="logo-icon">
-        <a href="layout.html"><img id="img-icon" src='../img/logo.PNG' height="50" width="200"></a>
+        <a href="index.php"><img id="img-icon" src='../img/logo.PNG' height="50" width="200"></a>
       </div>
       <div class="login-container">
         <button onclick="openLogin()" class="login">
@@ -66,84 +79,83 @@
             languages:
             <select>
               <option value="en">English</option>
-              <option value="vn">Vietnames</option>
+              <option value="vn">Vietnamese</option>
               <option value="ja"></i>Japanese</option>
             </select>
           </div>
       </div>
+    </div>
+
       <div class="clear"></div>
-      <div class="nav">
-        <ul class="hori-nav">
+
+        <ul id="hor-nav" class="hori-nav">
           <li><a href="#">NEWS</a></li>
           <li><a href="#">NOTIFICATIONS</a></li> <li class="tutorial">
             <a href="#" class="dropbtn">TUTORIALS</a>
             <div class="inner-content">
-              <a href="#">Speaking</a>
+              <a href="../php/tutorials/speaking_prs.php">Speaking</a>
               <a href="#">Reading</a>
               <a href="#">Grammars</a>
               <a href="#">Listening</a>
             </div>
           </li>
-
           <li><a href="#">TESTS</a></li>
           <li><a href="#">DOCUMENTATIONS</a></li>
           <li><a href="#">RESOURCE</a></li>
           <li><a href="#">ABOUT US</a></li>
-
+          <li>
+            <div class="search-box" style="margin-left: 10px;">
+              <i class="fa fa-search" style="color: white;"></i>
+              <input id="search" type="text" placeholder="Search on page">
+              <button class="btn-search">Search</button>
+            </div>
+          </li>
         </ul>
+       
 
-
-        <div class="search-box" style="margin-left: 10px;">
-          <i class="fa fa-search" style="color: white;"></i>
-          <input id="search" type="text" placeholder="Search on page">
-          <button class="btn-search">Search</button>
-        </div>
-
-      </div>
+    <div id="ver_nav" class="ver-bar">
+      <ul><?php include "../php/tutorials/all_tutorial_prs.php"; ?> </ul>
     </div>
-    
-      <div class="clear"></div>
-    <div class="main-container">
-      <div class="ver-bar">
-        <ul>
-          <li><a href="#">Basic Grammar</a></li>
-          <li><a href="#">Listening Skills</a></li>
-          <li><a href="#">Speaking Skills</a></li>
-          <li><a href="#">Writting Skills</a></li>
-          <li><a href="#">Some Tips to Talk</a></li>
 
-        </ul>
-      </div>
+
+    <div class="main-container">
+  
       <div class="video-card">
         <h1>Verb - Video</h1>
         <p>You can following to some step below to learn english! </p>
         <img src="../img/verb_gramar.png">
         <div class="tips">
           <h3>Guide to listen</h3>
-          <p>Step 1. Listening through no stop </p>
-          <p>Step 2: Listenning again with subtitle</p>
-          <p>Step 3: Listen each line by line</p>
-          <p>Step 4: Listen again without subtitle</p>
-          <p>Step 5: Listen final time</p>
+          <?php include "../php/guide_prs.php";?>
         </div>
         <video class="vid1" width="600" controls>
           <source src="../video/englishVideo.mp4" type="video/mp4">
         </video>
-       
+        <div class="verb-video" >
+          <h3>Translated Video:</h3>
+          <iframe  width="560" height="315" src="https://www.youtube.com/embed/LfJPA8GwTdk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          
+          <div class="subtitle">
+            <ul><?php include "../php/subtitles/video1_sub.php" ?> </ul>
+          </div>
+        </div>
+        
+
       </div>
-      <div>
-        <div class="question">
-          <h3 class="qs-title">Top Question</h3>
+    </div>
+
+    <div class="clear"></div>
+
+    <div id="ver_nav_2" class="right-nav">
+        <div id="qs_right" class="question">
+          <p class="qs-title">Top Question</p>
           <ol class="qs-list">
-            <li><a href="#">How can i speak to west guys?</a></li>
-            <li><a href="#">What is the most dificult part in grammar?</a></li>
-            <li><a href="#">Where should i go to learn english?</a></li>
-            <li><a href="#">Should i watch some English Movies to impove my Skills</a></li>
-            <li><a href="#">Should i watch some English Movies to impove my Skills</a></li>
-            <li><a href="#">Should i watch some English Movies to impove my Skills</a></li>
+            <?php 
+              include "../php/question_prs.php";
+            ?>
           </ol>
         </div>
-        <div class="calendar">
+        <div id="cal" class="calendar">
           <div class="title">
             <i class="fa fa-calendar" style="color: browser;"></i>
             Calendar
@@ -155,16 +167,13 @@
             <button id="mon-next">next</button>
           </div>
           <div id="day">
-
           </div>
-          
         </div>
-      </div>
-      
     </div>
+    <div class="clear"></div>
 
-    <footer>
+    <div class = "footer">
       <p>@Copyright: Nguyen Thanh Long</p>
-    </footer>
+    </div>
   </body>
 </html>
