@@ -1,0 +1,31 @@
+
+.question {
+  float: left;
+  border: 2px solid dodgerblue;
+  width: 22%;
+  height: 200px;
+  overflow: auto;
+  margin-top: 20px;
+  border-radius: 0px;
+  overflow: scroll;
+}
+.question h3{
+  text-align: center;
+  font-family: "Segoe UI";
+
+}
+.question li {
+  margin-top: 20px;
+}
+.qs-title{
+  color : dodgerblue;
+}
+.qs-list li a{
+ color: black; 
+ font-size: 13px;
+ font-family: "Segoe UI";
+}
+.qs-list li a:hover{
+ color: rgb(52, 187, 63); 
+ text-decoration: underline;
+}

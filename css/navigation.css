@@ -67,11 +67,15 @@ li.tutorial{
 }
 #search{
   width: 200px;
-  height: 20px
+  height: 20px;
+  border-radius: 8px;
+  border: none;
+  margin: 2px 0 0 0;
+  padding: 0 0 0 15px;
 }
 .btn-search{
-  background-color: rgb(80,80,80);
-  color: white;
+  background-color: rgb(236, 226, 226);
+  color: rgb(0, 0, 0);
   padding: 5px;
   border-radius: 10px;
   border: none;
@@ -79,7 +83,8 @@ li.tutorial{
   margin: 0px 0px 0px 4px;
 }
 .btn-search:hover{
-  background-color: rgb(28, 155, 233);
+  background-color: rgb(113, 119, 122);
+  color: whitesmoke;
 }
 .fa , .fa-search{
   margin-right: 5px;

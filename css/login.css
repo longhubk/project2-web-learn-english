@@ -1,0 +1,80 @@
+button:hover , input[name="submit"]:hover{
+  opacity: 0.8;
+
+}
+
+.login-container-2{
+  display: none;
+  position: fixed;
+  overflow: auto;
+  z-index: 1;
+  background-color: rgb(0,0,0,0.3);
+  height: 100%;
+  width: 100%;
+
+}
+.login-form{
+  background-color: #fefefe;
+  margin: 5% auto 10% auto;
+  width: 28%;
+  padding: 2%;
+  border-radius: 20px;
+}
+.login-form .login-main{
+  padding: 20px;
+}
+.login-form .login-main .login-label{
+  padding: 10px 0px;
+  display: block;
+}
+.login-img{
+  padding: 3%;
+  display: flex;
+  justify-content: center;
+}
+.fa-user{
+  font-size: 60px;
+
+}
+
+input[name="username"], input[name="password"]{
+  box-sizing: border-box;
+  width: 100%;
+  border: 1px solid dodgerblue;
+  padding: 10px 20px;
+  margin: 0 0 20px 0;
+}
+input[name="submit"]{
+  display: block;
+  margin: 20px 0 0 0;
+  width: 100%;
+  padding: 10px;
+  background-color: green;
+  color: whitesmoke;
+  font-size: 16px;
+  
+}
+.login-btn-2{
+  margin: 2% 0 0 0;
+}
+.login-btn-2 .cancel-btn{
+  background-color: rgb(179, 42, 42);
+  border: none;
+  padding: 5px 10px;
+  color: whitesmoke;
+}
+.login-btn-2 span a{
+  color: black;
+  margin-left: 30px;
+  text-decoration: underline;
+}
+
+
+.animate{
+  animation: animatezoom 0.6s;
+}
+
+@keyframes animatezoom{
+  from{transform: scale(0);}
+  to{transform: scale(1);}
+}
