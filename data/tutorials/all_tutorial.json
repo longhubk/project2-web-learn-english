@@ -1,11 +1,8 @@
 {
-  "tut-1": "Basic Grammar",
-  "tut-2": "Listening Skills",
-  "tut-3": "Speaking Skills",
-  "tut-4": "Writing Skills",
-  "tut-5": "Some Tips to Talks",
-  "tut-6": "How to learn your self",
-  "tut-7": "How to watch video",
-  "tut-8": "How to improve voice"
+  "grammar": "Grammars",
+  "listen": "Listening",
+  "speak": "Speaking",
+  "write": "Writing"
+
   
 }

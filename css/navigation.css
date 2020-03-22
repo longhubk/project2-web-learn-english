@@ -1,8 +1,4 @@
 
-.nav{
-
-
-}
 .hori-nav{
   height: 35px;
   list-style-type: none;
@@ -11,13 +7,14 @@
   margin: 0;
   float: left;
   background-color: gray;
-  z-index: 0;
-  position: fixed;
+  z-index: 999;
+  display: block;
+  position: absolute;
   overflow: hidden;
   width: 100%;
   left: 0;
 }
-.hori-nav > li{
+.hori-nav  li{
   float: left;
 }
 
@@ -28,22 +25,24 @@
   text-align: center;
   display: inline-block;
   color: white;
-  padding: 5px 20px;
+  padding: 5px 15px;
   font-weight: 500;
 }
 .hori-nav li a:hover, .dropbtn:hover{
   background-color: rgb(28, 155, 233);
 }
+
 li.tutorial{
   display: inline-block;
 }
 .hori-nav .tutorial .inner-content{
   list-style-type: none;
+  min-width: 144px;
   display: none;
   background-color: whitesmoke;
-  position: absolute;
-  z-index: 1;
   box-shadow: 0px 0px 8px 0px;
+  position: absolute;
+  z-index: 1000;
 }
 .hori-nav .tutorial .inner-content a{
   display: block;
@@ -59,6 +58,8 @@ li.tutorial{
 
 .hori-nav .tutorial:hover .inner-content{
   display: block;
+  z-index: 9999999;
+  position: fixed;
 
 }
 
@@ -95,4 +96,16 @@ li.tutorial{
 }
 .fa , .fa-search{
   margin-right: 5px;
+}
+
+#home-li{
+  background-color: rgb(28, 155, 233);
+}
+
+@media screen and (max-width: 500px){
+
+  .hori-nav li{
+    display: block;
+    float: none;
+  }
 }

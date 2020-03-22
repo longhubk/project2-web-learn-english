@@ -1,7 +1,7 @@
 <div id="top_head" class = "header">
 
 <div title="English free for every one" class="logo-icon">
-  <a href="index.php"><img id="img-icon" src='../img/logo.PNG' height="50" width="200"></a>
+  <a href="index.php"><img id="img-icon" src='../../img/logo.PNG' height="30" width="160"></a>
 </div>
 <div class="login-container">
   <button onclick="openLogin()" class="login">

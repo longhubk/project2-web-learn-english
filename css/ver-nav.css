@@ -1,7 +1,7 @@
 .ver-bar {
   width: 230px;
-  height: 100%;
-  top: 97px;
+  height: 95%;
+  top: 78px;
   left: 0px;
   position: fixed;
   overflow-x: hidden;
@@ -18,8 +18,8 @@
 }
 .ver-bar ul li{
   background-color: rgb(36, 148, 36);
-  margin: 10px 0px 0px 5px;
-  padding: 10px 5px;
+  margin: 7px 0px 0px 5px;
+  padding: 5px 5px;
 }
 .ver-bar ul li a{
   text-decoration: none;

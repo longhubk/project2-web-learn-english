@@ -3,7 +3,7 @@
     <p class="qs-title">Top Question</p>
     <ol class="qs-list">
       <?php 
-        include "../php/question_prs.php";
+        include "../../php/question_prs.php";
       ?>
     </ol>
   </div>
