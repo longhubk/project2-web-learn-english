@@ -10,7 +10,7 @@
       <?php
         $tutorial_list = read_json("../../data/tutorials/all_tutorial.json");
         foreach($tutorial_list as $tutorial_item => $name){
-          echo "<a href='../form_index/index.php?name_tutorial=$tutorial_item'>$tutorial_item</a>";
+            echo "<a href='../form_index/index.php?tutorial=$tutorial_item'>$name</a>";
         }
       ?>
     </div>

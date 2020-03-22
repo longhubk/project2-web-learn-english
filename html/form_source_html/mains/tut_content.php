@@ -1,6 +1,6 @@
 <?php
 
-    $getTutorial = $_GET['tutorial'];
+    $getTutorial = $_GET['name_tutorial'];
     $path_data = "../../data/core_knowledge/" . $getTutorial . ".json";
     $content_data = read_json($path_data);
     $img = $getTutorial . ".png";

@@ -1,8 +1,8 @@
 <div class="main-container">
   <div class="video-card">
-    <h1>Verb - Động từ</h1>
+    <h1 style="font-size: 30px">Xin chào các bạn đến với trang học tiếng anh miễn phí SPEAKMORE </h1>
     <p>Hãy thực hiện các bước đưới đây để học tiếng anh nha!</p>
-    <img id="intro" src="../../img/verb_gramar.png">
+    <img id="intro" src="../../img/Welcome.jpg">
     <div class="tips">
       <h3>Hướng dẫn học:</h3>
       <?php include "../../php/guide_prs.php";?>
@@ -18,6 +18,5 @@
         <ul><?php include "../../php/subtitles/video1_sub.php" ?> </ul>
       </div>
     </div>
-    
   </div>
 </div>
