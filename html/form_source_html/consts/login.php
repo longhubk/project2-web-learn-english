@@ -1,7 +1,7 @@
 <div id="log-1" class="login-container-2">
-  <form class="login-form animate animate2" method="POST" action="../php/login-success.php">
+  <form class="login-form animate animate2" method="POST" action="index.php">
     <div class="login-img">
-      <i class="fas fa-user"></i>
+      <i onclick="closeLogin()" class="fas fa-user"></i>
     </div>
     <div class="login-main">
       <label class="login-label">Username:</label>

@@ -48,7 +48,8 @@ a{
 }
 .video-card h1{
   color: rgb(36, 148, 36);
-  font-size: 50px;
+  font-family: "Segoe UI";
+  font-size: 30px;
   margin: 10px 50px;
   text-align: left;
   
@@ -57,7 +58,7 @@ a{
   color: black;
   font-family: "Segoe UI";
   font-size: 20px;
-  margin: 10px 50px;
+  margin: 10px 50px 0px 50px;
 }
 .video-card img{
   height: 400px;

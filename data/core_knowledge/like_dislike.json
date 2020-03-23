@@ -1,0 +1,35 @@
+{
+	"point-0": "Like và Dislike(Thích và không thích)",
+	"point-1":{
+		"key": "Bạn có thể hỏi về việc thích bằng cấu trúc: What (...) do you like?",
+		"eg":{
+			"eg-1": "What sports do you like? - Bạn thích môn thể thao gì?",
+			"eg-2": "What TV programs do you like? - Bạn thích chương trình ti vi gì?" 
+		}
+	},
+	"point-2":{
+		"key": "Bạn có thể nhấn mạnh sự yêu thích bằng cấu trúc: I like (...) ",
+		"eg":{
+			"eg-1": "I like football - Tôi thích bóng đá",
+			"eg-2": "I like VN bread - Tôi thích bánh mỳ Việt Name" 
+		}
+	},
+	"point-3":{
+		"key": "Bạn có thể đặt câu hỏi đúng/sai(yes/no) bằng cấu trúc: Do you like (...)?",
+		"eg":{
+			"eg-1": "Do you like her? - Cậu có thích cô ấy không ?",
+			"eg-2": "Does she like me? - Cô ấy có thích tôi không ?" 
+		}
+	},
+
+	"point-4":{
+		"key": "Bạn có thể trả lời câu hỏi dạng yes/no bằng cấu trúc dưới đây",
+		"eg":{
+			"eg-1": "Yes, i do. - Đúng tôi thích",
+			"eg-2": "No, i don't. - Không tôi không thích ",
+			"eg-3": "Of course. - Dĩ nhiên rồi(bằng tôi thích) ",
+			"eg-4": "Not really. - Không thực sự thích " 
+		}
+	}
+
+}

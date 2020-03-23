@@ -25,13 +25,17 @@
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
   
     <script type="text/javascript">
+ 
       window.onload = function(){
         generateDay();
         generateTime();
+        hideBtnLogin();
       }
       window.onscroll = function(){
         scrollFunction();
       }
+      
+  
     </script>
   </head>
   <body>  

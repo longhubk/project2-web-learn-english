@@ -1,8 +1,11 @@
 <div class="main-container">
   <div class="video-card">
-    <h1>Xin chào các bạn đến với trang học tiếng anh miễn phí SPEAKMORE </h1>
+  
+    <?php
+      echo "<h1>Hello $username This is your home page</h1>"
+    ?>
     <p>Hãy thực hiện các bước đưới đây để học tiếng anh nha!</p>
-    <img id="intro" src="../../img/Welcome.jpg">
+    <img id="intro" src="../../img/user_page.png">
     <div class="tips">
       <h3>Hướng dẫn học:</h3>
       <?php include "../../php/guide_prs.php";?>
