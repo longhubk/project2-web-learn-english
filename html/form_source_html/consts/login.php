@@ -5,18 +5,22 @@
     </div>
     <div class="login-main">
       <label class="login-label">Username:</label>
-      <input id="name_input" type="text" name="username" placeholder="Enter Username">
+      <input type="text" name="username" placeholder="Enter Username">
+      <span class="error_log"><?php if(isset($user_log_err)) echo $user_log_err; ?></span><br>
       <label class="login-label">Password:</label>
-      <input id="password_id" type="password" name="password" placeholder="Enter Password">
-      <input type="checkbox" name="remember"><span id="remember_me">Remember me</span>
-      <input id="submit_btn" type="submit" name="submit" value="Login">
+      <input type="password" name="password" placeholder="Enter Password">
+      <span class="error_log"><?php if(isset($password_log_err)) echo $password_log_err; ?></span><br>
+      <div class="check_remember"> 
+        <input type="checkbox" name="remember"><span id="remember_me">Remember me</span>
+      </div>
+      <input type="submit" name="submit" value="Login">
     </div>
     <div class="login-btn-2">
-      <span id="span_forget" class="login-forget">
-        <a id="forget_pw" href="#">Forget password</a>
+      <span class="login-forget">
+        <a href="#">Forget password</a>
       </span>
-      <span id="span_new_acc" class="login-sign-up">
-        <a id="sign_up_new_acc" href="#">Sign up new account</a>
+      <span class="login-sign-up">
+        <a href="#">Sign up new account</a>
       </span>
     </div>
   </form>

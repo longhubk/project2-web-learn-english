@@ -4,21 +4,25 @@
   <a href="index.php"><img id="img-icon" src='../../img/logo.PNG' height="30" width="160"></a>
 </div>
 <div class="login-container">
-   <button id='btn_login' class='login'>
   <?php
+   echo "<button id='btn_login' class='login'>";
     $path_login = "index.php?get_login=login";
+    $path_signup = "index.php?get_signup=signup";
     foreach($_GET as $key => $value){
-      if(isset($_GET[$key])&& $key != "get_login")
+      if(isset($_GET[$key])&& $key != "get_login" && $key != "get_signup" && $key != "logined")
         $path_login = $path_login . "&$key=$value";
-
+      if(isset($_GET[$key])&& $key != "get_signup" && $key != "get_login" && $key != "logined")
+        $path_signup= $path_signup . "&$key=$value";
+      
     }
     echo "<a href='$path_login'>Log In</a>";
-  ?>
-  </button>
+    echo "</button>";
+    
+ echo "<button  class='signup'>";
+   echo "<a href='$path_signup'>Sign Up</a>";
 
- <button  onclick="openSignUp()" class="signup">
-   <a href="#">Sign Up</a>
- </button>
+ echo "</button>";
+  ?>
 </div>
 <div class="language">
   <i class="material-icons">language</i>

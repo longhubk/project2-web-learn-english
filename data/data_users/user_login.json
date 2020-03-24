@@ -1,14 +1,1 @@
-{
-
-  "user2":{
-    "username": "hahahaha",
-    "password": "5446846"
-  },
-  "user1":{
-    "username": "kienporn",
-    "password": "123456"
-
-  }
-  
-
-}
+[{"username":"kienlol","email":"ngaikiensex@gmail.com","password":"123456789","password_again":"123456789"},{"username":"kiensex1","email":"ngaikiensex@gmail.com","password":"123456789","password_again":"123456789"},{"username":"kiensex","email":"ngaikiensex@gmail.com","password":"123456789","password_again":"123456789"},{"username":"quanvu","email":"quanvu@gmail.com","password":"123456789","password_again":"123456789"}]

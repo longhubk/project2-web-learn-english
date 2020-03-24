@@ -1,11 +1,22 @@
 <?php 
   if(isset($_POST["submit"]))
     include "../../php/login-prs.php";
+  if(isset($_POST["signup"]))
+    include "../../php/signup_prs.php";
+  
   if(isset($_GET['get_login']))
     include "../form_source_html/consts/login.php";
+  if(isset($_GET['get_signup']))
+    include "../form_source_html/consts/signup.php";
+
   if(isset($_GET['logined'])){
     if($_GET['logined'] == "fail")
       include "../form_source_html/consts/login.php";
+
+  }
+  if(isset($_GET['signuped'])){
+    if($_GET['signuped'] == "fail")
+      include "../form_source_html/consts/signup.php";
 
   }
     

@@ -5,7 +5,10 @@
 			{
 				// $get_tutorial_global = $_GET['tutorial'];
 				// $path_tutorial = "../../php/tutorials/" . $get_tutorial_global . "_prs.php";
-				include "../../php/tutorials/grammar_prs.php";
+				if($_GET['tutorial'] == "all_tutorial"){
+					include "../../php/tutorials/all_tutorial_prs.php";
+				}else
+					include "../../php/tutorials/grammar_prs.php";
 			}else{
 				include "../../php/tutorials/all_tutorial_prs.php";
 			}

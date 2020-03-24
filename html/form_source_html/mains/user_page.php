@@ -2,7 +2,10 @@
   <div class="video-card">
   
     <?php
-      echo "<h1>Hello $username This is your home page</h1>"
+    if(isset($username))
+      echo "<h1>Hello $username This is your home page</h1>";
+    else
+      echo "<h1>You are not login</h1>";
     ?>
     <p>Hãy thực hiện các bước đưới đây để học tiếng anh nha!</p>
     <img id="intro" src="../../img/user_page.png">

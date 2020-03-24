@@ -2,7 +2,7 @@
   <li id="home-li"><a href="index.php"><i class="fa fa-fw fa-home"></i>HOME</a></li>
   <li><a href="#">NOTIFICATIONS</a></li> 
   <li class="tutorial">
-    <a href="#" class="dropbtn">
+    <a href="index.php?tutorial=all_tutorial" class="dropbtn">
       TUTORIALS
       <i class="fa fa-caret-down"></i>
     </a>
