@@ -2,13 +2,11 @@
  
   $username_err = $password_err = $email_err = $password_again_err = "";
   if(isset($_POST["signup"])){
-    if(!isset($_POST["username_sp"]) ||
-    !isset($_POST["password_sp"]) ||
-    !isset($_POST["email_sp"]) ||
-    !isset($_POST["password_again_sp"]) 
+    if(!empty($_POST["username_sp"]) &&
+    !empty($_POST["password_sp"]) &&
+    !empty($_POST["email_sp"]) &&
+    !empty($_POST["password_again_sp"]) 
    ){
-
-   }else{
      $username_new = $_POST['username_sp'];
      $email_new = $_POST['email_sp'];
      $password_new = $_POST['password_sp'];
@@ -35,6 +33,10 @@
      ){
       $_GET['signuped'] = "ok";
 
+      $sql = "INSERT INTO users(name, password, email) 
+      VALUES('". $_POST["username_sp"]. "','". $_POST["password_sp"]. "','". $_POST["email_sp"]. "')";
+      $connect->exec($sql);
+      
       $user_infor = array("username" => $username_new ,
       "email" => $email_new,
       "password" => $password_new,

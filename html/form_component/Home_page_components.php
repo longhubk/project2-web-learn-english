@@ -1,8 +1,16 @@
 <?php 
-  if(isset($_POST["submit"]))
-    include "../../php/login-prs.php";
+  include "../../php/database/data_users.php";
+
   if(isset($_POST["signup"]))
     include "../../php/signup_prs.php";
+  else
+    $connect = null;
+
+  if(isset($_POST["submit"]))
+    include "../../php/login-prs.php";
+  else
+    $connect = null;
+  
   
   if(isset($_GET['get_login']))
     include "../form_source_html/consts/login.php";
@@ -46,6 +54,8 @@
     else
       include "../form_source_html/mains/main_content.php";
   }
+
+ 
   
 ?>
   <div class="clear"></div>
