@@ -7,12 +7,26 @@
     else
       echo "<h1>You are not login</h1>";
     ?>
-    <p>Hãy cập nhật nhật thông tin mà bạn: </p>
 
-    <form action="../../php/uploadAvatar.php" method="POST" enctype="multipart/form-data">
-      <input type="file" name="file">
-      <button type="submit" name="upload">Upload</button>
-    </form>
+    <p>Hãy cập nhật nhật thông tin mà bạn: </p>
+    <div class="user_info_page">
+      <div>
+        <form method="POST" enctype="multipart/form-data">
+          <input type="file" name="file">
+          <button type="submit" name="upload">Upload</button>
+        </form>
+      </div>   
+      <?php include "../../php/uploadAvatar.php" ?>
+      <div class="user_avatar">
+        <?php 
+          echo "<img class='photo_avt' src=".$file_destination .">";
+        ?>
+  
+      </div>
+    </div>
+
+    
+    
 
     <img id="intro" src="../../img/user_page.png">
     <div class="tips">
