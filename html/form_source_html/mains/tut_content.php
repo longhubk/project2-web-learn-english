@@ -49,12 +49,14 @@
     </div>
     <div class="verb-video" >
       <h3>Video có phụ đề:</h3>
-      <iframe  width="560" height="315" src="https://www.youtube.com/embed/LfJPA8GwTdk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe id='player' width="560" height="315" src="https://www.youtube.com/embed/LfJPA8GwTdk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       
       <div class="subtitle">
-        <ul><?php include "../../php/subtitles/video1_sub.php" ?> </ul>
+        <ul id = "main_scroll"><?php include "../../php/subtitles/video1_sub.php" ?> </ul>
       </div>
+        <button id="btn_scroll">scroll</button>
+        <button id="btn_auto_scroll">auto scroll</button>
+
     </div>
-    
   </div>
 </div>

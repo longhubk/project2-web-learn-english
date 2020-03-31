@@ -19,13 +19,12 @@
     <link href="../../css/footer.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <script src="../../js/calendar.js" type="text/javascript"></script>
-    <script src="../../js/scroll_nav.js" type="text/javascript"></script>
-    <script src="../../js/login.js" type="text/javascript"></script>
     <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-  
+    <script src= 'https://www.youtube.com/iframe_api'></script>
+    <script src='../../js/JQuery/jquery-3.4.1.js' type="text/javascript"></script>
+
+
     <script type="text/javascript">
- 
       window.onload = function(){
         generateDay();
         generateTime();

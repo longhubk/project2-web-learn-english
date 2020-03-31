@@ -5,7 +5,7 @@
     </div>
     <div class="login-main">
       <label class="login-label">Username:</label>
-      <input type="text" name="username" placeholder="Enter Username">
+      <input id ="test" type="text" name="username" placeholder="Enter Username">
       <span class="error_log"><?php if(isset($user_log_err)) echo $user_log_err; ?></span><br>
       <label class="login-label">Password:</label>
       <input type="password" name="password" placeholder="Enter Password">

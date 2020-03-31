@@ -3,13 +3,10 @@
 
   if(isset($_POST["signup"]))
     include "../../php/signup_prs.php";
-  else
-    $connect = null;
 
   if(isset($_POST["submit"]))
     include "../../php/login-prs.php";
-  else
-    $connect = null;
+
   
   
   if(isset($_GET['get_login']))
@@ -40,9 +37,10 @@
         include "../form_source_html/mains/user_page.php";
       else
         include "../form_source_html/mains/tut_content.php";
-    }
-    else
+    }else
       include "../form_source_html/mains/tut_content.php";
+  }else if(isset($_GET['homepage'])){
+      include "../form_source_html/mains/user_page.php";
   }
   else{
     if(isset($_GET['logined'])){

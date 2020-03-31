@@ -40,17 +40,20 @@ function checkTime(t){
   return t
 }
 function generateTime(){
+  const days = ["Sunday", "Monday", "Tuesday", "Wenesday", "Thusday","Friday", "Saturday"]
   let date = new Date()
   let time = document.getElementById("time")
   let hours = date.getHours()
   let minutes = date.getMinutes()
   let seconds = date.getSeconds()
+  let day_week = days[date.getDay()] 
   hours = checkTime(hours)
   minutes = checkTime(minutes)
   seconds = checkTime(seconds)
-  time.innerHTML = hours + ":" + minutes + ":" + seconds;
+  time.innerHTML = day_week +" - "+ hours + ":" + minutes + ":" + seconds;
   var t = setTimeout(generateTime, 500);
 }
 function daysInMonth (month, year) { 
    return new Date(year, month, 0).getDate(); 
 } 
+

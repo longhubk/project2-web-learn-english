@@ -11,8 +11,9 @@ function closeLogin(){
      login_var.style.display = "none" 
 
      }
-  }
-     
+ }
+
+
    //   let check_forget = document.getElementById("forget_pw")
    //   let check_new_acc = document.getElementById("sign_up_new_acc")
 

@@ -5,8 +5,8 @@
 .header > .logo-icon{
   float: left;
   margin: 0 0 1px 0;
-
 }
+
 .header .logo-icon:hover{
   opacity: 0.8;
 }
@@ -21,6 +21,30 @@
   font-size: 35px;
   margin: 0px;
   color: black;
+}
+.header #head-intro{
+  border: 1px dotted black;
+  font-size: 20px;
+  float: left;
+  background-color: #ADFF2F;
+  padding: 0 0 0 5px;
+  margin: 0 0 0 5%;
+  width: 29vw;
+  font-family: cursive;
+}
+.header #head-intro p{
+  float: left;
+  margin: 0;
+  border: none;
+}
+.header #head-intro i{
+  float: right;
+  margin: 0 2px 0 0;
+  font-size: 16px;
+}
+
+.header #head-intro i:hover{
+  color: red;
 }
 
 .login-container{
@@ -70,4 +94,5 @@
 .clear{
   clear: both;
 }
+
 

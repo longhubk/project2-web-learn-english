@@ -1,4 +1,5 @@
 <ul id="hor-nav" class="hori-nav">
+  <li id="menu-li" title="menu"><button onclick= "toggleSideBar()"><i class="material-icons">menu</i></button></li>
   <li id="home-li"><a href="index.php"><i class="fa fa-fw fa-home"></i>HOME</a></li>
   <li><a href="#">NOTIFICATIONS</a></li> 
   <li class="tutorial">
@@ -22,7 +23,7 @@
   <li id=search_area>
     <div class="search-box" style="margin-left: 10px;">
       <i class="fa fa-search" style="color: white;"></i>
-      <input id="search" type="text" placeholder="Search on page">
+      <input id="search" onkeyup="showSuggest(this.value)" type="text" placeholder="Search on page">
       <button class="btn-search">Search</button>
     </div>
   </li>

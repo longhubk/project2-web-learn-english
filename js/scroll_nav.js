@@ -1,6 +1,9 @@
 
 
 function scrollFunction(){
+  let ver_nav = document.getElementById('ver_nav');
+  ver_nav.style.transition = "0s";
+
   if(document.body.scrollTop > 60 || document.documentElement.scrollTop >60){
     let hor_nav = document.getElementById("hor-nav")
     hor_nav.style.position = "fixed"

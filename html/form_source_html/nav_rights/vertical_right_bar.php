@@ -1,6 +1,6 @@
 <div id="ver_nav_2" class="right-nav">
   <div id="qs_right" class="question">
-    <p class="qs-title">Top Question</p>
+    <p id="txtSuggest" class="qs-title">Top Question</p>
     <ol class="qs-list">
       <?php 
         include "../../php/question_prs.php";
@@ -9,10 +9,12 @@
   </div>
   <div id="cal" class="calendar">
     <div class="title">
-      <i class="fa fa-calendar" style="color: browser;"></i>
-      Calendar
-      <div id="time"></div>
+      <div class="name-calendar">
+        <i class="fa fa-calendar" style="color: browser;"></i>
+        <p>Calendar</p>
+      </div>
     </div>
+    <div id="time"></div>
     <div class="month">
       <button id="mon-prev">prev</button>
       <div id="month">March</div>
