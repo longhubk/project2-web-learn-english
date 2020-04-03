@@ -20,26 +20,34 @@
 
       if($file_Error == 0){
         if($file_Size < 5000000){
-        
             move_uploaded_file($file_Temp_name, $file_destination);
-            echo "upload ok";
-          
+            $write_img_to_database = "UPDATE users SET avatar='" .$file_new_name . "' WHERE name='". $_COOKIE['member_login'] . "'";
+            $connect->exec($write_img_to_database);
+            check_name_file_exist($_COOKIE['member_login'], $file_Ext_Allowed, $file_Actual_Ext);
+            echo "Upload successfully <br>";
         }else{
           echo "File bigger than 5M";
         }
       }else{
-
         echo "There are error";
       }
-
     }else{
       echo "you can not upload file that is not image";
     }
-
-
   }
 
 
+ function check_name_file_exist($file_name, $file_Ext_Allowed, $file_Actual_Ext){
+    foreach($file_Ext_Allowed as $ext){
+      if($ext != $file_Actual_Ext){
+        $file_name_check = "../../img/uploads/".$file_name .".". $ext;
+        if(file_exists($file_name_check)){
+          unlink($file_name_check);
+          echo "Deleted your old avatar <br>";
+        }
+      }
+    }
+  }
 
 
 
