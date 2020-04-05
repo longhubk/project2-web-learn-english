@@ -50,6 +50,7 @@
 .login-container{
   width: max-content;
   float: right;
+  display: flex;
   padding: 0px;
 }
 
@@ -59,8 +60,9 @@
   background-color:rgb(28, 155, 233);
 }
 .login-container .login{
-  margin-right: 10px;
+  margin: 0 10px 0 10px;
   padding: 5px 15px;
+
 
 }
 .login-container .signup{
@@ -94,5 +96,14 @@
 .clear{
   clear: both;
 }
+.small-avt{
+  border-radius: 20px;
+  width: 25px;
+  margin: 0;
+  height: 25px;
+}
 
+.small-avt:hover{
+  opacity: 0.7;
+}
 

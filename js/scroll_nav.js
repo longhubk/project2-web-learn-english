@@ -1,10 +1,8 @@
-
-
-function scrollFunction(){
+function scrollFunction() {
   let ver_nav = document.getElementById('ver_nav');
   ver_nav.style.transition = "0s";
 
-  if(document.body.scrollTop > 60 || document.documentElement.scrollTop >60){
+  if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
     let hor_nav = document.getElementById("hor-nav")
     hor_nav.style.position = "fixed"
     hor_nav.style.top = 0
@@ -13,7 +11,7 @@ function scrollFunction(){
     document.getElementById("cal").style.marginTop = "30px"
     document.getElementById("qs_right").style.height = "240px"
 
-  }else{
+  } else {
     let hor_nav = document.getElementById("hor-nav")
     hor_nav.style.position = "absolute"
     hor_nav.style.top = "44px"

@@ -13,5 +13,6 @@ function showSuggest(string){
     xmlhttp.open("GET", "../../php/getSuggest.php?q=" + string, true)
     xmlhttp.send()
   }
+  
 
 }

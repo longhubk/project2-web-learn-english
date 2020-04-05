@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+
   if(isset($_GET['logout'])){
     if($_GET['logout'] == "true")
       setcookie('member_login', "", time() - (10 * 365 * 24 * 60 * 60));

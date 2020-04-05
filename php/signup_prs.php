@@ -30,30 +30,12 @@
       empty($username_err) &&
       empty($password_err) &&
       empty($password_again_err)
-     ){
+     )
       $_GET['signuped'] = "ok";
-
-      $sql = "INSERT INTO users(name, password, email) 
-      VALUES('". $_POST["username_sp"]. "','". $_POST["password_sp"]. "','". $_POST["email_sp"]. "')";
-      $connect->exec($sql);
-      
-      $user_infor = array("username" => $username_new ,
-      "email" => $email_new,
-      "password" => $password_new,
-     "password_again" => $password_again_new);
-
-     $iput = file_get_contents("../../data/data_users/user_login.json");
-     $tempArr = json_decode($iput, true);
-     $tempArr[] = $user_infor;
-
-     $final_data = json_encode($tempArr);
-     file_put_contents("../../data/data_users/user_login.json", $final_data);
-
-     }else{
+    else
       $_GET['signuped'] = "fail";
-     }
 
-
+      echo "signup = " . $_GET["signuped"];
    }
   }
 

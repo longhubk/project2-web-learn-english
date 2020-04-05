@@ -15,5 +15,15 @@ function toggleSideBar(){
   }else{
     side_bar.style.width = "0"
   }
-
+  //!this important for
+  //? thi is command
+  /**
+   * ?this is best comment
+   * !this is warning for you
+   * * this is alway show in comand
+   * TODO: This is some thing you have to do now 
+   * //some this is predicate here
+   * 
+   */
+  
 }

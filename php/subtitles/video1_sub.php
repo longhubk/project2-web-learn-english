@@ -1,5 +1,5 @@
 <?php 
-  $sub_file = read_json("../../data/subtitles_data/video1_sub_data.json");
+  $sub_file = read_json("../data/subtitles_data/video1_sub_data.json");
   
   $id = 0;
   foreach($sub_file as $eng_sub => $vi_sub){

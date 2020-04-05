@@ -6,8 +6,6 @@
 
   if(isset($_POST["submit"]))
     include "../../php/login-prs.php";
-
-  
   
   if(isset($_GET['get_login']))
     include "../form_source_html/consts/login.php";
@@ -17,7 +15,6 @@
   if(isset($_GET['logined'])){
     if($_GET['logined'] == "fail")
       include "../form_source_html/consts/login.php";
-
   }
   if(isset($_GET['signuped'])){
     if($_GET['signuped'] == "fail")
