@@ -3,7 +3,7 @@
   require_once "read_json.php";
   //auto loader 
   function __autoload($class_name){
-    require_once "lib/" . $class_name . ".php";
+    require_once "models/" . $class_name . ".php";
   }
 
 ?>

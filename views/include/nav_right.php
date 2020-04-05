@@ -2,9 +2,12 @@
   <div id="qs_right" class="question">
     <p id="txtSuggest" class="qs-title">Top Question</p>
     <ol class="qs-list">
-      <?php
-      include "../php/question_prs.php";
-      ?>
+    <?php 
+
+  foreach($tut_question as $name_user => $question){
+    echo "<li><a href='#'> $question</a></li>";
+  }
+?>
     </ol>
   </div>
   <div id="cal" class="calendar">

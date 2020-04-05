@@ -1,14 +1,8 @@
-<?php
-    $getTutorial = $_GET['name_tutorial'];
-    $path_data = "../data/core_knowledge/" . $getTutorial . ".json";
-    $content_data = read_json($path_data);
-    $img = $getTutorial . ".png";
-?>
 
 <div class="main-container">
   <div class="video-card">
     <?php
-      foreach($content_data as $point => $data){
+      foreach($tutKnowledge as $point => $data){
         if($point == "point-0"){
           echo "<h1>$data</h1>";
         }
@@ -17,17 +11,21 @@
     ?>
     <p>Hãy thực hiện các bước đưới đây để học tiếng anh nha!</p>
     <?php
-      echo "<img id='intro' src='img/$img'>";
+      echo "<img id='intro' src='views/img/$tut_img'>";
     ?>
     <div class="tips">
       <h3>Hướng dẫn học:</h3>
-      <?php include "../php/guide_prs.php";?>
+      <?php 
+       foreach ($tut_guide as $step => $content){
+         echo "<p> $step: $content</p>";
+       }
+      ?>
     </div>
 
     <div class="knowledge"> 
     <?php 
 
-      foreach($content_data as $point => $data){
+      foreach($tutKnowledge as $point => $data){
         if($point != "point-0"){
           foreach($data as $key => $value){
             if($key == "key"){
@@ -53,7 +51,14 @@
       
       <div class="subtitle">
         <ul id = "main_scroll">
-          <?php include "../php/subtitles/video1_sub.php" ?> 
+          <?php   
+            $id = 0;
+            foreach($tut_subtitle as $eng_sub => $vi_sub){
+              echo "<li id='en-$id' style='color: green;'>$eng_sub</li> <br>";
+              echo "<li id='vn-$id' style='color: blue;'>$vi_sub</li> <br>";
+              $id++;
+            }
+          ?>
         </ul>
       </div>
 

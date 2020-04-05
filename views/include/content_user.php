@@ -1,6 +1,6 @@
 <div class='main-container'>
   <?php
-  include "../php/uploadAvatar.php";
+  include "../controllers/uploadAvatar.php";
   if (isset($_COOKIE['member_login']))
     echo "<h1>Hello " . $_COOKIE['member_login'] . " This is your home page</h1>";
   else
@@ -100,7 +100,7 @@
         <?php
 
         $name_avt = $avatar->avatar;
-        $directory_avatar = "img/uploads/" . $name_avt;
+        $directory_avatar = "views/img/uploads/" . $name_avt;
         echo "<img class='photo_avt' src='" . $directory_avatar . "'>";
         ?>
         <div class='name_in_avt'><?php echo $_COOKIE['member_login']; ?></div>
