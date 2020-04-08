@@ -1,0 +1,1 @@
+có n hành khách di chuyển tù vị trí i đến i+N

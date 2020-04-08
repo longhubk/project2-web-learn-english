@@ -5,26 +5,28 @@ $general_nav_bar = "";
 <html>
 
 <head>
+  <base href="http://localhost/project2/" target="_blank" />
   <meta name="viewport" content="width= device-width, initial-scale: 1.0">
   <meta charset="UTF-8">
   <title>SPEAK MORE</title>
-  <link href="views/css/navigation.css" rel="stylesheet" type="text/css">
-  <link href="views/css/container.css" rel="stylesheet" type="text/css">
-  <link href="views/css/login.css" type="text/css" rel="stylesheet">
-  <link href="views/css/calendar.css" rel="stylesheet" type="text/css">
-  <link href="views/css/header.css" rel="stylesheet" type="text/css">
-  <link href="views/css/ver-nav.css" rel="stylesheet" type="text/css">
-  <link href="views/css/question_right.css" rel="stylesheet" type="text/css">
-  <link href="views/css/right_nav.css" rel="stylesheet" type="text/css">
-  <link href="views/css/footer.css" rel="stylesheet" type="text/css">
-  <link href="views/css/user_page.css" rel="stylesheet" type="text/css">
+  <link href="./public/css/navigation.css" rel="stylesheet" type="text/css">
+  <link href="./public/css/container.css" rel="stylesheet" type="text/css">
+  <link href="./public/css/login.css" type="text/css" rel="stylesheet">
+  <link href="./public/css/calendar.css" rel="stylesheet" type="text/css">
+  <link href="./public/css/header.css" rel="stylesheet" type="text/css">
+  <link href="./public/css/ver-nav.css" rel="stylesheet" type="text/css">
+  <link href="./public/css/question_right.css" rel="stylesheet" type="text/css">
+  <link href="./public/css/right_nav.css" rel="stylesheet" type="text/css">
+  <link href="./public/css/footer.css" rel="stylesheet" type="text/css">
+  <link href="./public/css/user_page.css" rel="stylesheet" type="text/css">
+
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/views/views/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href="https://bootswatch.com/flatly/bootstrap.min.css" rel="stylesheet">
 
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>
   <script src='https://www.youtube.com/iframe_api'></script>
-  <script src='views/js/JQuery/jquery-3.4.1.js' type="text/javascript"></script>
+  <script src='./public/js/JQuery/jquery-3.4.1.js' type="text/javascript"></script>
   <script type="text/javascript">
     window.onload = function() {
       generateDay();
@@ -41,7 +43,7 @@ $general_nav_bar = "";
   <div id="top_head" class="header">
 
     <div title="<?php echo SITE_TITLE;  ?>" class="logo-icon">
-      <a href="index.php"><img id="img-icon" src='views/img/logo.PNG' height="30" width="160"></a>
+      <a href="./Home"><img id="img-icon" src='views/img/logo.PNG' height="30" width="160"></a>
     </div>
     <div id="head-intro">
       <p id='intro'>"Every courses are free for every one"</p>
