@@ -5,7 +5,7 @@ $general_nav_bar = "";
 <html>
 
 <head>
-  <base href="http://localhost/project2/" target="_blank" />
+  <base href="http://localhost/project2/" />
   <meta name="viewport" content="width= device-width, initial-scale: 1.0">
   <meta charset="UTF-8">
   <title>SPEAK MORE</title>
@@ -43,7 +43,7 @@ $general_nav_bar = "";
   <div id="top_head" class="header">
 
     <div title="<?php echo SITE_TITLE;  ?>" class="logo-icon">
-      <a href="./Home"><img id="img-icon" src='views/img/logo.PNG' height="30" width="160"></a>
+      <a href="./Home"><img id="img-icon" src='./public/img/logo.PNG' height="30" width="160"></a>
     </div>
     <div id="head-intro">
       <p id='intro'>"Every courses are free for every one"</p>
@@ -58,39 +58,29 @@ $general_nav_bar = "";
         $show_btn_login = true;
       }
 
-      $path_login = "index.php?get_login=login";
-      $path_signup = "index.php?get_signup=signup";
-      foreach ($_GET as $key => $value) {
-        if (isset($_GET[$key]) && $key != "get_login" && $key != "get_signup" && $key != "logined")
-          $path_login = $path_login . "&$key=$value";
-        if (isset($_GET[$key]) && $key != "get_signup" && $key != "get_login" && $key != "logined")
-          $path_signup = $path_signup . "&$key=$value";
-      }
-
       if ($show_btn_login) {
         echo "<button id='btn_login' class='login'>";
-        echo "<a href='$path_login'>Log In</a>";
+        echo "<a href='./Register/Login'>Log In</a>";
         echo "</button>";
       } else {
-        if(isset($avatar)){
-          $name_avt = $avatar->avatar;
-          $directory_avatar = "views/img/uploads/" . $name_avt;
+        if(isset($data['avatar'])){
+          $name_avt = $data['avatar'];
+          $directory_avatar = "./public/img/uploads/" . $name_avt;
           echo "<img title='". $_COOKIE["member_login"]."' class='small-avt' src='". $directory_avatar ."'>" ;
         }
-
         echo "<button id='btn_login' class='login'>";
-        echo "<a href='index.php?controller=userpage&action=view&homepage=true'>Home Page</a>";
+        echo "<a href='./UserPage'>User Page</a>";
         echo "</button>";
       }
 
 
       if (!empty($_COOKIE['member_login'])) {
         echo "<button class='signup'>";
-        echo "<a href='index.php?logout=true'>Log out</a>";
+        echo "<a href='./Register/LogOut'>Log out</a>";
         echo "</button>";
       } else {
         echo "<button class='signup'>";
-        echo "<a href='$path_signup'>Sign Up</a>";
+        echo "<a href='./Register/SignUp'>Sign Up</a>";
         echo "</button>";
       }
       $_GET["hello"] = true;
@@ -110,29 +100,16 @@ $general_nav_bar = "";
   </div>
 
   <?php
-  if (isset($_POST["signup"]))
-    include "../controllers/signup_prs.php";
 
-  if (isset($_POST["submit"]))
-    include "../controllers/login-prs.php";
-
-  if (isset($_GET['get_login']))
-    include "log_in.php";
-  if (isset($_GET['get_signup']))
-    include "log_up.php";
-
-  if (isset($_GET['logined'])) {
-    if ($_GET['logined'] == "fail")
-      include "log_in.php";
-    else if($_GET["logined"] == "ok")
-      header('Location: index.php?homepage');
+  if(isset($data['login_part'])){
+    $login_part = $data['login_part'];
+    require_once "./mvc/views/include/" . $login_part . ".php";
   }
-  if (isset($_GET['signuped'])) {
-    if ($_GET['signuped'] == "fail")
-      include "log_up.php";
-    else if($_GET["signuped"] == "ok")
-      $title_h1 = "You are Sign Up success";
+  if(isset($data['signup_part'])){
+    $signup_part = $data['signup_part'];
+    require_once "./mvc/views/include/" . $signup_part . ".php";
   }
+
   ?>
 
 
@@ -141,18 +118,17 @@ $general_nav_bar = "";
 
   <ul id="hor-nav" class="hori-nav">
     <li id="menu-li" title="menu"><button onclick="toggleSideBar()"><i class="material-icons">menu</i></button></li>
-    <li id="home-li"><a href="index.php?controller=homepage&action=home"><i class="fa fa-fw fa-home"></i>HOME</a></li>
+    <li id="home-li"><a href="./Home"><i class="fa fa-fw fa-home"></i>HOME</a></li>
     <li><a href="#">NOTIFICATIONS</a></li>
     <li class="tutorial">
-      <a href="index.php?controller=tutorialpage&action=all&tutorial=all_tutorial" class="dropbtn">
+      <a href="./Tut/All" class="dropbtn">
         TUTORIALS
         <i class="fa fa-caret-down"></i>
       </a>
       <div class="inner-content">
         <?php
-        foreach ($allTuts as $tutorial_item => $name) {
-          $path_tut = $each_url . "&tutorial=$tutorial_item";
-          echo "<a href=". $path_tut .">$name</a>";
+        foreach ($data['allTuts'] as $tutorial_item => $name) {
+          echo "<a href='./Tut/One/". $tutorial_item ."'>$name</a>";
         }
         ?>
       </div>

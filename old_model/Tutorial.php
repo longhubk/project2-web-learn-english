@@ -57,13 +57,7 @@
    }  
  
  }
-    // public function getListTutorial(){
-    //     //   $tutorial_list = read_json("../views/data/tutorials/all_tutorial.json");
-    //     // foreach ($tutorial_list as $tutorial_item => $name) {
-    //       $this->getAllTutorial();
-    //       // echo "<a href='index.php?tutorial=$tutorial_item'>$name</a>";
-    //     }
-    // }
+
 
 
   

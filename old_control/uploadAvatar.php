@@ -32,7 +32,7 @@
         echo "There are error";
     }else
       echo "you can not upload file that is not image";
-    
+
   }
 
 

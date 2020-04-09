@@ -3,9 +3,11 @@
     <p id="txtSuggest" class="qs-title">Top Question</p>
     <ol class="qs-list">
     <?php 
-
-  foreach($tut_question as $name_user => $question){
-    echo "<li><a href='#'> $question</a></li>";
+  if(isset($data['tut_qs'])){
+    $tut_question = $data['tut_qs'];
+    foreach($tut_question as $name_user => $question){
+      echo "<li><a href='#'> $question</a></li>";
+    }
   }
 ?>
     </ol>

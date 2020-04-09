@@ -1,6 +1,6 @@
 <div class='main-container'>
   <?php
-  include "../controllers/uploadAvatar.php";
+  // include "../controllers/uploadAvatar.php";
   if (isset($_COOKIE['member_login']))
     echo "<h1>Hello " . $_COOKIE['member_login'] . " This is your home page</h1>";
   else
@@ -99,12 +99,14 @@
       <div class="user_avatar">
         <?php
 
-        $name_avt = $avatar->avatar;
-        $directory_avatar = "views/img/uploads/" . $name_avt;
-        echo "<img class='photo_avt' src='" . $directory_avatar . "'>";
+        if(isset($data['avatar'])){
+          $name_avt = $data['avatar'];
+          $directory_avatar = "./public/img/uploads/" . $name_avt;
+          echo "<img class='photo_avt' src='" . $directory_avatar . "'>";
+        }
         ?>
         <div class='name_in_avt'><?php echo $_COOKIE['member_login']; ?></div>
-        <form id="form_img" method="POST" enctype="multipart/form-data">
+        <form id="form_img" action="./UserPage/upload"  method="POST" enctype="multipart/form-data">
           <input id="file_rp" type="file" name="file" accept=".png,.jpg,.gif,.jpeg">
           <label id="rp_input_file" for="file_rp">Choose Image</label>
           <input id="submit_avt" type="submit" name='upload' value="upload">

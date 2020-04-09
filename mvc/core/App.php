@@ -47,7 +47,6 @@
     function UrlProcess(){
       //!return array
       if(isset($_GET["url"])){
-        echo $_GET['url'];
         return explode("/",  filter_var(trim($_GET["url"], "/")));
       }
 

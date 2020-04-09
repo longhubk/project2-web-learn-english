@@ -2,22 +2,36 @@
 <div class="main-container">
   <div class="video-card">
     <?php
-      foreach($tutKnowledge as $point => $data){
-        if($point == "point-0"){
-          echo "<h1>$data</h1>";
+
+
+      if(isset($data['tutKnowledge'])){
+        $tutKnowledge = $data['tutKnowledge'];
+        foreach($tutKnowledge as $point => $knowledge){
+          if($point == "point-0"){
+            echo "<h1>$knowledge</h1>";
+          }
         }
       }
-    
+      
     ?>
+    
+  
     <p>Hãy thực hiện các bước đưới đây để học tiếng anh nha!</p>
+
     <?php
-      echo "<img id='intro' src='views/img/$tut_img'>";
+       if(isset($data['img_tut'])){
+         $tut_img = $data['img_tut'] . ".png";
+         echo "<img id='intro' src='./public/img/$tut_img'>";
+       }
     ?>
     <div class="tips">
       <h3>Hướng dẫn học:</h3>
       <?php 
-       foreach ($tut_guide as $step => $content){
-         echo "<p> $step: $content</p>";
+       if(isset($data['tut_guide'])){
+        $tut_guide = $data['tut_guide'];
+         foreach ($tut_guide as $step => $content){
+           echo "<p> $step: $content</p>";
+         }
        }
       ?>
     </div>
@@ -25,17 +39,20 @@
     <div class="knowledge"> 
     <?php 
 
-      foreach($tutKnowledge as $point => $data){
-        if($point != "point-0"){
-          foreach($data as $key => $value){
-            if($key == "key"){
-              echo "<div class='point-main'> $value </div><br>";
-            }else{
-              echo "<ol>";
-              foreach($value as $eg => $eg_value){
-                echo "<li class='$eg'> $eg_value </li><br>";
+      if(isset($data['tutKnowledge'])){
+        $tutKnowledge = $data['tutKnowledge'];
+        foreach($tutKnowledge as $point => $knowledge){
+          if($point != "point-0"){
+            foreach($knowledge as $key => $value){
+              if($key == "key"){
+                echo "<div class='point-main'> $value </div><br>";
+              }else{
+                echo "<ol>";
+                foreach($value as $eg => $eg_value){
+                  echo "<li class='$eg'> $eg_value </li><br>";
+                }
+                echo "</ol><br>";
               }
-              echo "</ol><br>";
             }
           }
         }
@@ -52,12 +69,15 @@
       <div class="subtitle">
         <ul id = "main_scroll">
           <?php   
+          if(isset($data['tut_sub'])){
+            $tut_subtitle = $data['tut_sub'];
             $id = 0;
             foreach($tut_subtitle as $eng_sub => $vi_sub){
               echo "<li id='en-$id' style='color: green;'>$eng_sub</li> <br>";
               echo "<li id='vn-$id' style='color: blue;'>$vi_sub</li> <br>";
               $id++;
             }
+          }
           ?>
         </ul>
       </div>
