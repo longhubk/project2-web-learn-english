@@ -1,0 +1,109 @@
+.header > .language{
+  float: right;
+
+}
+.header > .logo-icon{
+  float: left;
+  margin: 0 0 1px 0;
+}
+
+.header .logo-icon:hover{
+  opacity: 0.8;
+}
+.header{
+  background-color: white;
+  padding: 0px;
+  text-align: center;
+
+}
+.header h2{
+  font-family: sans-serif;
+  font-size: 35px;
+  margin: 0px;
+  color: black;
+}
+.header #head-intro{
+  border: 1px dotted black;
+  font-size: 20px;
+  float: left;
+  background-color: #ADFF2F;
+  padding: 0 0 0 5px;
+  margin: 0 0 0 5%;
+  width: 29vw;
+  font-family: cursive;
+}
+.header #head-intro p{
+  float: left;
+  margin: 0;
+  border: none;
+}
+.header #head-intro i{
+  float: right;
+  margin: 0 2px 0 0;
+  font-size: 16px;
+}
+
+.header #head-intro i:hover{
+  color: red;
+}
+
+.login-container{
+  width: max-content;
+  float: right;
+  display: flex;
+  padding: 0px;
+}
+
+.login-container .signup, .login-container .login{
+  border-radius: 10px;
+  border: none;
+  background-color:rgb(28, 155, 233);
+}
+.login-container .login{
+  margin: 0 10px 0 10px;
+  padding: 5px 15px;
+
+
+}
+.login-container .signup{
+  margin-right: 10px;
+  padding: 5px 10px;
+
+}
+
+.login-container .signup:hover, .login-container .login:hover{
+  background-color: red;
+}
+
+.login-container .signup a, .login-container .login a{
+  color: white;
+}
+
+.language{
+  display: flex;
+  padding: 0px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  margin-right: 40px;
+}
+.material-icons{
+  color: gray;
+  margin-right: 5px;
+}
+.lang-choose{
+  padding-top: 3px;
+  vertical-align: center;
+}
+.clear{
+  clear: both;
+}
+.small-avt{
+  border-radius: 20px;
+  width: 25px;
+  margin: 0;
+  height: 25px;
+}
+
+.small-avt:hover{
+  opacity: 0.7;
+}
+

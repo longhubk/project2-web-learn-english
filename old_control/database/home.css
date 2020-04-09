@@ -1,0 +1,26 @@
+body{
+  background-color: gray;
+}
+#ChatBig{
+  width: 500px;
+  height: 450px;
+  border: 1px solid red;
+  margin: auto;
+}
+#ChatMessages{
+  width: 500px;
+  height: 400px;
+  font-size: 19;
+  font-weight: normal;
+}
+#ChatText{
+  width: 495px;
+  height: 49px;
+  font-size: 13px;
+  border: 1px solid blue;
+  border-bottom: 2px solid #333;
+}
+#ListUser{
+  border: 1px solid red;
+  float: left;
+}
