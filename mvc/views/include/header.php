@@ -63,7 +63,7 @@ $general_nav_bar = "";
         echo "<a href='./Register/Login'>Log In</a>";
         echo "</button>";
       } else {
-        if(isset($data['avatar'])){
+        if(!empty($data['avatar'])){
           $name_avt = $data['avatar'];
           $directory_avatar = "./public/img/uploads/" . $name_avt;
           echo "<img title='". $_COOKIE["member_login"]."' class='small-avt' src='". $directory_avatar ."'>" ;
@@ -101,14 +101,14 @@ $general_nav_bar = "";
 
   <?php
 
-  if(isset($data['login_part'])){
-    $login_part = $data['login_part'];
-    require_once "./mvc/views/include/" . $login_part . ".php";
-  }
-  if(isset($data['signup_part'])){
-    $signup_part = $data['signup_part'];
-    require_once "./mvc/views/include/" . $signup_part . ".php";
-  }
+    if(isset($data['login_part'])){
+      $login_part = $data['login_part'];
+      require_once "./mvc/views/include/" . $login_part . ".php";
+    }
+    if(isset($data['signup_part'])){
+      $signup_part = $data['signup_part'];
+      require_once "./mvc/views/include/" . $signup_part . ".php";
+    }
 
   ?>
 
@@ -119,7 +119,7 @@ $general_nav_bar = "";
   <ul id="hor-nav" class="hori-nav">
     <li id="menu-li" title="menu"><button onclick="toggleSideBar()"><i class="material-icons">menu</i></button></li>
     <li id="home-li"><a href="./Home"><i class="fa fa-fw fa-home"></i>HOME</a></li>
-    <li><a href="#">NOTIFICATIONS</a></li>
+    <li><a href="./Notify">NOTIFICATIONS</a></li>
     <li class="tutorial">
       <a href="./Tut/All" class="dropbtn">
         TUTORIALS
@@ -133,10 +133,10 @@ $general_nav_bar = "";
         ?>
       </div>
     </li>
-    <li><a href="#">TESTS</a></li>
-    <li><a href="#">DOCUMENTATIONS</a></li>
-    <li><a href="#">RESOURCES</a></li>
-    <li><a href="#">ABOUT US</a></li>
+    <li><a href="./Test">TESTS</a></li>
+    <li><a href="./Doc">DOCUMENTATIONS</a></li>
+    <li><a href="./Res">RESOURCES</a></li>
+    <li><a href="./Intro">ABOUT US</a></li>
     <li id=search_area>
       <div class="search-box" style="margin-left: 10px;">
         <i class="fa fa-search" style="color: white;"></i>

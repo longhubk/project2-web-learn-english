@@ -14,7 +14,8 @@
       $this->view("master_h", [
         "page"    => "content_main",
         "allTuts" => $this->tut_db->getAllTutorial(),
-        "tut_qs"  => $this->tut_db->loadQuestion()
+        "tut_qs"  => $this->tut_db->loadQuestion(),
+        "avatar"  => $this->user_db->getUserAvatar(),
     
       ]
       );

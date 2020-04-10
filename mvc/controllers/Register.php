@@ -20,14 +20,14 @@
       ]);
     }
     function Login(){
-      $res = false;
+      $res      = false;
       $remember = "";
       if(isset($_POST['login'])){
        $username = $_POST["username"];
        $password = $_POST["password"];
        if(isset($_POST["remember"]))
         $remember = "OK";
-       $res      = $this->user_db->checkLogin($username, $password);
+        $res      = $this->user_db->checkLogin($username, $password);
      }
  
        if($res == 1){
@@ -55,9 +55,9 @@
     function SignUp(){
       $res = false;
      if(isset($_POST['signup'])){
-       $un     = $_POST["username_sp"];
-       $pas    = $_POST["password_sp"];
-       $pas_ag = $_POST["password_again_sp"];
+       $un      = $_POST["username_sp"];
+       $pas     = $_POST["password_sp"];
+       $pas_ag  = $_POST["password_again_sp"];
        $options = [
           'cost' => 11
       ];

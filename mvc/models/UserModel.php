@@ -3,7 +3,6 @@
 
     private function InsertUser($username, $password, $email){
       $qr = "INSERT INTO users(name, password, email) VALUES('$username', '$password', '$email' )";
-      
       $result = false;
       if(mysqli_query($this->con, $qr)){
         $result = true;
@@ -12,9 +11,9 @@
 
     }
     public function checkLogin($un, $pas){
-      $qr = "SELECT * FROM users WHERE name = '$un'";
-      $rows = mysqli_query($this->con, $qr);
-      $kq = false;
+      $qr     = "SELECT * FROM users WHERE name = '$un'";
+      $rows   = mysqli_query($this->con, $qr);
+      $kq     = false;
       $errors = [];
 
       if($rows){
@@ -36,9 +35,9 @@
     public function checkSignUp($un, $pas, $pas_ag, $email){
         $sign_err = [];
         if(!empty($un) && !empty($pas) && !empty($pas_ag) && !empty($email)){
-         $username_new = $un;
-         $email_new = $email;
-         $password_new = $pas;
+         $username_new       = $un;
+         $email_new          = $email;
+         $password_new       = $pas;
          $password_again_new = $pas_ag;
     
          if(empty($username_new)){
@@ -68,7 +67,7 @@
     }
     public function getUserAvatar(){
       if(isset($_COOKIE['member_login'])){
-        $qr = "SELECT avatar FROM users WHERE name='". $_COOKIE['member_login'] ."'";
+        $qr  = "SELECT avatar FROM users WHERE name='". $_COOKIE['member_login'] ."'";
         $res = mysqli_query($this->con, $qr);
         $ret = "";
         while($avt = mysqli_fetch_array($res)){
@@ -76,9 +75,10 @@
         }
         return $ret;
       }
+      else return "";
     }
     public function updateAvatar($f_name){
-        $qr = "UPDATE users SET avatar='" .$f_name. "' WHERE name='". $_COOKIE['member_login'] . "'";
+        $qr  = "UPDATE users SET avatar='" .$f_name. "' WHERE name='". $_COOKIE['member_login'] . "'";
         $res = mysqli_query($this->con, $qr);
         return $res ? true : false;
         
@@ -93,8 +93,8 @@
         $f_Actual_Ext = strtolower(end($f_Ext));
     
         $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
-        $f_new_name = $_COOKIE['member_login'] . "." . $f_Actual_Ext;
-        $f_des = "./public/img/uploads/" . $f_new_name;
+        $f_new_name    = $_COOKIE['member_login'] . "." . $f_Actual_Ext;
+        $f_des         = "./public/img/uploads/" . $f_new_name;
     
         if(in_array($f_Actual_Ext, $f_Ext_Allowed)){
           if($f_err == 0){
@@ -149,6 +149,12 @@
           }
         }
       } 
+
+      public function getUserMenu(){
+        $res = parent::readJsonData("./mvc/models/data/tutorials/menu_user.json");
+        return $res;
+    }
+
 
 
   }
