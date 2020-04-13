@@ -22,7 +22,8 @@
       <span class="error_log"><?php if (isset($data['sign_err'][3])) echo $data['sign_err'][3]; ?></span><br>
 
       <div class="check_remember">
-        <input type="checkbox" name="remember"><span id="remember_me">I agree your License and Agreement</span>
+        <input type="checkbox" name="agree"><span id="remember_me">I agree your License and Agreement</span>
+        <span class="error_log"><?php if (isset($data['sign_err'][4])) echo $data['sign_err'][4]; ?></span><br>
       </div>
       <input type="submit" name="signup" value="sign up">
     </div>

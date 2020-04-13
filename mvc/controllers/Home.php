@@ -10,7 +10,7 @@
       $this->tut_db      = $this->model("TutorialModel");
       $this->user_db     = $this->model("UserModel");
     }
-   function Init(){
+   public function Init(){
       $this->view("master_h", [
         "page"    => "content_main",
         "allTuts" => $this->tut_db->getAllTutorial(),

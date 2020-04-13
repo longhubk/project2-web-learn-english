@@ -9,7 +9,7 @@
       $this->Tut_db  = $this->model("TutorialModel");
       $this->user_db = $this->model("UserModel");
     }
-    function Init(){
+    public function Init(){
       $this->view("master_h",[
         "page"    => "content_tut",
         "allTuts" => $this->Tut_db->getAllTutorial(),
@@ -18,7 +18,7 @@
 
       ]);
     }
-    function All(){
+    public function All(){
       $this->view("master_h",[
         "page"    => "content_tut",
         "allTuts" => $this->Tut_db->getAllTutorial(),
@@ -27,7 +27,7 @@
 
       ]);
     }
-    function One($tut_name, $tut_lesson = "be_verb"){
+    public function One($tut_name, $tut_lesson = "be_verb"){
       $this->view("master_h",[
         "page"         => "content_tut",
         "img_tut"      => $tut_lesson,
