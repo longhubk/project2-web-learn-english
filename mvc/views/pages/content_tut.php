@@ -2,8 +2,6 @@
 <div class="main-container">
   <div class="video-card">
     <?php
-
-
       if(isset($data['tutKnowledge'])){
         $tutKnowledge = $data['tutKnowledge'];
         foreach($tutKnowledge as $point => $knowledge){
@@ -15,7 +13,6 @@
       
     ?>
     
-  
     <p>Hãy thực hiện các bước đưới đây để học tiếng anh nha!</p>
 
     <?php
@@ -24,15 +21,17 @@
          echo "<img id='intro' src='./public/img/$tut_img'>";
        }
     ?>
+
     <div class="tips">
       <h3>Hướng dẫn học:</h3>
+
       <?php 
-       if(isset($data['tut_guide'])){
-        $tut_guide = $data['tut_guide'];
-         foreach ($tut_guide as $step => $content){
-           echo "<p> $step: $content</p>";
-         }
-       }
+        if(isset($data['tut_guide'])){
+          $tut_guide = $data['tut_guide'];
+          foreach ($tut_guide as $step => $content){
+            echo "<p> $step: $content</p>";
+          }
+        }
       ?>
     </div>
 

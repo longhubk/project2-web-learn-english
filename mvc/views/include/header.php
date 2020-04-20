@@ -1,33 +1,32 @@
-<?php
-$general_nav_bar = "";
-?>
+
 <!DOCTYPE html>
 <html>
 
 <head>
-  <base href="http://localhost/project2/" />
-  <meta name="viewport" content="width= device-width, initial-scale: 1.0">
-  <meta charset="UTF-8">
+  <base href = "http://localhost/project2/" />
+  <meta name = "viewport" content = "width= device-width, initial-scale: 1.0">
+  <meta charset = "UTF-8">
   <title>SPEAK MORE</title>
-  <link href="./public/css/navigation.css" rel="stylesheet" type="text/css">
-  <link href="./public/css/container.css" rel="stylesheet" type="text/css">
-  <link href="./public/css/login.css" type="text/css" rel="stylesheet">
-  <link href="./public/css/calendar.css" rel="stylesheet" type="text/css">
-  <link href="./public/css/header.css" rel="stylesheet" type="text/css">
-  <link href="./public/css/ver-nav.css" rel="stylesheet" type="text/css">
-  <link href="./public/css/question_right.css" rel="stylesheet" type="text/css">
-  <link href="./public/css/right_nav.css" rel="stylesheet" type="text/css">
-  <link href="./public/css/footer.css" rel="stylesheet" type="text/css">
-  <link href="./public/css/user_page.css" rel="stylesheet" type="text/css">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/views/views/css/font-awesome.min.css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="https://bootswatch.com/flatly/bootstrap.min.css" rel="stylesheet">
+  <link href = "./public/css/navigation.css"     rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/container.css"      rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/login.css"          rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/calendar.css"       rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/header.css"         rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/ver-nav.css"        rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/question_right.css" rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/right_nav.css"      rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/footer.css"         rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/user_page.css"      rel = "stylesheet" type = "text/css">
 
-  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-  <script src='https://www.youtube.com/iframe_api'></script>
-  <script src='./public/js/JQuery/jquery-3.4.1.js' type="text/javascript"></script>
-  <script type="text/javascript">
+  <link href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/views/views/css/font-awesome.min.css" rel = "stylesheet">
+  <link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href = "https://bootswatch.com/flatly/bootstrap.min.css"         rel="stylesheet">
+
+  <script src = 'https://kit.fontawesome.com/a076d05399.js'></script>
+  <script src = 'https://www.youtube.com/iframe_api'></script>
+  <script src = './public/js/JQuery/jquery-3.4.1.js' type="text/javascript"></script>
+  <script type = "text/javascript">
     window.onload = function() {
       generateDay();
       generateTime();
@@ -63,7 +62,7 @@ $general_nav_bar = "";
         echo "<a href='./Register/Login'>Log In</a>";
         echo "</button>";
       } else {
-        if(isset($data['avatar'])){
+        if(!empty($data['avatar'])){
           $name_avt = $data['avatar'];
           $directory_avatar = "./public/img/uploads/" . $name_avt;
           echo "<img title='". $_COOKIE["member_login"]."' class='small-avt' src='". $directory_avatar ."'>" ;
@@ -101,14 +100,14 @@ $general_nav_bar = "";
 
   <?php
 
-  if(isset($data['login_part'])){
-    $login_part = $data['login_part'];
-    require_once "./mvc/views/include/" . $login_part . ".php";
-  }
-  if(isset($data['signup_part'])){
-    $signup_part = $data['signup_part'];
-    require_once "./mvc/views/include/" . $signup_part . ".php";
-  }
+    if(isset($data['login_part'])){
+      $login_part = $data['login_part'];
+      require_once "./mvc/views/include/" . $login_part . ".php";
+    }
+    if(isset($data['signup_part'])){
+      $signup_part = $data['signup_part'];
+      require_once "./mvc/views/include/" . $signup_part . ".php";
+    }
 
   ?>
 
@@ -119,7 +118,7 @@ $general_nav_bar = "";
   <ul id="hor-nav" class="hori-nav">
     <li id="menu-li" title="menu"><button onclick="toggleSideBar()"><i class="material-icons">menu</i></button></li>
     <li id="home-li"><a href="./Home"><i class="fa fa-fw fa-home"></i>HOME</a></li>
-    <li><a href="#">NOTIFICATIONS</a></li>
+    <li><a href="./Notify">NOTIFICATIONS</a></li>
     <li class="tutorial">
       <a href="./Tut/All" class="dropbtn">
         TUTORIALS
@@ -133,10 +132,10 @@ $general_nav_bar = "";
         ?>
       </div>
     </li>
-    <li><a href="#">TESTS</a></li>
-    <li><a href="#">DOCUMENTATIONS</a></li>
-    <li><a href="#">RESOURCES</a></li>
-    <li><a href="#">ABOUT US</a></li>
+    <li><a href="./Test">TESTS</a></li>
+    <li><a href="./Doc">DOCUMENTATIONS</a></li>
+    <li><a href="./Res">RESOURCES</a></li>
+    <li><a href="./Intro">ABOUT US</a></li>
     <li id=search_area>
       <div class="search-box" style="margin-left: 10px;">
         <i class="fa fa-search" style="color: white;"></i>

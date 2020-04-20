@@ -2,14 +2,15 @@
   <div id="qs_right" class="question">
     <p id="txtSuggest" class="qs-title">Top Question</p>
     <ol class="qs-list">
-    <?php 
-  if(isset($data['tut_qs'])){
-    $tut_question = $data['tut_qs'];
-    foreach($tut_question as $name_user => $question){
-      echo "<li><a href='#'> $question</a></li>";
-    }
-  }
-?>
+
+      <?php 
+        if(isset($data['tut_qs'])){
+          $tut_question = $data['tut_qs'];
+          foreach($tut_question as $name_user => $question){
+            echo "<li><a href='#'> $question</a></li>";
+          }
+        }
+      ?>
     </ol>
   </div>
   <div id="cal" class="calendar">

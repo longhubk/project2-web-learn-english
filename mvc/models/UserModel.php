@@ -3,7 +3,6 @@
 
     private function InsertUser($username, $password, $email){
       $qr = "INSERT INTO users(name, password, email) VALUES('$username', '$password', '$email' )";
-      
       $result = false;
       if(mysqli_query($this->con, $qr)){
         $result = true;
@@ -12,9 +11,9 @@
 
     }
     public function checkLogin($un, $pas){
-      $qr = "SELECT * FROM users WHERE name = '$un'";
-      $rows = mysqli_query($this->con, $qr);
-      $kq = false;
+      $qr     = "SELECT * FROM users WHERE name = '$un'";
+      $rows   = mysqli_query($this->con, $qr);
+      $kq     = false;
       $errors = [];
 
       if($rows){
@@ -33,42 +32,72 @@
       return $errors;
 
     }
-    public function checkSignUp($un, $pas, $pas_ag, $email){
+    public function checkSignUp($un, $pas, $pas_ag, $email, $agree){
         $sign_err = [];
-        if(!empty($un) && !empty($pas) && !empty($pas_ag) && !empty($email)){
-         $username_new = $un;
-         $email_new = $email;
-         $password_new = $pas;
-         $password_again_new = $pas_ag;
-    
-         if(empty($username_new)){
-           $sign_err[0] = "UserName is require";
-         }
-         if(empty($email_new)){
-           $sign_err[1] = "Email is require";
-         }
-         if(empty($password_new)){
-           $sign_err[2] = "Password is require";
-         }
-         if(empty($password_again_new)){
-           $sign_err[3] = "Password again is require";
+        //if(!empty($un) && !empty($pas) && !empty($pas_ag) && !empty($email) && !empty($agree)){
+          
+         if(empty($un)){
+           $sign_err[0] = "username is require";
+         }else
+         if(!preg_match("/^[a-zA-Z0-9]*$/", $un))
+           $sign_err[0] = "username just contain a-z and A-Z or number";
+         
+         if(empty($email)){
+           $sign_err[1] = "email is require";
+         }else
+         if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+           $sign_err[1] = "email is invalid format";
+
+         if(empty($pas))
+           $sign_err[2] = "password is require";
+         else
+         if(strlen($pas) < 8)
+           $sign_err[2] = "password must have more than 8 characters";
+         else 
+         if(!preg_match("/[a-z]/", $pas))
+           $sign_err[2] = "password must contain at least 1 lowercase letter";
+         else 
+         if(!preg_match("/[A-Z]/", $pas))
+           $sign_err[2] = "password must contain at least 1 uppercase letter";
+         else 
+         if(!preg_match("/[A-Z]/", $pas))
+           $sign_err[2] = "password must contain at least 1 uppercase letter";
+         else 
+         if(!preg_match("/[0-9]/", $pas))
+           $sign_err[2] = "password must contain at least 1 number";
+         else 
+         if(!preg_match("/[@_$&*#]/", $pas))
+           $sign_err[2] = "password must contain at least 1 special letter";
+
+
+         if(empty($pas_ag)){
+           $sign_err[3] = "password again is require";
+         }else
+         if($pas_ag != $pas)
+           $sign_err[3] = "password not match";
+
+         if(empty($agree)){
+           $sign_err[4] = "you have to agree the license and agreement";
          }
     
          if(empty($sign_err[0]) &&
-          empty($sign_err[1]) &&
-          empty($sign_err[2]) &&
-          empty($sign_err[3])
+            empty($sign_err[1]) &&
+            empty($sign_err[2]) &&
+            empty($sign_err[3]) &&
+            empty($sign_err[4])
          ){
-          $res = $this->InsertUser($un, $pas, $email);
+          $options = ['cost' => 11];
+          $pas     = password_hash($pas, PASSWORD_BCRYPT, $options);
+          $res     = $this->InsertUser($un, $pas, $email);
           return $res;
          }
         else
          return $sign_err;
-       }
+       //}
     }
     public function getUserAvatar(){
       if(isset($_COOKIE['member_login'])){
-        $qr = "SELECT avatar FROM users WHERE name='". $_COOKIE['member_login'] ."'";
+        $qr  = "SELECT avatar FROM users WHERE name='". $_COOKIE['member_login'] ."'";
         $res = mysqli_query($this->con, $qr);
         $ret = "";
         while($avt = mysqli_fetch_array($res)){
@@ -76,9 +105,10 @@
         }
         return $ret;
       }
+      else return "";
     }
     public function updateAvatar($f_name){
-        $qr = "UPDATE users SET avatar='" .$f_name. "' WHERE name='". $_COOKIE['member_login'] . "'";
+        $qr  = "UPDATE users SET avatar='" .$f_name. "' WHERE name='". $_COOKIE['member_login'] . "'";
         $res = mysqli_query($this->con, $qr);
         return $res ? true : false;
         
@@ -88,13 +118,11 @@
       $res = false;
       if(isset($_POST['upload'])){
 
-        $f_Ext = explode('.', $f_name);
-        // *convert all PNG JPG to png and jpg..
-        $f_Actual_Ext = strtolower(end($f_Ext));
-    
+        $f_Ext         = explode('.', $f_name);
+        $f_Actual_Ext  = strtolower(end($f_Ext));
         $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
-        $f_new_name = $_COOKIE['member_login'] . "." . $f_Actual_Ext;
-        $f_des = "./public/img/uploads/" . $f_new_name;
+        $f_new_name    = $_COOKIE['member_login'] . "." . $f_Actual_Ext;
+        $f_des         = "./public/img/uploads/" . $f_new_name;
     
         if(in_array($f_Actual_Ext, $f_Ext_Allowed)){
           if($f_err == 0){
@@ -111,8 +139,8 @@
           echo "you can not upload file that is not image";
       }
       return $res;
-    
     }
+
     private function check_name_file_exist($f_name, $f_Ext_Allowed, $f_Actual_Ext){
       foreach($f_Ext_Allowed as $ext){
         if($ext != $f_Actual_Ext){
@@ -150,6 +178,63 @@
         }
       } 
 
+      public function getUserMenu(){
+        return parent::readJsonData("./mvc/models/data/tutorials/menu_user.json");
+      }
+
+      public function updateUserInfo($un, $f_name, $l_name, $birth, $gender, $school, $toeic){
+
+      $id     = $this->getUserId($un);
+      $qr1    = "SELECT * FROM info_users WHERE user_id = '$id'";
+      $check  = mysqli_query($this->con, $qr1);
+      $numrow = mysqli_num_rows($check);
+      if($numrow == 0){
+        $qr2 = "INSERT INTO info_users(user_id, fname, lname, birthday, gender, school, toeic) 
+        VALUE( '$id','$f_name', '$l_name', '$birth', '$gender', '$school', '$toeic')";
+        $res = mysqli_query($this->con, $qr2);
+        return $res ? true : false;
+      }else{
+        $qr3 = "UPDATE info_users 
+        SET   fname    = '$f_name',
+              lname    = '$l_name',
+              birthday = '$birth',
+              gender   = '$gender',
+              school   = '$school',
+              toeic    = '$toeic'
+        WHERE user_id  = $id ";
+        $res = mysqli_query($this->con,$qr3);
+        return $res ? true : false;
+
+      }
+
+      }
+      private function getUserId($username){
+        $qr1   = "SELECT id FROM users WHERE name = '$username'";
+        $resid = mysqli_query($this->con, $qr1);
+        $id    = mysqli_fetch_assoc($resid)['id'];
+        return $id;
+      }
+
+      public function getUserInfo($username){
+        $id      = $this->getUserId($username);
+        $qr2     = "SELECT * FROM info_users WHERE user_id = '$id'";
+        $resinfo = mysqli_query($this->con, $qr2);
+        $numrow  = mysqli_num_rows($resinfo);
+        $resArr  = [];
+        if($numrow > 0){
+          $row = mysqli_fetch_assoc($resinfo);
+
+          $resArr['f_name']   = $row['fname'];
+          $resArr['l_name']   = $row['lname'];
+          $resArr['birthday'] = $row['birthday'];
+          $resArr['gender']   = $row['gender'];
+          $resArr['school']   = $row['school'];
+          $resArr['toeic']    = $row['toeic'];
+  
+        }
+        return $resArr;
+
+      }
 
   }
 

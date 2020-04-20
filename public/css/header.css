@@ -101,6 +101,7 @@
   width: 25px;
   margin: 0;
   height: 25px;
+  border: 1px solid gray;
 }
 
 .small-avt:hover{

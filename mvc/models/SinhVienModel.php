@@ -9,9 +9,9 @@
     }
     
     public function SinhVien(){
-      $qr = "SELECT * FROM sinhvien";
+      $qr   = "SELECT * FROM sinhvien";
       $rows = mysqli_query($this->con, $qr);
-      $mang= [];
+      $mang = [];
       while($row = mysqli_fetch_array($rows)){
         $mang[] = $row;
       }

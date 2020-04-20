@@ -10,7 +10,7 @@
       $this->user_db = $this->model("UserModel");
       $this->tut_db  = $this->model("TutorialModel");
     }
-    function Init(){
+    public function Init(){
       $this->view("master_h", [
         "page"       => "content_main",
         "allTuts"    => $this->tut_db->getAllTutorial(),
@@ -19,15 +19,15 @@
       
       ]);
     }
-    function Login(){
-      $res = false;
+    public function Login(){
+      $res      = false;
       $remember = "";
       if(isset($_POST['login'])){
        $username = $_POST["username"];
        $password = $_POST["password"];
        if(isset($_POST["remember"]))
         $remember = "OK";
-       $res      = $this->user_db->checkLogin($username, $password);
+        $res      = $this->user_db->checkLogin($username, $password);
      }
  
        if($res == 1){
@@ -52,18 +52,17 @@
      }
  
  
-    function SignUp(){
+    public function SignUp(){
       $res = false;
      if(isset($_POST['signup'])){
-       $un     = $_POST["username_sp"];
-       $pas    = $_POST["password_sp"];
-       $pas_ag = $_POST["password_again_sp"];
-       $options = [
-          'cost' => 11
-      ];
-       $pas    = password_hash($pas, PASSWORD_BCRYPT, $options);
+       $un      = $_POST["username_sp"];
+       $pas     = $_POST["password_sp"];
+       $pas_ag  = $_POST["password_again_sp"];
        $email  = $_POST["email_sp"];
-       $res    = $this->user_db->checkSignUp($un, $pas, $pas_ag, $email);
+       $agree = "";
+       if(isset($_POST['agree']))
+        $agree  = "OK";
+       $res    = $this->user_db->checkSignUp($un, $pas, $pas_ag, $email, $agree);
       }
     if($res == 1){
       $this->view("master_h", [
@@ -83,7 +82,7 @@
       ]);
     }
   }
-     function LogOut(){
+     public function LogOut(){
         $this->user_db->userLogout();
         $this->view("master_h", [
           "page"       => "content_main",
