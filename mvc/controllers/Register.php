@@ -55,11 +55,11 @@
     public function SignUp(){
       $res = false;
      if(isset($_POST['signup'])){
-       $un      = $_POST["username_sp"];
-       $pas     = $_POST["password_sp"];
-       $pas_ag  = $_POST["password_again_sp"];
+       $un     = $_POST["username_sp"];
+       $pas    = $_POST["password_sp"];
+       $pas_ag = $_POST["password_again_sp"];
        $email  = $_POST["email_sp"];
-       $agree = "";
+       $agree  = "";
        if(isset($_POST['agree']))
         $agree  = "OK";
        $res    = $this->user_db->checkSignUp($un, $pas, $pas_ag, $email, $agree);
