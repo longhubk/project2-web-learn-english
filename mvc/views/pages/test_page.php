@@ -3,7 +3,7 @@
   <div class="video-card">
 
     <h1>Test Page </h1>
-    <p>Hãy thực hiện các bước đưới đây để học tiếng anh nha!</p>
+    <!-- <p>Đây là bài thi thi của bạn</p> -->
 
     <form method="POST" action="./TestPage/Check">
 
@@ -23,7 +23,7 @@
             echo "</div>";
           }
           if($key_qs == 'note'){
-            echo "<div>". $value_qs ."</div>";
+            echo "<div class='qs_note'> Chú ý: ". $value_qs ."</div>";
           }
           if($key_qs == 'answer'){
             echo "<div class='answer_qs'>";
@@ -32,7 +32,7 @@
               if($num_asw == 'as-id')  
               $as_id = $content_asw;
               else
-              echo "<input type='checkbox' name='". $as_id . "[]' value='".$num_asw."'>  " . $content_asw . "<br>";
+              echo "<div class='each_ans'><input type='checkbox' name='". $as_id . "[]' value='".$num_asw."'>  " . $content_asw . "</div><br>";
             }
             echo "</div>";
           }
@@ -41,17 +41,19 @@
       }
       
     }
-    
-    
     ?>
-      <input type="submit" name='commit_test' value="Nộp bài">
-      <div class="test_result">
-        Kết quả bài thi của bạn là:
-        <?php 
-          if(isset($data['test_as']))
-            echo $data['test_as'];
-        ?>
-      </div>
+    <div class="commit_test">
+      <input type="submit" name='commit_test' value = "Nộp bài">
+    </div>
+
     </form>
+    <div class="test_result">
+        <?php 
+          if(isset($data['test_as'])){
+            echo "<div class='label_res'>Kết quả bài thi của bạn là:</div>";
+            echo $data['test_as'];
+          }
+        ?>
+    </div>
   </div>
 </div>
