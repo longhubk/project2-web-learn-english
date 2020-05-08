@@ -13,6 +13,10 @@
       return parent::readJsonData("$this->path"."test_question/grammar_qs.json");
     }
 
+    public function loadAllTest(){
+      return parent::readJsonData("$this->path"."test_question/test_all.json");
+    }
+
     public function calculatePoint($data){
 
       $data_correct = parent::readJsonData("$this->path"."test_question/grammar_as.json");

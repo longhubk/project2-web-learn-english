@@ -42,6 +42,7 @@
   background-color: antiquewhite;
   margin: 5px;
   padding: 15px 0 0px 40px;
+
 }
 
 .main-container .video-card form .commit_test{
@@ -59,10 +60,37 @@
   margin: 25px 0 0 0;
 }
 .main-container .video-card form .qs_contain .answer_qs .each_ans{
-
   /* border: 1px solid red; */
   margin: 0  10px 0 0;
+}
 
+.main-container .video-card form .qs_contain .answer_qs .each_ans :hover{
+  text-decoration: underline;
+}
+.main-container .video-card .center{
+  text-align: center;
+  margin: 15px 0 0 0;
+}
+.main-container .video-card .center .pagination{
+  display: inline-block;
+}
 
+.main-container .video-card .center .pagination a{
+  color: black;
+  float: left;
+  border: 1px solid #999;
+  border-radius: 5px;
+  padding: 6px 12px;
+  margin: 0 2px;
 
+}
+.main-container .video-card .center .pagination a.active{
+  background-color: #4CAF50;
+  color: white;
+  border-radius: 5px;
+}
+
+.main-container .video-card .center .pagination a:hover:not(.active){
+  background-color: #999;
+  border-radius: 5px;
 }
