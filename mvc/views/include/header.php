@@ -19,6 +19,7 @@
   <link href = "./public/css/footer.css"         rel = "stylesheet" type = "text/css">
   <link href = "./public/css/user_page.css"      rel = "stylesheet" type = "text/css">
   <link href = "./public/css/test_page.css"      rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/test_index.css"      rel = "stylesheet" type = "text/css">
 
   <link href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/views/views/css/font-awesome.min.css" rel = "stylesheet">
   <link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

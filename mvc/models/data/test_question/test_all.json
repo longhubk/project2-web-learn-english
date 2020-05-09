@@ -1,8 +1,40 @@
 {
-  "Test"          : "Grammar Test",
-  "Listening_Test": "Listening Test",
-  "Speaking_Test" : "Speaking Test",
-  "Reading_Test"  : "Speaking Test"
+  "Test":{
+    "name":"Grammar Test",
+    "time":"30 phút",
+    "level": 1,
+    "num_qs": 25,
+    "des_test":"<br>Bạn sẽ phải trả lời 25 câu hỏi trắc nghiệm trong vòng 30 phút<br> Lưu ý là có những câu hỏi cần nhiều hơn 1 đáp án chính xác."
+  },
+  "Listening_Test":{
+    "name":"Listening Test",
+    "time":"25 phút",
+    "level": 2,
+    "num_qs": 2,
+    "des_test":"<br>Câu 1: Bạn sẽ phải nghe một đoạn hội thoại bằng tiếng anh trong vòng khoảng 3-5 phút<br> Sau đó bạn phải trả lời các câu hỏi trắc nghiệm <br>Câu 2: Bạn sẽ nghe 1 đoạn hội thoại ngắn rồi cố gắng dịch dược nhiều từ nhất có thể"
+  },
+  "Speaking_Test":{
+    "name":"Speaking Test",
+    "time":"5 phút",
+    "level": 2,
+    "num_qs": 25,
+    "des_test":"<br>Câu 1: Bạn sẽ đọc các câu tiếng anh ghi lại đúng theo yêu cầu<br>Câu 2: Bạn sẽ phải nói 1 chủ đề trong vòng 3 phút."
+  },
+  "Reading_Test":{
+    "name":"Reading Test",
+    "time":"15 phút",
+    "level": 1,
+    "num_qs": 25,
+    "des_test":"<br>Bạn sẽ đọc 3 bài văn từ ngắn tới dài rồi trả lời các câu hỏi trắc nghiệm hoặc điền vào chỗ trông từ/câu còn thiếu."
+  },
+
+  "Writing_Test":{
+    "name":"Writing Test",
+    "time":"45 phút",
+    "level": 3,
+    "num_qs": 2,
+    "des_test":"<br>Bạn sẽ viết một đoạn văn giới thiệu bản thân có sử dụng các từ gợi ý theo đúng ngữ pháp."
+  }
 
 
 }

@@ -1,7 +1,7 @@
 $(function(){
-  $('p').click(function(){
-    $(this).hide()
-  })
+  // $('p').click(function(){
+  //   $(this).hide()
+  // })
   $('#hide_intro').click(function(){
     $('#head-intro').hide()
 
