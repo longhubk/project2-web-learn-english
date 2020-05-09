@@ -37,9 +37,9 @@
 } 
   
 .main-container .video-card form .qs_contain .answer_qs{
-  border: 1px solid brown;
+  border: 1px solid gray;
   border-radius: 5px;
-  background-color: antiquewhite;
+  background-color: snow;
   margin: 5px;
   padding: 15px 0 0px 40px;
 

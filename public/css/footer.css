@@ -5,8 +5,35 @@
   display: block;
   border: 1px solid gray;
 }
-.footer p{
+.footer .copyright{
+  margin: 25px 0 0 0;
   text-align: center;
+  color: rgb(0, 195, 0);
+  
+}
+.footer .info_foot{
+  display: flex;
+  justify-content: center;
+
+}
+.footer .info_foot .info_connect{
+  color: white;
+  margin: 0 0 0 40px;
+
+}
+.footer .info_foot .info_contact{
+  color: white;
+  margin: 0 40px 0 0 ;
+
+}
+.footer .info_foot .info_connect a{
+  margin: 0 10px 0 0;
+  
+}
+.footer .info_foot .info_connect a:hover{
+  opacity: 0.5;
+}
+.footer .info_foot .info_title{
   color: rgb(0, 195, 0);
   
 }

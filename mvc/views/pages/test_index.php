@@ -3,7 +3,7 @@
   <div class="video-card">
 
     <!-- <h1>Test Page </h1> -->
-    <p>Đây là danh sách các bài thi:</p>
+    <p class="title_main_page">Đanh sách các bài thi:</p>
     
     <div class='all_test'>
       <?php

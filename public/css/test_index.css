@@ -1,16 +1,17 @@
 
 .main-container .video-card .all_test{
   /* border: 1px solid red; */
-  margin: 5px;
+  margin: 10px;
 }
-.main-container .video-card p{
-  border: 1px solid green;
+.main-container .video-card .title_main_page{
+  border: 1px solid gray;
   background-color: snow;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 10px;
   color: darkred;
   font-size: 30px;
   margin: 10px 20px;
+  /* width: fit-content; */
   padding: 5px 0;
 }
 
@@ -27,7 +28,7 @@
 .main-container .video-card .all_test .each_test .name_test{
   /* border: 1px solid orange; */
   margin: 15px 5px;
-  color: #6e5122;
+  color: rgb(223, 102, 62);
   font-size: large;
   font-weight: bolder;
 }

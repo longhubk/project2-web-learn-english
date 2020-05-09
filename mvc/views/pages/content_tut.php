@@ -16,10 +16,10 @@
     <p>Hãy thực hiện các bước đưới đây để học tiếng anh nha!</p>
 
     <?php
-       if(isset($data['img_tut'])){
-         $tut_img = $data['img_tut'] . ".png";
-         echo "<img id='intro' src='./public/img/$tut_img'>";
-       }
+      if(isset($data['img_tut'])){
+        $tut_img = $data['img_tut'] . ".png";
+        echo "<img id='intro' src='./public/img/$tut_img'>";
+      }
     ?>
 
     <div class="tips">
