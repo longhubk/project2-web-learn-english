@@ -40,12 +40,12 @@
       }
     public function updateInfo(){
       if(isset($_POST['update_info'])){
-        $f_name = $_POST["f_name"];
-        $l_name = $_POST["l_name"];
+        $f_name   = $_POST["f_name"];
+        $l_name   = $_POST["l_name"];
         $birthday = $_POST["birthday"];
-        $school = $_POST["school"];
-        $toeic = $_POST["toeic_score"];
-        $gender = "";
+        $school   = $_POST["school"];
+        $toeic    = $_POST["toeic_score"];
+        $gender   = "";
         if(isset($_POST["gender"]))
           $gender = $_POST["gender"];
 
@@ -65,8 +65,8 @@
       }
     public function change_pass(){
       if(isset($_POST['change_pw'])){
-        $old_pass = $_POST["old_pass"];
-        $new_pass = $_POST["new_pass"];
+        $old_pass    = $_POST["old_pass"];
+        $new_pass    = $_POST["new_pass"];
         $new_pass_ag = $_POST["new_pass_again"];
 
         $this->user_db->updatePass( $_COOKIE['member_login'],$old_pass, $new_pass, $new_pass_ag);

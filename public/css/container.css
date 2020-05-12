@@ -106,3 +106,9 @@ iframe{
   border: 1px solid gray;
   padding: 5px;
 }
+.guide-main{
+  background-color: rgb(230, 215, 167);
+  color: black;
+  border: 1px solid gray;
+  padding: 5px;
+}

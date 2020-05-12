@@ -3,7 +3,7 @@
   <div class="video-card">
 
     <!-- <h1>Test Page </h1> -->
-    <p class="title_main_page">Đanh sách các bài thi:</p>
+    <p class="title_main_page">Danh sách các bài thi:</p>
     
     <div class='all_test'>
       <?php
@@ -23,12 +23,12 @@
                 if($cate == 'des_test')
                   echo "<div class='des_test'> Yêu cầu: ".$content."</div>";
 
-             }
+              }
               echo'<button class="btn-enter-test" onclick="location.href=\'./TestPage/'.$testId.'/0\'" type="button"> Đăng ký </button>';
 
             echo "</div>";
           }
-       }
+        }
       
       ?>
       </div>

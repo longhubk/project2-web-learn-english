@@ -50,7 +50,7 @@
   justify-content: center;
 }
 
-.main-container .video-card form .commit_test input[name='commit_test']{
+.main-container .video-card form  .commit_test .next_commit{
   /* border: 1px solid black; */
   border: none;
   padding: 5px 10px;

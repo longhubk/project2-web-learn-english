@@ -70,6 +70,8 @@ input[name="submit"], input[name="signup"]{
 .login-btn-2 span a{
   color: black;
   margin-left: 30px;
+}
+.login-btn-2 span a:hover{
   text-decoration: underline;
 }
 .login-form .login-main .error_log{

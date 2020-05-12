@@ -4,6 +4,13 @@
 
     <!-- <h1>Test Page </h1> -->
     <!-- <p>Đây là bài thi thi của bạn</p> -->
+    <div class="test_result">
+        <?php 
+          if(isset($data['test_as'])){
+            echo "<div class='label_res'>Kết quả bài thi của bạn là:  <b>".$data['test_as']."</b></div>";
+          }
+        ?>
+    </div>
 
     <form method="POST" action="./TestPage/Check">
 
@@ -21,6 +28,8 @@
       $page = 0;
       if(isset($data['first']))
         $page = $data['first'];
+      $page_next = $page + 1;
+      // echo "page: ". $page;
       
       $first = $page * $num_per_page + 1;
     
@@ -48,28 +57,54 @@
           if($key_qs == 'answer'){
             echo "<div class='answer_qs'>";
             $as_id = '';
+            $appear = false;
             foreach($value_qs as $num_asw => $content_asw){
               if($num_asw == 'as-id')  
               $as_id = $content_asw;
               else
-              echo "<div class='each_ans'><input type='checkbox' id='".$as_id. $num_asw."' name='". $as_id . "[]' value='".$num_asw."'> <label for='".$as_id.$num_asw."'>" . $content_asw . "</label></div><br>";
+              {
+                if(isset($data['post_last'])){
+                  $for_last = $data['post_last'];
+                  for($k = 0; $k < sizeof($for_last); $k++){
+                    if(isset($for_last[$k][$as_id])){
+                      if($for_last[$k][$as_id][0] == $num_asw)
+                        $appear = true;
+                    }
+                  }
+                }
+                if($appear)
+                    echo "<div class='each_ans'><input type='checkbox' id='".$as_id. $num_asw."' name='". $as_id . "[]' value='".$num_asw."' checked> <label for='".$as_id.$num_asw."'>" . $content_asw . "</label></div><br>";
+                else
+                    echo "<div class='each_ans'><input type='checkbox' id='".$as_id. $num_asw."' name='". $as_id . "[]' value='".$num_asw."'> <label for='".$as_id.$num_asw."'>" . $content_asw . "</label></div><br>";
+                }
+
+                $appear = false;
             }
+            
             echo "</div>";
           }
         }
         echo "</div>";
         $count++;
-        }
-        $index++;
       }
-      
+      $index++;
+    }
+    echo "<input type='hidden' name='page_next' value='".$page_next."'>";
+    echo "<input type='hidden' name='num_qs' value='".$page_next."'>";
+    
     }
     ?>
     <?php if($page == $num_page-1){?>
     <div class="commit_test">
-      <input type="submit" name='commit_test' value = "Nộp bài">
+      <input type="submit" class='next_commit' name='commit_test' value = "Nộp bài">
     </div>
-    <?php } ?>
+
+    <?php 
+    }else{
+      echo "<div class='commit_test'>"; 
+      echo '<input type="submit" class="next_commit" name="next_qs" value = "Next">';
+      echo"</div>";
+    } ?>
 
     </form>
 
@@ -86,17 +121,10 @@
             }
             if($page < $num_page - 1)
               echo "<a title='next' href='./TestPage/Test/".($page+2)."'>&raquo;</a>";
+              // echo "hello";
             ?>
       </div>
     </div>
 
-    <div class="test_result">
-        <?php 
-          if(isset($data['test_as'])){
-            echo "<div class='label_res'>Kết quả bài thi của bạn là:</div>";
-            echo $data['test_as'];
-          }
-        ?>
-    </div>
   </div>
 </div>

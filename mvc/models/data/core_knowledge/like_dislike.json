@@ -1,5 +1,6 @@
 {
-	"point-0": "Like và Dislike(Thích và không thích)",
+	"avatar" : ".png",
+	"point-0": "Like và Dislike (Thích và không thích)",
 	"point-1":{
 		"key": "Bạn có thể hỏi về việc thích bằng cấu trúc: What (...) do you like?",
 		"eg":{
