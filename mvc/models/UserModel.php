@@ -2,13 +2,19 @@
   class UserModel extends DB{
 
     private function InsertUser($username, $password, $email){
-      $qr = "INSERT INTO users(name, password, email) VALUES('$username', '$password', '$email' )";
+      $qr = "INSERT INTO users(name, password, email) VALUES('$username', '$password', '$email')";
       $result = false;
       if(mysqli_query($this->con, $qr)){
         $result = true;
       }
       return $result;
 
+    }
+    public function getUserType($un){
+      $qr   = "SELECT user_type FROM users WHERE name = '$un'";
+      $rows = mysqli_query($this->con, $qr);
+      $res  = mysqli_fetch_array($rows);
+      return $res['user_type'];
     }
     public function checkLogin($un, $pas){
       $qr     = "SELECT * FROM users WHERE name = '$un'";
@@ -32,19 +38,53 @@
       return $errors;
 
     }
+    
+    public function loadAllTutorial(){
+      $qr   = "SELECT * FROM tutorials";
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_fetch_array($rows);
+      return $res;
+
+    }
+    public function checkUserNameExist($un){
+      $qr   = "SELECT * FROM users WHERE name = '$un'";
+      $rows = mysqli_query($this->con, $qr);
+      $num_row = mysqli_num_rows($rows);
+      if($num_row > 0)
+        return true;
+      else 
+        return false;
+    }
+    public function checkEmailExist($email){
+      $qr   = "SELECT * FROM users WHERE email = '$email'";
+      $rows = mysqli_query($this->con, $qr);
+      $num_row = mysqli_num_rows($rows);
+      if($num_row > 0)
+        return true;
+      else 
+        return false;
+    }
     public function checkSignUp($un, $pas, $pas_ag, $email, $agree){
         $sign_err = [];
         //if(!empty($un) && !empty($pas) && !empty($pas_ag) && !empty($email) && !empty($agree)){
           
         if(empty($un)){
           $sign_err[0] = "username is require";
+          
         }else
+        if($this->checkUserNameExist($un)){
+          $sign_err[0] = "username have existed";
+        }
+        else
         if(!preg_match("/^[a-zA-Z0-9]*$/", $un))
           $sign_err[0] = "username just contain a-z and A-Z or number";
         
         if(empty($email)){
           $sign_err[1] = "email is require";
         }else
+        if($this->checkEmailExist($email))
+          $sign_err[1] = "email is have existed";
+        else
         if(!filter_var($email, FILTER_VALIDATE_EMAIL))
           $sign_err[1] = "email is invalid format";
 
@@ -155,13 +195,14 @@
     public function userLogout() {
       setcookie('member_login', "", time() - (10 * 365 * 24 * 60 * 60), "/");
       $_SESSION['member_id'] = "";
+      $_SESSION['user_type'] = "";
     }
 
 
     public function checkSession($un, $pas, $re){
         if(isset($_POST['login'])){
           $qr = "SELECT * FROM users WHERE name = '$un'";
-          if(!isset($_COOKIE["member_login"])) 
+          if(!empty($_COOKIE["member_login"])) 
             $qr .= " AND password = '$pas'";
 
           $res = mysqli_query($this->con, $qr);
@@ -169,6 +210,8 @@
           if($res){
             while($row = mysqli_fetch_array($res)){
               $_SESSION["member_id"] = $row['id'];
+              $_SESSION["user_type"] = $row['user_type'];
+              
             }
             if(!empty($re)){
               setcookie("member_login",$un ,time() + (10 * 365 * 24 * 60 * 60), '/');

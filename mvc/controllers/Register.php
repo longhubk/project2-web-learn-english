@@ -32,6 +32,10 @@
 
       if($res == 1){
         $this->user_db->checkSession($username, $password, $remember);
+        $user_type = $this->user_db->getUserType($username);
+        if($user_type == 'admin')
+          header(('Location:../HomeAdmin/'));
+        
         $this->view("master_h", [
           "page"      => "login_success",
           "allTuts"   => $this->tut_db->getAllTutorial(),
