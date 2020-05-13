@@ -23,8 +23,7 @@
         "page"    => "content_tut",
         "allTuts" => $this->Tut_db->getAllTutorial(),
         "avatar"  => $this->user_db->getUserAvatar(),
-
-
+        "tut_qs"       => $this->Tut_db->loadQuestion(),
       ]);
     }
     public function One($tut_name, $tut_lesson = "be_verb"){
@@ -44,6 +43,6 @@
       ]);
     }
   
- }
+  }
 
 ?>

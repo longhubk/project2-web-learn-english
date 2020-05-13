@@ -1,0 +1,56 @@
+
+.main-container .video-card .all_test{
+  /* border: 1px solid red; */
+  margin: 10px;
+}
+.main-container .video-card .title_main_page{
+  border: 1px solid gray;
+  background-color: snow;
+  text-align: center;
+  border-radius: 10px;
+  color: darkred;
+  font-size: 30px;
+  margin: 10px 20px;
+  /* width: fit-content; */
+  padding: 5px 0;
+}
+
+.main-container .video-card .all_test .each_test{
+  border: 1px solid gray;
+  background-color: snow;
+  margin: 25px 5px;
+  padding: 5px;
+}
+.main-container .video-card .all_test .each_test .time_test{
+  /* border: 1px solid orange; */
+  margin: 5px;
+}
+.main-container .video-card .all_test .each_test .name_test{
+  /* border: 1px solid orange; */
+  margin: 15px 5px;
+  color: rgb(223, 102, 62);
+  font-size: large;
+  font-weight: bolder;
+}
+.main-container .video-card .all_test .each_test .level_test{
+  /* border: 1px solid orange; */
+  margin: 5px;
+}
+.main-container .video-card .all_test .each_test .num_qs{
+  /* border: 1px solid orange; */
+  margin: 5px;
+}
+.main-container .video-card .all_test .each_test .des_test{
+  /* border: 1px solid violet; */
+  margin: 5px;
+}
+
+.main-container .video-card .all_test .each_test .btn-enter-test{
+  margin: 15px 5px;
+  padding: 5px 15px;
+  background-color: green;
+  border-radius: 5px;
+  border: none;
+  color: whitesmoke;
+  font-size: 13px;
+}

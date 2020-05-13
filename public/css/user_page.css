@@ -1,5 +1,6 @@
-.main-container h1{
+.main-container h1 , .main-container h2{
   margin: 0 0 0 20px;
+  color: rgb(53, 149, 50);
 }
 .user_info_page{
   /* border: 1px solid blue; */

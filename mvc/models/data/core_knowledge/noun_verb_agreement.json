@@ -1,0 +1,41 @@
+
+{
+  "avatar" : ".jpg",
+  "point-0": "Chia Động Từ Cơ Bản Với Động Từ Be",
+	"point-1":{
+		"key": "Các danh từ số ít + Be ",
+		"guide": "- Với các danh từ số ít được dùng làm chủ ngữ ta sử dụng <b>is</b>",
+		"eg":{
+			"eg-1": "Her hat is nice. - Cái mũ của cô ấy đẹp.",
+			"eg-2": "Mai's skirt is red. - Cái váy của Mai màu đỏ",
+			"eg-3": "the game is exciting. - Trò chơi thì thú vị "
+		}
+	},
+	"point-2":{
+		"key": "Các danh từ số nhiều + Be ",
+		"guide": "- Với các danh từ số nhiều được dùng làm chủ ngữ ta sử dụng <b>are</b>",
+		"eg":{
+			"eg-1": "West guys' eyes is blue. - Mắt của người tây mầu xanh.",
+			"eg-2": "The bananas are yellow. - Những quả chuối màu vàng."
+		}
+	},
+	"point-3":{
+		"key": "Các danh từ Không đếm được + Be ",
+		"guide": "- Với các danh từ không đếm được như nước, dầu, thời gian... được dùng làm chủ ngữ, ta sử dụng <b>are</b>",
+		"eg":{
+			"eg-1": "The air is dirty. - Không khí thì ô nhiễm.",
+			"eg-2": "The weather is good. - Thời tiết thì tốt.",
+			"eg-3": "The time is near. - Thời gian thì ngay gần đây.",
+			"eg-4": "The national energy is limited. - Năng lượng thiên nhiên là có hạn."
+		}
+	},
+
+	"point-4":{
+		"key": "Danh từ số nhiều so với danh từ số ít ",
+		"guide": "- Chúng ta thường sử dụng danh từ số nhiều khi nói về những thứ <b>chung chung</b>.",
+		"eg":{
+			"eg-1": "Apples are red. - Táo có màu đỏ.",
+			"eg-2": "Cars are expensive. - Xe hơi thì đắt."
+		}
+	}
+}

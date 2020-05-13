@@ -9,7 +9,7 @@
   // }
     
   if (isset($_COOKIE['member_login']))
-    echo "<h1>Hello " . $_COOKIE['member_login'] . " This is your home page</h1>";
+    echo "<h1>Hello " . $_COOKIE['member_login'] . "</h1><h2>Đây là Trang cá nhân của bạn</h2>";
   else
     echo "<h1>You are not login</h1>";
   ?>

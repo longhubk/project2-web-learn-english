@@ -3,7 +3,8 @@
 <html>
 
 <head>
-  <base href = "http://localhost/project2/" />
+  <base href = "http://localhost/speakmore/" />
+
   <meta name = "viewport" content = "width= device-width, initial-scale: 1.0">
   <meta charset = "UTF-8">
   <title>SPEAK MORE</title>
@@ -18,10 +19,13 @@
   <link href = "./public/css/right_nav.css"      rel = "stylesheet" type = "text/css">
   <link href = "./public/css/footer.css"         rel = "stylesheet" type = "text/css">
   <link href = "./public/css/user_page.css"      rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/test_page.css"      rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/test_index.css"      rel = "stylesheet" type = "text/css">
 
   <link href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/views/views/css/font-awesome.min.css" rel = "stylesheet">
   <link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href = "https://bootswatch.com/flatly/bootstrap.min.css"         rel="stylesheet">
+  <script src="https://use.fontawesome.com/566df3ace8.js"></script>
 
   <script src = 'https://kit.fontawesome.com/a076d05399.js'></script>
   <script src = 'https://www.youtube.com/iframe_api'></script>
@@ -33,6 +37,7 @@
       hideBtnLogin();
     }
     window.onscroll = function() {
+      // alert("onscroll")
       scrollFunction();
     }
   </script>
@@ -132,7 +137,7 @@
         ?>
       </div>
     </li>
-    <li><a href="./Test">TESTS</a></li>
+    <li><a href="./TestPage">TESTS</a></li>
     <li><a href="./Doc">DOCUMENTATIONS</a></li>
     <li><a href="./Res">RESOURCES</a></li>
     <li><a href="./Intro">ABOUT US</a></li>

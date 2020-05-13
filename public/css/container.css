@@ -1,5 +1,13 @@
+
 *{
-  box-sizing: border-box;
+  box-sizing         : border-box;
+
+  -webkit-user-select: none;
+  -khtml-user-select : none;
+  -moz-user-select   : none;
+  -ms-user-select    : none;
+  -o-user-select     : none;
+  user-select        : none; /*_prevent copy text on website*/
 }
 a{
   text-decoration: none;
@@ -94,6 +102,12 @@ iframe{
 }
 .point-main{
   background-color: #CCFF99;
+  color: black;
+  border: 1px solid gray;
+  padding: 5px;
+}
+.guide-main{
+  background-color: rgb(230, 215, 167);
   color: black;
   border: 1px solid gray;
   padding: 5px;
