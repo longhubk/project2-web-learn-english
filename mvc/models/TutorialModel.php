@@ -23,6 +23,7 @@
 
     public function getAllTutorial(){
       return parent::readJsonData("$this->path"."tutorials/all_tutorial.json");
+
     }
 
     public function loadAllAdmin($name_tb, $name_col, $name_id){

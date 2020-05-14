@@ -46,6 +46,18 @@
       return $res;
 
     }
+    public function checkIsAdmin($cookie){
+      
+      $qr   = "SELECT user_type FROM users WHERE name = '$cookie'";
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_fetch_assoc($rows);
+      // var_dump( $res );
+      if($res['user_type'] == 'admin')
+        return true;
+      else
+        return false;
+
+    }
     public function checkUserNameExist($un){
       $qr   = "SELECT * FROM users WHERE name = '$un'";
       $rows = mysqli_query($this->con, $qr);

@@ -1,33 +1,42 @@
 .ver-bar {
-  width: 230px;
-  height: 95%;
-  top: 75px;
-  left: 0px;
-  position: fixed;
-  overflow-x: hidden;
-  overflow-y: scroll;
-  z-index: 1;
-  padding: 0;
+  width           : 230px;
+  height          : 95%;
+  top             : 75px;
+  left            : 0px;
+  position        : fixed;
+  overflow-x      : hidden;
+  overflow-y      : hidden;
+  z-index         : 1000;
+  padding         : 0;
   background-color: rgb(200, 197, 197);
-  border-right: 1px solid gray;
+  border-right    : 1px solid gray;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
   
+}
+.ver-bar:hover{
+  overflow-y: auto;
 }
 .ver-bar ul{
   list-style-type: none;
-  padding: 5px;
-  margin-top: 0;
+  padding        : 5px;
+  margin-top     : 0;
 }
 .ver-bar ul li{
   background-color: rgb(36, 148, 36);
-  margin: 7px 0px 0px 5px;
-  padding: 5px 5px;
+  display         : block;
+  margin          : 10px 0 0 5px;
+  padding         : 5px 5px;
+  width           : 200px;
 }
 .ver-bar ul li a{
   text-decoration: none;
-  text-align: left;
-  font-size: 16px;
-  color:whitesmoke;
-  font-family: "Segoe UI";
+  text-align     : left;
+  font-size      : 16px;
+  color          : whitesmoke;
+  font-family    : "Segoe UI";
 }
 .ver-bar ul li:hover{
   background-color: black;
@@ -36,4 +45,11 @@
 @media screen and (max-height: 450px) {
   .ver-bar {padding-top: 15px;}
   .ver-bar ul li a {font-size: 18px;}
+}
+
+
+@media only screen and (max-width: 900px){
+  #ver_nav{
+    display: none;
+  }
 }

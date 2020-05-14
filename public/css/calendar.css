@@ -1,74 +1,75 @@
 @font-face{
-  font-family:'digital-clock-font';
-  src: url("./fonts/DS-DIGI.TTF");
- }
+  font-family: 'digital-clock-font';
+  src        : url("./fonts/DS-DIGI.TTF");
+}
 .calendar{
-  height:300px;
-  width: 270px;
+
+  height : 300px;
+  width  : 270px;
   display: block;
-  margin: 10px 0 0 15px;
+  margin : 10px 0 0 15px;
   padding: 0 0 0% 0%;
 
 }
 .calendar > .title{
-  text-align: center;
-  background-color:greenyellow;
-  width: 270px;
-  margin: 0px;
-  padding: 5px 20px;
-  font-size: 20px;
-  color: brown;
-  font-weight: bolder;
-  height: 30px;
-  justify-content: center;
-  display: flex;
+  text-align      : center;
+  background-color: greenyellow;
+  width           : 270px;
+  margin          : 0px;
+  padding         : 5px 20px;
+  font-size       : 20px;
+  color           : brown;
+  font-weight     : bolder;
+  height          : 30px;
+  justify-content : center;
+  display         : flex;
 
 }
 .calendar #time{
-  height: fit-content;
-  width: 270px;
+  height          : fit-content;
+  width           : 270px;
   background-color: rgb(235, 235, 235);
-  color: black;
-  font-family: 'digital-clock-font';
-  text-align: center;
-  font-size: 22px;
-  display: block;
-  float: right;
-  padding: 2px 0;
+  color           : black;
+  font-family     : 'digital-clock-font';
+  text-align      : center;
+  font-size       : 22px;
+  display         : block;
+  float           : right;
+  padding         : 2px 0;
 }
 .calendar .title .name-calendar{
-  float: left;
-  height: fit-content;
-  width: fit-content;
+  float     : left;
+  height    : fit-content;
+  width     : fit-content;
   text-align: center;
 }
 .calendar .title .name-calendar p{
   margin: 0 0 0 10px;
-  float: left;
+  float : left;
 }
 .calendar .title .name-calendar .fa-calendar{
-  margin: 2px 0 0 0;
-  float: left;
+  margin   : 2px 0 0 0;
+  float    : left;
   font-size: 18px;
 
 }
 .calendar > #day{
-  display: flex;
-  width: 270px;
-  height: 220px;
-  flex-wrap: wrap;
-  align-items: center;
+  display         : flex;
+  width           : 270px;
+  height          : 220px;
+  flex-wrap       : wrap;
+  align-items     : center;
   background-color: dodgerblue;
-  padding: 10px 20px 10px 20px;
+  padding         : 10px 20px 10px 20px;
 
 }
 .calendar > #day > div{
-  background-color:white;
-  margin: 4px 4px;
-  width: 24px;
-  height: 21px;
-  justify-content: center;
-  text-align: center;
+  background-color: white;
+  margin          : 4px 4px;
+  width           : 24px;
+  height          : 21px;
+  justify-content : center;
+  text-align      : center;
 
 }
 .calendar #day div:hover{
@@ -76,36 +77,36 @@
 }
 .calendar #day #today{
   background-color: rgb(173, 233, 52);
-  font-weight: 900;
-  color: red;
+  font-weight     : 900;
+  color           : red;
 }
 
 .calendar .month{
-  display: flex;
+  display         : flex;
   background-color: burlywood;
-  width: 270px;
-  height: 30px;
-  justify-content: center;
-  padding: 4px;
+  width           : 270px;
+  height          : 30px;
+  justify-content : center;
+  padding         : 4px;
 
 }
 .calendar .month > div {
-  text-align: center;
-  color: red;
+  text-align : center;
+  color      : red;
   font-weight: bold;
-  margin: 3px 35px;
+  margin     : 3px 35px;
 }
 .calendar .month > button {
-  border-radius: 20px;
-  border: none;
-  color: white;
+  border-radius   : 20px;
+  border          : none;
+  color           : white;
   background-color: rgb(28, 155, 233);
 }
 .calendar .month #mon-prev{
   padding: 4px 8px;
 }
 .calendar .month #mon-next{
-  padding: 4px 8px;
+  padding     : 4px 8px;
   margin-right: 5px;
 }
 

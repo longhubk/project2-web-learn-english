@@ -1,13 +1,11 @@
-<?php
-  echo "<h1>here is admin page</h1>";
-  // var_dump($data['all_tutorial']);
-  // var_dump($data['all_topic']);
-  // var_dump($data['all_lesson']);
-  if(isset($data['update_state']))
-    echo $data['update_state'];
-  ?>
-
   
+  <div class="admin_container">
+    <h2>Update Tutorial</h2>
+    <?php
+      if(isset($data['update_state']))
+        echo $data['update_state'];
+    ?>
+
   <form action="./HomeAdmin/updateLesson" method="POST">
     <label for="select_topic">Choose topic:</label>
     <select name="choose_topic" id="select_topic">
@@ -50,18 +48,20 @@
     <input class="input_content" type="text" name='guide_content'><br><br>
     <label>Example 1:</label>
     <input class="input_content" type="text" name='exp_1'><br><br>
-  
+    
     <label>Example 2:</label>
     <input class="input_content" type="text" name='exp_2'><br><br>
-
+    
     <label>Example 3:</label>
     <input class="input_content" type="text" name='exp_3'><br><br>
 
     <label>Example 4:</label>
     <input class="input_content" type="text" name='exp_4'><br><br>
-
+    
     <label>Example 5:</label>
     <input class="input_content" type="text" name='exp_5'><br><br>
-
+    
     <input class="update_content" type="submit" name='update_content' value='update'><br><br>
   </form>
+</div>
+  

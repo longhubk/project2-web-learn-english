@@ -1,39 +1,96 @@
 .footer{
   background-color: rgb(40,40,40);
-  margin: 80px 365px 0 250px;
-  padding: 40px;
-  display: block;
-  border: 1px solid gray;
+  margin          : 80px 365px 0 250px;
+  padding         : 40px;
+  display         : block;
+  width           : 55%;
+  border          : 1px solid gray;
 }
 .footer .copyright{
-  margin: 25px 0 0 0;
+  margin    : 25px 0 0 0;
   text-align: center;
-  color: rgb(0, 195, 0);
+  color     : rgb(0, 195, 0);
   
 }
 .footer .info_foot{
-  display: flex;
+  display        : flex;
   justify-content: center;
 
 }
 .footer .info_foot .info_connect{
-  color: white;
+  color : white;
   margin: 0 0 0 40px;
 
 }
 .footer .info_foot .info_contact{
-  color: white;
+  color : white;
   margin: 0 40px 0 0 ;
 
 }
 .footer .info_foot .info_connect a{
   margin: 0 10px 0 0;
+
   
 }
 .footer .info_foot .info_connect a:hover{
   opacity: 0.5;
 }
-.footer .info_foot .info_title{
-  color: rgb(0, 195, 0);
+.footer .info_foot .info_connect a img{
+  height: 2.8vw;
+  width : 2.8vw;
   
+}
+.footer .info_foot .info_title{
+  color    : rgb(0, 195, 0);
+  font-size: 18px;
+  
+}
+
+@media only screen and (max-width: 1300px){
+  .footer{
+    width: 75%;
+  }
+}
+@media only screen and (max-width: 1000px){
+  .footer{
+    width: 70%;
+  }
+  .footer .info_foot .info_title{
+    font-size: 16px;
+    
+  
+}
+}
+
+
+@media only screen and (max-width: 900px){
+  .footer{
+    width       : 100%;
+    margin-left : 0;
+    margin-right: 0;
+  }
+  .footer .info_foot .info_title{
+    font-size: 14px;
+    
+  }
+  .footer .info_foot .info_contact p{
+    font-size: 13px;
+  }
+}
+@media only screen and (max-width: 600px){
+
+
+  .footer .info_foot .info_connect{
+    margin: 0;
+  }
+  .footer{
+    padding: 20px;
+  }
+  .footer .info_foot .info_title{
+    font-size: 12px;
+    
+  }
+  .footer .info_foot .info_contact p{
+    font-size: 12px;
+  }
 }

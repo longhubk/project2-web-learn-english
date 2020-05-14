@@ -33,31 +33,31 @@
   /* background-color: antiquewhite; */
   /* text-decoration: underline; */
   padding: 0 0 0 50px;
-  margin: 0 5px 0 5px; 
+  margin : 0 5px 0 5px;
 } 
   
 .main-container .video-card form .qs_contain .answer_qs{
-  border: 1px solid gray;
-  border-radius: 5px;
+  border          : 1px solid gray;
+  border-radius   : 5px;
   background-color: snow;
-  margin: 5px;
-  padding: 15px 0 0px 40px;
+  margin          : 5px;
+  padding         : 15px 0 0px 40px;
 
 }
 
 .main-container .video-card form .commit_test{
-  display: flex;
+  display        : flex;
   justify-content: center;
 }
 
 .main-container .video-card form  .commit_test .next_commit{
   /* border: 1px solid black; */
-  border: none;
-  padding: 5px 10px;
+  border          : none;
+  padding         : 5px 10px;
   background-color: green;
-  color: white;
-  border-radius: 5px;
-  margin: 25px 0 0 0;
+  color           : white;
+  border-radius   : 5px;
+  margin          : 25px 0 0 0;
 }
 .main-container .video-card form .qs_contain .answer_qs .each_ans{
   /* border: 1px solid red; */
@@ -76,21 +76,21 @@
 }
 
 .main-container .video-card .center .pagination a{
-  color: black;
-  float: left;
-  border: 1px solid #999;
+  color        : black;
+  float        : left;
+  border       : 1px solid #999;
   border-radius: 5px;
-  padding: 6px 12px;
-  margin: 0 2px;
+  padding      : 6px 12px;
+  margin       : 0 2px;
 
 }
 .main-container .video-card .center .pagination a.active{
   background-color: #4CAF50;
-  color: white;
-  border-radius: 5px;
+  color           : white;
+  border-radius   : 5px;
 }
 
 .main-container .video-card .center .pagination a:hover:not(.active){
   background-color: #999;
-  border-radius: 5px;
+  border-radius   : 5px;
 }

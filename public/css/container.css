@@ -17,21 +17,22 @@ a{
 }
 
 .main-container{
-  margin: 50px 0 0 250px;
-  border: 1px solid gray;
+  margin          : 50px 0 0 250px;
+  border          : 1px solid gray;
   background-color: rgb(220,220,220);
-  width: 720px;
-  padding: 20px 0 40px 0;
-  height: fit-content;
-  border-radius: 5px;
-  position: relative;
-  display: block;
-  overflow: auto;
+  width           : 55%;
+  padding         : 20px 0 40px 0;
+  z-index         : 0;
+  height          : fit-content;
+  border-radius   : 5px;
+  position        : relative;
+  display         : block;
+  overflow        : auto;
 }
 .main-container:after{
   content: "";
   display: table;
-  clear: both;
+  clear  : both;
 
 }
 
@@ -39,76 +40,125 @@ a{
 .vid1{
   margin: 30px 50px;
 }
-.tips h3{
-  color: rgb(42, 134, 82);
+.main-container .video-card .tips h3{
+  color      : rgb(42, 134, 82);
   font-weight: bold;
-  font-size: 30px;
-  margin: 20px 50px;
+  font-size  : 30px;
+  margin     : 5%;
+
 }
 
 
-.video-card{
-  margin: 0px 0px;
+.main-container .video-card{
+  margin          : 0px 0px;
   background-color: rgb(220,220,220);
-  width: 100%;
-  height: auto;
-  border-radius: 5px;
+  width           : 100%;
+  height          : auto;
+  border-radius   : 5px;
 
 }
-.video-card h1{
-  color: rgb(36, 148, 36);
+.main-container .video-card h1{
+  color      : rgb(36, 148, 36);
   font-family: "Segoe UI";
-  font-size: 30px;
-  margin: 10px 50px;
-  text-align: left;
+  font-size  : 30px;
+  margin     : 0 0 0 6%;
+  text-align : left;
   
 }
-.video-card p{
-  color: black;
+.main-container .video-card p{
+  color      : black;
   font-family: "Segoe UI";
-  font-size: 20px;
-  margin: 10px 50px 0px 50px;
+  font-size  : 18px;
+  width      : 90%;
+  margin     : 0 0 3% 8%;
 }
-.video-card img{
-  height: 400px;
-  width: 600px;
-  margin: 20px 50px;
+.main-container .video-card img{
+  width : 85%;
+  margin: 0 0 0 7% ;
 }
 
 
-.video-card .verb-video{
-  display: block;
+.main-container .video-card .verb-video{
+  display      : block;
   border-radius: 5px;
-  width: fit-content;
-  padding: 20px;
-  margin: 30px 30px 30px 50px;
+  width        : 100%;
+  padding      : 20px;
+  /* margin: 0 10px; */
 }
 iframe{
   border: 1px solid gray;
 }
 
-.subtitle{
-  margin: 25px 0 0 0;
-  border: 1px solid gray;
+.main-container .video-card .verb-video .subtitle{
+  margin    : 25px 0 0 0;
+  border    : 1px solid gray;
   overflow-y: scroll;
-  height: 200px;
+  height    : 200px;
+  width     : 100%;
+}
+.main-container .video-card .verb-video #player{
+  width: 100%;
 }
 
-.knowledge{
-  border: 1px solid gray;
-  margin: 20px 70px 20px 50px;
+
+.main-container .video-card .knowledge{
+  border       : 1px solid gray;
+  margin       : 20px 70px 20px 50px;
   border-radius: 5px;
-  padding: 20px;
+  padding      : 20px;
 }
-.point-main{
+.main-container .video-card .knowledge .point-main{
   background-color: #CCFF99;
-  color: black;
-  border: 1px solid gray;
-  padding: 5px;
+  color           : black;
+  border          : 1px solid gray;
+  padding         : 5px;
 }
 .guide-main{
   background-color: rgb(230, 215, 167);
-  color: black;
-  border: 1px solid gray;
-  padding: 5px;
+  color           : black;
+  border          : 1px solid gray;
+  padding         : 5px;
+}
+
+@media only screen and (max-width: 1300px){
+  .main-container{
+    width: 75%;
+  }
+  .main-container .video-card .knowledge{
+    margin: 20px 15px;
+
+  }
+
+}
+@media only screen and (max-width: 1000px){
+  .main-container{
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 900px){
+  .main-container{
+    width       : 100%;
+    margin-left : 0;
+    margin-right: 0;
+  }
+  .main-container .video-card p{
+    font-size: 16px;
+  }
+  .main-container .video-card h1{
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 700px){
+
+  .main-container .video-card{
+    width: 100%;
+  }
+  .main-container .video-card .verb-video .subtitle{
+    margin: 0;
+  }
+  .main-container .video-card .tips h3{
+    font-size: 20px;
+  }
 }
