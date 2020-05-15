@@ -32,6 +32,13 @@
   font-family     : cursive;
   /* width: 100%; */
 }
+
+.header #run_text {
+  display: block;
+  width: 43%;
+  float: left;
+  margin: 0 0 0 30px;
+}
 .header #head-intro p{
   float : left;
   margin: 0;
@@ -120,6 +127,11 @@
 }
 @media only screen and (max-width: 700px){
   .language{
+    display: none;
+  }
+}
+@media (max-width: 500px){
+  .header #run_text{
     display: none;
   }
 }

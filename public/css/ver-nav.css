@@ -42,7 +42,7 @@
   background-color: black;
 }
 
-@media screen and (max-height: 450px) {
+@media only screen and (max-height: 450px) {
   .ver-bar {padding-top: 15px;}
   .ver-bar ul li a {font-size: 18px;}
 }
@@ -51,5 +51,10 @@
 @media only screen and (max-width: 900px){
   #ver_nav{
     width : 0;
+  }
+}
+@media (min-width: 1000px){
+  #ver_nav{
+    width : 230px;
   }
 }
