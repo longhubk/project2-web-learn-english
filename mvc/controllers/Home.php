@@ -16,6 +16,7 @@
       // var_dump($_COOKIE['member_login']);
 
       // echo $this->user_db->checkIsAdmin($_COOKIE['member_login']);
+      // var_dump($_SERVER['SERVER_NAME']);
 
       $this->view("master_h", [
         "page"    => "content_main",

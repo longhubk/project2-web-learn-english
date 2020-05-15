@@ -4,7 +4,7 @@ function toggleSideBar(){
   let side_bar = document.getElementById('ver_nav')
   let width_of_side_bar =  side_bar.offsetWidth
   let side_bar_is_open = true
-  side_bar.style.transition = "0.3s"
+  side_bar.style.transition = "0.2s"
   if(width_of_side_bar > 1){
     side_bar_is_open = false
   }else{

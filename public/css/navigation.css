@@ -122,3 +122,12 @@ li.tutorial{
     float  : none;
   }
 }
+
+
+@media screen and (max-width: 550px){
+
+  .hori-nav li{
+    display: block;
+    float  : none;
+  }
+}
