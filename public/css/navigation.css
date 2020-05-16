@@ -82,10 +82,10 @@ li.tutorial{
 }
 #search{
   width        : 200px;
-  height       : 20px;
-  border-radius: 8px;
+  height       : 25px;
+  border-radius: 15px;
   border       : none;
-  margin       : 2px 0 0 0;
+  margin       : 0 0 0 0;
   padding      : 0 0 0 15px;
 }
 .btn-search{
@@ -98,8 +98,9 @@ li.tutorial{
   margin          : 0px 0px 0px 4px;
 }
 .btn-search:hover{
-  background-color: rgb(113, 119, 122);
-  color: whitesmoke;
+  /* background-color: rgb(113, 119, 122); */
+  transform: scale(1.04);
+  background-color: white;
 }
 .fa , .fa-search{
   margin-right: 5px;
@@ -152,8 +153,14 @@ li.tutorial{
   }
 }
 @media screen and (max-width: 450px){
-
-  .hori-nav li a .hide{
-    margin-right: 0;
+  
+  .hori-nav{
+    height: 30px;
+  }
+  /* .hori-nav li a .hide{
+  margin-right: 5px;
+  } */
+  .hori-nav li a{
+    padding: 5px 10px;
   }
 }

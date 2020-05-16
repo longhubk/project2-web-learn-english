@@ -60,6 +60,24 @@
       // alert("onscroll")
       scrollFunction();
     }
+    function displayWindowSize(){
+        // Get width and height of the window excluding scrollbars
+        var w = document.documentElement.clientWidth;
+        var h = document.documentElement.clientHeight;
+        
+        if(w > 1000){
+          document.getElementById('ver_nav').style.width = "230px"
+        }
+        if(w < 500){
+          document.getElementById('ver_nav').style.width = "0"
+        }
+        // Display result inside a div element
+        console.log("Width: " + w + ", " + "Height: " + h);
+    }
+    window.addEventListener("resize", displayWindowSize);
+    
+    // Calling the function for the first time
+    displayWindowSize();
   </script>
 </head>
 
@@ -67,14 +85,14 @@
   <div id="top_head" class="header">
 
     <div title="SpeakMore Web Learn English" class="logo-icon">
-      <a href="./Home"><img id="img-icon" src='./public/img/logo.PNG' height="30" width="160"></a>
+      <a href="./Home"><img id="img-icon" src='./public/img/logo-2.png'></a>
     </div>
-    <marquee id="run_text" behavior="scroll" direction="left">
+    <!-- <marquee id="run_text" behavior="scroll" direction="left">
     <div id="head-intro">
       <p id='intro'>"Every courses are free for every one"</p>
       <i id='hide_intro' title="hide" class="fas fa-times"></i>
     </div>
-    </marquee>
+    </marquee> -->
   
     <div class="login-container">
       <?php
@@ -113,6 +131,7 @@
       $_GET["hello"] = true;
       ?>
     </div>
+
     <div class="language">
       <i class="material-icons">language</i>
       <div class="lang-choose">
@@ -124,6 +143,7 @@
         </select>
       </div>
     </div>
+
   </div>
 
   <?php
@@ -144,8 +164,17 @@
 
 
   <ul id="hor-nav" class="hori-nav">
-    <li id="menu-li" title="menu"><button onclick="toggleSideBar()"><i class="material-icons">menu</i></button></li>
-    <li id="home-li"><a href="./Home"><i class="fa fa-fw fa-home"></i>HOME</a></li>
+    <li id="menu-li" title="menu">
+      <button onclick="toggleSideBar()">
+        <i class="material-icons">menu</i>
+      </button>
+    </li>
+    <li id="home-li">
+      <a href="./Home">
+        <i class="fa fa-fw fa-home hide"></i>
+        <span class="text_to_hide">HOME</span>
+      </a>
+    </li>
     <li>
       <a href="./Notify">
         <i title="NOTIFICATIONS" class="fa fa-bell hide"></i>

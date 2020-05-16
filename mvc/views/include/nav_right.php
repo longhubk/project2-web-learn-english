@@ -25,9 +25,12 @@
     </div>
     <div id="time"></div>
     <div class="month">
-      <button id="mon-prev">prev</button>
-      <div id="month">March</div>
-      <button id="mon-next">next</button>
+      <!-- <button onclick="setMonthDown()" id="mon-prev">prev</button> -->
+
+      <div  id="day_m"></div>
+      <div  id="month"></div>
+      <div  id="year_m"></div>
+      <!-- <button onclick="setMonthUp()"id="mon-next">next</button> -->
     </div>
     <div id="day">
     </div>

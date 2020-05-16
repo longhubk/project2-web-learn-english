@@ -11,7 +11,7 @@
   padding: 0 0 0% 0%;
 
 }
-.calendar > .title{
+.calendar  .title{
   text-align      : center;
   background-color: greenyellow;
   width           : 270px;
@@ -53,7 +53,7 @@
   font-size: 18px;
 
 }
-.calendar > #day{
+.calendar  #day{
   display         : flex;
   width           : 270px;
   height          : 220px;
@@ -63,7 +63,7 @@
   padding         : 10px 20px 10px 20px;
 
 }
-.calendar > #day > div{
+.calendar #day div{
   background-color: white;
   margin          : 4px 4px;
   width           : 24px;
@@ -90,13 +90,13 @@
   padding         : 4px;
 
 }
-.calendar .month > div {
+.calendar .month div {
   text-align : center;
   color      : red;
   font-weight: bold;
-  margin     : 3px 35px;
+  margin     : 3px 3px;
 }
-.calendar .month > button {
+.calendar .month button {
   border-radius   : 20px;
   border          : none;
   color           : white;

@@ -12,19 +12,23 @@
 a{
   text-decoration: none;
 }
+body{
+  margin: 0;
+}
 #intro{
   border: 1px solid gray;
 }
 
 .main-container{
   margin          : 50px 0 0 250px;
-  border          : 1px solid gray;
+  /* border          : 1px solid gray; */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background-color: rgb(220,220,220);
   width           : 55%;
   padding         : 20px 0 40px 0;
   z-index         : 0;
   height          : fit-content;
-  border-radius   : 5px;
+  border-radius   : 8px;
   position        : relative;
   display         : block;
   overflow        : auto;
@@ -58,11 +62,12 @@ a{
 
 }
 .main-container .video-card h1{
-  color      : rgb(36, 148, 36);
+  color      : rgb(84, 194, 89);
   font-family: "Segoe UI";
   font-size  : 30px;
   margin     : 0 0 0 6%;
   text-align : left;
+  text-shadow: -1px 0 green, 0 1px green, 1px 0 green, 0 -1px green;
   
 }
 .main-container .video-card p{
@@ -72,9 +77,10 @@ a{
   width      : 90%;
   margin     : 0 0 3% 8%;
 }
-.main-container .video-card img{
+.main-container .video-card #intro{
   width : 85%;
   margin: 0 0 0 7% ;
+  border: 10px ridge rgb(255, 255, 255);
 }
 
 
@@ -85,16 +91,23 @@ a{
   padding      : 20px;
   /* margin: 0 10px; */
 }
-iframe{
-  border: 1px solid gray;
+.main-container .video-card .verb-video iframe{
+  border: 10px ridge rgb(255, 255, 255); 
+  /* border: 1px solid gray; */
 }
 
 .main-container .video-card .verb-video .subtitle{
-  margin    : 25px 0 0 0;
-  border    : 1px solid gray;
-  overflow-y: scroll;
+  margin    : 25px 0;
+  border    : 10px ridge rgb(255, 255, 255);
+  /* box-shadow: 0 4px 8px 0 rgba(0,0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1); */
+  overflow-y: hidden;
+  /* border-radius: 8px; */
   height    : 200px;
   width     : 100%;
+  background-color: whitesmoke;
+}
+.main-container .video-card .verb-video .subtitle:hover{
+  overflow-y: scroll;
 }
 .main-container .video-card .verb-video #player{
   width: 100%;
@@ -102,15 +115,18 @@ iframe{
 
 
 .main-container .video-card .knowledge{
-  border       : 1px solid gray;
-  margin       : 20px 70px 20px 50px;
+  /* border       : 1px solid gray; */
+  box-shadow: 0 4px 8px 0 rgba(0,0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+  margin       : 20px 20px;
   border-radius: 5px;
   padding      : 20px;
+  background-color: whitesmoke;
 }
 .main-container .video-card .knowledge .point-main{
   background-color: #CCFF99;
   color           : black;
-  border          : 1px solid gray;
+  /* border          : 1px solid gray; */
+  /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
   padding         : 5px;
 }
 .guide-main{
@@ -161,4 +177,19 @@ iframe{
   .main-container .video-card .tips h3{
     font-size: 20px;
   }
+  .main-container .video-card .verb-video .subtitle,
+  .main-container .video-card #intro,
+  .main-container .video-card .verb-video iframe
+  {
+    border-width: 5px;
+  }
+
+}
+
+@media only screen and (max-width: 450px){
+
+  .main-container .video-card .verb-video .subtitle{
+    overflow: auto;
+  }
+
 }
