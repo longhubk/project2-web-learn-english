@@ -23,7 +23,7 @@
             $name_avt = $data['avatar'];
             $directory_avatar = "./public/img/uploads/" . $name_avt;
             echo "<img title='". $_COOKIE["member_login"]."' class='small-avt' src='". $directory_avatar ."'>" ;
-            echo "<a title='go to home page' href='./HomePage/'>".$_COOKIE['member_login']."</a>";
+            echo "<a title='go to home page' href='./UserPage/'>".$_COOKIE['member_login']."</a>";
           }
         ?>
       </div>

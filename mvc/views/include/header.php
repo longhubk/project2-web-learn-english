@@ -113,9 +113,24 @@
           $directory_avatar = "./public/img/uploads/" . $name_avt;
           echo "<img title='". $_COOKIE["member_login"]."' class='small-avt' src='". $directory_avatar ."'>" ;
         }
-        echo "<button id='btn_login' class='login'>";
-        echo "<a href='./UserPage'>User Page</a>";
-        echo "</button>";
+        $show_user_btn = true;
+
+        if(isset($data['isAdmin'])){
+          if($data['isAdmin']){
+            $show_user_btn = false;
+          }
+        }
+        if($show_user_btn)
+        {
+          echo "<button id='btn_login' class='login'>";
+            echo "<a href='./UserPage'>User Page</a>";
+          echo "</button>";
+        }
+        else{
+          echo "<button id='btn_login' class='login'>";
+            echo "<a href='./HomeAdmin'>Admin Page</a>";
+          echo "</button>";
+        }
       }
 
 
