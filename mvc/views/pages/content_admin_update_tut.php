@@ -1,12 +1,12 @@
   
   <div class="admin_container">
-    <h2>Update Tutorial</h2>
+    <h2>New Lesson</h2>
     <?php
       if(isset($data['update_state']))
         echo $data['update_state'];
     ?>
 
-  <form action="./HomeAdmin/updateLesson" method="POST">
+  <form action="./HomeAdmin/postNewLesson" method="POST">
     <label for="select_topic">Choose topic:</label>
     <select name="choose_topic" id="select_topic">
       <?php
@@ -60,7 +60,8 @@
     
     <label>Example 5:</label>
     <input class="input_content" type="text" name='exp_5'><br><br>
-    
+
+
     <input class="update_content" type="submit" name='update_content' value='update'><br><br>
   </form>
 </div>

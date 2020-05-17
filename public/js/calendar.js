@@ -1,16 +1,16 @@
-var date = new Date()
+// var date = new Date()
 function generateDay(){
   let calendar           = document.getElementById("day")
       calendar.innerHTML = ""
   let month              = document.getElementById("month")
-  let year_m              = document.getElementById("year_m")
+  let year_m             = document.getElementById("year_m")
   let day_m              = document.getElementById("day_m")
       month.innerHTML    = ""
-  // let date = new Date()
-  let day_now   = date.getDate()
-  let month_now = date.getMonth()
-  let year_now  = date.getFullYear()
-  let n         = daysInMonth(month_now+1, year_now)
+  let date               = new Date()
+  let day_now            = date.getDate()
+  let month_now          = date.getMonth()
+  let year_now           = date.getFullYear()
+  let n                  = daysInMonth(month_now+1, year_now)
 
   let day = [n]
   const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -63,7 +63,7 @@ function checkTime(t){
 function generateTime(){
   // time.innerHTML = "";
   const days = ["Sunday", "Monday", "Tuesday", "Wenesday", "Thusday","Friday", "Saturday"]
-  // let date = new Date()
+  let date = new Date()
   let time     = document.getElementById("time")
   let hours    = date.getHours()
   let minutes  = date.getMinutes()

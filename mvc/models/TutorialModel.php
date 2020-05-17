@@ -33,7 +33,33 @@
       return $res;
 
     }
+    public function getNumberLessonOfAllTut(){
+      $qr   = "SELECT tut_id, COUNT(lesson_id) FROM lesson_tut GROUP BY tut_id";
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_fetch_all($rows);
+      return $res;
+    }
+
+    public function loadAllInfoTutorial(){
+      $qr   = "SELECT * FROM tutorials";
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_fetch_all($rows);
+      return $res;
+    }
+
+    public function loadAllLessonForTutorial(){
+      $qr   = "SELECT * FROM lesson_tut";
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_fetch_all($rows);
+      return $res;
+    }
     
+    public function getNameAdminModify(){
+      $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_fetch_all($rows);
+      return $res;
+    }
     public function updateContent($post){
       if(!empty($post['choose_les']))
         $les_id = $post['choose_les'];
