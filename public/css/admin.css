@@ -57,6 +57,7 @@ body{
 .input_content{
   border: 1px solid black;
   width : 60%;
+  margin-top: 5px;
 }
 
 .admin_navigation .ul_parent{
@@ -120,7 +121,7 @@ body{
   position: relative;
   /* float  : right; */
   /* height: 80%; */
-  margin : 35px 0 0 20%;
+  margin : 35px 0 35px 20%;
   padding: 20px;
   z-index: 0;
 }

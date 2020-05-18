@@ -47,14 +47,35 @@
 
       if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
         header("Location:Home/");
+
       $this->view("master_admin", [
         "page"             => "content_admin_update_lesson",
         "avatar"           => $this->user_db->getUserAvatar(),
         "id_lesson_update" => $lesson_id,
+        "content_lesson"   => $this->tut_db->getContentByLessonId($lesson_id),
     
       ]);
     }
     
+    public function postUpdateLesson($lesson_id){
+
+      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
+        header("Location:Home/");
+
+      $res = false;
+      if(isset($_POST)){
+        $res = $this->tut_db->updateLessonById($_POST);
+      }
+      $this->view("master_admin", [
+        "page"             => "content_admin_update_lesson",
+        "avatar"           => $this->user_db->getUserAvatar(),
+        "id_lesson_update" => $lesson_id,
+        "content_lesson"   => $this->tut_db->getContentByLessonId($lesson_id),
+        "post_content"     => $_POST,
+        "res_update"       => $res,
+    
+      ]);
+    }
     public function getViewTutorial(){
       if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
         header("Location:Home/");

@@ -26,40 +26,59 @@
 
     }
 
-    public function loadAllAdmin($name_tb, $name_col, $name_id){
-      $qr   = "SELECT $name_col, $name_id FROM $name_tb";
+    private function queryAllArray($qr){
       $rows = mysqli_query($this->con, $qr);
       $res = mysqli_fetch_all($rows);
       return $res;
+    }
+
+    public function loadAllAdmin($name_tb, $name_col, $name_id){
+      $qr   = "SELECT $name_col, $name_id FROM $name_tb";
+      return $this->queryAllArray($qr);
 
     }
     public function getNumberLessonOfAllTut(){
       $qr   = "SELECT tut_id, COUNT(lesson_id) FROM lesson_tut GROUP BY tut_id";
-      $rows = mysqli_query($this->con, $qr);
-      $res = mysqli_fetch_all($rows);
-      return $res;
+      return $this->queryAllArray($qr);
     }
 
     public function loadAllInfoTutorial(){
       $qr   = "SELECT * FROM tutorials";
-      $rows = mysqli_query($this->con, $qr);
-      $res = mysqli_fetch_all($rows);
-      return $res;
+      return $this->queryAllArray($qr);
     }
 
     public function loadAllLessonForTutorial(){
       $qr   = "SELECT * FROM lesson_tut";
-      $rows = mysqli_query($this->con, $qr);
-      $res = mysqli_fetch_all($rows);
-      return $res;
+      return $this->queryAllArray($qr);
     }
     
     public function getNameAdminModify(){
       $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
-      $rows = mysqli_query($this->con, $qr);
-      $res = mysqli_fetch_all($rows);
-      return $res;
+      return $this->queryAllArray($qr);
     }
+
+    public function getContentByLessonId($les_id){
+      $qr   = "SELECT * FROM content_lesson WHERE lesson_id = '$les_id'";
+      return $this->queryAllArray($qr);
+    }
+    public function updateLessonById($post_ct){
+      $res = true;
+      foreach($post_ct as $key => $value){
+        $qr = "";
+        if(!empty($value)){
+          $keys = explode("-", $key);
+          // echo $keys[0] ." and ". $keys[1] . "<br>";
+          $qr = "UPDATE `content_lesson` SET `$keys[0]` = '$value' WHERE `content_lesson`.`content_id` = $keys[1]";
+
+          $up = mysqli_query($this->con, $qr);
+          if(!$up)
+            $res = false;
+        }
+      }
+      return $res;
+
+    }
+
     public function updateContent($post){
       if(!empty($post['choose_les']))
         $les_id = $post['choose_les'];
