@@ -2,12 +2,12 @@
   <div class="admin_container">
     <h2>New Lesson</h2>
     <?php
-      if(isset($data['update_state']))
-        echo $data['update_state'];
+      if(isset($data['post_up']))
+        var_dump($data['post_up']);
     ?>
 
   <form action="./HomeAdmin/postNewLesson" method="POST">
-    <label for="select_topic">Choose topic:</label>
+    <!-- <label for="select_topic">Choose topic:</label>
     <select name="choose_topic" id="select_topic">
       <?php
         if(isset($data['all_topic'])){
@@ -17,7 +17,8 @@
           }
         }
         ?>
-    </select>
+    </select> -->
+    
     <label for="select_tut">Choose tutorial:</label>
     <select name="choose_tut" id="select_tut">
       <?php

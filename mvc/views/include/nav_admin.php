@@ -7,9 +7,7 @@
         </span>
 
         <ul>
-          <li><a href="./HomeAdmin/getNewLesson">New Lesson</a></li>
-          <li><a href="./HomeAdmin/getUpdateLesson">Update Lesson</a></li>
-          <li><a href="./HomeAdmin/getNewTutorial">New Tutorial</a></li>
+          <li><a href="./HomeAdmin/getNewLesson">Write Lesson</a></li>
           <li><a href="./HomeAdmin/getViewTutorial">View Tutorial</a></li>
           
         </ul>

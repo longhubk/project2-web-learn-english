@@ -21,7 +21,7 @@
 
         // var_dump($this->tut_db->LoadAllTutorial());
       $this->view("master_admin", [
-        "page"         => "content_admin_update_tut",
+        "page"         => "content_admin_new_lesson",
         "avatar"       => $this->user_db->getUserAvatar(),
         "all_tutorial" => $this->tut_db->loadAllAdmin('tutorials','tut_name', 'id'),
         "all_lesson"   => $this->tut_db->loadAllAdmin('lesson_tut','name_lesson', 'lesson_id'),
@@ -34,11 +34,11 @@
       if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
         header("Location:Home/");
       $this->view("master_admin", [
-        "page"         => "content_admin_update_tut",
+        "page"         => "content_admin_new_lesson",
         "avatar"       => $this->user_db->getUserAvatar(),
         "all_tutorial" => $this->tut_db->loadAllAdmin('tutorials','tut_name', 'id'),
         "all_lesson"   => $this->tut_db->loadAllAdmin('lesson_tut','name_lesson', 'lesson_id'),
-        "all_topic"    => $this->tut_db->loadAllAdmin('topics','topic_name', 'topic_id'),
+        // "all_topic"    => $this->tut_db->loadAllAdmin('topics','topic_name', 'topic_id'),
     
       ]);
     }
@@ -84,9 +84,36 @@
         "avatar"       => $this->user_db->getUserAvatar(),
         "all_tutorial" => $this->tut_db->loadAllInfoTutorial(),
         "num_lesson"   => $this->tut_db->getNumberLessonOfAllTut(),
-        "admin_modify"   => $this->tut_db->getNameAdminModify(),
+        "admin_modify" => $this->tut_db->getNameAdminModify(),
         "all_lesson"   => $this->tut_db->loadAllLessonForTutorial(),
-    
+        "all_topic"    => $this->tut_db->loadAllAdmin('topics','topic_name', 'topic_id'),
+      ]);
+    }
+    public function postNewTutorial(){
+      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
+        header("Location:Home/");
+
+      $res = false;
+      if(!empty($_POST['new_tut_name'])){
+        $id_admin_create = $this->user_db->getAdminId($_COOKIE['member_login']);
+        if($id_admin_create != 0)
+          $res = $this->tut_db->createNewTutorial($_POST, $id_admin_create);
+        if($res)
+          header("Location:../HomeAdmin/getViewTutorial");
+      }
+      if(!empty($_POST['new_lesson_name'])){
+        $res = $this->tut_db->createNewLesson($_POST);
+        if($res)
+          header("Location:../HomeAdmin/getViewTutorial");
+
+      }
+      
+      $this->view("master_admin", [
+        "page"         => "content_admin_view_tut",
+        "avatar"       => $this->user_db->getUserAvatar(),
+        "post_new_tut" => $_POST,
+        "res_new_tut"  => $res,
+
       ]);
     }
 
@@ -107,9 +134,10 @@
         }
 
       $this->view("master_admin", [
-        "page"         => "content_admin",
+        "page"         => "content_admin_new_lesson",
         "avatar"       => $this->user_db->getUserAvatar(),
         "update_state" => $res,
+        // "post_up"      => $_POST,
     
       ]);
     }

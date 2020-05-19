@@ -99,7 +99,9 @@ body{
   text-decoration: none;
   color          : rgb(243, 243, 243);
 }
-.admin_container .toggle_lesson{
+.admin_container .toggle_lesson,
+.admin_container .add_new_tut
+{
   display: none;
 }
 .admin_container .show_lesson{
@@ -111,8 +113,16 @@ body{
   color: gray;
   cursor: pointer;
 }
-.admin_container .show_lesson:hover{
+.admin_container #btn_add_tut,
+.admin_container .cursor_add
+{
+  cursor: pointer;
+}
+.admin_container .show_lesson:hover,
+.admin_container #btn_add_tut:hover
+{
   transform: scale(1.15);
+  color: blue;
 }
 
 .admin_container{

@@ -79,6 +79,28 @@
 
     }
 
+    public  function createNewTutorial($post_tut, $id_ad_create){
+
+      $qr = "INSERT INTO `tutorials` (`id`, `tut_name`, `admin_id_create`, `time_modify`, `topic_id`) VALUES (NULL, '$post_tut[new_tut_name]', '$id_ad_create', current_timestamp(), '$post_tut[choose_topic]')";
+
+      $res = mysqli_query($this->con, $qr);
+      if($res)
+        return true;
+      else
+        return false;
+    }
+
+    public  function createNewLesson($post_les){
+      $qr = "INSERT INTO `lesson_tut` (`lesson_id`, `tut_id`, `name_lesson`, `title_lesson`, `image`) VALUES (NULL, '$post_les[tut_lesson]', '$post_les[new_lesson_name]', '$post_les[new_lesson_title]', '$post_les[select_ext_img]');";
+
+
+      $res = mysqli_query($this->con, $qr);
+      if($res)
+        return true;
+      else
+        return false;
+    }
+
     public function updateContent($post){
       if(!empty($post['choose_les']))
         $les_id = $post['choose_les'];

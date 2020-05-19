@@ -58,6 +58,18 @@
         return false;
 
     }
+    public function getAdminId($cookie){
+      
+      if($this->checkIsAdmin($cookie)){
+
+        $qr   = "SELECT id FROM users WHERE name = '$cookie'";
+        $rows = mysqli_query($this->con, $qr); 
+        $res = mysqli_fetch_assoc($rows);
+        if($res)
+          return $res['id'];
+      }
+      return false;
+    }
     public function checkUserNameExist($un){
       $qr   = "SELECT * FROM users WHERE name = '$un'";
       $rows = mysqli_query($this->con, $qr);
