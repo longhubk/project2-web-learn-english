@@ -46,6 +46,14 @@
       return $res;
 
     }
+
+    public function loadAllUser(){
+      $qr   = "SELECT id, name FROM users WHERE user_type = 'user'";
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_fetch_all($rows);
+      return $res;
+
+    }
     public function checkIsAdmin($cookie){
       
       $qr   = "SELECT user_type FROM users WHERE name = '$cookie'";

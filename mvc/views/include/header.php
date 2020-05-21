@@ -87,12 +87,12 @@
     <div title="SpeakMore Web Learn English" class="logo-icon">
       <a href="./Home"><img id="img-icon" src='./public/img/logo-2.png'></a>
     </div>
-    <!-- <marquee id="run_text" behavior="scroll" direction="left">
+    <marquee id="run_text" behavior="scroll" direction="left">
     <div id="head-intro">
       <p id='intro'>"Every courses are free for every one"</p>
       <i id='hide_intro' title="hide" class="fas fa-times"></i>
     </div>
-    </marquee> -->
+    </marquee>
   
     <div class="login-container">
       <?php
@@ -206,8 +206,10 @@
       </a>
       <div class="inner-content">
         <?php
-        foreach ($data['allTuts'] as $tutorial_item => $name) {
-          echo "<a href='./Tut/One/". $tutorial_item ."'>$name</a>";
+        if(isset($data['allTuts'])){
+        $allTuts = $data['allTuts'];
+        for($i = 0; $i < sizeof($allTuts); $i++)
+          echo "<a href='./Tut/One/".$allTuts[$i][1]."'>".$allTuts[$i][0]."</a>";
         }
         ?>
       </div>

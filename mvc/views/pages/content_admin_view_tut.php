@@ -118,6 +118,15 @@
       </select>
       <input type="text" name='new_tut_name' placeholder="Enter new name of tutorial">
 
+      <label for="select_level">Choose level:</label>
+      <select name="choose_level" id="select_level">
+        <option value="0">level 0</option>
+        <option value="1">level 1</option>
+        <option value="2">level 2</option>
+        <option value="3">level 3</option>
+        <option value="4">level 4</option>
+        
+      </select>
 
       <input type="submit" value='add new tutorial'>
       

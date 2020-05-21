@@ -14,7 +14,8 @@
       $this->test_db = $this->model("TestModel");
     }
     public function Init(){
-        if(empty($_SESSION['member_id']))
+        // var_dump($_COOKIE);
+        if(empty($_COOKIE['member_login']))
           header("Location:Register/Login");
         // var_dump($_SESSION);
 
@@ -31,7 +32,7 @@
     }
 
     public function Test($page){
-      if(empty($_SESSION['member_id']))
+      if(empty($_COOKIE['member_login']))
         header("Location:Register/Login");
       if($page==0 && sizeof($_SESSION['last_post']) > 0) //_fist initial or reset SESSION
         $_SESSION['last_post'] = [];
@@ -54,7 +55,7 @@
         ]);
     }
     public function Check(){
-      if(empty($_SESSION['member_id']))
+      if(empty($_COOKIE['member_login']))
         header("Location:Register/Login");
       $res       = "";
       $page_next = $_POST['page_next']+1;

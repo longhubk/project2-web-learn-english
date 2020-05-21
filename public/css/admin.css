@@ -90,8 +90,12 @@ body{
   padding         : 5px 25px;
   background-color: #369ec3;
   box-shadow      : 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all ease 0.3s;
 }
 
+.admin_navigation .ul_parent li ul li:hover{
+  transform: scale(1.02,1.05);
+}
 .admin_navigation .ul_parent li ul li:hover{
   background-color: #136f91;
 }
@@ -114,15 +118,32 @@ body{
   cursor: pointer;
 }
 .admin_container #btn_add_tut,
-.admin_container .cursor_add
+.admin_container .cursor_add,
+.admin_container  .option_user
 {
   cursor: pointer;
 }
 .admin_container .show_lesson:hover,
-.admin_container #btn_add_tut:hover
+.admin_container #btn_add_tut:hover,
+.admin_container .user_view .option_user:hover,
+.admin_container .add_user_icon:hover
 {
   transform: scale(1.15);
-  color: blue;
+  color: dodgerblue;
+}
+
+.admin_container .user_view .block_icon:hover{
+  color: red;
+}
+.admin_container .user_view .send_mes_icon:hover{
+  color: green;
+}
+.admin_container  .add_user_icon:hover{
+  color: purple;
+}
+
+.admin_container .add_new_user{
+  display: none;
 }
 
 .admin_container{

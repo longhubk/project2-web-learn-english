@@ -4,6 +4,7 @@
 
     <!-- <h1>Test Page </h1> -->
     <!-- <p>Đây là bài thi thi của bạn</p> -->
+    <div id='status'></div>
     <div class="test_result">
         <?php 
           if(isset($data['test_as'])){
@@ -12,7 +13,7 @@
         ?>
     </div>
 
-    <form method="POST" action="./TestPage/Check">
+    <form id='submit_test_form' method="POST" action="./TestPage/Check">
 
     <?php 
     

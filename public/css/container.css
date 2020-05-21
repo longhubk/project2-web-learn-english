@@ -39,7 +39,9 @@ body{
   clear  : both;
 
 }
-
+.main-container .video-card .first_guide{
+  margin-top: 10px;
+}
 
 .vid1{
   margin: 30px 50px;
@@ -81,6 +83,7 @@ body{
   width : 85%;
   margin: 0 0 0 7% ;
   border: 10px ridge rgb(255, 255, 255);
+  border-radius: 10px; 
 }
 
 
@@ -93,6 +96,7 @@ body{
 }
 .main-container .video-card .verb-video iframe{
   border: 10px ridge rgb(255, 255, 255); 
+  border-radius: 10px; 
   /* border: 1px solid gray; */
 }
 
@@ -101,7 +105,7 @@ body{
   border    : 10px ridge rgb(255, 255, 255);
   /* box-shadow: 0 4px 8px 0 rgba(0,0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1); */
   overflow-y: hidden;
-  /* border-radius: 8px; */
+  border-radius: 10px; 
   height    : 200px;
   width     : 100%;
   background-color: whitesmoke;
@@ -121,6 +125,21 @@ body{
   border-radius: 5px;
   padding      : 20px;
   background-color: whitesmoke;
+}
+.main-container .video-card .knowledge .bs_img{
+  width: 100%;
+}
+.main-container .video-card .knowledge ul{
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+.main-container .video-card .knowledge ul .sub_cont{
+  font-size: 18px;
+  margin: 50px 0 0 0;
+}
+.main-container .video-card .knowledge .cont_main{
+  font-size: 24px;
 }
 .main-container .video-card .knowledge .point-main{
   background-color: #CCFF99;

@@ -8,6 +8,7 @@
   <base href = "http://localhost/speakmore/" />
 
   <link href = "./public/css/admin.css"     rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/admin_user.css"     rel = "stylesheet" type = "text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src = './public/js/JQuery/jquery-3.4.1.js'  type = "text/javascript"></script>
   <script src='https://kit.fontawesome.com/a076d05399.js'></script>

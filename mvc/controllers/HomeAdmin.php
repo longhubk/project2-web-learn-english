@@ -122,8 +122,7 @@
       // if($_SESSION['user_type'] !== 'admin' || !$this->user_db->checkIsAdmin($_COOKIE['member_login']) !== 1)
       if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
         header("Location:Home/");
-      if(!isset($_POST['update_content']))
-        header("Location:./");
+   
 
 
         $res = false;
@@ -132,12 +131,24 @@
           if(!empty($_POST))
             $res = $this->tut_db->updateContent($_POST);
         }
-
+       if(isset($_POST))
+        header("Location:../HomeAdmin/getNewLesson");
       $this->view("master_admin", [
         "page"         => "content_admin_new_lesson",
         "avatar"       => $this->user_db->getUserAvatar(),
         "update_state" => $res,
         // "post_up"      => $_POST,
+    
+      ]);
+    }
+
+    public function getViewUser(){
+      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
+        header("Location:Home/");
+      $this->view("master_admin", [
+        "page"     => "content_admin_view_user",
+        "avatar"   => $this->user_db->getUserAvatar(),
+        "all_user" => $this->user_db->loadAllUser(),
     
       ]);
     }
