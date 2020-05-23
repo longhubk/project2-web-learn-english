@@ -30,7 +30,7 @@
       $page = "content_tut";
       $tutKnowledge =  $this->Tut_db->getTutKnowledge($tut_lesson);
       if($this->Tut_db->checkTutBasic($tut_name) < 1){
-
+        $tut_lesson = 'words_to_ask';
         $page = "content_tut_basic";
         $tutKnowledge =  $this->Tut_db->getTutKnowledgeBasic($tut_lesson);
       }

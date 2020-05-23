@@ -47,6 +47,7 @@
         $path_img = "./public/img/basic_img/";
         $path_aud = "./public/audio/";
 
+        echo "<div style='display:none' id='num_cont_basic'>".sizeof($tutT)."</div>";
         for($i = 0; $i < sizeof($tutT); $i++){
 
           if(isset($tutT[$i][2])) $img_main = $path_img . $tutT[$i][2];
@@ -66,8 +67,8 @@
 
           echo "<ul>";
           if(!empty($sub_1)) echo "<li class='sub_cont'> $sub_1 </li><br>";
-            if(!empty($aud_1)) echo "<li><audio controls> <source src='$aud_1' type='audio/mp3'></audio>  </li><br>";
-          if(!empty($img_1)) echo "<li> <img class='bs_img' src='$img_1'> </li><br>";
+            if(!empty($aud_1)) echo "<li><audio id='aud_1_".$i."' controls> <source src='$aud_1' type='audio/mp3'></audio>  </li><br>";
+          if(!empty($img_1)) echo "<li><img id='img_1_".$i."' class='bs_img' src='$img_1'> </li><br>";
           if(!empty($sub_2)) echo "<li class='sub_cont'> $sub_2 </li><br>";
           if(!empty($aud_1)) echo "<li><audio controls> <source src='$aud_2' type='audio/mp3'></audio>  </li><br>";
           if(!empty($img_2)) echo "<li> <img class='bs_img' src='$img_2'> </li><br>";
