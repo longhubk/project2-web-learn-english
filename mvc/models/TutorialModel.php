@@ -31,10 +31,19 @@
       $qr   = "SELECT lesson_id FROM lesson_tut WHERE name_lesson = '$getTutorial'";
       $les_id = $this->queryAssoc($qr,'lesson_id');
       // var_dump($les_id);
-      $qr2   = "SELECT * FROM basic_conten_leson WHERE lesson_id = '$les_id'";
+      $qr2   = "SELECT * FROM basic_content_lesson WHERE lesson_id = '$les_id'";
       return $this->queryAllArray($qr2);
     }
 
+    public function getAllLessonOfTutorialById($id){
+      $qr   = "SELECT name_lesson, lesson_id FROM lesson_tut WHERE tut_id = '$id'";
+      return $this->queryAllArray($qr);
+    }
+
+    public function getTutLevelById($id){
+      $qr   = "SELECT tut_level FROM tutorials WHERE id = '$id'";
+      return $this->queryAssoc($qr, 'tut_level');
+    }
 
     public function getImageLesson($getTutorial){
       $qr   = "SELECT image FROM lesson_tut WHERE name_lesson = '$getTutorial'";
@@ -60,7 +69,8 @@
       $res = mysqli_fetch_all($rows);
       return $res;
     }
-     public function getAllTutorial(){
+    
+    public function getAllTutorial(){
       // return parent::readJsonData("$this->path"."tutorials/all_tutorial.json");
       $qr   = "SELECT tut_name, tut_query FROM tutorials";
       return $this->queryAllArray($qr);
@@ -70,8 +80,13 @@
     public function loadAllAdmin($name_tb, $name_col, $name_id){
       $qr   = "SELECT $name_col, $name_id FROM $name_tb";
       return $this->queryAllArray($qr);
-
     }
+
+    public function loadAllAdminTutLevel($name_tb, $name_col, $name_id, $tut_level){
+      $qr   = "SELECT $name_col, $name_id, $tut_level FROM $name_tb";
+      return $this->queryAllArray($qr);
+    }
+
     public function getNumberLessonOfAllTut(){
       $qr   = "SELECT tut_id, COUNT(lesson_id) FROM lesson_tut GROUP BY tut_id";
       return $this->queryAllArray($qr);
@@ -115,8 +130,8 @@
     }
 
     public function checkTutBasic($tut_name){
-       $qr   = "SELECT tut_level FROM tutorials WHERE tut_query = '$tut_name'";
-       return  $this->queryAssoc($qr, 'tut_level');
+      $qr   = "SELECT tut_level FROM tutorials WHERE tut_query = '$tut_name'";
+      return  $this->queryAssoc($qr, 'tut_level');
     }
 
 
@@ -171,30 +186,87 @@
         $les_id = $post['choose_les'];
       else 
         return false;
-      $main_ct = '';
-      $guide_ct = '';
-      if(!empty($post['main_content']))
-        $main_ct = $post['main_content'];
-      if(!empty($post['guide_content']))
-        $guide_ct = $post['guide_content'];
-      $str = 'exp_';
-      $exp = [];
-      for($i = 1; $i <= 5; $i++){
-        $id = $str . $i;
-        if(isset($post[$id])){
-          $exp[$i] = $post[$id];
-        }else
-          $exp[$i] = '';
+      $tut_level = $post['tut_level_input'];
+      $num_content = $post['number_content'];
+      if($tut_level > 0){
+        
+        for($i = 1; $i <= $num_content; $i++){
+          $main_ct    = '';
+          $guide_ct   = '';
+          $main_ct_p  = "main_content-".$i;
+          $guide_ct_p = "main_content-".$i;
+
+          if(!empty($post[$main_ct_p]))
+            $main_ct = $post[$main_ct_p];
+          if(!empty($post[$guide_ct_p]))
+            $guide_ct = $post[$guide_ct_p];
+
+          $str = 'exp-'.$i.'-';
+          $exp = [];
+          for($j = 1; $j <= 5; $j++){
+            $id = $str . $j;
+            if(isset($post[$id])){
+              $exp[$j] = $post[$id];
+            }else
+              $exp[$j] = '';
+          }
+
+          $qr = 'INSERT INTO content_lesson VALUES(NULL, "' .$les_id .'","' .$main_ct. '","'.$guide_ct.'","'.$exp[1].'","'.$exp[2].'","'.$exp[3].'","'.$exp[4].'","'.$exp[5].'")';
+          
+          $rows = mysqli_query($this->con, $qr);
+          if(!$rows) return false;
+        }
+
+      }else{
+
+        for($i = 1; $i <= $num_content; $i++){
+          $main_ct    = '';
+          $image_ct   = '';
+          $main_ct_p  = "content_main-".$i;
+          $image_ct_p = "image_main-".$i;
+
+          if(!empty($post[$main_ct_p]))
+            $main_ct = $post[$main_ct_p];
+          if(!empty($post[$image_ct_p]))
+            $image_ct = $post[$image_ct_p];
+
+          $str1 = 'sub-'.$i.'-';
+          $str2 = 'aud-'.$i.'-';
+          $str3 = 'img-'.$i.'-';
+          $sub = [];
+          $aud = [];
+          $img = [];
+          for($j = 1; $j <= 3; $j++){
+            $id1 = $str1 . $j;
+            $id2 = $str2 . $j;
+            $id3 = $str3 . $j;
+            if(isset($post[$id1])){
+              $sub[$j] = $post[$id1];
+            }else
+              $sub[$j] = '';
+
+            if(isset($post[$id2])){
+              $aud[$j] = $post[$id2];
+            }else
+              $aud[$j] = '';
+
+            if(isset($post[$id3])){
+              $img[$j] = $post[$id3];
+            }else
+              $img[$j] = '';
+          }
+
+          $qr = 'INSERT INTO basic_content_lesson VALUES(NULL, "' .$les_id .'","' .$image_ct. '","'.$img[1].'","'.$img[2].'","'.$img[3].'","'.$main_ct.'","'.$sub[1].'","'. $sub[2].'","'.$sub[3]. '","' . $aud[1]. '","'. $aud[2].'","' .$sub[3].'")';
+
+          $rows = mysqli_query($this->con, $qr);
+
+          if(!$rows) return false;
+        }
+
       }
-
-      $qr = 'INSERT INTO content_lesson VALUES(NULL, "' .$les_id .'","' .$main_ct. '","'.$guide_ct.'","'.$exp[1].'","'.$exp[2].'","'.$exp[3].'","'.$exp[4].'","'.$exp[5].'")';
-      
-      
-      $rows = mysqli_query($this->con, $qr);
-      if($rows) return true;
-      else return false;
-
+      return true;
     }
+
     public function getMenuUser(){
       return parent::readJsonData("$this->path"."tutorials/menu_user.json");
     }
