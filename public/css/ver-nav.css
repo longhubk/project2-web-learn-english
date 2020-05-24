@@ -31,6 +31,8 @@
   margin          : 10px 0 0 5px;
   padding         : 5px 5px;
   width           : 200px;
+  border-radius: 3px;
+  transition: all ease 0.3s;
 }
 .ver-bar ul li a{
   text-decoration: none;
@@ -41,6 +43,7 @@
 }
 .ver-bar ul li:hover{
   background-color: black;
+  transform: scale(1.03);
 }
 
 @media only screen and (max-height: 450px) {

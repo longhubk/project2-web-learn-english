@@ -39,7 +39,7 @@
 }
 
 .header #head-intro{
-  border          : 1px dotted black;
+  /* border          : 1px dotted black; */
   font-size       : 20px;
   float           : left;
   background-color: #ADFF2F;
@@ -81,18 +81,20 @@
 .header .login-container .login{
   margin : 0 10px 0 10px;
   padding: 5px 15px;
-
+  transition: all ease-out 0.2s;
 
 }
 .header .login-container .signup{
   margin-right: 10px;
   padding     : 5px 10px;
+  transition: all ease-out 0.2s;
 
 }
 
 .header .login-container .signup:hover,
 .header .login-container .login:hover{
   background-color: red;
+  transform: scale(1.01);
 }
 
 .header .login-container .signup a,
@@ -127,7 +129,7 @@
   width        : 25px;
   margin       : 0;
   height       : 25px;
-  border       : 1px solid gray;
+  /* border       : 0.1px solid gray; */
 }
 
 .header .login-container .small-avt:hover{

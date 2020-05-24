@@ -256,7 +256,7 @@
               $img[$j] = '';
           }
 
-          $qr = 'INSERT INTO basic_content_lesson VALUES(NULL, "' .$les_id .'","' .$image_ct. '","'.$img[1].'","'.$img[2].'","'.$img[3].'","'.$main_ct.'","'.$sub[1].'","'. $sub[2].'","'.$sub[3]. '","' . $aud[1]. '","'. $aud[2].'","' .$sub[3].'")';
+          $qr = 'INSERT INTO basic_content_lesson VALUES(NULL, "' .$les_id .'","' .$image_ct. '","'.$img[1].'","'.$img[2].'","'.$img[3].'","'.$main_ct.'","'.$sub[1].'","'. $sub[2].'","'.$sub[3]. '","' . $aud[1]. '","'. $aud[2].'","' .$aud[3].'")';
 
           $rows = mysqli_query($this->con, $qr);
 

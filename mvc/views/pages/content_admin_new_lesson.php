@@ -64,6 +64,7 @@
 
 
     <div id='content_add_main'>
+    
     <hr>
     <div>Content 1 :</div>
     <label>Main Content:</label>

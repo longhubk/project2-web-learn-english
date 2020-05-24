@@ -55,5 +55,5 @@ function generateTime(){
   var t = setTimeout(generateTime, 500);
 }
 function daysInMonth (month, year) { 
-   return new Date(year, month, 0).getDate(); 
+  return new Date(year, month, 0).getDate(); 
 } 

@@ -9,7 +9,7 @@ $(function(){
 
   if($('input').val() == ""){
   $('input').blur(function(){
-      $(this).css("border", "1px solid red")
+      // $(this).css("border", "1px solid red")
       $(this).text()
 
     })

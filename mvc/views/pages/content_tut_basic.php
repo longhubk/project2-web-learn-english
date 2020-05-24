@@ -62,12 +62,13 @@
           if(isset($tutT[$i][11])) $aud_2 = $path_aud . $tutT[$i][11];
           if(isset($tutT[$i][12])) $aud_3 = $path_aud . $tutT[$i][12];
 
-          if(!empty($img_main)) echo "<div class='point-main'><img class='bs_img' src='$img_main'> </div><br>";
+
+          if(!empty($img_main)) echo "<hr class='separate_knowledge'><div class='point-main'><img class='bs_img' src='$img_main'> </div><br>";
           if(!empty($cont_main)) echo "<div class='cont_main guide-main'> $cont_main </div><br>";
 
           echo "<ul>";
           if(!empty($sub_1)) echo "<li class='sub_cont'> $sub_1 </li><br>";
-            if(!empty($aud_1)) echo "<li><audio id='aud_1_".$i."' controls> <source src='$aud_1' type='audio/mp3'></audio>  </li><br>";
+          if(!empty($aud_1)) echo "<li><audio id='aud_1_".$i."' controls> <source src='$aud_1' type='audio/mp3'></audio>  </li><br>";
           if(!empty($img_1)) echo "<li><img id='img_1_".$i."' class='bs_img' src='$img_1'> </li><br>";
           if(!empty($sub_2)) echo "<li class='sub_cont'> $sub_2 </li><br>";
           if(!empty($aud_1)) echo "<li><audio controls> <source src='$aud_2' type='audio/mp3'></audio>  </li><br>";

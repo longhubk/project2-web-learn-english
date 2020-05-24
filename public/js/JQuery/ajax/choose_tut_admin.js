@@ -28,6 +28,7 @@ $(document).ready( () =>{
 
 
   $('#select_tut').on('change', () =>{
+
     let val = $('#select_tut').val()
     $.ajax({
       url     : "./HomeAdmin/getTutLevel",
@@ -38,6 +39,7 @@ $(document).ready( () =>{
         $('#tut_level').html('');
         $('#tut_level').append(json_data.success);
         $('#input_tut_level').val(json_data.success);
+        $('#choose_number').trigger("click")
         console.log(json_data);
 
       },

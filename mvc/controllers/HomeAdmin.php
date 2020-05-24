@@ -148,14 +148,14 @@
         if(!empty($_POST))
           $res = $this->tut_db->updateContent($_POST);
       }
-      // if(isset($_POST))
-      //   header("Location:../HomeAdmin/getNewLesson");
+      if(isset($_POST))
+        header("Location:../HomeAdmin/getNewLesson");
 
       $this->view("master_admin", [
         "page"         => "content_admin_new_lesson",
         "avatar"       => $this->user_db->getUserAvatar(),
         "update_state" => $res,
-        "post_up"      => $_POST,
+        // "post_up"      => $_POST,
       ]);
     }
 
