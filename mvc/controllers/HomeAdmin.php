@@ -94,19 +94,28 @@
 
       $res = false;
       if(isset($_POST)){
-        if($tut_level > 0)
+        if($tut_level > 0){
+          $page = "content_admin_update_lesson";
           $res = $this->tut_db->updateLessonById($_POST);
+          $content_less_after_update = $this->tut_db->getContentByLessonId($lesson_id);
+        }
         else{
+          $page = "content_admin_update_basic_lesson";
           $res = $this->tut_db->updateBasicLessonById($_POST);
+          $content_less_after_update = $this->tut_db->getContentByBasicLessonId($lesson_id);
+          // if($res){
+          //   header("Location:../HomeAdmin/getUpdateLesson/".$lesson_id."/".$tut_level);
+          // }
         }
       }
       $this->view("master_admin", [
-        "page"             => "content_admin_update_lesson",
+        "page"             => $page,
         "avatar"           => $this->user_db->getUserAvatar(),
         "id_lesson_update" => $lesson_id,
-        "content_lesson"   => $this->tut_db->getContentByLessonId($lesson_id),
+        "content_lesson"   => $content_less_after_update,
         "post_content"     => $_POST,
         "res_update"       => $res,
+        "tut_level"        => $tut_level,
     
       ]);
     }

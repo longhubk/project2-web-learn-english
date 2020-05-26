@@ -33,7 +33,7 @@
 </head>
 <body>
   <div class="admin_header">
-      <div class="admin_back" title="go back to speakmore page"><a href="./Home/"><i class="material-icons">&#xe5c4;</i></a></div>
+      <div class="admin_back" title="go back to speakmore page"><a href="./Home/"><i class="material-icons">&#xe88a;</i></a></div>
       <div class="admin_logo"><a href="./HomeAdmin/">SpeakMore Admin</a></div>
       <!-- <p>Hello</p> -->
 

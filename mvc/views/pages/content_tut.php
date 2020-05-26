@@ -20,7 +20,7 @@
       if(isset($data['img_les'])){
         $extension = $data['ext_les'];
         $tut_img = $data['img_les'] . $extension;
-        echo "<img id='intro' src='./public/img/$tut_img'>";
+        echo "<img class='intro' src='./public/img/$tut_img'>";
       }
     ?>
 

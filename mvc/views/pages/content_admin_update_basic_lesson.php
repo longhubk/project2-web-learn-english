@@ -7,10 +7,21 @@
       $les_id = $data['id_lesson_update'];
       echo " you want to update lesson: " . $les_id . "<br>";
     }
+    if(isset($data['post_content'])){
+      $all_post = $data['post_content'];
+      // $cnt = 0;
+      // foreach($all_post as $key => $val){
+      //   echo $cnt . "-" . $key . "<br>" . "->" .$val . "<br>";
+      //   $cnt++;
+      // }
+      // var_dump($all_post);
+    }
 
     if(isset($data['res_update'])){
       // var_dump($data['res_update']);
       $res_up = $data['res_update'];
+
+      var_dump($res_up);
       if($res_up)
         echo "Update Success <br>";
       else
@@ -52,9 +63,9 @@
         
         echo "Content main: <input type='text' class='input_content' name='content_main-".$content_id."' value='".$content_main."'><br>";
 
-        echo "sub content 1: <input class='input_content' name='sub_1-".$content_id."' value='".$sub_1."'><br>";
-        echo "sub content 2: <textarea class='area_content' name='sub_2-".$content_id."' value='".$sub_2."'></textarea><br>";
-        echo "sub content 3: <textarea class='area_content' name='sub_3-".$content_id."' value='".$sub_3."'></textarea><br>";
+        echo "sub content 1: <textarea class='area_content' name='sub_1-".$content_id."'>".$sub_1."</textarea><br>";
+        echo "sub content 2: <textarea class='area_content' name='sub_2-".$content_id."'>".$sub_2."</textarea><br>";
+        echo "sub content 3: <textarea class='area_content' name='sub_3-".$content_id."'>".$sub_3."</textarea><br>";
 
         echo "audio 1: <input type='text' class='input_content' name='aud_1-".$content_id."' value='".$aud_1."'><br>";
         echo "audio 2: <input type='text' class='input_content' name='aud_2-".$content_id."' value='".$aud_2."'><br>";

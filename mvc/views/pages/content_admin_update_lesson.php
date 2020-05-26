@@ -20,7 +20,11 @@
     if(isset($data['content_lesson'])){
       $content_less = $data['content_lesson'];
       // var_dump($content_less);
-      echo "<form method='POST' action='./HomeAdmin/postUpdateLesson/".$les_id."'>"; 
+      // echo "<form method='POST' action='./HomeAdmin/postUpdateLesson/".$les_id."'>"; 
+
+      $tut_level = $data['tut_level'];
+      // var_dump($content_less);
+      echo "<form method='POST' action='./HomeAdmin/postUpdateLesson/".$les_id."/".$tut_level."'>"; 
 
       for($i = 0; $i < sizeof($content_less); $i++){
         $content_id = $content_less[$i][0];

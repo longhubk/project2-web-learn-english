@@ -16,7 +16,8 @@ body{
   margin: 0;
 }
 .main-container .video-card #slide_show .intro{
-  border: 1px solid gray;
+  /* border: 1px solid gray; */
+  border: 10px ridge rgb(255, 255, 255);
 }
 
 .main-container{
@@ -82,7 +83,7 @@ body{
 .main-container .video-card #slide_show .slide_item{
   position: absolute;
 } */
-.main-container .video-card #slide_show .slide_item .intro{
+.main-container .video-card  .intro{
   width : 85%;
   margin: 0 0 0 7% ;
   border: 10px ridge rgb(255, 255, 255);

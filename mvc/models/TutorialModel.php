@@ -124,7 +124,8 @@
         if(!empty($value)){
           $keys = explode("-", $key);
           // echo $keys[0] ." and ". $keys[1] . "<br>";
-          $qr = "UPDATE `content_lesson` SET `$keys[0]` = '$value' WHERE `content_lesson`.`content_id` = $keys[1]";
+          // $qr = "UPDATE `content_lesson` SET `$keys[0]` = '$value' WHERE `content_lesson`.`content_id` = $keys[1]";
+          $qr = 'UPDATE content_lesson SET '.$keys[0].' = "'.$value.'" WHERE content_id = '.$keys[1];
 
           $up = mysqli_query($this->con, $qr);
           if(!$up)
@@ -136,16 +137,24 @@
 
     public function updateBasicLessonById($post_ct){
       $res = true;
+      echo "hello basic";
+      $res_arr = [];
       foreach($post_ct as $key => $value){
-        $qr = "";
+        $qr2 = '';
         if(!empty($value)){
           $keys = explode("-", $key);
           // echo $keys[0] ." and ". $keys[1] . "<br>";
-          $qr = "UPDATE `basic_content_lesson` SET `$keys[0]` = '$value' WHERE `content_lesson`.`content_id` = $keys[1]";
-
-          $up = mysqli_query($this->con, $qr);
-          if(!$up)
+          $qr2 = 'UPDATE basic_content_lesson SET '.$keys[0].' = "'.$value.'" WHERE content_id = '.$keys[1];
+          $up = mysqli_query($this->con, $qr2);
+          if(!$up){
+            // echo "fail<br>";
             $res = false;
+            // array_push($res_arr, "false");
+          }
+          else{
+            // echo "ok<br>";
+            // array_push($res_arr, "true");
+          }
         }
       }
       return $res;
