@@ -1,6 +1,6 @@
 *{
   box-sizing: border-box;
-  font-family:  "Lucida Sans", sans-serif;;
+  font-family:  "Lucida Sans", sans-serif;
 }
 body{
   margin: 0;
@@ -12,7 +12,7 @@ body{
   width           : 100%;
   position        : fixed;
   z-index         : 1;
-  padding: 5px;
+  padding: 4px;
 }
 .admin_header .admin_info{
   /* margin     : 4px 45px 0 0; */
@@ -30,6 +30,17 @@ body{
   height       : 25px;
   /* border       : 1px solid gray; */
 }
+.admin_header .admin_back{
+  float: left;
+  margin: 3px 0 0 10px;
+  transition: all ease 0.2s;
+}
+.admin_header .admin_back a{
+  color: whitesmoke;
+}
+.admin_header .admin_back:hover{
+  transform: scale(1.2);
+}
 .admin_header .admin_info a{
   text-decoration: none;
   color: white;
@@ -42,7 +53,7 @@ body{
 .admin_header .admin_logo{
   width      : fit-content;
   float: left;
-  margin: 0 0 0 40px;
+  margin: 0 0 0 10px;
 }
 .admin_header .admin_logo a{
   text-decoration: none;
@@ -54,12 +65,19 @@ body{
   transform: scale(1.05);
 }
 
-.input_content{
+.admin_container .input_content{
   border: 1px solid black;
   width : 60%;
   margin-top: 5px;
 }
 
+.admin_container .area_content{
+  border    : 1px solid black;
+  width     : 600px;
+  height    : 100px;
+  resize    : none;
+  margin-top: 5px;
+}
 .admin_navigation .ul_parent{
   list-style-type: none;
   margin         : 0;

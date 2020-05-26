@@ -70,7 +70,7 @@
             if($all_lesson[$j][1] == $all_tut[$i][0]){
               $count_les_tut++;
               echo "<div>".$count_les_tut. " : " .$all_lesson[$j][3] ;
-              echo "<a title='update lesson' href='./HomeAdmin/getUpdateLesson/".$all_lesson[$j][0]."'><i class='material-icons setting_lesson'>settings</i></a>";
+              echo "<a title='update lesson' href='./HomeAdmin/getUpdateLesson/".$all_lesson[$j][0]."/".$all_tut[$i][6]."'><i class='material-icons setting_lesson'>settings</i></a>";
               echo "</div><br>";
 
             }
@@ -90,8 +90,9 @@
             echo "Modify by: unknown <br>";
         }
 
+        echo "Date modifiy: ".$all_tut[$i][3]." <br>";
 
-        echo "Date modifiy: ".$all_tut[$i][3]." <br><br>";
+        echo "Level : ".$all_tut[$i][6]." <br><br>";
 
       }
     }

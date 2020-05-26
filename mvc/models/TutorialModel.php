@@ -111,6 +111,12 @@
       $qr   = "SELECT * FROM content_lesson WHERE lesson_id = '$les_id'";
       return $this->queryAllArray($qr);
     }
+
+    public function getContentByBasicLessonId($les_id){
+      $qr   = "SELECT * FROM basic_content_lesson WHERE lesson_id = '$les_id'";
+      return $this->queryAllArray($qr);
+    }
+
     public function updateLessonById($post_ct){
       $res = true;
       foreach($post_ct as $key => $value){
@@ -126,8 +132,25 @@
         }
       }
       return $res;
-
     }
+
+    public function updateBasicLessonById($post_ct){
+      $res = true;
+      foreach($post_ct as $key => $value){
+        $qr = "";
+        if(!empty($value)){
+          $keys = explode("-", $key);
+          // echo $keys[0] ." and ". $keys[1] . "<br>";
+          $qr = "UPDATE `basic_content_lesson` SET `$keys[0]` = '$value' WHERE `content_lesson`.`content_id` = $keys[1]";
+
+          $up = mysqli_query($this->con, $qr);
+          if(!$up)
+            $res = false;
+        }
+      }
+      return $res;
+    }
+
 
     public function checkTutBasic($tut_name){
       $qr   = "SELECT tut_level FROM tutorials WHERE tut_query = '$tut_name'";

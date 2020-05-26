@@ -87,11 +87,12 @@
     <div title="SpeakMore Web Learn English" class="logo-icon">
       <a href="./Home"><img id="img-icon" src='./public/img/logo-2.png'></a>
     </div>
-    <marquee id="run_text" behavior="scroll" direction="left">
-    <div id="head-intro">
-      <p id='intro'>"Every courses are free for every one"</p>
-      <i id='hide_intro' title="hide" class="fas fa-times"></i>
-    </div>
+
+    <marquee id="run_text" behavior="scroll" direction="left" scrolldelay='130'>
+      <div id="head-intro">
+        <p id='intro'>"Every courses are free for every one"</p>
+        <!-- <i id='hide_intro' title="hide" class="fas fa-times"></i> -->
+      </div>
     </marquee>
   
     <div class="login-container">

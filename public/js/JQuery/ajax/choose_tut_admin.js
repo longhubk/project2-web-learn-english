@@ -90,11 +90,11 @@ $(document).ready( () =>{
           }
 
         $('#content_add_main').append("<label>Content Main:</label>")
-        $('#content_add_main').append("<input class='input_content' type='text' name='content_main-"+i+"'><br><br>")
+        $('#content_add_main').append("<textarea class='area_content' name='content_main-"+i+"'></textarea><br><br>")
     
           for(let j = 1; j <= 3; j++){
             $('#content_add_main').append("<label>Sub content "+j+" :</label>")
-            $('#content_add_main').append("<input class='input_content' type='text' name='sub-"+i+"-"+j+"'><br><br>")
+            $('#content_add_main').append("<textarea class='area_content' name='sub-"+i+"-"+j+"'></textarea><br><br>")
           }
           for(let j = 1; j <= 3; j++){
             $('#content_add_main').append("<label>Audio "+j+" :</label>")

@@ -64,28 +64,41 @@
       ]);
     }
 
-    public function getUpdateLesson($lesson_id){
+    public function getUpdateLesson($lesson_id, $tut_level){
 
       if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
         header("Location:Home/");
+      $page = '';
+      if($tut_level > 0){
+        $page = "content_admin_update_lesson";
+        $content_less = $this->tut_db->getContentByLessonId($lesson_id);
+      }
+      else{
+        $page = "content_admin_update_basic_lesson";
+        $content_less = $this->tut_db->getContentByBasicLessonId($lesson_id);
+      }
 
       $this->view("master_admin", [
-        "page"             => "content_admin_update_lesson",
+        "page"             => $page,
         "avatar"           => $this->user_db->getUserAvatar(),
         "id_lesson_update" => $lesson_id,
-        "content_lesson"   => $this->tut_db->getContentByLessonId($lesson_id),
-    
+        "content_lesson"   => $content_less,
+        "tut_level"        => $tut_level,
       ]);
     }
     
-    public function postUpdateLesson($lesson_id){
+    public function postUpdateLesson($lesson_id, $tut_level){
 
       if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
         header("Location:Home/");
 
       $res = false;
       if(isset($_POST)){
-        $res = $this->tut_db->updateLessonById($_POST);
+        if($tut_level > 0)
+          $res = $this->tut_db->updateLessonById($_POST);
+        else{
+          $res = $this->tut_db->updateBasicLessonById($_POST);
+        }
       }
       $this->view("master_admin", [
         "page"             => "content_admin_update_lesson",

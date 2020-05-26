@@ -7,18 +7,18 @@
   border          : 1px solid gray;
 }
 #btn_scroll_top{
-  display: none;
-  position: fixed;
-  bottom: 10px;
-  right: 2px;
-  z-index: 99;
-  border: none;
-  outline: none;
+  display         : none;
+  position        : fixed;
+  bottom          : 10px;
+  right           : 2px;
+  z-index         : 99;
+  border          : none;
+  outline         : none;
   background-color: gray;
-  color: white;
-  cursor: pointer;
-  padding: 5px 10px;
-  border-radius: 4px;
+  color           : white;
+  cursor          : pointer;
+  padding         : 5px 10px;
+  border-radius   : 4px;
 }
 
 .footer .copyright{

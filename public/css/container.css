@@ -15,7 +15,7 @@ a{
 body{
   margin: 0;
 }
-#intro{
+.main-container .video-card #slide_show .intro{
   border: 1px solid gray;
 }
 
@@ -39,9 +39,6 @@ body{
   clear  : both;
 
 }
-.main-container .video-card .first_guide{
-  margin-top: 10px;
-}
 
 .vid1{
   margin: 30px 50px;
@@ -49,8 +46,8 @@ body{
 .main-container .video-card .tips h3{
   color      : rgb(42, 134, 82);
   font-weight: bold;
-  font-size  : 30px;
-  margin     : 5%;
+  font-size  : 20px;
+  margin     : 30px 0 10px 50px;
 
 }
 
@@ -66,10 +63,10 @@ body{
 .main-container .video-card h1{
   color      : rgb(84, 194, 89);
   font-family: "Segoe UI";
-  font-size  : 30px;
+  font-size  : 35px;
   margin     : 0 0 0 6%;
   text-align : left;
-  text-shadow: -1px 0 green, 0 1px green, 1px 0 green, 0 -1px green;
+  text-shadow: -1px 0 rgb(108, 185, 108), 0 1px rgb(138, 190, 138), 1px 0 rgb(21, 53, 21), 0 -1px green;
   
 }
 .main-container .video-card p{
@@ -79,7 +76,13 @@ body{
   width      : 90%;
   margin     : 0 0 3% 8%;
 }
-.main-container .video-card #intro{
+/* .main-container .video-card #slide_show{
+  position: relative;
+}
+.main-container .video-card #slide_show .slide_item{
+  position: absolute;
+} */
+.main-container .video-card #slide_show .slide_item .intro{
   width : 85%;
   margin: 0 0 0 7% ;
   border: 10px ridge rgb(255, 255, 255);
