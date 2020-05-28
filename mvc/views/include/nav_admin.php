@@ -43,8 +43,8 @@
         </span>
 
         <ul>
-          <li><a href="./HomeAdmin/HomeAdmin/getNewTest">New Test</a></li>
-          <li><a href="./HomeAdmin/getupdateTest">Update Test</a></li>
+          <li><a href="./HomeAdmin/getNewTestQuestion">New Test</a></li>
+          <!-- <li><a href="./HomeAdmin/getUpdateTest">Update Test</a></li> -->
           <li><a href="./HomeAdmin/getViewTest">View Test</a></li>
           
         </ul>

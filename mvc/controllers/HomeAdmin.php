@@ -6,11 +6,13 @@
     public $user_db;
     public $tut_db;
     public $lesson_db;
+    public $test_db;
     public function __construct()
     {
       $this->user_db   = $this->model("UserModel");
       $this->tut_db    = $this->model("TutorialModel");
       $this->lesson_db = $this->model("LessonModel");
+      $this->test_db = $this->model("TestModel");
     }
 
     public function Init(){
@@ -127,11 +129,12 @@
         "avatar"       => $this->user_db->getUserAvatar(),
         "all_tutorial" => $this->tut_db->loadAllInfoTutorial(),
         "num_lesson"   => $this->tut_db->getNumberLessonOfAllTut(),
-        "admin_modify" => $this->tut_db->getNameAdminModify(),
+        "admin_modify" => $this->user_db->getNameAdminModify(),
         "all_lesson"   => $this->tut_db->loadAllLessonForTutorial(),
         "all_topic"    => $this->tut_db->loadAllAdmin('topics','topic_name', 'topic_id'),
       ]);
     }
+
     public function postNewTutorial(){
       if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
         header("Location:Home/");
@@ -191,6 +194,94 @@
     
       ]);
     }
+
+    public function getViewTest(){
+  
+      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
+        header("Location:Home/");
+      $this->view("master_admin", [
+        "page"         => "content_admin_view_test",
+        "avatar"       => $this->user_db->getUserAvatar(),
+        "all_test"     => $this->test_db->loadAllTestAdmin(),
+        "all_question" => $this->test_db->loadAllQuestionForTest(),
+        "admin_modify" => $this->user_db->getNameAdminModify(),
+        "num_question"   => $this->tut_db->getNumberLessonOfAllTut(),
+    
+      ]);
+    }
+
+    public function postNewTest(){
+      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
+        header("Location:Home/");
+
+      $res = false;
+      if(!empty($_POST['new_test_name'])){
+        $id_admin_create = $this->user_db->getAdminId($_COOKIE['member_login']);
+        if($id_admin_create != 0)
+          $res = $this->test_db->createNewTest($_POST, $id_admin_create);
+        if($res)
+          header("Location:../HomeAdmin/getViewTest");
+      }
+      
+      $this->view("master_admin", [
+        "page"         => "content_admin_view_test",
+        "avatar"       => $this->user_db->getUserAvatar(),
+        "post_new_test" => $_POST,
+        "res_new_test"  => $res,
+
+      ]);
+    }
+
+    public function getCurrentNumQuestionOfEachTest(){
+      $res = "";
+      if(isset($_POST)){
+        $res = $this->test_db->loadNumberQuestionCurrent($_POST['id']);
+        $res2 = $this->test_db->loadTestById($_POST['id']);
+
+      }
+      $this->view("master_blank", [
+        "page" => "get_curr_num_qs_of_each_test",
+        "curr_num_qs" => $res,
+        "curr_test" => $res2,
+      ]);
+
+    }
+
+
+    public function getNewTestQuestion(){
+      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
+        header("Location:Home/");
+      $this->view("master_admin", [
+        "page"           => "content_admin_new_test",
+        "avatar"         => $this->user_db->getUserAvatar(),
+        "all_test"       => $this->test_db->loadAllTestAdmin(),
+        // "num_qs_current" => $this->test_db->loadNumberQuestionCurrent(),
+
+      ]);
+    }
+
+
+    public function postAppendTest(){
+
+      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
+        header("Location:Home/");
+
+      $res = false;
+      if(isset($_POST)){
+        if(!empty($_POST))
+          $res = $this->test_db->appendQuestionTest($_POST);
+      }
+      if(isset($_POST))
+        header("Location:../HomeAdmin/getNewTestQuestion");
+
+      $this->view("master_admin", [
+        "page"         => "content_admin_new_lesson",
+        "avatar"       => $this->user_db->getUserAvatar(),
+        "update_state" => $res,
+        // "post_up"      => $_POST,
+      ]);
+    }
+
 
   }
 

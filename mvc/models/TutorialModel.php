@@ -14,11 +14,17 @@
     // }
 
 
-    private function queryAssoc($qr, $tr){
-      $rows = mysqli_query($this->con, $qr);
-      $res = mysqli_fetch_assoc($rows);
-      return $res[$tr];
-    }
+    // private function queryAssoc($qr, $tr){
+    //   $rows = mysqli_query($this->con, $qr);
+    //   $res = mysqli_fetch_assoc($rows);
+    //   return $res[$tr];
+    // }
+
+    // protected function queryAllArray($qr){
+    //   $rows = mysqli_query($this->con, $qr);
+    //   $res = mysqli_fetch_all($rows);
+    //   return $res;
+    // }
 
     public function getTutKnowledge($getTutorial){
       $qr   = "SELECT lesson_id FROM lesson_tut WHERE name_lesson = '$getTutorial'";
@@ -64,11 +70,6 @@
     }
 
 
-    private function queryAllArray($qr){
-      $rows = mysqli_query($this->con, $qr);
-      $res = mysqli_fetch_all($rows);
-      return $res;
-    }
     
     public function getAllTutorial(){
       // return parent::readJsonData("$this->path"."tutorials/all_tutorial.json");
@@ -102,10 +103,10 @@
       return $this->queryAllArray($qr);
     }
     
-    public function getNameAdminModify(){
-      $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
-      return $this->queryAllArray($qr);
-    }
+    // public function getNameAdminModify(){
+    //   $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
+    //   return $this->queryAllArray($qr);
+    // }
 
     public function getContentByLessonId($les_id){
       $qr   = "SELECT * FROM content_lesson WHERE lesson_id = '$les_id'";

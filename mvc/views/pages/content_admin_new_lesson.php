@@ -1,4 +1,4 @@
-  
+
   <div class="admin_container">
     <h2>New Lesson</h2>
     <?php

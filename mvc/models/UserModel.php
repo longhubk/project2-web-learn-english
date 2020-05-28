@@ -54,6 +54,12 @@
       return $res;
 
     }
+
+    public function getNameAdminModify(){
+      $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
+      return $this->queryAllArray($qr);
+    }
+
     public function checkIsAdmin($cookie){
       
       $qr   = "SELECT user_type FROM users WHERE name = '$cookie'";
