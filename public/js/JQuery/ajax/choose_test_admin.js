@@ -70,7 +70,10 @@ $(document).ready(() =>{
 
           for(let j = 1; j <= 4; j++){
             $('#content_add_main').append("<label>Answer "+j+" :</label>")
-            $('#content_add_main').append("<input class='input_content' type='text' name='ans_"+j+"-"+i+"'><br><br>")
+            $('#content_add_main').append("<input class='input_content' type='text' name='ans_"+j+"-"+i+"'>")
+            $('#content_add_main').append("<label>isRight :</label>")
+            $('#content_add_main').append("<input class='check_content' value='1' type='checkbox' name='isRight_"+j+"-"+i+"'><br><br>")
+
           }
       }
 

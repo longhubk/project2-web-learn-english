@@ -47,17 +47,17 @@
     
     public function updateTestById($post_ct){
       $res = true;
+      $qr = "";
       foreach($post_ct as $key => $value){
-        $qr = "";
+        $qr2 = "";
         if(!empty($value)){
           $keys = explode("-", $key);
-          // echo $keys[0] ." and ". $keys[1] . "<br>";
-          // $qr = "UPDATE `content_lesson` SET `$keys[0]` = '$value' WHERE `content_lesson`.`content_id` = $keys[1]";
-          $qr = 'UPDATE test_qs SET '.$keys[0].' = "'.$value.'" WHERE test_qs_id = '.$keys[1];
+          $qr2 = 'UPDATE test_qs SET '.$keys[0].' = "'.$value.'" WHERE test_qs_id = '.$keys[1];
 
-          $up = mysqli_query($this->con, $qr);
-          if(!$up)
-            $res = false;
+            $up = mysqli_query($this->con, $qr2);
+            if(!$up){
+              $res = false;
+            }
         }
       }
       return $res;
@@ -86,18 +86,23 @@
             $qs_ct = $post[$content_qs];
 
           $str = 'ans_';
+          $str2 = 'isRight_';
           $ans = [];
+          $isRight = [];
           for($j = 1; $j <= 4; $j++){
             $id = $str . $j . "-".$i; 
+            $id2 = $str2 . $j . "-".$i; 
             if(isset($post[$id])){
               $ans[$j] = $post[$id];
+              $isRight[$j] = $post[$id2];
             }
             else{
               $ans[$j] = "";
+              $isRight[$j] = "0";
             }
           }
 
-          $qr = 'INSERT INTO test_qs VALUES(NULL, "' .$name_ct .'","' .$qs_ct. '","'.$ans[1].'","'.$ans[2].'","'.$ans[3].'","'.$ans[4].'","'.$test_id.'")';
+          $qr = 'INSERT INTO test_qs VALUES(NULL, "' .$name_ct .'","' .$qs_ct. '","'.$ans[1].'","'.$ans[2].'","'.$ans[3].'","'.$ans[4].'","'.$test_id.'","'. $isRight[1].'","'.$isRight[2].'","'.$isRight[3].'","'.$isRight[4].'")';
 
           $rows = mysqli_query($this->con, $qr);
 

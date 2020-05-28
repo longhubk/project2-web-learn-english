@@ -55,16 +55,24 @@
       <textarea class="area_content"  name='question-1'></textarea><br><br>
 
       <label>Answer 1:</label>
-      <input class="input_content" type="text" name='ans_1-1'><br><br>
+      <input class="input_content" type="text" name='ans_1-1'>
+      <label>isRight:</label>
+      <input class="check_content" type="checkbox" value='1' name='isRight_1-1'><br><br>
       
       <label>Answer 2:</label>
-      <input class="input_content" type="text" name='ans_2-1'><br><br>
+      <input class="input_content" type="text" value='1' name='ans_2-1'>
+      <label>isRight:</label>
+      <input class="check_content" type="checkbox" value='1' name='isRight_2-1'><br><br>
       
       <label>Answer 3:</label>
-      <input class="input_content" type="text" name='ans_3-1'><br><br>
+      <input class="input_content" type="text" value='1' name='ans_3-1'>
+      <label>isRight:</label>
+      <input class="check_content" type="checkbox" value='1' name='isRight_3-1'><br><br>
 
       <label>Answer 4:</label>
-      <input class="input_content" type="text" name='ans_4-1'><br><br>
+      <input class="input_content" type="text" name='ans_4-1'>
+      <label>isRight:</label>
+      <input class="check_content" type="checkbox" value='1' name='isRight_4-1'><br><br>
 
     </div>
 
