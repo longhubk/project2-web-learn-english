@@ -4,6 +4,7 @@
     <script src = "./public/js/search.js"           type = "text/javascript"></script>
     <script src = "./public/js/scroll_script.js"    type = "text/javascript"></script>
     <script src = "./public/js/scroll_top.js"       type = "text/javascript"></script>
+    <script src = "./public/js/test.js"       type = "text/javascript"></script>
     <script src = './public/js/youtube_api.js'      type = "text/javascript"></script>
     <script src = './public/js/JQuery/hide_btn.js'  type = "text/javascript"></script>
     <script src = './public/js/JQuery/slide_show.js'type = "text/javascript"></script>

@@ -12,7 +12,7 @@
       $this->user_db   = $this->model("UserModel");
       $this->tut_db    = $this->model("TutorialModel");
       $this->lesson_db = $this->model("LessonModel");
-      $this->test_db = $this->model("TestModel");
+      $this->test_db   = $this->model("TestModel");
     }
 
     public function Init(){
@@ -67,8 +67,7 @@
     }
 
     public function getUpdateLesson($lesson_id, $tut_level){
-
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
+      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login'])) 
         header("Location:Home/");
       $page = '';
       if($tut_level > 0){
@@ -205,7 +204,7 @@
         "all_test"     => $this->test_db->loadAllTestAdmin(),
         "all_question" => $this->test_db->loadAllQuestionForTest(),
         "admin_modify" => $this->user_db->getNameAdminModify(),
-        "num_question"   => $this->tut_db->getNumberLessonOfAllTut(),
+        "num_question" => $this->test_db->getNumberQuestionOfAllTest(),
     
       ]);
     }
@@ -224,8 +223,8 @@
       }
       
       $this->view("master_admin", [
-        "page"         => "content_admin_view_test",
-        "avatar"       => $this->user_db->getUserAvatar(),
+        "page"          => "content_admin_view_test",
+        "avatar"        => $this->user_db->getUserAvatar(),
         "post_new_test" => $_POST,
         "res_new_test"  => $res,
 
@@ -282,6 +281,61 @@
       ]);
     }
 
+
+    public function getUpdateTest($test_id, $test_level){
+      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login'])) 
+        header("Location:Home/");
+      $page = '';
+      if($test_level > 0){
+        $page = "content_admin_update_test";
+        $content_test = $this->test_db->getContentByTestId($test_id);
+      }
+      else{
+        $page = "content_admin_update_test";
+        $content_test = $this->test_db->getContentByTestId($test_id);
+      }
+
+      $this->view("master_admin", [
+        "page"             => $page,
+        "avatar"           => $this->user_db->getUserAvatar(),
+        "id_test_update" => $test_id,
+        "content_test"   => $content_test,
+        "test_level"       => $test_level,
+      ]);
+    }
+
+    public function postUpdateTest($test_id, $test_level){
+
+      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
+        header("Location:Home/");
+
+      $res = false;
+      if(isset($_POST)){
+        if($test_level > 0){
+          $page = "content_admin_update_test";
+          $res = $this->test_db->updateTestById($_POST);
+          $content_test_after_update = $this->test_db->getContentByTestId($test_id);
+        }
+        else{
+          $page = "content_admin_update_test";
+          $res = $this->test_db->updateTestById($_POST);
+          $content_test_after_update = $this->test_db->getContentByTestId($test_id);
+          // if($res){
+          //   header("Location:../HomeAdmin/getUpdateLesson/".$lesson_id."/".$test_level);
+          // }
+        }
+      }
+      $this->view("master_admin", [
+        "page"             => $page,
+        "avatar"           => $this->user_db->getUserAvatar(),
+        "id_test_update" => $test_id,
+        "content_test"   => $content_test_after_update,
+        "post_content"     => $_POST,
+        "res_update"       => $res,
+        "test_level"        => $test_level,
+    
+      ]);
+    }
 
   }
 

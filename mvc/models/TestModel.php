@@ -35,6 +35,34 @@
     }
 
 
+    public function getNumberQuestionOfAllTest(){
+      $qr   = "SELECT test_id, COUNT(test_qs_id) FROM test_qs GROUP BY test_id";
+      return $this->queryAllArray($qr);
+    }
+
+    public function getContentByTestId($test_id){
+      $qr   = "SELECT * FROM test_qs WHERE test_id = '$test_id'";
+      return $this->queryAllArray($qr);
+    }
+    
+    public function updateTestById($post_ct){
+      $res = true;
+      foreach($post_ct as $key => $value){
+        $qr = "";
+        if(!empty($value)){
+          $keys = explode("-", $key);
+          // echo $keys[0] ." and ". $keys[1] . "<br>";
+          // $qr = "UPDATE `content_lesson` SET `$keys[0]` = '$value' WHERE `content_lesson`.`content_id` = $keys[1]";
+          $qr = 'UPDATE test_qs SET '.$keys[0].' = "'.$value.'" WHERE test_qs_id = '.$keys[1];
+
+          $up = mysqli_query($this->con, $qr);
+          if(!$up)
+            $res = false;
+        }
+      }
+      return $res;
+    }
+
     public function appendQuestionTest($post){
       if(!empty($post['choose_test']))
         $test_id = $post['choose_test'];

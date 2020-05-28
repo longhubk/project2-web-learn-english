@@ -1,6 +1,11 @@
 $(document).ready(() => {
 
   let number_toggle = $('#all_tut_size').html()
+  if($('#all_test_size').length){
+    // alert("hello")
+    number_toggle = $('#all_test_size').html()
+  }
+
   // alert(number_toggle)
   for(let i = 0; i < number_toggle; i++){
     let id_click = '#show_lesson-'+i;

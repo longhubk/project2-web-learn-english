@@ -10,16 +10,16 @@
     }
 
     if(isset($data['post_new_test'])){
-      var_dump($data['post_new_test']);
+      // var_dump($data['post_new_test']);
     }
 
     if(isset($data['all_test'])){
-      var_dump($data['all_test']);
+      // var_dump($data['all_test']);
     }
 
     if(isset($data['all_question'])){
-      echo "all question:";
-      var_dump($data['all_question']);
+      // echo "all question:";
+      // var_dump($data['all_question']);
     }
 
     if( isset($data['all_test']) && 
@@ -27,15 +27,15 @@
         isset($data['all_question']) &&
         isset($data['admin_modify'])){
 
-      // var_dump($data['all_testorial']);
       // var_dump($data['num_question']);
       $num_question = $data['num_question'];
-      $all_test    = $data['all_test'];
-      $name_ad    = $data['admin_modify'];
+      $all_test     = $data['all_test'];
+      $name_ad      = $data['admin_modify'];
       $all_question = $data['all_question'];
 
       echo "Number current test:";
       echo "<span id='all_test_size'>".sizeof($all_test)."</span><br><br>";
+
       for($i = 0; $i < sizeof($all_test); $i++){
         
         echo "<a href='#'>".$all_test[$i][1]."</a><br>";
@@ -49,48 +49,26 @@
         if(!$has_question)
             echo "Number question: 0    ";
 
-        echo "<i title='show question' id='show_question-".$i."' class=' show_question fas fa-eye'></i>";
-        echo "&nbsp;&nbsp;&nbsp;<i title='add question for this tutorial' id='show_add_question-".$i."' class='cursor_add show_question material-icons'>&#xe145;</i><br>"
-
+        echo "<i title='show question' id='show_lesson-".$i."' class=' show_question fas fa-eye'></i>";
         ?>
 
 
         <?php
-        echo "<a title='update test' href='./HomeAdmin/getUpdateTest/".$all_test[$i][0]."/".$all_test[$i][7]."'><i class='material-icons setting_question'>settings</i></a>";
+        echo "<a title='update test' href='./HomeAdmin/getUpdateTest/".$all_test[$i][0]."/".$all_test[$i][7]."'><i class='material-icons setting_question'>settings</i></a><br>";
 
-        echo "<div class='toggle_question' id='toggle_add_question-".$i."'>";
-          echo "<form method='POST' action='./HomeAdmin/postNewTest'>";
-          echo "<input type='text' name='new_question_name' placeholder='Enter new name of question'>";
-          echo "<input type='text' name='new_question_title' placeholder='Enter title for question'>";
-          echo "choose extension image:";
-          echo "<select  name='select_ext_img'>";
-              echo "<option value='.png'>.png</option>";
-              echo "<option value='.jpg'>.jpg</option>";
-              echo "<option value='.gif'>.gif</option>";
-          echo"</select>";
-          echo "<input type='hidden' name='tut_question' value='".$all_test[$i][0]."'>";
-          echo "<input type='submit' value='add new question'>";
-          echo"</form>";
-        echo"</div>";
-
-        echo "<div class='toggle_question' id='toggle_question-".$i."'>";
+        echo "<div class='toggle_lesson' id='toggle_lesson-".$i."'>";
 
         $count_qs_test = 0;
           for($j = 0; $j < sizeof($all_question); $j++){
             if($all_question[$j][7] == $all_test[$i][0]){
               $count_qs_test++;
               echo "<div>".$count_qs_test. " : " .$all_question[$j][3] ;
-              echo "<a title='update question' href='./HomeAdmin/getUpdateTestQuestion/".$all_question[$j][0]."/".$all_test[$i][7]."'><i class='material-icons setting_question'>settings</i></a>";
               echo "</div><br>";
-
             }
-            
           }
 
+        echo "</div>"
         ?>
-
-        </div>
-        
 
         <?php
         for($j = 0; $j < sizeof($name_ad); $j++){
@@ -111,9 +89,9 @@
 
 
 
-  <i title='add new test' id='btn_add_test' class=" material-icons">add_circle</i>
+  <i title='add new test' id='btn_add_tut' class=" material-icons">add_circle</i>
 
-  <div class="add_new_test">
+  <div class="add_new_tut">
 
     <form method='POST' action='./HomeAdmin/postNewTest'>
       <input type="text" name='new_test_name' placeholder="Enter new name of test">
