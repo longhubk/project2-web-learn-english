@@ -27,14 +27,20 @@
     <?php 
       if(isset($data['num_qs_current'])){
         $num_qs_curr = $data['num_qs_current'];
-        // echo "<div> Number current question of this test:". $num_qs_curr ."</div>";
+        $max_num_qs = $all_test[0][3] - $num_qs_curr[0][0];
       }
     ?>
     <label for="choose_number">Choose number question:</label>
-    <input type="number" id='choose_number_qs' name='number_question'  value='0' max='50' min='0'> 
+    <input type="number" id='choose_number_qs' name='number_question' value= <?php
+      if($max_num_qs > 0)
+        echo '1';
+      else
+        echo '0';
+    ?>
+    max='50' min='0'> 
 
     <label for="max_num_qs">Max:</label>
-    <span id='max_num_qs'> <?php echo $all_test[0][3] ?></span>
+    <span id='max_num_qs'> <?php echo $max_num_qs ?></span>
     <br><br>
 
     <label for="test_level">Test level:</label>
@@ -45,38 +51,32 @@
     <input type='hidden' id='input_test_level' name='test_level_input' value='0'>
 
     <div id='content_add_main'>
-    
-    <hr>
+      <?php if($max_num_qs > 0){ ?>
+      <hr>
       <div>Question 1 :</div>
-      <label>Name question:</label>
-      <input class="input_content" type="text" name='name-1'><br><br>
+        <label>Name question:</label>
+        <input class="input_content" type="text" name='name-1'><br><br>
+        
+        <label>Content question:</label>
+        <textarea class="area_content"  name='question-1'></textarea><br><br>
+        
+        <?php
+          for($i = 1; $i <= 4; $i++){
+            echo "
+            <label>Answer ".$i.":</label>
+            <input class='input_content' type='text' name='ans_".$i."-1'>
+            <label>isRight:</label>
+            <input class='check_content' type='checkbox' value='1' name='isRight_".$i."-1'><br><br>
+            ";
+          }
+          ?>
+      <?php }else{
+        echo "Test had max number question!!!";  
+      }
+      ?>
       
-      <label>Content question:</label>
-      <textarea class="area_content"  name='question-1'></textarea><br><br>
-
-      <label>Answer 1:</label>
-      <input class="input_content" type="text" name='ans_1-1'>
-      <label>isRight:</label>
-      <input class="check_content" type="checkbox" value='1' name='isRight_1-1'><br><br>
-      
-      <label>Answer 2:</label>
-      <input class="input_content" type="text" value='1' name='ans_2-1'>
-      <label>isRight:</label>
-      <input class="check_content" type="checkbox" value='1' name='isRight_2-1'><br><br>
-      
-      <label>Answer 3:</label>
-      <input class="input_content" type="text" value='1' name='ans_3-1'>
-      <label>isRight:</label>
-      <input class="check_content" type="checkbox" value='1' name='isRight_3-1'><br><br>
-
-      <label>Answer 4:</label>
-      <input class="input_content" type="text" name='ans_4-1'>
-      <label>isRight:</label>
-      <input class="check_content" type="checkbox" value='1' name='isRight_4-1'><br><br>
 
     </div>
-
-
     <input class="update_content" type="submit" name='insert_test' value='append'><br><br>
   </form>
 </div>

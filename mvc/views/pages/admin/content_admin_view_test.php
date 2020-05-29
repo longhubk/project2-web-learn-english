@@ -49,12 +49,12 @@
         if(!$has_question)
             echo "Number question: 0    ";
 
-        echo "<i title='show question' id='show_lesson-".$i."' class=' show_question fas fa-eye'></i>";
+        echo "<img title='show question' id='show_lesson-".$i."' class='icon-96 show_question ' src='public/icon/eye_icon.png'>";
         ?>
 
 
         <?php
-        echo "<a title='update test' href='./HomeAdmin/getUpdateTest/".$all_test[$i][0]."/".$all_test[$i][7]."'><i class='material-icons setting_question'>settings</i></a><br>";
+        echo "<a title='update test' href='./HomeAdmin/getUpdateTest/".$all_test[$i][0]."/".$all_test[$i][7]."'><img class=' icon-96 setting_question' src='public/icon/setting_icon.png'></a><br>";
 
         echo "<div class='toggle_lesson' id='toggle_lesson-".$i."'>";
 
@@ -89,7 +89,7 @@
 
 
 
-  <i title='add new test' id='btn_add_tut' class=" material-icons">add_circle</i>
+  <img title='add new test' id='btn_add_tut' class="icon-120" src='public/icon/plus_green_icon.png'>
 
   <div class="add_new_tut">
 

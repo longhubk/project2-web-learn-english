@@ -34,6 +34,12 @@
       return $res[$tr];
     }
 
+    protected function queryNumRow($qr){
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_num_rows($rows);
+      return $res;
+    }
+
   }
       
 

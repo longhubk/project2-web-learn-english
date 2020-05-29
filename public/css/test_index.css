@@ -50,6 +50,9 @@
   background-color: green;
   border-radius   : 5px;
   border          : none;
-  color           : whitesmoke;
   font-size       : 13px;
+  color           : whitesmoke;
+}
+.main-container .video-card .all_test .each_test .btn-enter-test a{
+  color           : whitesmoke;
 }

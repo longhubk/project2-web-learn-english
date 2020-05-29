@@ -15,6 +15,11 @@ a{
 body{
   margin: 0;
 }
+
+.icon-20{
+  height: 25px;
+  width: 25px;
+}
 .main-container .video-card #slide_show .intro{
   /* border: 1px solid gray; */
   border: 10px ridge rgb(255, 255, 255);

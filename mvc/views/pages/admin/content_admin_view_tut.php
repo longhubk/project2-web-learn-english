@@ -40,8 +40,8 @@
         if(!$has_lesson)
             echo "Number lesson: 0    ";
 
-        echo "<i title='show lesson' id='show_lesson-".$i."' class=' show_lesson fas fa-eye'></i>";
-        echo "&nbsp;&nbsp;&nbsp;<i title='add lesson for this tutorial' id='show_add_lesson-".$i."' class='cursor_add show_lesson material-icons'>&#xe145;</i><br>"
+        echo "<img title='show lesson' id='show_lesson-".$i."' class='show_lesson icon-96 cursor_add' src='public/icon/eye_icon.png' >";
+        echo "&nbsp;&nbsp;&nbsp;<img title='add lesson for this tutorial' id='show_add_lesson-".$i."' class=' icon-96 cursor_add show_lesson' src='public/icon/plus_none_icon.png'><br>"
 
         ?>
 
@@ -70,7 +70,7 @@
             if($all_lesson[$j][1] == $all_tut[$i][0]){
               $count_les_tut++;
               echo "<div>".$count_les_tut. " : " .$all_lesson[$j][3] ;
-              echo "<a title='update lesson' href='./HomeAdmin/getUpdateLesson/".$all_lesson[$j][0]."/".$all_tut[$i][6]."'><i class='material-icons setting_lesson'>settings</i></a>";
+              echo "<a title='update lesson' href='./HomeAdmin/getUpdateLesson/".$all_lesson[$j][0]."/".$all_tut[$i][6]."'><img class='icon-96 setting_lesson' src='public/icon/setting_icon.png'></a>";
               echo "</div><br>";
 
             }
@@ -101,7 +101,7 @@
 
 
 
-  <i title='add new tutorial' id='btn_add_tut' class=" material-icons">add_circle</i>
+  <img title='add new tutorial' id='btn_add_tut' class="icon-120" src='public/icon/plus_green_icon.png'>
 
   <div class="add_new_tut">
 

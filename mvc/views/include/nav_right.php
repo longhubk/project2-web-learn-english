@@ -19,8 +19,8 @@
   <div id="cal" class="calendar">
     <div class="title">
       <div class="name-calendar">
-        <i class="fa fa-calendar" style="color: browser;"></i>
-        <p>Calendar</p>
+        <img class="icon-20 icon_calendar" src='public/icon/calendar_icon.png'>
+        Calendar
       </div>
     </div>
     <div id="time"></div>

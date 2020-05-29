@@ -254,7 +254,7 @@
         "page"           => "content_admin_new_test",
         "avatar"         => $this->user_db->getUserAvatar(),
         "all_test"       => $this->test_db->loadAllTestAdmin(),
-        // "num_qs_current" => $this->test_db->loadNumberQuestionCurrent(),
+        "num_qs_current" => $this->test_db->loadNumberQuestionCurrent(1),
 
       ]);
     }
@@ -298,8 +298,9 @@
       $this->view("master_admin", [
         "page"             => $page,
         "avatar"           => $this->user_db->getUserAvatar(),
-        "id_test_update" => $test_id,
-        "content_test"   => $content_test,
+        "id_test_update"   => $test_id,
+        "name_test_update" => $this->test_db->getNameTestById($test_id),
+        "content_test"     => $content_test,
         "test_level"       => $test_level,
       ]);
     }
@@ -325,14 +326,16 @@
           // }
         }
       }
+      
       $this->view("master_admin", [
-        "page"             => $page,
-        "avatar"           => $this->user_db->getUserAvatar(),
+        "page"           => $page,
+        "avatar"         => $this->user_db->getUserAvatar(),
         "id_test_update" => $test_id,
         "content_test"   => $content_test_after_update,
-        "post_content"     => $_POST,
-        "res_update"       => $res,
-        "test_level"        => $test_level,
+        "post_content"   => $_POST,
+        "res_update"     => $res,
+        "test_level"     => $test_level,
+        "name_test_update" => $this->test_db->getNameTestById($test_id),
     
       ]);
     }

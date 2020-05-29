@@ -9,28 +9,19 @@
     //   $this->path = "./mvc/models/data/";
     // }
 
-    public function loadTestQuestion(){
-      return parent::readJsonData("$this->path"."test_question/grammar_qs.json");
+    public function loadTestQuestion($test_id){
+      // return parent::readJsonData("$this->path"."test_question/grammar_qs.json");
+
+      $qr = "SELECT * FROM test_qs WHERE test_id = $test_id ";
+      return $this->queryAllArray($qr);
     }
 
     public function loadAllTest(){
-      return parent::readJsonData("$this->path"."test_question/test_all.json");
+      // return parent::readJsonData("$this->path"."test_question/test_all.json");
     }
     
-    // private function queryAllArray($qr){
-    //   $rows = mysqli_query($this->con, $qr);
-    //   $res = mysqli_fetch_all($rows);
-    //   return $res;
-    // }
-
     public function loadAllTestAdmin(){
       $qr = "SELECT * FROM test";
-      // $row = mysqli_query($this->con, $qr);
-      // $res = mysqli_fetch_all($row);
-      // if($res)
-      //   return $res;
-      // else
-      //   return false;
       return $this->queryAllArray($qr);
     }
 
@@ -43,6 +34,11 @@
     public function getContentByTestId($test_id){
       $qr   = "SELECT * FROM test_qs WHERE test_id = '$test_id'";
       return $this->queryAllArray($qr);
+    }
+
+    public function getTimeTestById($test_id){
+      $qr   = "SELECT test_time FROM test WHERE test_id = '$test_id'";
+      return $this->queryAssoc($qr, 'test_time');
     }
     
     public function updateTestById($post_ct){
@@ -124,6 +120,11 @@
       return $this->queryAllArray($qr);
     }
 
+    public function getNameTestById( $test_id){
+      $qr   = "SELECT test_name FROM test WHERE test_id = $test_id";
+      return $this->queryAssoc($qr, "test_name");
+    }
+
     public function loadAllQuestionForTest(){
       $qr   = "SELECT * FROM test_qs";
       return $this->queryAllArray($qr);
@@ -134,6 +135,66 @@
       return $this->queryAllArray($qr);
     }
 
+    public function getRegisterTest($test_id, $cookie){
+      $qr1 = "SELECT * FROM users WHERE name = '$cookie'";
+      $rows = mysqli_query($this->con, $qr1);
+      $res1 = mysqli_fetch_assoc($rows);
+      $feedback = [];
+      $test_turn = 0;
+      $user_id = "";
+
+      $feedback[5] = $cookie;
+
+      if($res1){
+        $feedback[0] = "user_ok";
+        $user_id = $res1['id'];
+      $feedback[4] = $user_id;
+      } 
+      else $feedback[0] = "no_user";
+
+
+      $qr2 = "SELECT * FROM user_tests WHERE test_id = $test_id AND user_id = $user_id";
+      $row2 = mysqli_query($this->con, $qr2);
+      $num_row = mysqli_num_rows($row2);
+      $insert = true;
+      if($num_row > 0){
+        $insert = false;
+        $res2 = mysqli_fetch_assoc($row2);
+        if($res2['num_turn']  > 0){
+          $test_turn = $res2['num_turn'] - 1;
+          $feedback[1] = "had_to_test";
+          $feedback[5] = $test_turn;
+          
+        }
+      }else{
+          $feedback[1] = "new_time_do";
+
+          if($res1['user_type'] == 'admin'){
+            $test_turn = 100;
+          }else{
+            $test_turn = 5;
+          }
+      }
+
+      if($insert){
+        $qr3 = "INSERT INTO `user_tests` (`user_id`, `test_id`, `total_score`, `num_turn`) VALUES ('$user_id', '$test_id', '0', '$test_turn')";
+        $row3 = mysqli_query($this->con, $qr3);
+
+        if($row3) $feedback[2] = "insert_ok";
+        else $feedback[2] = "cant_insert";
+      }else{
+        $feedback[2] = "had_insert";
+        $qr3 = "UPDATE `user_tests` SET `num_turn` = '$test_turn' WHERE `user_tests`.`user_id` = '$user_id' AND `user_tests`.`test_id` = '$test_id'";
+        $row3 = mysqli_query($this->con, $qr3);
+        if($row3) $feedback[6] = "update_ok";
+        else $feedback[6] = "cant_update";
+      }
+
+      if($feedback[0] == 'user_ok' && $feedback[2] == "had_insert" || $feedback[2] == "insert_ok") $feedback[3] = "ok";
+      else
+        $feedback[3] = "fail";
+      return $feedback;
+    }
     
     public  function createNewTest($post_test, $id_ad_create){
       
@@ -147,35 +208,71 @@
     }
 
 
-    public function calculatePoint($data){
+    public function calculatePoint($post, $test_id){
+        $qr = "SELECT * FROM test_qs WHERE test_id = $test_id";
+        $res = $this->queryAllArray($qr);
 
-      $data_correct = parent::readJsonData("$this->path"."test_question/grammar_as.json");
-        $str = 'as_qs_';
-        $i = 1;
+        $count_num_qs = sizeof($res);
         $point = 0;
-        $count_num_qs = 0;
-      foreach($data_correct as $key => $value){
-        $str .= $i;
+        $store = [];
+        $i = 0;
+        $j = 1;
 
-        if($key == $str){
-          for($k = 0; $k < sizeof($data); $k++){
-            if(isset($data[$k][$str])){
-              foreach($data[$k][$str] as $key2 => $value2){
-                  if($value2 == $value)
-                    $point++;
+        foreach($post as $key => $value){
+          $val[$i] = [];
+          $keys = explode("-", $key);
+          if($keys[0] !== "commit_test"){
+            $isRights = explode("_", $keys[0]);
+            if($isRights[1] == $j){
+                $store[$i][0] = $keys[1]; //!id_test_qs
+                $store[$i][$isRights[1]+7] = $value;
+                $j++;
+            }
+
+            if($j == 5){
+              // echo "i: ".$i."<br>";
+              $i++;
+              $store[$i] = [];
+              $j = 1;
+            }
+
+          }
+        }
+
+        for($i = 0; $i < $count_num_qs; $i++){
+          $count = 0;
+            if($res[$i][0] == $store[$i][0]){
+              for($j = 1; $j <= 4; $j++){
+                if($store[$i][$j+7] == $res[$i][$j+7]){
+                  $count++;
+                }
               }
             }
-          }
-
+          if($count == 4) $point++;
         }
-        $str = "as_qs_";
-        $i++;
-        $count_num_qs++;
+        $name_us = $_COOKIE['member_login'];
+        $qr1 = "SELECT id FROM users WHERE name = '$name_us'";
+        $us_id = $this->queryAssoc($qr1, 'id');
 
-      }
-      $res = $point . '/' . $count_num_qs;
-        return $res;
-      }
+        $qr2 = "SELECT * FROM user_tests WHERE user_id ='$us_id' AND test_id = '$test_id'";
+        $num_row = $this->queryNumRow($qr2);
+        $update = true;
+        if($num_row > 0){
+          $pointOld = $this->queryAssoc($qr2, 'total_score');
+          if($point < $pointOld) $update = false;
+        }
+
+        if($update){
+          $qr3 = "UPDATE `user_tests` SET `total_score` = '$point' WHERE `user_tests`.`user_id` = '$us_id' AND `user_tests`.`test_id` = '$test_id'";
+          $row = mysqli_query($this->con, $qr3);
+        }
+        
+
+        $result = $point . '/' . $count_num_qs;
+        // echo $result;
+        return $result;
+        
+    }
       public function changeDataTest($num_qs){
         // $res = "";
         $page_next = $_POST['page_next']+1;

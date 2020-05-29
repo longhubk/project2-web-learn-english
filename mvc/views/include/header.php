@@ -85,7 +85,7 @@
   <div id="top_head" class="header">
 
     <div title="SpeakMore Web Learn English" class="logo-icon">
-      <a href="./Home"><img id="img-icon" src='./public/img/logo-2.png'></a>
+      <a href="./Home"><img id="img-icon" src='./public/img/triceratop.png'><span>SPEAKMORE</span></a>
     </div>
 
     <marquee id="run_text" behavior="scroll" direction="left" scrolldelay='130'>
