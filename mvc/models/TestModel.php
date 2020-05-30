@@ -41,6 +41,15 @@
       return $this->queryAssoc($qr, 'test_time');
     }
     
+    public function getTestTurnById($us_name){
+      
+      $qr1   = "SELECT id FROM users WHERE name = '$us_name'";
+      $us_id = $this->queryAssoc($qr1, 'id');
+
+      $qr   = "SELECT test_id, num_turn FROM user_tests WHERE user_id = '$us_id'";
+      return $this->queryAllArray($qr);
+    }
+
     public function updateTestById($post_ct){
       $res = true;
       $qr = "";
@@ -166,6 +175,9 @@
           $feedback[5] = $test_turn;
           
         }
+        else{
+          $feedback[1] = "has_no_turn";
+        }
       }else{
           $feedback[1] = "new_time_do";
 
@@ -190,7 +202,7 @@
         else $feedback[6] = "cant_update";
       }
 
-      if($feedback[0] == 'user_ok' && $feedback[2] == "had_insert" || $feedback[2] == "insert_ok") $feedback[3] = "ok";
+      if($feedback[0] == 'user_ok' && ($feedback[2] == "had_insert" || $feedback[2] == "insert_ok") && $feedback[1] != 'has_no_turn') $feedback[3] = "ok";
       else
         $feedback[3] = "fail";
       return $feedback;

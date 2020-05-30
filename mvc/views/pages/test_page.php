@@ -5,33 +5,29 @@
     <!-- <h1>Test Page </h1> -->
     <!-- <p>Đây là bài thi thi của bạn</p> -->
     <div id='status'></div>
-    <div class="test_result">
-        <?php 
-          
-          if(isset($data['post_check'])){
-            // var_dump($data['post_check']);
-          }
+        <button id='disable_redirect' style="display: none;"></button>
 
-          if(isset($data['test_res'])){
-            echo "<div class='label_res'>Kết quả bài thi của bạn là:  <b>".$data['test_res']."</b></div>";
-          }
-        ?>
-    </div>
+    <?php
 
+      if(isset($data['time_test']))
+        $time_test = $data['time_test'];
+      
+      if(isset($data['test_qs'])){
+        $test_qs = $data['test_qs'];
+        echo "<div>Num question: <span id='num_qs_test' >".sizeof($test_qs)."</span></div>";
+        echo "<div>Time : <span id='time_test' >".$time_test."</span> (phut)</div>";
+      }
+    ?>
+    <button id='btn_trigger'>start</button>
+    <div id='toggle_start'>
     <form id='submit_test_form' method="POST" action="./TestPage/Check/<?php 
       if(isset($data['test_id'])) echo $data['test_id'];
     ?>">
 
     <?php 
     
-    if(isset($data['time_test']))
-      $time_test = $data['time_test'];
 
-    if(isset($data['test_qs'])){
-
-      $test_qs = $data['test_qs'];
-      echo "<div>Num question: <span id='num_qs_test' >".sizeof($test_qs)."</span></div>";
-      echo "<div>Time : <span id='time_test' >".$time_test."</span> (phut)</div>";
+    if(!empty($test_qs)){
       echo "<div class='qs_contain'>";
       for($i = 0; $i < sizeof($test_qs); $i++){
 
@@ -52,16 +48,15 @@
         echo "</div>";
 
       }
-    
     }
     ?>
 
-      <div class="commit_test">
-        <input type="submit" id='trigger_test' class='next_commit' name='commit_test' value = "Nộp bài">
+          <div class="commit_test">
+            <input type='submit' id='trigger_test' class='next_commit' name='commit_test' value = "Nộp bài">
+          </div>
+
+        </form>
       </div>
-
-    </form>
-
     </div>
   </div>
 </div>

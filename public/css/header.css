@@ -31,12 +31,20 @@
 
 }
 
-
+.header .logo-icon a span #logo_bg{
+  background-color: #7BB77D;
+  color: whitesmoke;
+  padding: 0 4px;
+  border-radius: 3px;
+}
+.header .logo-icon a #logo_tx{
+  margin: 0 0 0 2px;
+}
 .header .logo-icon a span{
   font-family: ton_do;
   font-size: 25px;
-  color: rgb(65, 65, 65);
-  margin: 0 0 0 2px;
+  color: rgb(80, 80, 80);
+  
 }
 .header .logo-icon a img{
   height: 30px;

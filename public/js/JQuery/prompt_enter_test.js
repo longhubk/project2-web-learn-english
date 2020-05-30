@@ -17,17 +17,18 @@ $(document).ready(() => {
           data : {"test_id" : test_id},
           success : (res) =>{
             console.log("res" +res);
+            console.log(JSON.stringify(res))
             let res_json = JSON.parse(res)
             console.log(res_json.success);
-            let res_up = res_json.success;
-            if(res_up == "fail"){
+            let res_up = res_json.success[3];
+            if(res_json.success == "fail"){
               console.log("Cant register !!")
             }
-            if(res_up[3] == "ok"){
+            if(res_up == "ok"){
               console.log("ok");
               window.location.href="TestPage/Test/"+test_id;
             }
-            else{
+            else if(res_up == 'fail'){
               console.log("no turn");
               alert("You can't take this test or you have no turn.")
             }

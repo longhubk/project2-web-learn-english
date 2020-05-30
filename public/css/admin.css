@@ -13,6 +13,7 @@ body{
   position        : fixed;
   z-index         : 1;
   padding: 4px;
+  border-bottom: 1px solid black;
 }
 .admin_header .admin_info{
   /* margin     : 4px 45px 0 0; */

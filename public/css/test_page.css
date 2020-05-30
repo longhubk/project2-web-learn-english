@@ -1,3 +1,6 @@
+.main-container .video-card #toggle_start{
+  display: none;
+}
 .main-container .video-card form{
   /* border: 1px solid red; */
   margin: 5px;
@@ -12,11 +15,11 @@
   font-weight: bold;
   margin: 5px;
 }
-.main-container .video-card form .qs_contain{
+.main-container .video-card .qs_contain{
   /* border: 1px solid green; */
   margin: 5px;
 }
-.main-container .video-card form .qs_contain .title_qs{
+.main-container .video-card .qs_contain .title_qs{
   /* border: 1px solid brown; */
   /* border-bottom: none; */
   font-weight: bold;
@@ -24,7 +27,7 @@
   /* background-color: antiquewhite; */
   margin: 25px 5px 0 5px;
 }
-.main-container .video-card form .qs_contain .qs_note{
+.main-container .video-card .qs_contain .qs_note{
   /* border: 1px solid brown; */
   border-top: none;
   font-style: italic;
@@ -36,7 +39,7 @@
   margin : 0 5px 0 5px;
 } 
   
-.main-container .video-card form .qs_contain .answer_qs{
+.main-container .video-card .qs_contain .answer_qs{
   border          : 1px solid gray;
   border-radius   : 5px;
   background-color: snow;
@@ -45,12 +48,12 @@
 
 }
 
-.main-container .video-card form .commit_test{
+.main-container .video-card  .commit_test{
   display        : flex;
   justify-content: center;
 }
 
-.main-container .video-card form  .commit_test .next_commit{
+.main-container .video-card   .commit_test .next_commit{
   /* border: 1px solid black; */
   border          : none;
   padding         : 5px 10px;
@@ -59,12 +62,12 @@
   border-radius   : 5px;
   margin          : 25px 0 0 0;
 }
-.main-container .video-card form .qs_contain .answer_qs .each_ans{
+.main-container .video-card  .qs_contain .answer_qs .each_ans{
   /* border: 1px solid red; */
   margin: 0  10px 0 0;
 }
 
-.main-container .video-card form .qs_contain .answer_qs .each_ans :hover{
+.main-container .video-card  .qs_contain .answer_qs .each_ans :hover{
   text-decoration: underline;
 }
 .main-container .video-card .center{

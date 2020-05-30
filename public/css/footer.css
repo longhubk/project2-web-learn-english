@@ -5,6 +5,7 @@
   display         : block;
   width           : 55%;
   border          : 1px solid gray;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 #btn_scroll_top{
   display         : none;

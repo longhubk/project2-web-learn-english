@@ -41,16 +41,17 @@
   <link href = "./public/css/test_page.css"      rel = "stylesheet" type = "text/css">
   <link href = "./public/css/test_index.css"     rel = "stylesheet" type = "text/css">
 
-  <link href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/views/views/css/font-awesome.min.css" rel = "stylesheet">
+  <!-- <link href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/views/views/css/font-awesome.min.css" rel = "stylesheet"> -->
   <link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href = "https://bootswatch.com/flatly/bootstrap.min.css"         rel="stylesheet">
   
-  <script src = "https://use.fontawesome.com/566df3ace8.js"></script>
-  <script src = 'https://kit.fontawesome.com/a076d05399.js'></script>
+  <!-- <script src = "https://use.fontawesome.com/566df3ace8.js"></script> -->
+  <!-- <script src = 'https://kit.fontawesome.com/a076d05399.js'></script> -->
   <script src = 'https://www.youtube.com/iframe_api'></script>
   <script src = './public/js/JQuery/jquery-3.4.1.js' type = "text/javascript"></script>
 
   <script type = "text/javascript">
+
     window.onload = function() {
       generateDay();
       generateTime();
@@ -85,7 +86,7 @@
   <div id="top_head" class="header">
 
     <div title="SpeakMore Web Learn English" class="logo-icon">
-      <a href="./Home"><img id="img-icon" src='./public/img/triceratop.png'><span>SPEAKMORE</span></a>
+      <a href="./Home"><img id="img-icon" src='./public/img/triceratop.png'><span id='logo_tx'>SPEAK <span id='logo_bg'>MORE</span></span></a>
     </div>
 
     <marquee id="run_text" behavior="scroll" direction="left" scrolldelay='130'>
