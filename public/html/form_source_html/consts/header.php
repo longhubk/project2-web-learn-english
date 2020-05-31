@@ -31,6 +31,7 @@
         generateTime();
         hideBtnLogin();
       }
+
       window.onscroll = function(){
         scrollFunction();
       }

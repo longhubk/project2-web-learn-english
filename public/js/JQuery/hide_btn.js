@@ -19,8 +19,10 @@ $(function(){
   //   $('#head-intro').show()
   // })
 
-  $("#head-intro").ready(function(){
-    $("#head-intro").flash("#d00", 1000)
-  })
+  // if($('#head-intro').length){
+  //   $("#head-intro").ready(function(){
+  //     $("#head-intro").flash("#d00", 1000)
+  //   })
+  // }
 
 })

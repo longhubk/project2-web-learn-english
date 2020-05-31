@@ -245,11 +245,9 @@
     }
 
 
-    public function checkSession($un, $pas, $re){
-        if(isset($_POST['login'])){
+    public function checkSession($un, $re){
+     
           $qr = "SELECT * FROM users WHERE name = '$un'";
-          if(!empty($_COOKIE["member_login"])) 
-            $qr .= " AND password = '$pas'";
 
           $res = mysqli_query($this->con, $qr);
 
@@ -262,16 +260,62 @@
             if(!empty($re)){
               setcookie("member_login",$un ,time() + (10 * 365 * 24 * 60 * 60), '/');
             }
-            else if(isset($_COOKIE["member_login"]))
+            else if(isset($_COOKIE['memmber_login']))
               setcookie("member_login","");
           }
-        }
+      
       } 
 
       public function getUserMenu(){
         return parent::readJsonData("./mvc/models/data/tutorials/menu_user.json");
       }
 
+      public function getListUserById($user_name, $us_find){
+
+        $qr    = "SELECT name, id FROM users WHERE name != '$user_name' AND user_type != 'admin' AND name = '$us_find'";
+        return $this->queryAllArray($qr);
+
+      }
+
+      public function getUserIdByName($cookie){
+        $qr    = "SELECT id FROM users WHERE name = '$cookie' ";
+        return $this->queryAssoc($qr, 'id');
+      }
+
+
+      public function getListFriendByUserId($user_id){
+        $qr    = "SELECT my_friend_id FROM friends WHERE user_id = '$user_id' AND status = 'friend' GROUP BY my_friend_id ";
+        return $this->queryAllArray($qr);
+      }
+	  
+      public function getLastActiveById($friend_id){
+   
+		$friend_last_active = [];
+        for($i = 0; $i < sizeof($friend_id); $i++){
+          //echo "friend $i:". $friend_id[$i][0] . "<br>";
+          $friend_last_active[$i][0] = $friend_id[$i][0];
+          $qr    = "SELECT last_active FROM users WHERE id = '".$friend_id[$i][0]."'";
+          $friend_last_active[$i][1] = $this->queryAssoc($qr, 'last_active');
+        }
+        return $friend_last_active;
+      }
+	  
+      public function getUpdateMyActive($user_id){
+        $qr    = "UPDATE users SET last_active = now() WHERE id = '$user_id'";
+        $row = mysqli_query($this->con, $qr);
+      }
+      public function getNameFriendByFriendId($friend_id){
+        var_dump($friend_id);
+        $friend_name = [];
+        for($i = 0; $i < sizeof($friend_id); $i++){
+          echo "friend $i:". $friend_id[$i][0] . "<br>";
+          $friend_name[$i][0] = $friend_id[$i][0];
+          $qr    = "SELECT name FROM users WHERE id = '".$friend_id[$i][0]."'";
+          $friend_name[$i][1] = $this->queryAssoc($qr, 'name');
+        }
+        return $friend_name;
+
+      }
       public function updateUserInfo($un, $f_name, $l_name, $birth, $gender, $school, $toeic){
 
       $id     = $this->getUserId($un);

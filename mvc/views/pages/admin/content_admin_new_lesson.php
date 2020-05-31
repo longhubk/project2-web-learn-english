@@ -2,6 +2,7 @@
   <div class="admin_container">
     <h2>New Lesson</h2>
     <?php
+     // var_dump($_SESSION);
       if(isset($data['post_up']))
         var_dump($data['post_up']);
     ?>

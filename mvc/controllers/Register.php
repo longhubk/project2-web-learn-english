@@ -11,6 +11,7 @@
       $this->tut_db  = $this->model("TutorialModel");
     }
     public function Init(){
+      var_dump($_SESSION);
       $this->view("master_h", [
         "page"       => "content_main",
         "allTuts"    => $this->tut_db->getAllTutorial(),
@@ -31,7 +32,7 @@
       }
 
       if($res == 1){
-        $this->user_db->checkSession($username, $password, $remember);
+        $this->user_db->checkSession($username, $remember);
         $user_type = $this->user_db->getUserType($username);
         if($user_type == 'admin')
           header(('Location:../HomeAdmin/'));

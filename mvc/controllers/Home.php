@@ -12,12 +12,13 @@
     }
 
     public function Init(){
+      if(!isset($_SESSION['member_id'])){
+        if(isset($_COOKIE['member_login']))
+          $this->user_db->checkSession($_COOKIE['member_login'], '');
+        else
+           header('Location:Register/');
+      }
       // var_dump($_SESSION);
-      // var_dump($_COOKIE['member_login']);
-
-      // echo $this->user_db->checkIsAdmin($_COOKIE['member_login']);
-      // var_dump($_SERVER['SERVER_NAME']);
-
       $this->view("master_h", [
         "page"    => "content_main",
         "allTuts" => $this->tut_db->getAllTutorial(),

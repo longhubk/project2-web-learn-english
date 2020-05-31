@@ -14,14 +14,21 @@
       $this->lesson_db = $this->model("LessonModel");
       $this->test_db   = $this->model("TestModel");
     }
+    private function middlewareAdmin(){
+      if(empty($_SESSION['member_id'])){
+        if(!empty($_COOKIE['member_login']))
+          $this->user_db->checkSession($_COOKIE['member_login'], '');
+        else
+           header('Location:Register/');
+      }
+
+      if($_SESSION['user_type'] !== 'admin')
+        header("Location:Home/");
+    }
 
     public function Init(){
-      // var_dump($_SESSION);
-      // if($_SESSION['user_type'] !== 'admin')
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:Home/");
-
-        // var_dump($this->tut_db->LoadAllTutorial());
+      //var_dump($_SESSION);
+      $this->middlewareAdmin();
       $this->view("master_admin", [
         "page"         => "content_admin_new_lesson",
         "avatar"       => $this->user_db->getUserAvatar(),
@@ -33,8 +40,7 @@
     }
 
     public function getNewLesson(){
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:Home/");
+      $this->middlewareAdmin();
       $this->view("master_admin", [
         "page"         => "content_admin_new_lesson",
         "avatar"       => $this->user_db->getUserAvatar(),
@@ -67,8 +73,7 @@
     }
 
     public function getUpdateLesson($lesson_id, $tut_level){
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login'])) 
-        header("Location:Home/");
+      $this->middlewareAdmin();
       $page = '';
       if($tut_level > 0){
         $page = "content_admin_update_lesson";
@@ -89,10 +94,7 @@
     }
     
     public function postUpdateLesson($lesson_id, $tut_level){
-
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:Home/");
-
+      $this->middlewareAdmin();
       $res = false;
       if(isset($_POST)){
         if($tut_level > 0){
@@ -121,8 +123,7 @@
       ]);
     }
     public function getViewTutorial(){
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:Home/");
+      $this->middlewareAdmin();
       $this->view("master_admin", [
         "page"         => "content_admin_view_tut",
         "avatar"       => $this->user_db->getUserAvatar(),
@@ -135,9 +136,7 @@
     }
 
     public function postNewTutorial(){
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:Home/");
-
+      $this->middlewareAdmin();
       $res = false;
       if(!empty($_POST['new_tut_name'])){
         $id_admin_create = $this->user_db->getAdminId($_COOKIE['member_login']);
@@ -150,7 +149,6 @@
         $res = $this->tut_db->createNewLesson($_POST);
         if($res)
           header("Location:../HomeAdmin/getViewTutorial");
-
       }
       
       $this->view("master_admin", [
@@ -163,10 +161,7 @@
     }
 
     public function postNewLesson(){
-
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:Home/");
-
+      $this->middlewareAdmin();
       $res = false;
       if(isset($_POST)){
         if(!empty($_POST))
@@ -184,8 +179,7 @@
     }
 
     public function getViewUser(){
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:Home/");
+      $this->middlewareAdmin();
       $this->view("master_admin", [
         "page"     => "content_admin_view_user",
         "avatar"   => $this->user_db->getUserAvatar(),
@@ -195,8 +189,7 @@
     }
 
     public function getBlockUser(){
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:../Home/");
+      $this->middlewareAdmin();
       if(isset($_POST)){
         $user_id = $_POST['user_id'];
         $res = $this->user_db->blockUserById($user_id);
@@ -211,9 +204,7 @@
     }
 
     public function getViewTest(){
-  
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:Home/");
+      $this->middlewareAdmin();
       $this->view("master_admin", [
         "page"         => "content_admin_view_test",
         "avatar"       => $this->user_db->getUserAvatar(),
@@ -226,8 +217,7 @@
     }
 
     public function postNewTest(){
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:Home/");
+      $this->middlewareAdmin();
 
       $res = false;
       if(!empty($_POST['new_test_name'])){
@@ -264,8 +254,7 @@
 
 
     public function getNewTestQuestion(){
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:Home/");
+      $this->middlewareAdmin();
       $this->view("master_admin", [
         "page"           => "content_admin_new_test",
         "avatar"         => $this->user_db->getUserAvatar(),
@@ -277,9 +266,7 @@
 
 
     public function postAppendTest(){
-
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:Home/");
+     $this->middlewareAdmin();
 
       $res = false;
       if(isset($_POST)){
@@ -299,8 +286,7 @@
 
 
     public function getUpdateTest($test_id, $test_level){
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login'])) 
-        header("Location:Home/");
+      $this->middlewareAdmin();
       $page = '';
       if($test_level > 0){
         $page = "content_admin_update_test";
@@ -322,10 +308,7 @@
     }
 
     public function postUpdateTest($test_id, $test_level){
-
-      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
-        header("Location:Home/");
-
+      $this->middlewareAdmin();
       $res = false;
       if(isset($_POST)){
         if($test_level > 0){

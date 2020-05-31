@@ -29,10 +29,17 @@ function call_Interval(){
 
 
 let btn_scroll = document.getElementById('btn_scroll')
-btn_scroll.addEventListener("click", function(){
-  scroll_auto()
-})
+
+if(btn_scroll != null){
+  btn_scroll.addEventListener("click", function(){
+    scroll_auto()
+  })
+}
+
 let btn_auto_scroll = document.getElementById('btn_auto_scroll')
-btn_auto_scroll.addEventListener("click", function(){
-  call_Interval()
-})
+
+if(btn_auto_scroll != null){
+  btn_auto_scroll.addEventListener("click", function(){
+    call_Interval()
+  })
+}

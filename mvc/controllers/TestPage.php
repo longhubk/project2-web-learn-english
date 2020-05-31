@@ -13,11 +13,22 @@
       $this->user_db = $this->model("UserModel");
       $this->test_db = $this->model("TestModel");
     }
+    private function middlewareTest($back, $test = 'none'){
+      if(empty($_SESSION['member_id'])){
+
+        if(!empty($_COOKIE['member_login']))
+          $this->user_db->checkSession($_COOKIE['member_login'], '');
+        else
+           header('Location:'.$back);
+      }
+      if($test == 'test'){
+        if(empty($_SESSION['test']))
+        header("Location:../../TestPage/");
+      }
+
+    }
     public function Init(){
-        // var_dump($_COOKIE);
-        if(empty($_COOKIE['member_login']))
-          header("Location:Register/Login");
-        // var_dump($_SESSION);
+        $this->middlewareTest('Register/');
 
         $this->view("master_test", [
           "page"      => "test_index",
@@ -33,18 +44,8 @@
     }
 
     public function Test($test_id){
-      if(empty($_COOKIE['member_login']))
-        header("Location:../../Register/Login");
-        // var_dump($_SESSION);
-      else if(empty($_SESSION['test']))
-        header("Location:../../TestPage/");
-      // if($page==0 && sizeof($_SESSION['last_post']) > 0) //_fist initial or reset SESSION
-      //   $_SESSION['last_post'] = [];
-      // if($page <= 0) $page = 1;  //_prevent previous negative
+      $this->middlewareTest('../../Register/', 'test');
 
-      // var_dump($_SESSION['last_post']);
-
-      // echo $page;
         $this->view("master_test", [
           "page"      => "test_page",
           "allTuts"   => $this->tut_db->getAllTutorial(),
@@ -60,8 +61,7 @@
         ]);
     }
     public function Check($test_id){
-      if(empty($_COOKIE['member_login']))
-        header("Location:Register/Login");
+      $this->middlewareTest('../../Register/');
       $res  = '';
       if(!empty($_POST)){
         $res = $this->test_db->calculatePoint($_POST, $test_id);
@@ -89,7 +89,6 @@
 
     public function registerTest(){
       $res = "";
-
       if(isset($_POST)){
         $res = $this->test_db->getRegisterTest($_POST['test_id'], $_COOKIE['member_login']);
       }

@@ -9,26 +9,39 @@ function scrollFunction() {
   var top_before  = document.getElementById("hor-nav").style.height;
   console.log(top_before)
 
-  if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 20) {
+  let ver_nav = document.getElementById('ver_nav');
+  let var_nav_2 = document.getElementById("var_nav_2")
+  let cal = document.getElementById("cal")
+  let qs_right = document.getElementById("qs_right")
+  let hor_nav = document.getElementById("hor-nav")
 
-    let hor_nav = document.getElementById("hor-nav")
-    hor_nav.style.position = "fixed"
-    hor_nav.style.top = 0
-    document.getElementById("ver_nav").style.top = "32px"
-    document.getElementById("ver_nav_2").style.top = "40px"
-    document.getElementById("cal").style.marginTop = "30px"
-    document.getElementById("qs_right").style.height = "240px"
-    myButton.style.display = "block";
-    // alert("1")
-  } else {
-    let hor_nav = document.getElementById("hor-nav")
-    hor_nav.style.position = "relative"
-    // hor_nav.style.top = "43px"
-    document.getElementById("ver_nav").style.top = "73px"
-    document.getElementById("ver_nav_2").style.top = "95px"
-    document.getElementById("cal").style.marginTop = "10px"
-    document.getElementById("qs_right").style.height = "200px"
-    // alert("2")
-    myButton.style.display = "none";
-  }
+    if(
+      typeof(var_nav_2) != 'undefined' && 
+      typeof(ver_nav) != 'undefined' && 
+      typeof(cal) != 'undefined' && 
+      typeof(qs_right) != 'undefined' &&
+      typeof(myButton) != 'undefined' 
+    ){
+      if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 20) {
+
+
+          hor_nav.style.position = "fixed"
+          hor_nav.style.top = 0
+          ver_nav.style.top = "32px"
+          var_nav_2.style.top = "40px"
+          cal.style.marginTop = "30px"
+          qs_right.style.height = "240px"
+          myButton.style.display = "block";
+
+      } 
+      else {
+          hor_nav.style.position = "relative"
+          ver_nav.style.top = "73px"
+          ver_nav_2.style.top = "95px"
+          cal.style.marginTop = "10px"
+          qs_right.style.height = "200px"
+          myButton.style.display = "none";
+      }
+
+    }
 }

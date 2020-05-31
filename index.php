@@ -1,6 +1,6 @@
 <?php 
   session_start();
-  $GLOBALS['submit_user'] = array();
+  // $_SESSION['member_id'] = 5;
   require_once "./mvc/Bridge.php";
   $myApp = new App();
 
