@@ -48,7 +48,7 @@
     }
 
     public function loadAllUser(){
-      $qr   = "SELECT id, name FROM users WHERE user_type = 'user'";
+      $qr   = "SELECT id, name, is_block FROM users WHERE user_type = 'user'";
       $rows = mysqli_query($this->con, $qr);
       $res = mysqli_fetch_all($rows);
       return $res;
@@ -59,6 +59,14 @@
       $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
       return $this->queryAllArray($qr);
     }
+
+    public function blockUserById($user_id){
+      $qr   = "UPDATE `users` SET `is_block` = 'true' WHERE `users`.`id` = $user_id";
+      $row = mysqli_query($this->con, $qr);
+      if($row) return "ok";
+      else return "fail";
+    }
+
 
     public function checkIsAdmin($cookie){
       

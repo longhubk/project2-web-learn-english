@@ -194,6 +194,22 @@
       ]);
     }
 
+    public function getBlockUser(){
+      if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
+        header("Location:../Home/");
+      if(isset($_POST)){
+        $user_id = $_POST['user_id'];
+        $res = $this->user_db->blockUserById($user_id);
+      }
+      else
+        header("Location:../Home/");
+
+      $this->view("master_blank", [
+        "page"     => "get_block_user",
+        "res_block" => $res,
+      ]);
+    }
+
     public function getViewTest(){
   
       if(!$this->user_db->checkIsAdmin($_COOKIE['member_login']))
