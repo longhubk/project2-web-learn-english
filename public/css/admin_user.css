@@ -1,0 +1,17 @@
+.admin_container .user_view{
+
+  border: 1px solid rebeccapurple;
+
+}
+.admin_container .user_view .user_name{
+
+  border: 1px solid royalblue;
+  display: inline-block;
+  width: 50%;
+
+}
+.admin_container .user_view .option_user{
+
+  border: 1px solid brown;
+  margin: 0 5px;
+}

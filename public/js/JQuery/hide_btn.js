@@ -9,15 +9,15 @@ $(function(){
 
   if($('input').val() == ""){
   $('input').blur(function(){
-      $(this).css("border", "1px solid red")
+      // $(this).css("border", "1px solid red")
       $(this).text()
 
     })
   }
     
-  $("#top_head").mouseenter(function(){
-    $('#head-intro').show()
-  })
+  // $("#top_head").mouseenter(function(){
+  //   $('#head-intro').show()
+  // })
 
   $("#head-intro").ready(function(){
     $("#head-intro").flash("#d00", 1000)

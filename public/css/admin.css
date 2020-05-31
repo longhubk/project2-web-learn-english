@@ -1,4 +1,245 @@
-.input_content{
-  border: 1px solid black;
-  width: 60%;
+*{
+  box-sizing: border-box;
+  font-family:  "Lucida Sans", sans-serif;
 }
+body{
+  margin: 0;
+}
+.admin_header{
+  background-color: #369ec3;
+  top             : 0;
+  height          : 35px;
+  width           : 100%;
+  position        : fixed;
+  z-index         : 1;
+  padding: 4px;
+  border-bottom: 1px solid black;
+}
+.admin_header .admin_info{
+  /* margin     : 4px 45px 0 0; */
+  display: flex;
+  justify-content: center;
+  vertical-align: middle;
+  float: right;
+  align-items: center;
+  margin: 0 100px 0 0;
+}
+.admin_header .admin_info .small-avt{
+  border-radius: 20px;
+  width        : 25px;
+  margin       : 0 10px 0 0;
+  height       : 25px;
+  /* border       : 1px solid gray; */
+}
+.admin_header .admin_back{
+  float: left;
+  margin: 3px 0 0 10px;
+  transition: all ease 0.2s;
+}
+.admin_header .admin_back a{
+  color: whitesmoke;
+}
+.admin_header .admin_back:hover{
+  transform: scale(1.2);
+}
+.admin_header .admin_info a{
+  text-decoration: none;
+  color: white;
+  /* margin: 0 0 0 0; */
+  vertical-align: middle;
+}
+.admin_header .admin_info a:hover{
+  transform: scale(1.2);
+}
+.admin_header .admin_logo{
+  width      : fit-content;
+  float: left;
+  margin: 0 0 0 10px;
+}
+.admin_header .admin_logo a{
+  text-decoration: none;
+  font-family: cursive;
+  font-size  : 20px;
+  color      : white;
+}
+.admin_header .admin_logo:hover{
+  transform: scale(1.05);
+}
+
+.admin_container .update_data_ok{
+  color: green;
+}
+
+.admin_container .update_data_fail{
+  color: red;
+}
+.admin_container .input_content{
+  border: 1px solid black;
+  width : 60%;
+  margin-top: 5px;
+}
+
+.admin_container .area_content{
+  border    : 1px solid black;
+  width     : 600px;
+  height    : 100px;
+  resize    : none;
+  margin-top: 5px;
+}
+.admin_navigation .ul_parent{
+  list-style-type: none;
+  margin         : 0;
+  padding        : 0;
+  /* height: 90%;
+  border-right  : 1px solid gray; */
+  /* overflow-y: scroll; */
+  
+}
+.admin_navigation .ul_parent li{
+  margin: 20px 0 10px 0;
+
+  
+}
+.admin_navigation .ul_parent li span{
+  padding: 2px 5px;
+  /* border         : 1px solid green; */
+  font-weight: bold;
+  margin: 0 0 0 7px;
+  
+}
+.admin_navigation .ul_parent li ul {
+  list-style-type: none;
+}
+
+.admin_navigation .ul_parent li ul li{
+  margin          : 8px 25px 8px 0;
+  padding         : 5px 25px;
+  background-color: #369ec3;
+  box-shadow      : 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  border-radius: 4px;
+  transition: all ease 0.3s;
+}
+
+.admin_navigation .ul_parent li ul li:hover{
+  transform: scale(1.02,1.05);
+}
+.admin_navigation .ul_parent li ul li:hover{
+  background-color: #136f91;
+}
+.admin_navigation .ul_parent li ul li a{
+  text-decoration: none;
+  color          : rgb(243, 243, 243);
+}
+.admin_container .toggle_lesson,
+.admin_container .add_new_tut
+{
+  display: none;
+}
+.admin_container .show_lesson{
+  margin: 0 0 0 10px;
+}
+.admin_container .setting_lesson{
+  margin: 0 0 0 10px;
+  font-size: 20px;
+  color: gray;
+  cursor: pointer;
+}
+.icon-100{
+  height: 22px;
+  width: 22px;
+  color: white;
+}
+.admin_container .icon-96{
+  height: 20px;
+  width: 20px;
+  margin: 0 0 0 20px;
+}
+.admin_container .icon-120{
+  height: 30px;
+  width: 30px;
+  margin: 0 0 0 20px;
+}
+.admin_container #btn_add_tut,
+.admin_container .cursor_add,
+.admin_container  .option_user
+{
+  cursor: pointer;
+}
+.admin_container .show_lesson:hover,
+.admin_container #btn_add_tut:hover,
+.admin_container .user_view .option_user:hover,
+.admin_container .add_user_icon:hover
+{
+  transform: scale(1.15);
+  color: dodgerblue;
+}
+
+.admin_container .user_view .block_icon:hover{
+  color: red;
+}
+.admin_container .user_view .send_mes_icon:hover{
+  color: green;
+}
+.admin_container  .add_user_icon:hover{
+  color: purple;
+}
+
+.admin_container .add_new_user{
+  display: none;
+}
+
+.admin_container{
+  /* border : 1px solid black; */
+  width  : 80%;
+  position: relative;
+  /* float  : right; */
+  /* height: 80%; */
+  margin : 35px 0 35px 20%;
+  padding: 20px;
+  z-index: 0;
+}
+.admin_navigation{
+  /* border: 1px solid black; */
+  width           : 20%;
+  top             : 35px;
+  background-color: whitesmoke;
+  height          : 100%;
+  position        : fixed;
+  border-right    : 1px solid grey;
+  overflow-y      : auto;
+
+
+  /* float : left; */
+}
+
+.admin_footer{
+  /* border: 1px solid black; */
+  width           : 80%;
+  height          : 35px;
+  margin          : 0 0 0 20%;
+  padding         : 10px;
+  bottom          : 0;
+  background-color: #369ec3;
+  position        : fixed;
+  z-index         : 1;
+  
+  
+}
+.admin_footer p{
+  text-align: center;
+  color: white;
+  margin: 0;
+}
+
+.clear{
+  clear: both;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .admin_navigation .ul_parent li ul{
+    margin         : 0;
+    padding        : 0;
+  }
+} 
+

@@ -1,8 +1,8 @@
 <?php 
- 
+
 ;  class DB{
-    public $con;
-    public $con_mongo;
+    protected $con;
+    // public $con_mongo;
     protected $serverName = "localhost";
     protected $password   = "PtOGOOZuHq7aV4Pi";
     protected $dbname     = "speakmore";
@@ -13,12 +13,31 @@
       mysqli_select_db($this->con, $this->dbname);
       mysqli_query($this->con, "SET NAMES 'utf-8'");
   }
-    public function readJsonData($path){
+    protected function readJsonData($path){
       $file         = fopen($path, "r") or die("can't open file");
       $file_read    = fread($file, filesize($path));
       $file_decoded = json_decode($file_read);
       fclose($file);
       return $file_decoded;
+    }
+
+    
+    protected function queryAllArray($qr){
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_fetch_all($rows);
+      return $res;
+    }
+
+    protected function queryAssoc($qr, $tr){
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_fetch_assoc($rows);
+      return $res[$tr];
+    }
+
+    protected function queryNumRow($qr){
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_num_rows($rows);
+      return $res;
     }
 
   }

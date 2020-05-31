@@ -11,16 +11,18 @@
 			else
 			if(isset($data['tutContent'])){
 				$tutContent = $data['tutContent'];
+				// var_dump($tutContent);
 				$tut_name = $data['tut_name'];
-				foreach ($tutContent as $lesson => $name) {
-					echo "<li><a href='./Tut/One/$tut_name/" . $lesson."'>$name</a></li>";
-				}
+				for($i = 0; $i < sizeof($tutContent); $i++)
+					echo "<li><a href='./Tut/One/$tut_name/" . $tutContent[$i][0]."'>".$tutContent[$i][1]."</a></li>";
+				
 			}
 			else
 			if(isset($data['allTuts'])){
 				$allTuts = $data['allTuts'];
-				foreach ($allTuts as $tutorial => $name)
-					echo "<li><a href='./Tut/One/".$tutorial."'>$name</a></li>";
+				for($i = 0; $i < sizeof($allTuts); $i++)
+					echo "<li><a href='./Tut/One/".$allTuts[$i][1]."'>".$allTuts[$i][0]."</a></li>";
+				
 			}
 
 		?>

@@ -35,12 +35,14 @@
         $user_type = $this->user_db->getUserType($username);
         if($user_type == 'admin')
           header(('Location:../HomeAdmin/'));
-        
+        else
+          header("Location:../Home/");
         $this->view("master_h", [
           "page"      => "login_success",
           "allTuts"   => $this->tut_db->getAllTutorial(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
-          "login_res" => "Login Successfully"
+          "login_res" => "Login Successfully",
+          "avatar"    => $this->user_db->getUserAvatar(),
         ]);
       }
       else{
@@ -72,6 +74,7 @@
         "tut_qs"    => $this->tut_db->loadQuestion(),
         "login_res" => "Sign Up Successfully"
       ]);
+      
     }else{
       $this->view("master_h", [
         "page"        => "content_main",
@@ -85,6 +88,7 @@
   }
     public function LogOut(){
         $this->user_db->userLogout();
+        header("Location:../Home/");
         $this->view("master_h", [
           "page"       => "content_main",
           "allTuts"    => $this->tut_db->getAllTutorial(),

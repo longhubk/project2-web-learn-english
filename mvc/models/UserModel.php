@@ -46,6 +46,44 @@
       return $res;
 
     }
+
+    public function loadAllUser(){
+      $qr   = "SELECT id, name FROM users WHERE user_type = 'user'";
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_fetch_all($rows);
+      return $res;
+
+    }
+
+    public function getNameAdminModify(){
+      $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
+      return $this->queryAllArray($qr);
+    }
+
+    public function checkIsAdmin($cookie){
+      
+      $qr   = "SELECT user_type FROM users WHERE name = '$cookie'";
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_fetch_assoc($rows);
+      // var_dump( $res );
+      if($res['user_type'] == 'admin')
+        return true;
+      else
+        return false;
+
+    }
+    public function getAdminId($cookie){
+      
+      if($this->checkIsAdmin($cookie)){
+
+        $qr   = "SELECT id FROM users WHERE name = '$cookie'";
+        $rows = mysqli_query($this->con, $qr); 
+        $res = mysqli_fetch_assoc($rows);
+        if($res)
+          return $res['id'];
+      }
+      return false;
+    }
     public function checkUserNameExist($un){
       $qr   = "SELECT * FROM users WHERE name = '$un'";
       $rows = mysqli_query($this->con, $qr);

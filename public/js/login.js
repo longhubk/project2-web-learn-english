@@ -1,9 +1,9 @@
 function openLogin(){
   document.getElementById("log-1").style.display = "block"
- }
+}
 function closeLogin(){
   document.getElementById("log-1").style.display = "none"
- }
+}
 
 //  window.onclick = function(event){
 //    var login_var = document.getElementById("log-1")
@@ -12,10 +12,10 @@ function closeLogin(){
 //    }
 //  }
 
- $(window).click(function(e){
-   if(e.target.id == "log-1")
+  $(window).click(function(e){
+    if(e.target.id == "log-1")
       window.location.href = ("./Home")
- })
+  })
 
 
 
@@ -59,7 +59,7 @@ function closeLogin(){
    // }
 
 
- 
+
 
 // function openSignUp(){
 //     let password = document.getElementById("password_id")

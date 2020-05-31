@@ -13,12 +13,16 @@
 
     public function Init(){
       // var_dump($_SESSION);
+      // var_dump($_COOKIE['member_login']);
+
+      // echo $this->user_db->checkIsAdmin($_COOKIE['member_login']);
+      // var_dump($_SERVER['SERVER_NAME']);
+
       $this->view("master_h", [
         "page"    => "content_main",
         "allTuts" => $this->tut_db->getAllTutorial(),
         "tut_qs"  => $this->tut_db->loadQuestion(),
         "avatar"  => $this->user_db->getUserAvatar(),
-    
       ]);
     }
 
