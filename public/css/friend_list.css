@@ -1,0 +1,49 @@
+.main-container .user_info_page #friend_detail table{
+  border: 1px solid gray;
+  border-collapse: collapse;
+
+}
+.main-container .user_info_page #friend_detail table .first_row{
+  background-color: rgb(98, 98, 98);
+  color: white;
+  text-align: center;
+}
+.main-container .user_info_page #friend_detail table tr td{
+  border: 1px solid gray;
+  padding: 10px 20px;
+}
+
+.main-container .user_info_page #friend_detail table tr td .start_chat{
+  border: none;
+  border-radius: 8px;
+  background-color: dodgerblue;
+  color: white;
+  padding: 5px 10px;
+  transition: all ease 0.1s;
+}
+.main-container .user_info_page #friend_detail table tr td .start_chat:hover{
+  transform: scale(1.1);
+}
+.main-container .user_info_page #friend_detail table tr td .label_online{
+  border: none;
+  border-radius: 30px;
+  color: white;
+  padding: 5px 10px;
+  background-color: rgb(5, 184, 5);
+}
+.main-container .user_info_page #friend_detail table tr td .label_offline{
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 10px 10px;
+  background-color: rgb(204, 6, 6);
+}
+
+.main-container .user_info_page #friend_detail table tr td .label_unseen{
+
+  border: none;
+  border-radius: 20px;
+  color: rgb(255, 255, 0);
+  padding: 2px 5px ;
+  background-color: rgb(184, 20, 5);
+}

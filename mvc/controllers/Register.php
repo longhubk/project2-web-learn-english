@@ -26,9 +26,14 @@
       if(isset($_POST['login'])){
         $username = $_POST["username"];
         $password = $_POST["password"];
-        if(isset($_POST["remember"]))
-          $remember = "OK";
-        $res      = $this->user_db->checkLogin($username, $password);
+        if($this->user_db->checkIsLogin($username) > 0){
+          header("../Register/");
+        }
+        else{
+          if(isset($_POST["remember"]))
+            $remember = "OK";
+          $res      = $this->user_db->checkLogin($username, $password);
+        }
       }
 
       if($res == 1){
@@ -88,7 +93,7 @@
     }
   }
     public function LogOut(){
-        $this->user_db->userLogout();
+        $this->user_db->userLogout($_COOKIE['member_login']);
         header("Location:../Home/");
         $this->view("master_h", [
           "page"       => "content_main",

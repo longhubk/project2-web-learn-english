@@ -14,7 +14,7 @@
         if(!empty($_COOKIE['member_login']))
           $this->user_db->checkSession($_COOKIE['member_login'], '');
         else
-           header('Location:'.$back);
+          header('Location:'.$back);
       }
  
     }
@@ -111,7 +111,7 @@
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "avatar"    => $this->user_db->getUserAvatar(),
           "menu_user" => $this->user_db->getUserMenu(),
-          "user_id" => $this->user_db->getUserIdByName($_COOKIE['member_login']),
+          "user_id"   => $this->user_db->getUserIdByName($_COOKIE['member_login']),
         ]);
     }
 
@@ -152,6 +152,7 @@
         $id_friend  = $this->user_db->getListFriendByUserId($_SESSION['member_id']);
         $name_friend = $this->user_db->getNameFriendByFriendId($id_friend);
         $last_active = $this->user_db->getLastActiveById($id_friend);
+        $count_unseen = $this->user_db->count_unseen_message($_SESSION['member_id'], $id_friend);
       }else{
           header('Location:../Home/');
       }
@@ -159,6 +160,7 @@
           "page"      	 => "get_list_friend",
           "friend_list"  => $name_friend,
           "last_active"  => $last_active,
+          "count_unseen"  => $count_unseen,
       ]);
     }
 	
@@ -170,6 +172,57 @@
       }else{
           header('Location:../Home/');
       }
+    }
+
+	public function insertChatMessage(){
+      $this->middlewareUserPage('../Home');
+      $res = '';
+      if(isset($_POST)){
+        // var_dump($_POST);
+        $res = $this->user_db->getInsertChatMessage($_SESSION['member_id'], $_POST['friend_id'], $_POST['chat_message']);
+      }else{
+          header('Location:../Home/');
+      }
+
+      $this->view("master_blank", [
+          "page"        => "get_mes_history",
+          'mes_history' => $res,
+      ]);
+
+    }
+    
+	public function getHistoryMessage(){
+      $this->middlewareUserPage('../Home');
+      $res = '';
+      if(isset($_POST)){
+        // var_dump($_POST);
+        $res = $this->user_db->getUserChatHistory($_SESSION['member_id'], $_POST['friend_id']);
+      }else{
+          header('Location:../Home/');
+      }
+
+      $this->view("master_blank", [
+          "page"        => "get_mes_history",
+          'mes_history' => $res,
+      ]);
+
+    }
+
+
+	public function getCountMesTwoPeople(){
+      $this->middlewareUserPage('../Home');
+      $res = '';
+      if(isset($_POST)){
+        $res = $this->user_db->countMessageTwoPeople($_SESSION['member_id'], $_POST['friend_id']);
+      }else{
+          header('Location:../Home/');
+      }
+
+      $this->view("master_blank", [
+          "page"        => "get_mes_history",
+          'mes_history' => $res,
+      ]);
+
     }
 
   }

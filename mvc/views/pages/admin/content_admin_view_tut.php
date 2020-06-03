@@ -18,8 +18,6 @@
         isset($data['all_lesson']) &&
         isset($data['admin_modify'])){
 
-      // var_dump($data['all_tutorial']);
-      // var_dump($data['num_lesson']);
       $num_lesson = $data['num_lesson'];
       $all_tut    = $data['all_tutorial'];
       $name_ad    = $data['admin_modify'];
@@ -28,8 +26,8 @@
       echo "Number current tutorial:";
       echo "<span id='all_tut_size'>".sizeof($all_tut)."</span><br><br>";
       for($i = 0; $i < sizeof($all_tut); $i++){
-        
-        echo "<a href='#'>".$all_tut[$i][1]."</a><br>";
+        echo "<span id='tut_id' style='display:none;'>".$all_tut[$i][0]."</span>";
+        echo "<a href='Tut/One/".$all_tut[$i][5]."'>".$all_tut[$i][1]."</a><br>";
         $has_lesson = false;
         for($j = 0; $j < sizeof($num_lesson); $j++){
           if($num_lesson[$j][0] == $all_tut[$i][0]){
@@ -46,39 +44,65 @@
         ?>
 
 
+
+        <?php echo "<div class='toggle_lesson' id='toggle_add_lesson-".$i."'>" ?>
+
+          <form method='POST' action='./HomeAdmin/postNewTutorial'>
+          <table>
+            <tr>
+              <td>Name</td>
+              <td>Title</td>
+              <td>Extension image</td>
+              <td>Option</td>
+            </tr>
+
+          <td><input type='text' name='new_lesson_name' placeholder='Enter new name of lesson'>
+          <td><input type='text' name='new_lesson_title' placeholder='Enter title for lesson'></td>
+          <td>
+            <select  name='select_ext_img'>
+                <option value='.png'>.png</option>
+                <option value='.jpg'>.jpg</option>
+                <option value='.gif'>.gif</option>
+            </select>
+          </td>
+          <td>
+            <?php
+              echo "<input type='hidden' name='tut_lesson' value='".$all_tut[$i][0]."'>";
+            ?>
+            <input type='submit' value='add new lesson'>
+          </td>
+
+          </table>
+          </form>
+        </div>
+
         <?php
-
-        echo "<div class='toggle_lesson' id='toggle_add_lesson-".$i."'>";
-          echo "<form method='POST' action='./HomeAdmin/postNewTutorial'>";
-          echo "<input type='text' name='new_lesson_name' placeholder='Enter new name of lesson'>";
-          echo "<input type='text' name='new_lesson_title' placeholder='Enter title for lesson'>";
-          echo "choose extension image:";
-          echo "<select  name='select_ext_img'>";
-              echo "<option value='.png'>.png</option>";
-              echo "<option value='.jpg'>.jpg</option>";
-              echo "<option value='.gif'>.gif</option>";
-          echo"</select>";
-          echo "<input type='hidden' name='tut_lesson' value='".$all_tut[$i][0]."'>";
-          echo "<input type='submit' value='add new lesson'>";
-          echo"</form>";
-        echo"</div>";
-
         echo "<div class='toggle_lesson' id='toggle_lesson-".$i."'>";
-
-        $count_les_tut = 0;
-          for($j = 0; $j < sizeof($all_lesson); $j++){
-            if($all_lesson[$j][1] == $all_tut[$i][0]){
-              $count_les_tut++;
-              echo "<div>".$count_les_tut. " : " .$all_lesson[$j][3] ;
-              echo "<a title='update lesson' href='./HomeAdmin/getUpdateLesson/".$all_lesson[$j][0]."/".$all_tut[$i][6]."'><img class='icon-96 setting_lesson' src='public/icon/setting_icon.png'></a>";
-              echo "</div><br>";
-
-            }
-            
-          }
-
         ?>
 
+          <table>
+            <tr class='first_row'>
+              <td>STT</td>
+              <td>Name lesson</td>
+              <td>Option</td>
+              <td>Delete</td>
+            </tr>
+
+          <?php
+            $count_les_tut = 0;
+            for($j = 0; $j < sizeof($all_lesson); $j++){
+              if($all_lesson[$j][1] == $all_tut[$i][0]){
+                echo "<tr>";
+                $count_les_tut++;
+                echo "<td>".$count_les_tut. " </td><td>" .$all_lesson[$j][3] . "</td>" ;
+                echo "<td><a title='update lesson' href='./HomeAdmin/getUpdateLesson/".$all_lesson[$j][0]."/".$all_tut[$i][6]."'><img class='icon-96 setting_lesson' src='public/icon/setting_icon.png'></a></td>";
+                echo "<td><img class='icon-96 delete_lesson' id='delete_lesson-".$all_lesson[$j][0]."' src='public/icon/delete_icon.png'></a></td>";
+                echo "</tr>";
+              }
+              
+            }
+          ?>
+        </table>
         </div>
         
 

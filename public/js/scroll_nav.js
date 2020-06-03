@@ -10,38 +10,67 @@ function scrollFunction() {
   console.log(top_before)
 
   let ver_nav = document.getElementById('ver_nav');
-  let var_nav_2 = document.getElementById("var_nav_2")
+  let ver_nav_2 = document.getElementById("ver_nav_2")
   let cal = document.getElementById("cal")
   let qs_right = document.getElementById("qs_right")
   let hor_nav = document.getElementById("hor-nav")
 
-    if(
-      typeof(var_nav_2) != 'undefined' && 
-      typeof(ver_nav) != 'undefined' && 
-      typeof(cal) != 'undefined' && 
-      typeof(qs_right) != 'undefined' &&
-      typeof(myButton) != 'undefined' 
-    ){
+  // console.log("typeof hor_nav: " + hor_nav))
+  // console.log("typeof ver_nav: " + ver_nav))
+  // console.log("typeof ver_nav2: " + ver_nav_2))
+  // console.log("typeof cal: " + cal))
+  // console.log("typeof qs_right: " + qs_right))
+  // console.log("typeof my button: " + myButton))
+    
+    
       if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 20) {
 
 
-          hor_nav.style.position = "fixed"
-          hor_nav.style.top = 0
-          ver_nav.style.top = "32px"
-          var_nav_2.style.top = "40px"
-          cal.style.marginTop = "30px"
-          qs_right.style.height = "240px"
-          myButton.style.display = "block";
+          if(hor_nav != null){
+            hor_nav.style.position = "fixed"
+            hor_nav.style.top = 0
+          }
+          if(ver_nav != null){
+            ver_nav.style.top = "32px"
+          }
+          if(ver_nav_2 != null){
+            ver_nav_2.style.top = "40px"
+          }
+          if(cal != null){
+            cal.style.marginTop = "30px"
+          }
+          if(qs_right != null){
+            qs_right.style.height = "240px"
+          }
+          if(myButton != null){
+            myButton.style.display = "block";
+          }
 
       } 
       else {
-          hor_nav.style.position = "relative"
-          ver_nav.style.top = "73px"
-          ver_nav_2.style.top = "95px"
-          cal.style.marginTop = "10px"
-          qs_right.style.height = "200px"
-          myButton.style.display = "none";
+
+          if(hor_nav != null){
+            hor_nav.style.position = "relative"
+            hor_nav.style.top = 0
+
+          }
+          if(ver_nav != null){
+            ver_nav.style.top = "73px"
+          }
+          if(ver_nav_2 != null){
+            ver_nav_2.style.top = "95px"
+          }
+          if(cal != null){
+            cal.style.marginTop = "10px"
+          }
+          if(qs_right != null){
+            qs_right.style.height = "200px"
+          }
+          if(myButton != null){
+            myButton.style.display = "none";
+          }
+
       }
 
-    }
+    
 }

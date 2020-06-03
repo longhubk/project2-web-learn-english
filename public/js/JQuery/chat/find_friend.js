@@ -29,22 +29,22 @@ $(document).ready(() =>{
     })
   })
 
-    let user_id = $('#user_send_id').html()
-    console.log('user id = ' + user_id)
-    for(let i = 0; i < num_res_find; i++){
-      let id = '#add_friend-'+i;
-      let friend_id = $(id).attr('value')
-      console.log('friend id = ' + friend_id)
+    // let user_id = $('#user_send_id').html()
+    // console.log('user id = ' + user_id)
+    // for(let i = 0; i < num_res_find; i++){
+    //   let id = '#add_friend-'+i;
+    //   let friend_id = $(id).attr('value')
+    //   console.log('friend id = ' + friend_id)
       
-      $(id).click(() =>{
-        $.ajax({
-          method : "POST",
-          url : "UserPage/sendAddFriend",
-          data : {"user_id": $user_id, "friend_ep_id" : friend_id}
+    //   $(id).click(() =>{
+    //     $.ajax({
+    //       method : "POST",
+    //       url : "UserPage/sendAddFriend",
+    //       data : {"user_id": $user_id, "friend_ep_id" : friend_id}
 
-        })
-      })
-    }
+    //     })
+    //   })
+    // }
 
 
 })

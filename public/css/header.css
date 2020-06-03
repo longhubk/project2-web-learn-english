@@ -155,7 +155,7 @@
 .clear{
   clear: both;
 }
-.header .login-container .small-avt{
+.small-avt{
   border-radius: 20px;
   width        : 25px;
   margin       : 0;
@@ -163,7 +163,7 @@
   /* border       : 0.1px solid gray; */
 }
 
-.header .login-container .small-avt:hover{
+.small-avt:hover{
   opacity: 0.7;
 }
 

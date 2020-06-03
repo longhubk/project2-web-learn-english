@@ -16,7 +16,7 @@
     <script src = './public/js/JQuery/dis_input.js'     type = "text/javascript"></script>
 
 
-    <button onclick="topScroll()" id='btn_scroll_top' title='go to top'><i class='fas fa-angle-double-up' style='font-size:24px'></i></button>
+    <button onclick="topScroll()" id='btn_scroll_top' title='go to top'><img class='icon-20' src='public/icon/go_to_top.png'></button>
     <div class="footer">
       <div class="info_foot">
         <div class="info_contact">

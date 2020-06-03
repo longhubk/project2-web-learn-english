@@ -51,6 +51,11 @@
       return $this->queryAssoc($qr, 'tut_level');
     }
 
+    public function getAllIdLessonOfTut($tut_id){
+      $qr   = "SELECT lesson_id FROM lesson_tut WHERE tut_id = '$tut_id'";
+      return $this->queryAllArray($qr);
+    }
+
     public function getImageLesson($getTutorial){
       $qr   = "SELECT image FROM lesson_tut WHERE name_lesson = '$getTutorial'";
       return $this->queryAssoc($qr,'image');
