@@ -1,6 +1,6 @@
   
 <div class="admin_container">
-  <h2>Update Test:</h2>
+  <h2 class="title_ad_page">Update Test:</h2>
   <?php 
     if(isset($data['post_content'])){
       // var_dump($data['post_content']);
@@ -20,7 +20,7 @@
       // var_dump($data['id_test_update']);
       $test_id = $data['id_test_update'];
       $test_name = $data['name_test_update'];
-      echo "You want to update test: " . $test_name . "<br>";
+      echo "You want to update test: " . $test_name . "<br><br>";
     }
 
     if(isset($data['content_test'])){
@@ -46,37 +46,58 @@
         }
 
         echo "<div id='content-".$test_qs_id."'>";
-        echo "<hr>";
-        echo "<label>Question ".($i+1)." :</label><br>";
-        echo "Name: <input type='text' class='input_content' name='name-".$test_qs_id."' value='".$qs_name."'><br>";
+        echo "<hr>
+            <table class='table_new_content'>
+            <tr class='first_row'>
+              <td class='first_column'>Question ".($i+1)."</td>
+              <td class='middle_column'>Content</td>
+              <td class='last_column'>Right answer</td>
+            <tr>";
 
-        echo "main:  <textarea class='area_content' name='question-".$test_qs_id."'>".$qs_content."</textarea><br>";
+        echo "<tr>
+            <td class='first_column'>Name question</td>
+            <td class='input_content middle_column'> 
+              <textarea name='name-".$test_qs_id."' >".$qs_name."</textarea>
+            </td>
+            <td></td>
+            </tr>";
+
+        echo "<tr>
+            <td class='first_column'>Content question</td>
+            <td class='input_content middle_column'> 
+              <textarea class='area_content' name='question-".$test_qs_id."'>".$qs_content."</textarea>
+            </td>
+            <td></td>
+            </tr>";
 
         for($j = 1; $j <= 4; $j++){
-          echo "Answer ".$j.": <input type='text' class='input_content' name='ans_".$j."-".$test_qs_id."' value='".$ans[$j]."'>";
+
+
+          echo "<tr>
+            <td class='first_column'> Answer ".$j."</td>
+            <td class='middle_column input_content'> 
+              <textarea name='ans_".$j."-".$test_qs_id."'>".$ans[$j]."</textarea>
+            </td>";
 
           if($isRight[$j] == 'true'){
             echo "<input id='isRightHidden-".$i."-".$j."' type='hidden' name='isRight_".$j."-".$test_qs_id."' value='false'>";
           }
-          echo "Is right: <input type='checkbox' id='isRight-".$i."-".$j."' class='check_content' name='isRight_".$j."-".$test_qs_id."' value='true'"; 
-          ?>
-          <?php
-            if($isRight[$j] == 'true')
-              echo 'checked';
-          echo "><br><br>";
+          echo "<td class='last_column'><input type='checkbox' id='isRight-".$i."-".$j."' class='check_content' name='isRight_".$j."-".$test_qs_id."' value='true'"; 
+          ?><?php if($isRight[$j] == 'true') echo 'checked';
+
+          echo "></td></tr>";
+
         }
 
-        echo"</div><br><br>";
+        echo"</table>";
+        echo"</div><br>";
       }
-
-      echo "
-        <a id='btn_add_qs' href='HomeAdmin/getNewTestQuestion/'>add more question</a><br><br>
-        <input type='submit' value='update test'>
-        </form>
-      ";
     }
-
-  
   ?>
+      <a id='btn_add_qs' href='HomeAdmin/getNewTestQuestion/'>Add more question..</a><br><br>
+      <div class="update_content">
+          <input type='submit' value='update test'>
+      </div>
+    </form>
 </div>
   

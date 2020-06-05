@@ -29,7 +29,7 @@ $(document).ready(() => {
     $(id_click_add_les).click(() =>{
       // alert("you want to look lesson")
       $(id_toggle_add_les).toggle()
-      $(id_toggle).toggle()
+      // $(id_toggle).toggle()
       for(let j = 0; j < number_toggle; j++){
         let id_click_add_les_else = '#show_add_lesson-'+j;
         let id_toggle_add_les_else = '#toggle_add_lesson-'+j;

@@ -16,7 +16,7 @@
         else
           header('Location:'.$back);
       }
- 
+
     }
     public function Init(){
 
@@ -40,7 +40,7 @@
       if(!empty($_FILES)){
         $f_name      = $_FILES['file']['name'];
         $f_Temp_name = $_FILES['file']['tmp_name'];
-        $f_Size      = $_FILES['file']['tmp_name'];
+        $f_Size      = $_FILES['file']['size'];
         $f_Error     = $_FILES['file']['type'];
         $f_Type      = $_FILES['file']['error'];
         $this->user_db->uploadAvatar($f_name, $f_Temp_name, $f_Size, $f_Error, $f_Type);

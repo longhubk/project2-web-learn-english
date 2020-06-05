@@ -205,7 +205,8 @@
         
 
     }
-    public function uploadAvatar($f_name, $ft_name, $f_size, $f_err, $f_type){
+    
+    public function uploadAvatar($f_name, $ft_name, $f_size, $f_type, $f_err){
       $res = false;
       if(isset($_POST['upload'])){
 

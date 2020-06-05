@@ -1,6 +1,6 @@
 
 <div class="admin_container">
-  <h2>All Current User:</h2>
+  <h2 class="title_ad_page" >All Current User:</h2>
 
   <?php
     if(isset($data['all_user'])){

@@ -99,11 +99,14 @@
             $id2 = $str2 . $j . "-".$i; 
             if(isset($post[$id])){
               $ans[$j] = $post[$id];
-              $isRight[$j] = $post[$id2];
+              if(isset($post[$id2]))
+                $isRight[$j] = $post[$id2];
+              else
+                $isRight[$j] = "false";
             }
             else{
               $ans[$j] = "";
-              $isRight[$j] = "0";
+              $isRight[$j] = "false";
             }
           }
 

@@ -1,26 +1,19 @@
   
 <div class="admin_container">
-  <h2>Update Basic Lesson:</h2>
+  <h2 class="title_ad_page">Update Basic Lesson:</h2>
   <?php 
   
     if(isset($data['id_lesson_update'])){
       $les_id = $data['id_lesson_update'];
-      echo " you want to update lesson: " . $les_id . "<br>";
+      echo "Do you want to update basic lesson: " . $les_id . "<br>";
     }
     if(isset($data['post_content'])){
       $all_post = $data['post_content'];
-      // $cnt = 0;
-      // foreach($all_post as $key => $val){
-      //   echo $cnt . "-" . $key . "<br>" . "->" .$val . "<br>";
-      //   $cnt++;
-      // }
-      // var_dump($all_post);
+      var_dump($all_post);
     }
 
     if(isset($data['res_update'])){
-      // var_dump($data['res_update']);
       $res_up = $data['res_update'];
-
       var_dump($res_up);
       if($res_up)
         echo "Update Success <br>";
@@ -31,50 +24,64 @@
     if(isset($data['content_lesson'])){
       $content_less = $data['content_lesson'];
       $tut_level = $data['tut_level'];
-      // var_dump($content_less);
-      echo "<form method='POST' action='./HomeAdmin/postUpdateLesson/".$les_id."/".$tut_level."'>"; 
+      echo "<form method='POST' action='./HomeAdmin/postUpdateLesson/".$les_id."/".$tut_level."' enctype='multipart/form-data' >"; 
 
       for($i = 0; $i < sizeof($content_less); $i++){
-        $content_id = $content_less[$i][0];
-        $image_main = $content_less[$i][2];
-
-        $img_1 = $content_less[$i][3];
-        $img_2 = $content_less[$i][4];
-        $img_3 = $content_less[$i][5];
-
+        $content_id   = $content_less[$i][0];
+        $image_main   = $content_less[$i][2];
         $content_main = $content_less[$i][6];
 
-        $sub_1 = $content_less[$i][7];
-        $sub_2 = $content_less[$i][8];
-        $sub_3 = $content_less[$i][9];
+        $img = $sub = $aud = [];
 
-        $aud_1 = $content_less[$i][10];
-        $aud_2 = $content_less[$i][11];
-        $aud_3 = $content_less[$i][12];
 
-        echo "<div id='content-".$content_id."'>";
 
-        echo "<label>Content ".($i+1)." :</label><br>";
-        echo "Image main:  <input type='text' class='input_content' name='image_main-".$content_id."' value='".$image_main."'><br>";
+        echo "<br><hr><br>
+        <div id='content-".$content_id."'>
+          <b>Content ".($i+1)." :</b><br>
+          <table class='table_new_les_basic'>
+          <tr>
+            <td>Image main</td>
+            <td>
+              <div> ".$image_main."</div>
+              <input type='file' accept='.jpg,.png,.gif,.jpeg' name='image_main-".$content_id."'>
+            </td>
+          </tr> 
+
+          <tr>
+            <td class='bold_row'>Content main</td>
+            <td class='input_content bold_row'>
+              <textarea class='area_content' name='content_main-".$content_id."'> ".$content_main." </textarea>
+            </td>
+          </tr> 
         
-        echo "image 1: <input type='text' class='input_content' name='img_1-".$content_id."' value='".$img_1."'><br>";
-        echo "image 2: <input type='text' class='input_content' name='img_2-".$content_id."' value='".$img_2."'><br>";
-        echo "image 3: <input type='text' class='input_content' name='img_3-".$content_id."' value='".$img_3."'><br>";
+        ";
+
+        for($j = 1; $j <= 3; $j++){
+          $img[$j] = $content_less[$i][$j+2];
+          $sub[$j] = $content_less[$i][$j+6];
+          $aud[$j] = $content_less[$i][$j+9];
+          echo "<tr><td> sub content ".$j."</td><td class='input_content '> <textarea class='area_content' name='sub_".$j."-".$content_id."'>".$sub[$j]."</textarea></td></tr>";
+
+          echo "<tr>
+          <td> audio ".$j."</td> 
+          <td>
+            <div>".$aud[$j]."</div> 
+            <input type='file' accept='.mp3,.wav' name='aud_".$j."-".$content_id."'> 
+          </td></tr>";
+
+          echo "<tr>
+          <td class='bold_row'> image ".$j."</td>
+          <td class='bold_row'>
+            <div>".$img[$j]."</div>
+            <input type='file' accept='.jpg,.png,.gif,.jpeg' name='img_".$j."-".$content_id."'>
+          </td></tr>";
+        }
         
-        echo "Content main: <input type='text' class='input_content' name='content_main-".$content_id."' value='".$content_main."'><br>";
 
-        echo "sub content 1: <textarea class='area_content' name='sub_1-".$content_id."'>".$sub_1."</textarea><br>";
-        echo "sub content 2: <textarea class='area_content' name='sub_2-".$content_id."'>".$sub_2."</textarea><br>";
-        echo "sub content 3: <textarea class='area_content' name='sub_3-".$content_id."'>".$sub_3."</textarea><br>";
-
-        echo "audio 1: <input type='text' class='input_content' name='aud_1-".$content_id."' value='".$aud_1."'><br>";
-        echo "audio 2: <input type='text' class='input_content' name='aud_2-".$content_id."' value='".$aud_2."'><br>";
-        echo "audio 3: <input type='text' class='input_content' name='aud_3-".$content_id."' value='".$aud_3."'><br>";
-
-        echo"</div>";
+        echo"</table></div>";
       }
 
-      echo "<input type='submit' value='update lesson'>";
+      echo "<div class='update_content'><input type='submit' value='update lesson'></div>";
       echo "</form>";
     }
 

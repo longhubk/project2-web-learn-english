@@ -1,6 +1,6 @@
 
   <div class="admin_container">
-    <h2>New Lesson</h2>
+    <h2 class='title_ad_page'>New Lesson</h2>
     <?php
      // var_dump($_SESSION);
       if(isset($data['post_up']))
@@ -11,86 +11,85 @@
 
 
 
-  <form action="./HomeAdmin/postNewLesson" method="POST">
-    <!-- <label for="select_topic">Choose topic:</label>
-    <select name="choose_topic" id="select_topic">
-      <?php
-        if(isset($data['all_topic'])){
-          $all_top = $data['all_topic'];
-          for($i = 0; $i < sizeof($all_top); $i++){
-            echo "<option value='".$all_top[$i][1]."'>".$all_top[$i][0]."</option>";
-          }
-        }
-        ?>
-    </select> -->
-    
-    <label for="select_tut">Choose tutorial:</label>
-    <select name="choose_tut" id="select_tut">
-      <?php
-        if(isset($data['all_tutorial'])){
-          $all_tut = $data['all_tutorial'];
-          for($i = 0; $i < sizeof($all_tut); $i++){
-            echo "<option value='".$all_tut[$i][1]."'>".$all_tut[$i][0]."</option>";
-          }
-        }
-        ?>
-    </select>
-    <label for="select_lesson">Choose lesson:</label>
-    <select name="choose_les" id="select_les">
-      <?php
-        if(isset($data['all_lesson'])){
-          $all_les = $data['all_lesson'];
-          for($i = 0; $i < sizeof($all_les); $i++){
-            echo "<option value='".$all_les[$i][1]."'>".$all_les[$i][0]."</option>";
-          }
-        }
-        ?>
-    </select><br><br>
+  <form action="./HomeAdmin/postNewLesson" method="POST" enctype="multipart/form-data">
+    <table class="table_control">
+      <tr class="first_row">
+        <td>Choose Tutorial</td>
+        <td>Choose Lesson</td>
+        <td>Number Content</td>
+        <td>Tutorial Level</td>
+      </tr>
 
-    <label for="choose_number">Choose number content:</label>
-    <input type="number" id='choose_number' name='number_content'  value='1' max='10' min='1'> 
-    
-    <br><br>
-
-    <div id='tut_level_main'>Tutorial Level: 
-      <span id='tut_level'>
-        <?php
-          if(isset($data["all_tutorial"])){
-            echo $data["all_tutorial"][0][2];
-          }
-        ?>
-      </span>
-    </div>
+      <tr>
+        <td>
+          <select name="choose_tut" id="select_tut">
+            <?php
+              if(isset($data['all_tutorial'])){
+                $all_tut = $data['all_tutorial'];
+                for($i = 0; $i < sizeof($all_tut); $i++){
+                  echo "<option value='".$all_tut[$i][1]."'>".$all_tut[$i][0]."</option>";
+                }
+              }
+              ?>
+          </select>
+        </td>
+        <td>
+          <select name="choose_les" id="select_les">
+            <?php
+              if(isset($data['all_lesson'])){
+                $all_les = $data['all_lesson'];
+                for($i = 0; $i < sizeof($all_les); $i++){
+                  echo "<option value='".$all_les[$i][1]."'>".$all_les[$i][0]."</option>";
+                }
+              }
+              ?>
+          </select>
+        </td>
+        <td>
+          <input type="number" id='choose_number' name='number_content'  value='1' max='10' min='1'> 
+        </td>
+        <td>
+          <span id='tut_level'>
+            <?php
+              if(isset($data["all_tutorial"])){
+                echo $data["all_tutorial"][0][2];
+              }
+            ?>
+          </span>
+        </td>
+      </tr>
+    </table>
+    <br>
     <input type='hidden' id='input_tut_level' name='tut_level_input' value='2'>
 
 
-    <div id='content_add_main'>
-    
-    <hr>
-    <div>Content 1 :</div>
-    <label>Main Content:</label>
-    <input class="input_content" type="text" name='main_content-1'><br><br>
-    <label>Guide Content:</label>
-    <input class="input_content" type="text" name='guide_content-1'><br><br>
-    <label>Example 1:</label>
-    <input class="input_content" type="text" name='exp-1-1'><br><br>
-    
-    <label>Example 2:</label>
-    <input class="input_content" type="text" name='exp-1-2'><br><br>
-    
-    <label>Example 3:</label>
-    <input class="input_content" type="text" name='exp-1-3'><br><br>
+      <div id='content_add_main'>
+        <hr>
+        <div>Content 1 :</div>
+        <table>
+          <tr>
+            <td class='title_content'>Main Content</td>
+            <td class="input_content"><textarea type="text" name='main_content-1'></textarea></td>
 
-    <label>Example 4:</label>
-    <input class="input_content" type="text" name='exp-1-4'><br><br>
-    
-    <label>Example 5:</label>
-    <input class="input_content" type="text" name='exp-1-5'><br><br>
-
-    </div>
-
-
-    <input class="update_content" type="submit" name='update_content' value='update'><br><br>
+          </tr>
+          <tr>
+            <td class='title_content'>Guide Content</td>
+            <td class="input_content"><textarea type="text" name='guide_content-1'></textarea></td>
+          </tr>
+          <?php 
+          for($i = 1; $i <= 5; $i++){
+            echo "<tr>";
+              echo "<td class='title_content'>Example ".$i."</td>";
+              echo "<td class='input_content'><textarea type='text' name='exp-1-".$i."'></textarea></td>";
+            echo "</tr>";
+          }
+          ?>
+        </table>
+      </div>
+      <br>
+      <div class="update_content">
+        <input  type="submit" name='update_content' value='update'><br><br>
+      </div>
   </form>
 </div>
   
