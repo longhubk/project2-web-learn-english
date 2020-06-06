@@ -10,6 +10,7 @@
     <script src = './public/js/JQuery/ajax/choose_tut_admin.js'  type = "text/javascript"></script>
     <script src = './public/js/JQuery/ajax/choose_test_admin.js'  type = "text/javascript"></script>
     <script src = './public/js/JQuery/ajax/block_user.js'  type = "text/javascript"></script>
+    <script src = './public/js/JQuery/ajax/delete_lesson.js'  type = "text/javascript"></script>
     
 
 </body>

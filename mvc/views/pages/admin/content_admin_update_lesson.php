@@ -26,10 +26,10 @@
         $content_guide = $content_less[$i][3];
         $exp = [];
 
-        echo "<div id='content-".$content_id."'>
+        echo "<div id='ct_main-".$content_id."'>
               <hr>
               <lab> Content ".($i+1)."</label><br><br>
-              <table class=''>
+              <table id='content_".($i+1)."'>
               <tr>
                 <td> Main content</td>
                 <td class='input_content' > 
@@ -45,20 +45,24 @@
               </tr>
 
                 ";
-        for($j = 1 ; $j <= 5; $j++){
+        for($j = 1 ; $j <= 10; $j++){
           $exp[$j] = $content_less[$i][$j+3];
-          echo "
-            <tr>
-              <td> Example ".$j."</td>
-              <td class='input_content'><textarea  name='example_".$j."-".$content_id."' >".$exp[$j]."</textarea>
-              </td>
-            </tr>
-          ";
+          if(!empty($exp[$j])){
+            echo "
+              <tr>
+                <td> Example ".$j."</td>
+                <td class='input_content'><textarea  name='example_".$j."-".$content_id."' >".$exp[$j]."</textarea>
+                </td>
+              </tr>
+            ";
+          }
 
         }
 
-        echo "</table>";
-        echo"</div>";
+        echo "</table>
+            <img class='icon-96' id='add_ex2_".($i+1)."' data-content_id='".$content_id."' src='public/icon/plus_green_icon.png'>
+            <img class='icon-96' id='rm_ex2_".($i+1)."'  src='public/icon/minus_red_icon.png'>
+        </div>";
       }
 
 

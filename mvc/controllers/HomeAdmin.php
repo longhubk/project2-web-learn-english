@@ -164,20 +164,14 @@
       $res = false;
       if(isset($_FILES)){
         // var_dump($_FILES);
-          // $res = $this->tut_db->updateFile($_FILES);
-
-        // for($i = 0)
       }
       if(isset($_POST)){
-        // if(!empty($_FILES)){
-        //   $res = $this->tut_db->updateContent($_POST,$_FILES);
-        // }
         if(!empty($_POST)){
-          $res = $this->tut_db->updateContent($_POST, $_FILES = []);
+          $res = $this->tut_db->updateContent($_POST, $_FILES);
         }
       }
-      // if(isset($_POST))
-        // header("Location:../HomeAdmin/getNewLesson");
+      if(isset($_POST))
+        header("Location:../HomeAdmin/getNewLesson");
 
       $this->view("master_admin", [
         "page"         => "content_admin_new_lesson",
@@ -347,6 +341,40 @@
     
       ]);
     }
+
+    
+    public function getDeleteLesson(){
+      $this->middlewareAdmin();
+      $res = "fail";
+      if(isset($_POST)){
+        if(!empty($_POST))
+          $res = $this->tut_db->getDeleteLessonById($_POST);
+      }
+      $this->view("master_blank", [
+        "page"        => "get_mes_history",
+        "mes_history" => $res,
+      ]);
+    }
+
+    public function postEditTutorial(){
+      $this->middlewareAdmin();
+      $res = false;
+      if(isset($_POST)){
+        if(!empty($_POST['id_tut_edit']))
+          $res = $this->tut_db->getEditTutorialById($_POST);
+        if(!empty($_POST['id_les_edit'])){
+          $res = $this->tut_db->getEditLessonById($_POST);
+        }
+      }
+      if($res) 
+        header("Location:../HomeAdmin/getViewTutorial");
+
+      $this->view("master_admin", [
+        "page"        => "content_admin_view_tut",
+        "res_update" => $res,
+      ]);
+    }
+
 
 
   }

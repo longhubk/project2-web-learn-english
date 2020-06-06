@@ -16,7 +16,7 @@
         if(isset($_COOKIE['member_login']))
           $this->user_db->checkSession($_COOKIE['member_login'], '');
         else
-           header('Location:Register/');
+          header('Location:Register/');
       }
       // var_dump($_SESSION);
       $this->view("master_h", [

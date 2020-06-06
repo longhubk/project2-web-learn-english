@@ -59,7 +59,7 @@ function create_chat_dialog(friend_id, friend_name){
 
 
 	$(document).on('click', '.start_chat', () =>{
-		$('#friend_model_detail').toggle()
+		$('#friend_model_detail').slideToggle()
 		// console.log('hello')
 		var idFriend = $('.start_chat').data("tofriendid");
 		// var id_btn = "#chat_to-" + idFriend;
@@ -68,7 +68,8 @@ function create_chat_dialog(friend_id, friend_name){
 		var nameFriend = $('.start_chat').data("tofriendname");
 		console.log('friend_name: '+ nameFriend)
 		create_chat_dialog(idFriend, nameFriend);
-		$('#user_dialog_'+idFriend).toggle();
+		auto_scroll_message()
+		$('#user_dialog_'+idFriend).slideToggle();
 	})
 
 	

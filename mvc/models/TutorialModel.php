@@ -188,28 +188,68 @@
       return  $this->queryAssoc($qr, 'tut_level');
     }
 
+    public function getEditTutorialById($post){
 
-    private function  stripVN($str) {
+      $id_tut = $post['id_tut_edit'];
+      $new_level = $post['new_level_tut'];
+      $new_name = $post['new_tutorial_name'];
+      $new_topic = $post['new_topic'];
+      $new_qr_name = $this->stripVN($new_name);
+      $qr   = "UPDATE `tutorials` SET `tut_level` = '$new_level' WHERE `tutorials`.`id` = '$id_tut'";
+      $res1 =  mysqli_query($this->con, $qr);
 
-    $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
-    $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
-    $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", 'i', $str);
-    $str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/", 'o', $str);
-    $str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/", 'u', $str);
-    $str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ)/", 'y', $str);
-    $str = preg_replace("/(đ)/", 'd', $str);
+      $qr2   = "UPDATE `tutorials` SET `tut_name` = '$new_name' WHERE `tutorials`.`id` = '$id_tut'";
+      $res2 =  mysqli_query($this->con, $qr2);
 
-    $str = preg_replace("/(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/", 'A', $str);
-    $str = preg_replace("/(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/", 'E', $str);
-    $str = preg_replace("/(Ì|Í|Ị|Ỉ|Ĩ)/", 'I', $str);
-    $str = preg_replace("/(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/", 'O', $str);
-    $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
-    $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
-    $str = preg_replace("/(Đ)/", 'D', $str);
-    $str = preg_replace("/ /", "_", $str);
-    return $str;
+      $qr3   = "UPDATE `tutorials` SET `tut_query` = '$new_qr_name' WHERE `tutorials`.`id` = '$id_tut'";
+      $res3 =  mysqli_query($this->con, $qr3);
 
-  }
+      $qr4   = "UPDATE `tutorials` SET `topic_id` = '$new_topic' WHERE `tutorials`.`id` = '$id_tut'";
+      $res4 =  mysqli_query($this->con, $qr4);
+
+      if($res1 && $res2 && $res3 && $res4) return true;
+      else return false;
+
+    }
+    public function getEditLessonById($post){
+
+      $id_les = $post['id_les_edit'];
+      $new_title = $post['new_lesson_title'];
+      $new_tut = $post['new_tut_edit'];
+      
+      $res1 = false;
+      if(!empty($new_title)){
+        $qr   = "UPDATE `lesson_tut` SET `title_lesson` = '$new_title' WHERE `lesson_tut`.`lesson_id` = '$id_les'";
+        $res1 =  mysqli_query($this->con, $qr);
+      }else{
+        $res1 = true;
+      }
+
+      $qr2   = "UPDATE `lesson_tut` SET `tut_id` = '$new_tut' WHERE `lesson_tut`.`lesson_id` = '$id_les'";
+      $res2 =  mysqli_query($this->con, $qr2);
+
+      if($res1 && $res2 ) return true;
+      else return false;
+
+    }
+
+    public function getDeleteLessonById($post){
+      $les_id = $post['lesId'];
+      $qr2 = "SELECT image FROM lesson_tut WHERE lesson_id = '$les_id'";
+      $img = $this->queryAssoc($qr2, 'image');
+      $f_name_check = './public/img/'.$img;
+      if(file_exists($f_name_check)){
+        unlink($f_name_check);
+      }
+
+      $qr   = "DELETE FROM `lesson_tut` WHERE `lesson_tut`.`lesson_id` = '$les_id'";
+      $exe  = mysqli_query($this->con, $qr);
+
+
+      if($exe) return "ok";
+      else return "fail";
+    }
+
     public  function createNewTutorial($post_tut, $id_ad_create){
     // $string = "Cộng hòa xã hội chủ nghĩa Việt Nam";
       $link_string = $this->stripVN($post_tut['new_tut_name']);
@@ -264,7 +304,7 @@
 
           $str = 'exp-'.$i.'-';
           $exp = [];
-          for($j = 1; $j <= 5; $j++){
+          for($j = 1; $j <= 10; $j++){
             $id = $str . $j;
             if(isset($post[$id])){
               $exp[$j] = $post[$id];
@@ -272,7 +312,9 @@
               $exp[$j] = '';
           }
 
-          $qr = 'INSERT INTO content_lesson VALUES(NULL, "' .$les_id .'","' .$main_ct. '","'.$guide_ct.'","'.$exp[1].'","'.$exp[2].'","'.$exp[3].'","'.$exp[4].'","'.$exp[5].'")';
+          $qr = 'INSERT INTO content_lesson VALUES(NULL, "' .$les_id .'","' .$main_ct. '","'.$guide_ct.'","'.$exp[1].'","'.$exp[2].'","'.$exp[3].'","'.$exp[4].'","'.$exp[5].'","'.$exp[6].'","'.$exp[7].'","'.$exp[8].'","'.$exp[9].'","'.$exp[10].'")';
+
+          // echo $qr . "<br>";
           
           $rows = mysqli_query($this->con, $qr);
           if(!$rows) return false;

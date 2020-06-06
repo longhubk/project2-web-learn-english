@@ -66,7 +66,7 @@
       <div id='content_add_main'>
         <hr>
         <div>Content 1 :</div>
-        <table>
+        <table id='content_1'>
           <tr>
             <td class='title_content'>Main Content</td>
             <td class="input_content"><textarea type="text" name='main_content-1'></textarea></td>
@@ -77,7 +77,7 @@
             <td class="input_content"><textarea type="text" name='guide_content-1'></textarea></td>
           </tr>
           <?php 
-          for($i = 1; $i <= 5; $i++){
+          for($i = 1; $i <= 3; $i++){
             echo "<tr>";
               echo "<td class='title_content'>Example ".$i."</td>";
               echo "<td class='input_content'><textarea type='text' name='exp-1-".$i."'></textarea></td>";
@@ -85,6 +85,8 @@
           }
           ?>
         </table>
+        <img class='icon-96' id='add_ex_1' src='public/icon/plus_green_icon.png'>
+        <img class='icon-96' id='rm_ex_1' src='public/icon/minus_red_icon.png'>
       </div>
       <br>
       <div class="update_content">

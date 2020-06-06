@@ -11,6 +11,9 @@ body{
 .admin_container .title_ad_page{
   color: rgb(102, 125, 129);
 }
+.admin_container .toggle_edit_les{
+  display: none;
+}
 .admin_header{
   background-color: #369ec3;
   top             : 0;
@@ -87,14 +90,19 @@ body{
 
 
 }
+
+
 .admin_container table.table_view_tut{
+  margin-top: 10px;
   float: right;
+  width: 45%;
 }
 .admin_container table.table_view_tut tr td.center{
   text-align: center;
 }
 .admin_container table.tut_table{
   float: left;
+  width: 50%;
 }
 .admin_container table tr td input,
 .admin_container table tr td select,
@@ -118,17 +126,32 @@ body{
   border-collapse: collapse;
 }
 .admin_container table.add_lesson_table{
-  float: left;
+  float: right;
   width: 40%;
+  margin-right: 42px ;
 }
-.admin_container table.add_lesson_table tr td input[type='file']{
-  /* width: 60%; */
+.admin_container table.edit_lesson_table{
+  float: right;
+}
+
+.admin_container table.add_lesson_table tr.first_row{
+  background-color: #79a777;
+}
+.admin_container table.add_lesson_table tr td input[type='submit']{
+  background-color: #79a777;
+  border-radius: 3px;
+  padding: 2px 5px;
+  color: white;
+  transition: 0.2s;
+}
+.admin_container table.add_lesson_table tr td input[type='submit']:hover{
+  transform: scale(1.03);
 }
 
 .admin_container table.add_lesson_table tr td{
   /* width: 50%; */
-  border : 1px solid red;
-  padding: 20px;
+  border : 1px solid gray;
+  padding: 10px;
 }
 .admin_container table.new_test_table tr td,
 .admin_container table.tut_table tr td{
@@ -211,7 +234,7 @@ body{
 }
 .admin_container table.tut_table tr td{
   border: 1px solid gray;
-  width: 300px;
+  width: 50%;
   padding: 10px;
   text-align: left;
 }

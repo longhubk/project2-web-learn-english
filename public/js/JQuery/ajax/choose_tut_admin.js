@@ -1,5 +1,61 @@
 $(document).ready( () =>{
 
+  let global_num_ex = 0;
+  for(let i = 1; i <= 10; i++){
+    let id_ex = 'img#add_ex_'+i
+    let id_ex2 = 'img#add_ex2_'+i
+    let id_rm = 'img#rm_ex_'+i
+    let id_rm2 = 'img#rm_ex2_'+i
+    let id_ct = '#content_'+i+ " tr"
+    let id_tb = '#content_'+i
+    $(document).on("click",id_ex,() => {
+      let num_ex = $(id_ct).length - 2
+      console.log("hello")
+      console.log('num_curr_row: ' + num_ex)
+      let append = ''
+      if(num_ex < 10){
+        append += "<tr><td class='title_content'>Example "+(num_ex+1)+"</td><td class='input_content'><textarea   name='exp-"+i+"-"+(num_ex+1)+"'></textarea></td></tr>";
+        console.log(append)
+        $(id_tb).append(append)
+      }
+    })
+    $(document).on("click",id_ex2,() => {
+      let num_ex = $(id_ct).length - 2
+      console.log("hello")
+      console.log('num_curr_row: ' + num_ex)
+      let content_id = $(id_ex2).data('content_id')
+      let append = ''
+      if(global_num_ex == 0){
+        global_num_ex = $(id_ct).length
+      }
+      if(num_ex < 10){
+        append += "<tr><td>Example "+(num_ex+1)+"</td><td class='input_content'><textarea   name='example_"+(num_ex+1)+"-"+content_id+"'></textarea></td></tr>";
+        console.log(append)
+        $(id_tb).append(append)
+      }
+    })
+    $(document).on("click", id_rm, () => {
+      let num_ex = $(id_ct).length - 2
+      if(num_ex > 0){
+        $(id_ct + ":last").remove()
+      }
+    })
+
+
+
+    $(document).on("click", id_rm2, () => {
+      if(global_num_ex > 0){
+        let num_ex = $(id_ct).length
+
+        if(num_ex > global_num_ex){
+          $(id_ct + ":last").remove()
+        }
+      }
+    })
+
+  }
+  // $('#add_ex_')
+
   $('#select_tut').on('change', () =>{
     let val = $('#select_tut').val()
     // alert('val change to ' + val)
@@ -25,6 +81,10 @@ $(document).ready( () =>{
     })
 
 
+  })
+
+  $('#select_les').on('change', () => {
+    $('#choose_number').trigger("click")
   })
 
 
@@ -67,7 +127,7 @@ $(document).ready( () =>{
       $append = "";
       $append += "<hr>";
       $append += "<div>Content "+i+" :</div>";
-      $append += "<table>";
+      $append += "<table id='content_"+i+"'>";
 
       $append += "<tr>"
       $append += "<td class='title_content'>Main Content</td>"
@@ -76,18 +136,20 @@ $(document).ready( () =>{
 
       $append += "<tr>"
       $append += "<td class='title_content'>Guide Content</td>"
-      $append += "<td class='input_content'><textarea  name='main_content-"+i+"'></textarea>";
+      $append += "<td class='input_content'><textarea  name='guide_content-"+i+"'></textarea>";
       $append += "</tr>"
       
 
-      for(let j = 1; j <= 5; j++){
+      for(let j = 1; j <= 3; j++){
           $append += "<tr>"
           $append += "<td class='title_content' >Example "+j+" :</td>"
           $append += "<td class='input_content'><textarea   name='exp-"+i+"-"+j+"'></textarea></td>"
           $append += "</tr>";
       }
-
       $append += "</table>";
+      $append += "<img class='icon-96' id='add_ex_"+i+"' src='public/icon/plus_green_icon.png'>";
+      $append += "<img class='icon-96' id='rm_ex_"+i+"' src='public/icon/minus_red_icon.png'>";
+
       $('#content_add_main').append($append)
     }
   }
@@ -130,6 +192,10 @@ $(document).ready( () =>{
       }
     }
 
+  })
+
+  $('#test_click').click(function(){
+    console.log("hello");
   })
   
 

@@ -1,8 +1,10 @@
 $(document).ready(() =>{
   // let num_user = $('#number_user').html()
   // console.log(num_user)
-  let str_us_id = $('#us_id_ad').html()
-  let arr_user = str_us_id.split(',')
+  // let str_us_id = $('#us_id_ad').html()
+  // let arr_user = str_us_id.split(',', str_us_id)
+  let arr_user = '0'
+
 
   for(let i = 0; i < arr_user.length; i++){
     let id_block = '#block-' + arr_user[i];
