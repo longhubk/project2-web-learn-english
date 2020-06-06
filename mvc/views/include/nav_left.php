@@ -25,6 +25,13 @@
 				
 			}
 
+			else
+			if(isset($data['allDocCatalog'])){
+				$allDocCatalog = $data['allDocCatalog'];
+				for($i = 0; $i < sizeof($allDocCatalog); $i++)
+					echo "<li><a href='./Docs/expands/".$allDocCatalog[$i][2]."'>".$allDocCatalog[$i][1]."</a></li>";
+			}
+
 		?>
 	</ul>
 </div>

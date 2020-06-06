@@ -1,8 +1,11 @@
 var countDownDate = new Date();
 var countDownDate2 = new Date(countDownDate)
 
-let time_test = Number(document.getElementById('time_test').innerHTML);
-console.log(time_test)
+let time_of_test = document.getElementById('time_test')
+let time_test = 0;
+if(time_of_test != null)
+  time_test = Number(time_of_test.innerHTML);
+// console.log(time_test)
 
 countDownDate2.setMinutes(countDownDate.getMinutes() + time_test);
 

@@ -40,10 +40,13 @@
   <link href = "./public/css/user_page.css"      rel = "stylesheet" type = "text/css">
   <link href = "./public/css/test_page.css"      rel = "stylesheet" type = "text/css">
   <link href = "./public/css/test_index.css"     rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/chat.css"     rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/friend_list.css"     rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/admin_lesson.css"     rel = "stylesheet" type = "text/css">
 
   <!-- <link href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/views/views/css/font-awesome.min.css" rel = "stylesheet"> -->
   <link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href = "https://bootswatch.com/flatly/bootstrap.min.css"         rel="stylesheet">
+  <!-- <link href = "https://bootswatch.com/flatly/bootstrap.min.css"         rel="stylesheet"> -->
   
   <!-- <script src = "https://use.fontawesome.com/566df3ace8.js"></script> -->
   <!-- <script src = 'https://kit.fontawesome.com/a076d05399.js'></script> -->
@@ -55,7 +58,7 @@
     window.onload = function() {
       generateDay();
       generateTime();
-      hideBtnLogin();
+      // hideBtnLogin();
     }
     window.onscroll = function() {
       // alert("onscroll")
@@ -67,13 +70,17 @@
         var h = document.documentElement.clientHeight;
         
         if(w > 1000){
-          document.getElementById('ver_nav').style.width = "230px"
+          let ver_nav = document.getElementById('ver_nav')
+          if(ver_nav != null)
+            ver_nav.style.width = "230px"
         }
         if(w < 500){
-          document.getElementById('ver_nav').style.width = "0"
+          let ver_nav = document.getElementById('ver_nav')
+          if(ver_nav != null)
+            ver_nav.style.width = "0"
         }
         // Display result inside a div element
-        console.log("Width: " + w + ", " + "Height: " + h);
+        // console.log("Width: " + w + ", " + "Height: " + h);
     }
     window.addEventListener("resize", displayWindowSize);
     
@@ -113,7 +120,7 @@
         if(!empty($data['avatar'])){
           $name_avt = $data['avatar'];
           $directory_avatar = "./public/img/uploads/" . $name_avt;
-          echo "<img title='". $_COOKIE["member_login"]."' class='small-avt' src='". $directory_avatar ."'>" ;
+          echo "<img id='sm_avt' title='". $_COOKIE["member_login"]."' class='small-avt' src='". $directory_avatar ."'>" ;
         }
         $show_user_btn = true;
 

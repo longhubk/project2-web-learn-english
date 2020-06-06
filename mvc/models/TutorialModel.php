@@ -51,6 +51,11 @@
       return $this->queryAssoc($qr, 'tut_level');
     }
 
+    public function getAllIdLessonOfTut($tut_id){
+      $qr   = "SELECT lesson_id FROM lesson_tut WHERE tut_id = '$tut_id'";
+      return $this->queryAllArray($qr);
+    }
+
     public function getImageLesson($getTutorial){
       $qr   = "SELECT image FROM lesson_tut WHERE name_lesson = '$getTutorial'";
       return $this->queryAssoc($qr,'image');
@@ -103,10 +108,10 @@
       return $this->queryAllArray($qr);
     }
     
-    // public function getNameAdminModify(){
-    //   $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
-    //   return $this->queryAllArray($qr);
-    // }
+    public function uploadFile($file){
+      $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
+      return $this->queryAllArray($qr);
+    }
 
     public function getContentByLessonId($les_id){
       $qr   = "SELECT * FROM content_lesson WHERE lesson_id = '$les_id'";
@@ -121,42 +126,58 @@
     public function updateLessonById($post_ct){
       $res = true;
       foreach($post_ct as $key => $value){
-        $qr = "";
-        if(!empty($value)){
           $keys = explode("-", $key);
-          // echo $keys[0] ." and ". $keys[1] . "<br>";
-          // $qr = "UPDATE `content_lesson` SET `$keys[0]` = '$value' WHERE `content_lesson`.`content_id` = $keys[1]";
           $qr = 'UPDATE content_lesson SET '.$keys[0].' = "'.$value.'" WHERE content_id = '.$keys[1];
-
           $up = mysqli_query($this->con, $qr);
-          if(!$up)
+
+          if(!$up){
             $res = false;
-        }
+            // echo "false <br>";
+          }
+          // else
+            // echo "true <br>";
       }
       return $res;
     }
 
-    public function updateBasicLessonById($post_ct){
+    public function updateBasicLessonById($post_ct, $file_ct){
       $res = true;
-      echo "hello basic";
+      // echo "hello basic";
       $res_arr = [];
       foreach($post_ct as $key => $value){
         $qr2 = '';
-        if(!empty($value)){
+        // if(!empty($value)){
           $keys = explode("-", $key);
-          // echo $keys[0] ." and ". $keys[1] . "<br>";
           $qr2 = 'UPDATE basic_content_lesson SET '.$keys[0].' = "'.$value.'" WHERE content_id = '.$keys[1];
           $up = mysqli_query($this->con, $qr2);
+
+          // echo $qr2 . "<br>";
           if(!$up){
-            // echo "fail<br>";
             $res = false;
-            // array_push($res_arr, "false");
           }
-          else{
-            // echo "ok<br>";
-            // array_push($res_arr, "true");
+      }
+      foreach($file_ct as $key => $value){
+        $qr2 = '';
+        if($value['error'] == 0){
+          $keys = explode('-', $key);
+
+          $kind = explode('_',$keys[0]);
+          $type = '';
+          if($kind[0] == 'image' || $kind[0] == 'img'){
+            $type = 'image';
           }
+          else $type = 'music';
+
+          $this->uploadFileLesson($value['name'],$value['tmp_name'], $value['size'],$value['error'], $type);
+
+          $qr2 = 'UPDATE basic_content_lesson SET '.$keys[0].' = "'.$value['name'].'" WHERE content_id = '.$keys[1];
+          $up = mysqli_query($this->con, $qr2);
+          // echo $qr2 . "<br>";
+
+          if(!$up)
+            $res = false;
         }
+
       }
       return $res;
     }
@@ -167,28 +188,68 @@
       return  $this->queryAssoc($qr, 'tut_level');
     }
 
+    public function getEditTutorialById($post){
 
-    private function  stripVN($str) {
+      $id_tut = $post['id_tut_edit'];
+      $new_level = $post['new_level_tut'];
+      $new_name = $post['new_tutorial_name'];
+      $new_topic = $post['new_topic'];
+      $new_qr_name = $this->stripVN($new_name);
+      $qr   = "UPDATE `tutorials` SET `tut_level` = '$new_level' WHERE `tutorials`.`id` = '$id_tut'";
+      $res1 =  mysqli_query($this->con, $qr);
 
-    $str = preg_replace("/(à|á|ạ|ả|ã|â|ầ|ấ|ậ|ẩ|ẫ|ă|ằ|ắ|ặ|ẳ|ẵ)/", 'a', $str);
-    $str = preg_replace("/(è|é|ẹ|ẻ|ẽ|ê|ề|ế|ệ|ể|ễ)/", 'e', $str);
-    $str = preg_replace("/(ì|í|ị|ỉ|ĩ)/", 'i', $str);
-    $str = preg_replace("/(ò|ó|ọ|ỏ|õ|ô|ồ|ố|ộ|ổ|ỗ|ơ|ờ|ớ|ợ|ở|ỡ)/", 'o', $str);
-    $str = preg_replace("/(ù|ú|ụ|ủ|ũ|ư|ừ|ứ|ự|ử|ữ)/", 'u', $str);
-    $str = preg_replace("/(ỳ|ý|ỵ|ỷ|ỹ)/", 'y', $str);
-    $str = preg_replace("/(đ)/", 'd', $str);
+      $qr2   = "UPDATE `tutorials` SET `tut_name` = '$new_name' WHERE `tutorials`.`id` = '$id_tut'";
+      $res2 =  mysqli_query($this->con, $qr2);
 
-    $str = preg_replace("/(À|Á|Ạ|Ả|Ã|Â|Ầ|Ấ|Ậ|Ẩ|Ẫ|Ă|Ằ|Ắ|Ặ|Ẳ|Ẵ)/", 'A', $str);
-    $str = preg_replace("/(È|É|Ẹ|Ẻ|Ẽ|Ê|Ề|Ế|Ệ|Ể|Ễ)/", 'E', $str);
-    $str = preg_replace("/(Ì|Í|Ị|Ỉ|Ĩ)/", 'I', $str);
-    $str = preg_replace("/(Ò|Ó|Ọ|Ỏ|Õ|Ô|Ồ|Ố|Ộ|Ổ|Ỗ|Ơ|Ờ|Ớ|Ợ|Ở|Ỡ)/", 'O', $str);
-    $str = preg_replace("/(Ù|Ú|Ụ|Ủ|Ũ|Ư|Ừ|Ứ|Ự|Ử|Ữ)/", 'U', $str);
-    $str = preg_replace("/(Ỳ|Ý|Ỵ|Ỷ|Ỹ)/", 'Y', $str);
-    $str = preg_replace("/(Đ)/", 'D', $str);
-    $str = preg_replace("/ /", "_", $str);
-    return $str;
+      $qr3   = "UPDATE `tutorials` SET `tut_query` = '$new_qr_name' WHERE `tutorials`.`id` = '$id_tut'";
+      $res3 =  mysqli_query($this->con, $qr3);
 
-  }
+      $qr4   = "UPDATE `tutorials` SET `topic_id` = '$new_topic' WHERE `tutorials`.`id` = '$id_tut'";
+      $res4 =  mysqli_query($this->con, $qr4);
+
+      if($res1 && $res2 && $res3 && $res4) return true;
+      else return false;
+
+    }
+    public function getEditLessonById($post){
+
+      $id_les = $post['id_les_edit'];
+      $new_title = $post['new_lesson_title'];
+      $new_tut = $post['new_tut_edit'];
+      
+      $res1 = false;
+      if(!empty($new_title)){
+        $qr   = "UPDATE `lesson_tut` SET `title_lesson` = '$new_title' WHERE `lesson_tut`.`lesson_id` = '$id_les'";
+        $res1 =  mysqli_query($this->con, $qr);
+      }else{
+        $res1 = true;
+      }
+
+      $qr2   = "UPDATE `lesson_tut` SET `tut_id` = '$new_tut' WHERE `lesson_tut`.`lesson_id` = '$id_les'";
+      $res2 =  mysqli_query($this->con, $qr2);
+
+      if($res1 && $res2 ) return true;
+      else return false;
+
+    }
+
+    public function getDeleteLessonById($post){
+      $les_id = $post['lesId'];
+      $qr2 = "SELECT image FROM lesson_tut WHERE lesson_id = '$les_id'";
+      $img = $this->queryAssoc($qr2, 'image');
+      $f_name_check = './public/img/'.$img;
+      if(file_exists($f_name_check)){
+        unlink($f_name_check);
+      }
+
+      $qr   = "DELETE FROM `lesson_tut` WHERE `lesson_tut`.`lesson_id` = '$les_id'";
+      $exe  = mysqli_query($this->con, $qr);
+
+
+      if($exe) return "ok";
+      else return "fail";
+    }
+
     public  function createNewTutorial($post_tut, $id_ad_create){
     // $string = "Cộng hòa xã hội chủ nghĩa Việt Nam";
       $link_string = $this->stripVN($post_tut['new_tut_name']);
@@ -203,10 +264,17 @@
         return false;
     }
 
-    public  function createNewLesson($post_les){
-      $qr = "INSERT INTO `lesson_tut` (`lesson_id`, `tut_id`, `name_lesson`, `title_lesson`, `image`) VALUES (NULL, '$post_les[tut_lesson]', '$post_les[new_lesson_name]', '$post_les[new_lesson_title]', '$post_les[select_ext_img]');";
+    public  function createNewLesson($post_les, $file_les){
+      
+      $file_name = "";
+      if($file_les['select_img_les']['error'] == 0){
+        $file_img = $file_les['select_img_les'];
+        $file_name = $file_img['name'];
+        $this->uploadFileLesson($file_img['name'], $file_img['tmp_name'], $file_img['size'],$file_img['error'],"image_les");
+      }
 
-
+      $qr = "INSERT INTO `lesson_tut` (`lesson_id`, `tut_id`, `name_lesson`, `title_lesson`, `image`) VALUES (NULL, '$post_les[tut_lesson]', '$post_les[new_lesson_name]', '$post_les[new_lesson_title]', '$file_name');";
+      
       $res = mysqli_query($this->con, $qr);
       if($res)
         return true;
@@ -214,7 +282,7 @@
         return false;
     }
 
-    public function updateContent($post){
+    public function updateContent($post, $file){
       if(!empty($post['choose_les']))
         $les_id = $post['choose_les'];
       else 
@@ -227,7 +295,7 @@
           $main_ct    = '';
           $guide_ct   = '';
           $main_ct_p  = "main_content-".$i;
-          $guide_ct_p = "main_content-".$i;
+          $guide_ct_p = "guide_content-".$i;
 
           if(!empty($post[$main_ct_p]))
             $main_ct = $post[$main_ct_p];
@@ -236,7 +304,7 @@
 
           $str = 'exp-'.$i.'-';
           $exp = [];
-          for($j = 1; $j <= 5; $j++){
+          for($j = 1; $j <= 10; $j++){
             $id = $str . $j;
             if(isset($post[$id])){
               $exp[$j] = $post[$id];
@@ -244,7 +312,9 @@
               $exp[$j] = '';
           }
 
-          $qr = 'INSERT INTO content_lesson VALUES(NULL, "' .$les_id .'","' .$main_ct. '","'.$guide_ct.'","'.$exp[1].'","'.$exp[2].'","'.$exp[3].'","'.$exp[4].'","'.$exp[5].'")';
+          $qr = 'INSERT INTO content_lesson VALUES(NULL, "' .$les_id .'","' .$main_ct. '","'.$guide_ct.'","'.$exp[1].'","'.$exp[2].'","'.$exp[3].'","'.$exp[4].'","'.$exp[5].'","'.$exp[6].'","'.$exp[7].'","'.$exp[8].'","'.$exp[9].'","'.$exp[10].'")';
+
+          // echo $qr . "<br>";
           
           $rows = mysqli_query($this->con, $qr);
           if(!$rows) return false;
@@ -260,15 +330,17 @@
 
           if(!empty($post[$main_ct_p]))
             $main_ct = $post[$main_ct_p];
-          if(!empty($post[$image_ct_p]))
-            $image_ct = $post[$image_ct_p];
+          if(!empty($file[$image_ct_p]['name'])){
+            $image_ct = $file[$image_ct_p]['name'];
+            $this->uploadFileLesson($file[$image_ct_p]['name'], $file[$image_ct_p]['tmp_name'], $file[$image_ct_p]['size'],$file[$image_ct_p]['error'], 'image');
+
+          }
 
           $str1 = 'sub-'.$i.'-';
           $str2 = 'aud-'.$i.'-';
           $str3 = 'img-'.$i.'-';
-          $sub = [];
-          $aud = [];
-          $img = [];
+          $sub = $aud = $img = [];
+
           for($j = 1; $j <= 3; $j++){
             $id1 = $str1 . $j;
             $id2 = $str2 . $j;
@@ -278,13 +350,15 @@
             }else
               $sub[$j] = '';
 
-            if(isset($post[$id2])){
-              $aud[$j] = $post[$id2];
+            if(isset($file[$id2]['name'])){
+              $aud[$j] = $file[$id2]['name'];
+              $this->uploadFileLesson($file[$id2]['name'], $file[$id2]['tmp_name'], $file[$id2]['size'],$file[$id2]['error'], 'music');
             }else
               $aud[$j] = '';
 
-            if(isset($post[$id3])){
-              $img[$j] = $post[$id3];
+            if(isset($file[$id3]['name'])){
+              $img[$j] = $file[$id3]['name'];
+              $this->uploadFileLesson($file[$id3]['name'], $file[$id3]['tmp_name'], $file[$id3]['size'],$file[$id3]['error'], 'image');
             }else
               $img[$j] = '';
           }
@@ -298,6 +372,62 @@
 
       }
       return true;
+    }
+
+
+    private function uploadFileLesson($f_name, $ft_name, $f_size, $f_err, $f_type){
+        $res = false;
+        $f_Ext        = explode('.', $f_name);
+        $f_Actual_Ext = strtolower(end($f_Ext));
+        // $f_new_name   = $f_Ext[0] . "." . $f_Actual_Ext;
+        $f_new_name   = $f_name;
+        // $f_Actual_Ext = [];
+        $f_des        = '';
+        if($f_type == 'music'){
+          $f_Ext_Allowed = array('mp3', 'wav');
+          $f_des         = "./public/audio/" . $f_new_name;
+        }
+        if($f_type == 'image'){
+          $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
+          $f_des         = "./public/img/basic_img/" . $f_new_name;
+        }
+        if($f_type == 'image_les'){
+          $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
+          $f_des         = "./public/img/" . $f_new_name;
+        }
+    
+        $out = '';
+        if(in_array($f_Actual_Ext, $f_Ext_Allowed)){
+          if($f_err == 0){
+            if($f_size < 5000000){
+              move_uploaded_file($ft_name, $f_des);
+              $this->check_name_file_exist($f_Ext[0], $f_Ext_Allowed, $f_Actual_Ext, $f_type);
+            }else
+              $out = "file bigger than 5M";
+          }else
+            $out = "There are error";
+        }
+          $out = "you can not upload file that is not allowed extensions";
+      return $out;
+    }
+
+    private function check_name_file_exist($f_name, $f_Ext_Allowed, $f_Actual_Ext, $f_type){
+      foreach($f_Ext_Allowed as $ext){
+        if($ext !== $f_Actual_Ext){
+          $f_name_check = '';
+          if($f_type == 'music')
+            $f_name_check = "./public/audio/".$f_name .".". $ext;
+          if($f_type == 'image')
+            $f_name_check = "./public/img/basic_img/".$f_name .".". $ext;
+          if($f_type == 'image_les')
+            $f_name_check = "./public/img/".$f_name .".". $ext;
+
+          if(file_exists($f_name_check)){
+            unlink($f_name_check);
+            echo "Deleted your old file ".$f_name." <br>";
+          }
+        }
+      }
     }
 
     public function getMenuUser(){

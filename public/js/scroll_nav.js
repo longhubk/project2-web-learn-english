@@ -9,26 +9,68 @@ function scrollFunction() {
   var top_before  = document.getElementById("hor-nav").style.height;
   console.log(top_before)
 
-  if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 20) {
+  let ver_nav = document.getElementById('ver_nav');
+  let ver_nav_2 = document.getElementById("ver_nav_2")
+  let cal = document.getElementById("cal")
+  let qs_right = document.getElementById("qs_right")
+  let hor_nav = document.getElementById("hor-nav")
 
-    let hor_nav = document.getElementById("hor-nav")
-    hor_nav.style.position = "fixed"
-    hor_nav.style.top = 0
-    document.getElementById("ver_nav").style.top = "32px"
-    document.getElementById("ver_nav_2").style.top = "40px"
-    document.getElementById("cal").style.marginTop = "30px"
-    document.getElementById("qs_right").style.height = "240px"
-    myButton.style.display = "block";
-    // alert("1")
-  } else {
-    let hor_nav = document.getElementById("hor-nav")
-    hor_nav.style.position = "relative"
-    // hor_nav.style.top = "43px"
-    document.getElementById("ver_nav").style.top = "73px"
-    document.getElementById("ver_nav_2").style.top = "95px"
-    document.getElementById("cal").style.marginTop = "10px"
-    document.getElementById("qs_right").style.height = "200px"
-    // alert("2")
-    myButton.style.display = "none";
-  }
+  // console.log("typeof hor_nav: " + hor_nav))
+  // console.log("typeof ver_nav: " + ver_nav))
+  // console.log("typeof ver_nav2: " + ver_nav_2))
+  // console.log("typeof cal: " + cal))
+  // console.log("typeof qs_right: " + qs_right))
+  // console.log("typeof my button: " + myButton))
+    
+    
+      if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 20) {
+
+
+          if(hor_nav != null){
+            hor_nav.style.position = "fixed"
+            hor_nav.style.top = 0
+          }
+          if(ver_nav != null){
+            ver_nav.style.top = "32px"
+          }
+          if(ver_nav_2 != null){
+            ver_nav_2.style.top = "40px"
+          }
+          if(cal != null){
+            cal.style.marginTop = "30px"
+          }
+          if(qs_right != null){
+            qs_right.style.height = "240px"
+          }
+          if(myButton != null){
+            myButton.style.display = "block";
+          }
+
+      } 
+      else {
+
+          if(hor_nav != null){
+            hor_nav.style.position = "relative"
+            hor_nav.style.top = 0
+
+          }
+          if(ver_nav != null){
+            ver_nav.style.top = "73px"
+          }
+          if(ver_nav_2 != null){
+            ver_nav_2.style.top = "95px"
+          }
+          if(cal != null){
+            cal.style.marginTop = "10px"
+          }
+          if(qs_right != null){
+            qs_right.style.height = "200px"
+          }
+          if(myButton != null){
+            myButton.style.display = "none";
+          }
+
+      }
+
+    
 }

@@ -1,6 +1,6 @@
   
 <div class="admin_container">
-  <h2>All Current Test:</h2>
+  <h2 class="title_ad_page" >All Current Test:</h2>
   <?php
     if(isset($data['res_new_test'])){
       if($data['res_new_test'])
@@ -38,49 +38,92 @@
 
       for($i = 0; $i < sizeof($all_test); $i++){
         
-        echo "<a href='#'>".$all_test[$i][1]."</a><br>";
+
+        
+
         $has_question = false;
+        echo "
+          <table class='test_table'>
+          <tr class='first_row'><td><a href='TestPage'>".$all_test[$i][1]."</a></td><td>
+
+          <img title='show question' id='show_lesson-".$i."' class='icon-96 show_question ' src='public/icon/eye_icon.png'>
+
+          <a title='update test' href='./HomeAdmin/getUpdateTest/".$all_test[$i][0]."/".$all_test[$i][7]."'><img class=' icon-96 setting_question' src='public/icon/setting_icon.png'></a></td>
+
+        ";
+        
+        echo "<tr>";
         for($j = 0; $j < sizeof($num_question); $j++){
           if($num_question[$j][0] == $all_test[$i][0]){
-            echo "Number question: ".$num_question[$j][1]. "    ";
+            echo "<td>Number question</td> ";
+            echo "<td>".$num_question[$j][1]."</td>";
             $has_question = true;
           }
         }
         if(!$has_question)
-            echo "Number question: 0    ";
+            echo "<td>Number question</td><td>0</td>";
 
-        echo "<img title='show question' id='show_lesson-".$i."' class='icon-96 show_question ' src='public/icon/eye_icon.png'>";
-        ?>
+        
+
+        
+        echo "</td></tr><tr>";
 
 
-        <?php
-        echo "<a title='update test' href='./HomeAdmin/getUpdateTest/".$all_test[$i][0]."/".$all_test[$i][7]."'><img class=' icon-96 setting_question' src='public/icon/setting_icon.png'></a><br>";
+        for($j = 0; $j < sizeof($name_ad); $j++){
+          if($name_ad[$j][0] == $all_test[$i][5]){
+            echo "<td>Modify by</td>";
+            echo "<td>".$name_ad[$j][1]."</td>";
+          }
+          else{
+            echo "<td>Modify by</td>";
+            echo "<td>Unknown</td>";
+          }
+        }
+        echo "</tr><tr>";
+
+        echo "<td>Date modify</td>";
+        echo "<td>".$all_test[$i][6]."</td>";
+
+        echo "</tr><tr>";
+
+        echo "<td>Level</td>";
+        echo "<td>".$all_test[$i][7]."</td></tr>";
+        echo "</table>";
 
         echo "<div class='toggle_lesson' id='toggle_lesson-".$i."'>";
+        ?>
 
+        <table>
+          <tr class="first_row">
+            <td class="first_column">Name</td>
+            <td>Question</td>
+            <td>Answer 1</td>
+            <td>Answer 2</td>
+            <td>Answer 3</td>
+            <td>Answer 4</td>
+          </tr>
+        <?php
         $count_qs_test = 0;
           for($j = 0; $j < sizeof($all_question); $j++){
             if($all_question[$j][7] == $all_test[$i][0]){
+              echo "<tr>";
+              echo "<td>".$all_question[$j][1]."</td>" ;
+              echo "<td>".$all_question[$j][2]."</td>" ;
+              echo "<td>".$all_question[$j][3]."</td>" ;
+              echo "<td>".$all_question[$j][4]."</td>" ;
+              echo "<td>".$all_question[$j][5]."</td>" ;
+              echo "<td>".$all_question[$j][6]."</td>" ;
+              echo"</tr>";
               $count_qs_test++;
-              echo "<div>".$count_qs_test. " : " .$all_question[$j][3] ;
-              echo "</div><br>";
             }
           }
 
-        echo "</div>"
         ?>
 
+        </table>
+        </div><br>
+
         <?php
-        for($j = 0; $j < sizeof($name_ad); $j++){
-          if($name_ad[$j][0] == $all_test[$i][5])
-            echo "Modify by: ".$name_ad[$j][1]." <br>";
-          else
-            echo "Modify by: unknown <br>";
-        }
-
-        echo "Date modify: ".$all_test[$i][6]." <br>";
-
-        echo "Level : ".$all_test[$i][7]." <br><br>";
 
       }
     }
@@ -94,27 +137,40 @@
   <div class="add_new_tut">
 
     <form method='POST' action='./HomeAdmin/postNewTest'>
-      <input type="text" name='new_test_name' placeholder="Enter new name of test">
+      <table class="new_test_table">
+      <tr class="first_row">
+        <td>New Name Of Test</td>
+        <td>Choose Level</td>
+        <td>Number Question</td>
+        <td>Time Of Test</td>
+        <td>Description Of Test</td>
+        <td></td>
+        
+      </tr>
 
-      <label for="select_level">Choose level:</label>
-      <select name="choose_level" id="select_level">
-        <option value="0">level 0</option>
-        <option value="1">level 1</option>
-        <option value="2">level 2</option>
-        <option value="3">level 3</option>
-        <option value="4">level 4</option>
-      </select>
+      <tr>
+        <td><input type="text" name='new_test_name' placeholder="Enter new name of test"></td>
 
-      <label for="number_qs">Number question:</label>
-      <input type="number" name='number_qs' placeholder="Enter number question" max= '50' min='10' value="15">
+        <td>
+          <select name="choose_level" id="select_level">
+            <?php
+              for($i = 1; $i < 5; $i++)
+                echo "<option value'".$i."'>Level ".$i."</option>";
+            ?>
+          </select>
+        </td>
 
-      <label for="test_time">Time of test:</label>
-      <input type="number" name='test_time' placeholder="Enter time of test(minutes)" max= '60' min='5' value="15"><br>
+        <td><input type="number" name='number_qs' placeholder="Enter number question" max= '50' min='10' value="15"></td>
 
-      <label for="test_description">Description of test:</label>
-      <textarea name="test_description" class='area_content'></textarea><br>
+        <td><input type="number" name='test_time' placeholder="Enter time of test(minutes)" max= '60' min='5' value="15"></td>
 
-      <input type="submit" value='add new test'>
+        <td><textarea name="test_description" class='test_area_des'></textarea></td>
+
+        <td><input type="submit" value='add new test'></td>
+      </tr>
+
+      </table>
+
       
     </form>
 

@@ -5,6 +5,15 @@
 body{
   margin: 0;
 }
+.clear{
+  clear: both;
+}
+.admin_container .title_ad_page{
+  color: rgb(102, 125, 129);
+}
+.admin_container .toggle_edit_les{
+  display: none;
+}
 .admin_header{
   background-color: #369ec3;
   top             : 0;
@@ -73,16 +82,228 @@ body{
 .admin_container .update_data_fail{
   color: red;
 }
-.admin_container .input_content{
-  border: 1px solid black;
-  width : 60%;
-  margin-top: 5px;
+.admin_container table{
+  width: fit-content;
+}
+.admin_container table.table_control{
+  margin: auto;
+
+
+}
+
+
+.admin_container table.table_view_tut{
+  margin-top: 10px;
+  float: right;
+  width: 45%;
+}
+.admin_container table.table_view_tut tr td.center{
+  text-align: center;
+}
+.admin_container table.tut_table{
+  float: left;
+  width: 50%;
+}
+.admin_container table tr td input,
+.admin_container table tr td select,
+.admin_container table.table_new_les_basic tr td input{
+  border: none;
+}
+.admin_container table tr td input:focus,
+.admin_container table tr td select:focus,
+.admin_container table.table_new_les_basic tr td input:focus{
+  outline: none;
+}
+.admin_container table.new_test_table,
+.admin_container table.tut_table,
+.admin_container table.table_new_content,
+.admin_container table.test_table,
+.admin_container table.table_control,
+.admin_container table.table_new_les_basic,
+.admin_container table.add_lesson_table
+{
+  margin: 10px;
+  border-collapse: collapse;
+}
+.admin_container table.add_lesson_table{
+  float: right;
+  width: 40%;
+  margin-right: 42px ;
+}
+.admin_container table.edit_lesson_table{
+  float: right;
+}
+
+.admin_container table.add_lesson_table tr.first_row{
+  background-color: #79a777;
+}
+.admin_container table.add_lesson_table tr td input[type='submit']{
+  background-color: #79a777;
+  border-radius: 3px;
+  padding: 2px 5px;
+  color: white;
+  transition: 0.2s;
+}
+.admin_container table.add_lesson_table tr td input[type='submit']:hover{
+  transform: scale(1.03);
+}
+
+.admin_container table.add_lesson_table tr td{
+  /* width: 50%; */
+  border : 1px solid gray;
+  padding: 10px;
+}
+.admin_container table.new_test_table tr td,
+.admin_container table.tut_table tr td{
+  border: 1px solid gray;
+  padding:  5px 10px;
+  text-align: center;
+}
+.admin_container table.table_new_content{
+  width: 100%;
+}
+
+.admin_container table.table_new_les_basic{
+  width: 95%;
+  margin: 2.5%;
+}
+.admin_container table.table_new_les_basic tr td{
+  border: 1px solid gray;
+  padding: 10px 15px;
+}
+
+.admin_container table.table_new_les_basic tr td.bold_row{
+  border-bottom: 1px solid black;
+}
+.admin_container table.table_new_les_basic tr td input[type='file']{
+  width: fit-content;
+  float: left;
+}
+.admin_container table.table_new_les_basic tr td div{
+  width: 40%;
+  float: left;
+  margin: 0 20px 0 0;
+}
+.admin_container table.table_new_les_basic tr td textarea{
+  border: none;
+  padding: 5px 0;
+}
+
+.admin_container table.table_new_les_basic tr td textarea:focus{
+  outline: thin;
+}
+.admin_container table.table_new_content tr.first_row{
+  background-color: rgb(134, 134, 134);
+  color: whitesmoke;
+  margin: 0 10px 0 0;
+}
+.admin_container table.table_new_content tr.first_row td{
+  padding: 10px;
+}
+.admin_container table.table_new_content tr td.first_column{
+  width: 15%;
+  text-align: left;
+  padding: 0 5px;
+}
+.admin_container table.table_new_content tr td.last_column{
+  text-align: center;
+  width: 13%;
+}
+.admin_container table.table_new_content tr td.last_column input[type='checkbox']{
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  -o-transform: scale(1.5); /* Opera */
+  transform: scale(1.5);
+}
+.admin_container table.table_new_content tr td.middle_column{
+  width: 100%;
+  display: flex;
+  padding: 10px 0;
+  justify-content: center;
+}
+.admin_container table.table_new_content tr td{
+  text-align: center;
+}
+.admin_container table.new_test_table tr.first_row,
+.admin_container table.tut_table tr.first_row{
+  background-color: rgb(122, 144, 88);
+  color: white;
+  text-align: center;
+  font-size: 15px;
+}
+.admin_container table.tut_table tr td{
+  border: 1px solid gray;
+  width: 50%;
+  padding: 10px;
+  text-align: left;
+}
+.admin_container table.new_test_table tr td textarea{
+  resize: none;
+  width: 300px;
+}
+.admin_container table.new_test_table tr td input[type='submit'] {
+  background-color: rgb(83, 107, 96);
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  transition: 0.2s;
+  border-radius: 3px;
+}
+.admin_container table.new_test_table tr td input[type='submit']:hover{
+  transform: scale(1.1);
+}
+
+
+.admin_container table.test_table .first_row{
+  background-color: rgb(118, 156, 101);
+  text-align: center;
+  color: white;
+}
+
+.admin_container table.test_table .first_row a,
+.admin_container table.tut_table .first_row a{
+  color: white;
+  text-decoration: none;
+}
+
+.admin_container table.test_table tr td{
+  border: 1px solid gray;
+  width: 200px;
+  padding: 10px;
+}
+
+.admin_container .table_control tr.first_row{
+  background-color: rgb(142, 180, 142);
+  color: white;
+}
+.admin_container .table_control tr td{
+  padding: 10px;
+  text-align: center;
+  border: 1px solid rgb(129, 129, 129);
+}
+.admin_container table .title_content{
+  /* border: 1px solid rgb(54, 151, 16); */
+  width : 15%;
+  padding: 0 20px;
+}
+.admin_container table .input_content{
+  /* border: 1px solid rgb(109, 30, 30); */
+  width : 85%;
+}
+.admin_container table .input_content input{
+  width: 100%;
+  border: 1px solid gray;
+}
+.admin_container table .input_content textarea{
+  width: 100%;
+  resize: none;
 }
 
 .admin_container .area_content{
   border    : 1px solid black;
   width     : 600px;
-  height    : 100px;
+  height    : 60px;
   resize    : none;
   margin-top: 5px;
 }
@@ -135,6 +356,26 @@ body{
 {
   display: none;
 }
+.admin_container .toggle_lesson table{
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.admin_container .toggle_lesson table tr td{
+  border: 1px solid rgb(136, 136, 136);
+  padding: 5px;
+}
+.admin_container .toggle_lesson table .first_row{
+  background-color: gray;
+  text-align: center;
+  color: white;
+}
+.admin_container .toggle_lesson table tr .first_column{
+  /* border: 1px solid red; */
+  padding: 5px 8px;
+}
+
+
+
 .admin_container .show_lesson{
   margin: 0 0 0 10px;
 }
@@ -144,6 +385,27 @@ body{
   color: gray;
   cursor: pointer;
 }
+
+.admin_container .update_content {
+  display: flex;
+  justify-content: center;
+
+}
+.admin_container .update_content input{
+  border: none;
+  background-color :rgb(61, 163, 61) ;
+  color: white;
+  padding: 5px 15px;
+  border-radius: 10px;
+  transition: 0.3s;
+  margin: auto;
+}
+
+.admin_container .update_content input:hover{
+  transform: scale(1.2);
+
+}
+
 .icon-100{
   height: 22px;
   width: 22px;
@@ -153,6 +415,10 @@ body{
   height: 20px;
   width: 20px;
   margin: 0 0 0 20px;
+}
+.admin_container .icon-96-center{
+  height: 20px;
+  width: 20px;
 }
 .admin_container .icon-120{
   height: 30px;

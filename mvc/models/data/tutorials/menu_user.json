@@ -1,7 +1,8 @@
 {
-  "update_infor": "Update Information",
+  "update_info": "Update Information",
   "your_course": "Your Course",
   "chart_level": "Chart Level",
-  "your_friend": "Your Friend",
+  "findFriend": "Find Friend",
+  "myFriend": "My Friend",
   "change_pass": "Change Password"
 }
