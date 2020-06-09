@@ -28,6 +28,7 @@ $(document).ready(() =>{
   $('#btn_trigger').click(() =>{
     setTimeTest();
     $('#btn_trigger').hide()
+    $('#test_ready_hide').hide()
 
 
     window.addEventListener('beforeunload', listener);
@@ -58,7 +59,51 @@ $(document).ready(() =>{
     $('#disable_redirect').trigger('click');
   })
 
-})
+  let num_question = $('#num_qs_test').html()
+  console.log('num--------------------------------->' + num_question)
+
+  for(let i = 0 ; i < num_question; i++){
+    let id = '#ans_show-'+i
+    for(let j = 1; j <= 4; j++){
+      let id2 = id +  "-" + j
+      console.log( "iiiiiiiiiiiiii---->"+ id2)
+      $(id2).click(() => {
+        let id_sm = "#check_small-" + id2.split('-')[1]
+
+        if($(id2).is(":checked")){
+          console.log(id2 + " is checked");
+          console.log(id_sm + "is red")
+          $(id_sm).css('background-color', 'red')
+
+        }
+        else{
+
+          let id_now = id2.split('-')[2]
+          let id_now_f = id2.split('-')[0]
+          let id_now_m = id2.split('-')[1]
+          console.log(id2 + " is unchecked");
+          console.log(id_sm + "is green")
+          $(id_sm).css('background-color', 'green')
+
+          for(let k = 1; k <= 4; k++){
+            if(k != id_now){
+              let id_other = id_now_f + "-" + id_now_m + "-"+ k
+              if($(id_other).is(':checked')){
+                $(id_sm).css('background-color', 'red')
+              }
+            }
+          }
+
+        }
+      })      
+
+    }
+  }
+
+}) 
+
+
+
 
 
 function setTimeTest(){
@@ -88,7 +133,7 @@ function setTimeTest(){
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
       
-      document.getElementById("status").innerHTML =  minutes + " m : " + seconds + "s ";
+      document.getElementById("status").innerHTML =  minutes + " : " + seconds ;
       
       if (distance < 0) {
       clearInterval(x);

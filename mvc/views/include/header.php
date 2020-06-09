@@ -46,12 +46,12 @@
   <link href = "./public/css/loading.css"     rel = "stylesheet" type = "text/css">
 
   <!-- <link href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/views/views/css/font-awesome.min.css" rel = "stylesheet"> -->
-  <link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   <!-- <link href = "https://bootswatch.com/flatly/bootstrap.min.css"         rel="stylesheet"> -->
   
   <!-- <script src = "https://use.fontawesome.com/566df3ace8.js"></script> -->
   <!-- <script src = 'https://kit.fontawesome.com/a076d05399.js'></script> -->
-  <script src = 'https://www.youtube.com/iframe_api'></script>
+  <!-- <script src = 'https://www.youtube.com/iframe_api'></script> -->
   <script src = './public/js/JQuery/jquery-3.4.1.js' type = "text/javascript"></script>
 
   <script type = "text/javascript">

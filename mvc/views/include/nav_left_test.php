@@ -17,19 +17,19 @@
         <td id='num_qs_test' >".sizeof($test_qs)."</td>
         </tr>
         ";
-
       }
 
       if(isset($data['time_test'])){
         $time_test = $data['time_test'];
         echo "<tr>
           <td>Time</td>
-          <td><div id='status'> ".$time_test." m : 0 s  </div></td>
+          <td><div id='status'><span id='time_test' >".$time_test."</span>  : 00  </div></td>
         </tr>";
         // echo "<div>Time : <span id='time_test' >".$time_test."</span> (phút)</div>";
 
         echo "<tr>
-              <td colspan='2'><button id='btn_trigger'>start</button> </td>
+              <td></td>
+              <td><button id='btn_trigger'>start</button> </td>
           </tr>";
       }
       echo "</table>";
@@ -47,7 +47,7 @@
             for($i = 0; $i < sizeof($test_qs); $i++){
                 $id_qs      = $test_qs[$i][0];
                 $name_qs    = $test_qs[$i][1];
-              echo "<li><label>".$name_qs."</label> <input type='checkbox' name='check_box_qs' ></li>";
+              echo "<li id='check_small-".$i."'><label>".$name_qs."</label> <input type='checkbox' name='check_box_qs' ></li>";
             }
           }
         }

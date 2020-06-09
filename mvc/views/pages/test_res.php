@@ -12,12 +12,20 @@
           }
 
           if(isset($data['test_res'])){
-            $point = $data['test_res'][1];
-            $perPoint = $data['test_res'][2];
+            $point        = $data['test_res'][1];
+            $perPoint     = $data['test_res'][2];
             $numTutUnLock = $data['test_res'][3];
-            $out = $point ."/". $perPoint;
+            $out          = $point ."/". $perPoint;
+
             echo "<div class='label_res'>Kết quả bài thi của bạn là:  <b>".$out."</b></div>";
-            echo "<div class='label_res'>Chúc mừng bạn đã mở khóa được các level từ ".$numTutUnLock." trở xuống!!</div>";
+            if($numTutUnLock > 1 && $numTutUnLock < 4)
+              echo "<div class='label_res'>Chúc mừng bạn đã mở khóa được các level từ ".$numTutUnLock." trở xuống!!</div>";
+            else if($numTutUnLock == 0)
+              echo "<div class='label_res'>Bạn đã chưa hoàn thành bài thi và chưa được mở khóa.<br>Hãy thi lại để mở khóa các khóa học.</div>";
+            else{
+              echo "<div class='label_res'>Bạn đã đạt điểm số thấp hơn lần trước, chúng tôi sẽ giữ kết quả cũ của bạn!!</div>";
+            }
+            
           }
         ?>
     </div>

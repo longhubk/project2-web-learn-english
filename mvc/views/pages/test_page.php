@@ -2,9 +2,11 @@
 <div class="main-container">
   <div class="video-card">
 
-    <h1>ARE YOU READY </h1>
-    <p>Bạn đã sẵn sàng chưa !</p>
-    <img src='public/gif/ready_to_test.gif'>
+    <div id='test_ready_hide'>
+      <h1>ARE YOU READY </h1>
+      <p>Bạn đã sẵn sàng chưa !</p>
+      <img  src='public/gif/ready_to_test.gif'>
+    </div>
 
     
 

@@ -319,6 +319,9 @@
           $result[3] = $this->updateTutUserAccess($real_point);
 
         }
+        else{
+          $result[3] = 5;
+        }
 
         $result[1] = $point ;
         $result[2] = $count_num_qs;
@@ -344,7 +347,10 @@
           else if($real_point <= 0.3 && $real_point > 0){
             $res = $this->getTutorialByLevel(1);
             if($res) return 1;
+          }else{
+            return 0; 
           }
+
     }
 
     private function getTutorialByLevel($tut_level){

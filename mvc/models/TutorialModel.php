@@ -61,6 +61,16 @@
       return $this->queryAssoc($qr,'image');
     }
 
+    public function getVideoLesson($getTutorial){
+      $qr   = "SELECT video FROM lesson_tut WHERE name_lesson = '$getTutorial'";
+      return $this->queryAssoc($qr,'video');
+    }
+
+    public function getAudioLesson($getTutorial){
+      $qr   = "SELECT audio FROM lesson_tut WHERE name_lesson = '$getTutorial'";
+      return $this->queryAssoc($qr,'audio');
+    }
+
     public function getTitleLesson($getTutorial){
       $qr   = "SELECT title_lesson FROM lesson_tut WHERE name_lesson = '$getTutorial'";
       return $this->queryAssoc($qr,'title_lesson');
@@ -71,7 +81,8 @@
     }
     
     public function loadSub(){
-      return parent::readJsonData("$this->path"."subtitles_data/video1_sub_data.json");
+      // return parent::readJsonData("$this->path"."subtitles_data/video1_sub_data.json");
+      return parent::readJsonData("$this->path"."subtitles_data/sub_demo.json");
     }
 
 

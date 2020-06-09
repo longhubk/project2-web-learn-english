@@ -91,6 +91,7 @@ audio:focus{
   padding: 15px;
   border-radius: 10px;
   margin: 5px 20px;
+  background-color: white;
   
 }
 .main-container .video-card .each_tut_show .tut_cont{
@@ -186,16 +187,29 @@ audio:focus{
   border-radius: 10px; 
   /* border: 1px solid gray; */
 }
+.main-container .video-card .verb-video .video_src{
+  display: flex;
+  justify-content: center;
+}
+
+.main-container .video-card .verb-video .video_src #video_les{
+  height: 30vw;
+}
 
 .main-container .video-card .verb-video .subtitle{
   margin    : 25px 0;
-  border    : 10px ridge rgb(255, 255, 255);
+  border    : 10px ridge rgb(129, 129, 129);
   /* box-shadow: 0 4px 8px 0 rgba(0,0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1); */
   overflow-y: hidden;
   border-radius: 10px; 
-  height    : 200px;
+  height    : 150px;
   width     : 100%;
   background-color: whitesmoke;
+}
+
+.main-container .video-card .verb-video .subtitle #main_scroll li{
+  margin: 20px 10px;
+  font-family: cursive;
 }
 .main-container .video-card .verb-video .subtitle:hover{
   overflow-y: scroll;

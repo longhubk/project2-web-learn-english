@@ -51,10 +51,12 @@
       }
       $this->view("master_h",[
         "page"         => $page,
-        "img_les"      => $tut_lesson,
         "tut_name"     => $tut_name,
         "allTutsIndex"      => $this->Tut_db->getAllTutorialIndex(),
         "ext_les"      => $this->Tut_db->getImageLesson($tut_lesson),
+        "img_les"      => $this->Tut_db->getImageLesson($tut_lesson),
+        "vid_les"      => $this->Tut_db->getVideoLesson($tut_lesson),
+        "aud_les"      => $this->Tut_db->getAudioLesson($tut_lesson),
         "title_les"    => $this->Tut_db->getTitleLesson($tut_lesson),
         "tutContent"   => $this->Tut_db->getTutContent($tut_name),
         "tutKnowledge" => $tutKnowledge,

@@ -7,27 +7,27 @@ setInterval(() => {
 	updateLastActive()
 	fetchFriend()
 	update_chat_history_realtime()
-	// fetch_friend_request()
+	fetch_friend_request()
 },3000)
 
 
-// function fetch_friend_request(){
-//   $.ajax({
-//     url : 'UserPage/getNotifyFriendRequest',
-//     method : 'POST',
-//     success : (data) => {
-// 			// console.log('data-friend '+data)
-// 			console.log('fioashfdiasfisdhf dahofdh sum--->' + data)
-// 			if(data.trim() > 0){
+function fetch_friend_request(){
+  $.ajax({
+    url : 'UserPage/getNotifyFriendRequest',
+    method : 'POST',
+    success : (data) => {
+			// console.log('data-friend '+data)
+			console.log('fioashfdiasfisdhf dahofdh sum--->' + data)
+			if(data.trim() > 0){
 
-// 				let notify = ''
-// 				notify = "<img title='NOTIFICATIONS' class='icon-23' src='public/icon/notification_yellow_icon.png'><span class='text_nav text_to_hide notify_hide'>NOTIFICATIONS</span><span id='num_notify'>"+data+"</span>"
+				let notify = ''
+				notify = "<img title='NOTIFICATIONS' class='icon-23' src='public/icon/notification_yellow_icon.png'><span class='text_nav text_to_hide notify_hide'>NOTIFICATIONS</span><span id='num_notify'>"+data+"</span>"
 
-// 				$('#notify-li a').html(notify)
-//     	}
-//     }
-//   })
-// }
+				$('#notify-li a').html(notify)
+    	}
+    }
+  })
+}
 
 function fetchFriend(){
   $.ajax({
