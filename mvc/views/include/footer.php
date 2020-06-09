@@ -13,10 +13,17 @@
     <script src = './public/js/JQuery/prompt_enter_test.js'     type = "text/javascript"></script>
     <script src = './public/js/JQuery/chat/find_friend.js'     type = "text/javascript"></script>
     <script src = './public/js/JQuery/chat/chat.js'     type = "text/javascript"></script>
+    <script src = './public/js/JQuery/chat/search.js'     type = "text/javascript"></script>
     <script src = './public/js/JQuery/dis_input.js'     type = "text/javascript"></script>
+    <script src = './public/js/JQuery/disable_href_anchor.js'     type = "text/javascript"></script>
 
 
-    <button onclick="topScroll()" id='btn_scroll_top' title='go to top'><img class='icon-20' src='public/icon/go_to_top.png'></button>
+    <button onclick="topScroll()" id='btn_scroll_top' title='go to top'><img class='icon-25' src='public/icon/go_to_top.png'></button>
+
+    <div id='hidden_search'>
+      <p>This is search hidden</p>
+    </div>
+
     <div class="footer">
       <div class="info_foot">
         <div class="info_contact">
@@ -34,5 +41,7 @@
       </div>
       <p class="copyright">Copyright © 2020 Thanh Long Nguyen</p>
     </div>
+
+
   </body>
 </html>

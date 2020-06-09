@@ -20,8 +20,38 @@ audio:focus{
 }
 
 .icon-20{
+  height: 20px;
+  width: 20px;
+}
+
+.icon-25{
   height: 25px;
   width: 25px;
+}
+
+.icon-23{
+  height: 23px;
+  width: 23px;
+}
+
+.img-50{
+  height: 50px;
+  width: 50px;
+}
+
+.img-100{
+  height: 100px;
+  width: 100px;
+}
+
+.img-120{
+  height: 120px;
+  width: 120px;
+}
+
+.img-150{
+  height: 150px;
+  width: 150px;
 }
 .main-container .video-card #slide_show .intro{
   /* border: 1px solid gray; */
@@ -41,6 +71,7 @@ audio:focus{
   position        : relative;
   display         : block;
   overflow        : auto;
+  min-height      : 550px;
 }
 .main-container:after{
   content: "";
@@ -48,6 +79,50 @@ audio:focus{
   clear  : both;
 
 }
+.main-container .video-card .each_tut_show .img_tut_show{
+  border: 1px solid rgb(190, 190, 190);
+  /* float: left; */
+}
+
+.main-container .video-card .each_tut_show{
+  border: 1px solid rgb(141, 141, 141);
+  display: flex;
+  /* align-items: center; */
+  padding: 15px;
+  border-radius: 10px;
+  margin: 5px 20px;
+  
+}
+.main-container .video-card .each_tut_show .tut_cont{
+  border: 1px solid rgb(179, 179, 179);
+  padding: 5px;
+  width: 100%;
+  border-radius: 5px;
+  margin: 0 0 0 20px;
+  
+}
+
+.main-container .video-card .each_tut_show .tut_cont .title{
+  /* border: 1px solid orange; */
+  /* margin: 10px 0 0 0; */
+  font-size: larger;
+}
+
+.main-container .video-card .each_tut_show .tut_cont .title a{
+  color: rgb(78, 122, 243);
+  font-weight: bolder;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.main-container .video-card .each_tut_show .tut_cont .des_tut{
+  /* border: 1px solid green; */
+  margin: 10px 0 0 0;
+}
+.main-container .video-card .each_tut_show .tut_cont .tut_level{
+  /* border: 1px solid blue; */
+  margin: 10px 0 0 0;
+}
+
 
 .vid1{
   margin: 30px 50px;
@@ -226,6 +301,64 @@ audio:focus{
 
   .main-container .video-card .verb-video .subtitle{
     overflow: auto;
+  }
+
+}
+
+@media only screen and (min-width: 1400px){
+
+  .main-container {
+    width: 58%;
+  }
+
+}
+
+@media only screen and (min-width: 1500px){
+
+  .main-container {
+    width: 60%;
+  }
+
+}
+
+@media only screen and (min-width: 1600px){
+  .main-container {
+    width: 63%;
+  }
+}
+@media only screen and (min-width: 1800px){
+
+  .main-container {
+    width: 64%;
+  }
+
+}
+
+@media only screen and (min-width: 2000px){
+
+  .main-container {
+    width: 70%;
+  }
+
+}
+
+@media only screen and (min-width: 2200px){
+  .main-container {
+    width: 73%;
+  }
+
+}
+
+@media only screen and (min-width: 2500px){
+  .main-container {
+    width: 75%;
+  }
+
+}
+
+@media only screen and (min-width: 3000px){
+  .main-container {
+    width: 80%;
   }
 
 }

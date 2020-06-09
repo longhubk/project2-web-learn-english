@@ -50,6 +50,35 @@
       return $this->queryAllArray($qr);
     }
 
+
+    private function updateByNameId($key, $val, $where, $id){
+      $qr   = "UPDATE `test` SET $key = '$val' WHERE $where = '$id'";
+      $res =  mysqli_query($this->con, $qr);
+      if($res) return true;
+      else return false;
+    }
+
+
+
+    public function getEditTestById($post){
+      $test_id = $post['test_id'];
+      $test_name = $post['new_name_test']; 
+      $test_time = $post['new_time_test']; 
+      $test_des = $post['new_des_test'];
+      $test_num = $post['new_num_test'];
+      $test_lev = $post['new_level_test'];
+
+      $res1 = $this->updateByNameId('test_name', $test_name, 'test_id', $test_id);
+      $res2 = $this->updateByNameId('test_time', $test_time, 'test_id', $test_id);
+      $res3 = $this->updateByNameId('num_qs', $test_num, 'test_id', $test_id);
+      $res4 = $this->updateByNameId('description', $test_des, 'test_id', $test_id);
+      $res5 = $this->updateByNameId('test_level', $test_lev, 'test_id', $test_id);
+
+      return $res1 && $res2 && $res3 && $res4 && $res5;
+    }
+
+
+
     public function updateTestById($post_ct){
       $res = true;
       $qr = "";
@@ -229,9 +258,10 @@
 
         $count_num_qs = sizeof($res);
         $point = 0;
-        $store = [];
+        $store = $result = [];
         $i = 0;
         $j = 1;
+
 
         foreach($post as $key => $value){
           $val[$i] = [];
@@ -280,15 +310,59 @@
         if($update){
           $qr3 = "UPDATE `user_tests` SET `total_score` = '$point' WHERE `user_tests`.`user_id` = '$us_id' AND `user_tests`.`test_id` = '$test_id'";
           $row = mysqli_query($this->con, $qr3);
-        }
-        
+          
+          $qr4 = "UPDATE user_tests SET last_date_test = now() WHERE user_id = '$us_id' AND test_id = '$test_id'";
+          
+          $real_point = 0;
+          $real_point = ($point / $count_num_qs);
+          
+          $result[3] = $this->updateTutUserAccess($real_point);
 
-        $result = $point . '/' . $count_num_qs;
+        }
+
+        $result[1] = $point ;
+        $result[2] = $count_num_qs;
+
         // echo $result;
         return $result;
         
     }
-      public function changeDataTest($num_qs){
+
+    protected function updateTutUserAccess($real_point){
+          if($real_point < 1 && $real_point > 0.7){
+            $res =  $this->getTutorialByLevel(4);
+            if($res) return 4;
+          }
+          else if($real_point <= 0.7 && $real_point > 0.5){
+            $res = $this->getTutorialByLevel(3);
+            if($res) return 3;
+          }
+          else if($real_point <= 0.5 && $real_point > 0.3){
+            $res = $this->getTutorialByLevel(2);
+            if($res) return 2;
+          }
+          else if($real_point <= 0.3 && $real_point > 0){
+            $res = $this->getTutorialByLevel(1);
+            if($res) return 1;
+          }
+    }
+
+    private function getTutorialByLevel($tut_level){
+      $qr1 = "SELECT id FROM tutorials WHERE tut_level <= '$tut_level'";
+      $tut_id = $this->queryAllArray($qr1);
+      $us_id = $_SESSION['member_id'];
+      if($tut_id){
+        for($i = 0; $i < sizeof($tut_id); $i++){
+          $id = $tut_id[$i][0];
+          $qr2 = "UPDATE user_tuts SET status = 'unlock' WHERE user_id = '$us_id' AND tut_id = '$id'";
+          $res = mysqli_query($this->con, $qr2);
+          if(!$res) return false;
+        }
+        return true;
+      }
+    }
+
+      public function getTutIdByIdByLevel_2($qs_level){
         // $res = "";
         $page_next = $_POST['page_next']+1;
         // if($_SESSION['last_post'][$page_next-2]['page_next'] !== $page_next) //_don't push again
@@ -298,6 +372,7 @@
         $i = 0;
         $str = 'as_qs_';
         $count_filled = 0;
+        $num_qs = 4;
         // $size = sizeof($_POST);
         while($num_qs--){
           foreach($_POST as $key => $value){

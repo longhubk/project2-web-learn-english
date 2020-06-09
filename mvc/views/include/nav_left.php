@@ -18,10 +18,33 @@
 				
 			}
 			else
-			if(isset($data['allTuts'])){
-				$allTuts = $data['allTuts'];
-				for($i = 0; $i < sizeof($allTuts); $i++)
-					echo "<li><a href='./Tut/One/".$allTuts[$i][1]."'>".$allTuts[$i][0]."</a></li>";
+			// else
+			// if(isset($data['allTutsIndex'])){
+			// 	$allTutsIndex = $data['allTutsIndex'];
+			// 	for($i = 0; $i < sizeof($allTutsIndex); $i++)
+			// 		echo "<li><a href='./Tut/One/".$allTutsIndex[$i][1]."'>".$allTutsIndex[$i][0]."</a></li>";
+				
+			// }
+
+			if(isset($data['allTutsIndex'])){
+				$allTutsIndex = $data['allTutsIndex'];
+
+				for($i = 0; $i < sizeof($allTutsIndex); $i++){
+					echo "<li><a href='./Tut/One/".$allTutsIndex[$i][5]."'>".$allTutsIndex[$i][1]."</a>";
+
+				if(!empty($data['is_lock'])){
+					$is_lock = $data['is_lock'];
+					if(!empty($is_lock[$i][0]) && !empty($is_lock[$i][0])){
+						if($is_lock[$i][1] == $allTutsIndex[$i][0] && $is_lock[$i][0] == 'lock')
+							echo "<img class='icon-20' src='public/icon/lock_icon.png'>";
+					}
+					else
+							echo "<img class='icon-20' src='public/icon/lock_icon.png'>";
+
+				}
+
+					echo "</li>";
+				}
 				
 			}
 

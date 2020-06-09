@@ -54,6 +54,10 @@ $(document).ready(() =>{
 
   })
 
+  $('.btn_trigger_qs').click(() => {
+    $('#disable_redirect').trigger('click');
+  })
+
 })
 
 
@@ -84,7 +88,7 @@ function setTimeTest(){
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
       
-      document.getElementById("status").innerHTML =  minutes + "p" + seconds + "s ";
+      document.getElementById("status").innerHTML =  minutes + " m : " + seconds + "s ";
       
       if (distance < 0) {
       clearInterval(x);

@@ -1,8 +1,8 @@
 {
-  "update_info": "Update Information",
-  "your_course": "Your Course",
-  "chart_level": "Chart Level",
-  "findFriend": "Find Friend",
-  "myFriend": "My Friend",
-  "change_pass": "Change Password"
+  "update_info"      : "Update Information",
+  "your_course"      : "Your Course",
+  "userChart"        : "Chart Level",
+  "list_friend_request": "Friend Request",
+  "myFriend"         : "My Friend",
+  "change_pass"      : "Change Password"
 }

@@ -43,6 +43,7 @@
   <link href = "./public/css/chat.css"     rel = "stylesheet" type = "text/css">
   <link href = "./public/css/friend_list.css"     rel = "stylesheet" type = "text/css">
   <link href = "./public/css/admin_lesson.css"     rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/loading.css"     rel = "stylesheet" type = "text/css">
 
   <!-- <link href = "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/views/views/css/font-awesome.min.css" rel = "stylesheet"> -->
   <link href = "https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -157,9 +158,10 @@
     </div>
 
     <div class="language">
-      <i class="material-icons">language</i>
+      <!-- <i class="material-icons">language</i> -->
+      <img class="icon-20" src='public/icon/global_icon.png'>
       <div class="lang-choose">
-        languages:
+      <span>languages</span>
         <select>
           <option value="en">English</option>
           <option value="vn">Vietnamese</option>
@@ -195,58 +197,76 @@
     </li>
     <li id="home-li">
       <a href="./Home">
-        <i class="fa fa-fw fa-home hide"></i>
-        <span class="text_to_hide">HOME</span>
+        <img title="HOME" class="icon-20" src='public/icon/home_color_icon.png'>
+        <span class="text_nav text_to_hide home_hide">HOME</span>
       </a>
     </li>
-    <li>
+    <li id='notify-li'>
       <a href="./Notify">
-        <i title="NOTIFICATIONS" class="fa fa-bell hide"></i>
-        <span class="text_to_hide">NOTIFICATIONS</span>
+        <img title="NOTIFICATIONS" class="icon-23" src='public/icon/notification_yellow_icon.png'>
+        <span class="text_nav text_to_hide notify_hide">NOTIFICATIONS</span>
       </a>
 
     </li>
     <li class="tutorial">
       <a href="./Tut/All" class="dropbtn">
-        <i title="TUTORIALS" class="fa fa-book hide"></i>
-        <span class="text_to_hide">TUTORIALS
-          <i class="fa fa-caret-down"></i>
+        <img title="TEST" class="icon-25" src='public/icon/lesson_icon.png'>
+        <span class="text_nav text_to_hide tut_hide">TUTORIALS
+          <!-- <i class="fa fa-caret-down"></i> -->
         </span>
       </a>
       <div class="inner-content">
         <?php
-        if(isset($data['allTuts'])){
-        $allTuts = $data['allTuts'];
-        for($i = 0; $i < sizeof($allTuts); $i++)
-          echo "<a href='./Tut/One/".$allTuts[$i][1]."'>".$allTuts[$i][0]."</a>";
+
+
+      if(isset($data['allTutsIndex'])){
+        $allTutsIndex = $data['allTutsIndex'];
+        for($i = 0; $i < sizeof($allTutsIndex); $i++){
+
+          echo "<a href='./Tut/One/".$allTutsIndex[$i][5]."'>".$allTutsIndex[$i][1];
+
+          if(!empty($data['is_lock'])){
+            $is_lock = $data['is_lock'];
+            if($is_lock[$i][1] == $allTutsIndex[$i][0] && $is_lock[$i][0] == 'lock')   
+              echo "<img class='icon-20' src='public/icon/lock_icon.png'>";
+          }
+          
+          echo "</a>";
         }
+
+      }
+
+
         ?>
       </div>
     </li>
     <li>
       <a href="./TestPage">
-        <i title="TESTS" class="fa fa-question hide"></i>
-        <span class="text_to_hide">TESTS</span>
+        <img title="TEST" class="icon-25" src='public/icon/test_color_2.png'>
+        <span class="text_nav text_to_hide test_hide">TESTS</span>
       </a>
     </li>
     <li>
       <a href="./Docs">
-        <i title="DOCUMENTATIONS" class="fa fa-book-open hide"></i>
-        <span class="text_to_hide">DOCUMENTATIONS</span>
+        <!-- <i title="DOCUMENTATIONS" class="fa fa-book-open hide"></i> -->
+        <img title="TEST" class="icon-20" src='public/icon/document_color_2.png'>
+        <span class="text_nav text_to_hide doc_hide">DOCUMENTATIONS</span>
       </a>
     </li>
     <!-- <li><a href="./Res">RESOURCES</a></li> -->
     <li>
       <a href="./Intro">
-        <i title="ABOUT US" class="fa fa-exclamation-circle hide"></i>
-        <span class="text_to_hide">ABOUT US</span>
+        <!-- <i title="ABOUT US" class="fa fa-exclamation-circle hide"></i> -->
+        <img title="TEST" class="icon-23" src='public/icon/info_icon.png'>
+        <span class="text_nav text_to_hide about_us" >ABOUT US</span>
       </a>
     </li>
     <li id=search_area>
       <div class="search-box" style="margin-left: 10px;">
         <i class="fa fa-search" style="color: white;"></i>
-        <input id="search" onkeyup="showSuggest(this.value)" type="text" placeholder="Search on page">
-        <button class="btn-search">Search</button>
+        <!-- <input id="search" onkeyup="showSuggest(this.value)" type="text" placeholder="Search on page"> -->
+        <input id="search" type="text" placeholder="Search on page">
+        <button id="btn-search">Search</button>
       </div>
     </li>
   </ul>

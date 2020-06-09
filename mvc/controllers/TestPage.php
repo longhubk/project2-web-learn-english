@@ -19,7 +19,7 @@
         if(!empty($_COOKIE['member_login']))
           $this->user_db->checkSession($_COOKIE['member_login'], '');
         else
-           header('Location:'.$back);
+          header('Location:'.$back);
       }
       if($test == 'test'){
         if(empty($_SESSION['test']))
@@ -27,12 +27,15 @@
       }
 
     }
-    public function Init(){
+    public function Init($lock = ''){
         $this->middlewareTest('Register/');
+        if($lock = 'lock'){
+          
+        }
 
         $this->view("master_test", [
           "page"      => "test_index",
-          "allTuts"   => $this->tut_db->getAllTutorial(),
+          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "login_res" => "OK",
           "avatar"    => $this->user_db->getUserAvatar(),
@@ -48,7 +51,7 @@
 
         $this->view("master_test", [
           "page"      => "test_page",
-          "allTuts"   => $this->tut_db->getAllTutorial(),
+          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "login_res" => "OK",
           "avatar"    => $this->user_db->getUserAvatar(),
@@ -74,7 +77,7 @@
 
         $this->view("master_test", [
           "page"      => "test_res",
-          "allTuts"   => $this->tut_db->getAllTutorial(),
+          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "login_res" => "OK",
           "avatar"    => $this->user_db->getUserAvatar(),

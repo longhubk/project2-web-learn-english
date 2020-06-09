@@ -12,7 +12,12 @@
           }
 
           if(isset($data['test_res'])){
-            echo "<div class='label_res'>Kết quả bài thi của bạn là:  <b>".$data['test_res']."</b></div>";
+            $point = $data['test_res'][1];
+            $perPoint = $data['test_res'][2];
+            $numTutUnLock = $data['test_res'][3];
+            $out = $point ."/". $perPoint;
+            echo "<div class='label_res'>Kết quả bài thi của bạn là:  <b>".$out."</b></div>";
+            echo "<div class='label_res'>Chúc mừng bạn đã mở khóa được các level từ ".$numTutUnLock." trở xuống!!</div>";
           }
         ?>
     </div>

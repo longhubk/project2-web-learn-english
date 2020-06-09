@@ -2,7 +2,8 @@
 
   <form id="sign_up" class="login-form animate animate2" method="POST" action="./Register/SignUp">
     <div class="login-img">
-      <i onclick="closeLogin()" class="fas fa-user"></i>
+      <!-- <i onclick="closeLogin()" class="fas fa-user"></i> -->
+      <img onclick="closeLogin()" class="img-50" src='public/icon/user_icon.png' >
     </div>
     <div class="login-main">
       <label class="login-label">Username:</label>

@@ -76,12 +76,46 @@
 
 
     
-    public function getAllTutorial(){
-      // return parent::readJsonData("$this->path"."tutorials/all_tutorial.json");
-      $qr   = "SELECT tut_name, tut_query FROM tutorials";
+    // public function getAllTutorialIndex(){
+    //   // return parent::readJsonData("$this->path"."tutorials/all_tutorial.json");
+    //   $qr   = "SELECT tut_name, tut_query FROM tutorials";
+    //   return $this->queryAllArray($qr);
+    // }
+
+    public function getAllTutorialIndex(){
+      $qr   = "SELECT * FROM tutorials";
       return $this->queryAllArray($qr);
     }
 
+    public function getIsLockTutUser($us_id){
+      $qr   = "SELECT status, tut_id FROM user_tuts WHERE user_id = '$us_id'";
+      return $this->queryAllArray($qr);
+    }
+    private function getTutIdByTutName($tut_name){
+      $qr   = "SELECT id FROM tutorials WHERE tut_query = '$tut_name'";
+      return $this->queryAssoc($qr, 'id');
+    }
+
+    public function checkIsLockInThisTutorial($us_id, $tut_name){
+      $tut_id = $this->getTutIdByTutName($tut_name);
+      $qr   = "SELECT status FROM user_tuts WHERE user_id = '$us_id' AND tut_id = '$tut_id'";
+      return $this->queryAssoc($qr, 'status');
+    }
+
+
+    public function updateTutorialNewSignUp($us_id, $tut){
+      $res = [];
+      for($i = 0; $i < sizeof($tut); $i++){
+        $tut_id = $tut[$i][0];
+        $qr   = "INSERT INTO user_tuts VALUES('$us_id','$tut_id','lock','false')";
+        $res[$i] = mysqli_query($this->con, $qr);
+      }
+      $resAll = true;
+      for($i = 0; $i < sizeof($res); $i++){
+        $resAll = $resAll && $res[$i];
+      }
+      return $resAll;
+    }
 
     public function loadAllAdmin($name_tb, $name_col, $name_id){
       $qr   = "SELECT $name_col, $name_id FROM $name_tb";
@@ -117,11 +151,23 @@
       $qr   = "SELECT * FROM content_lesson WHERE lesson_id = '$les_id'";
       return $this->queryAllArray($qr);
     }
+    public function getContentIdByLessonId($les_id){
+      $qr   = "SELECT content_id FROM content_lesson WHERE lesson_id = '$les_id'";
+      return $this->queryAllArray($qr);
+    }
 
     public function getContentByBasicLessonId($les_id){
       $qr   = "SELECT * FROM basic_content_lesson WHERE lesson_id = '$les_id'";
       return $this->queryAllArray($qr);
     }
+
+    public function getDeleteContentById($les_id, $ct_id){
+      $qr   = "DELETE FROM content_lesson WHERE content_id = '$ct_id' AND lesson_id = '$les_id'";
+      $res =  mysqli_query($this->con, $qr);
+      if($res) return 'ok';
+      else return 'fail';
+    }
+
 
     public function updateLessonById($post_ct){
       $res = true;
@@ -290,6 +336,10 @@
       $tut_level = $post['tut_level_input'];
       $num_content = $post['number_content'];
       if($tut_level > 0){
+
+        // foreach($post as $key => $val){
+        //   $val = $this->filterBreak($val);
+        // }
         
         for($i = 1; $i <= $num_content; $i++){
           $main_ct    = '';
@@ -298,16 +348,16 @@
           $guide_ct_p = "guide_content-".$i;
 
           if(!empty($post[$main_ct_p]))
-            $main_ct = $post[$main_ct_p];
+            $main_ct = $this->filterBreak($post[$main_ct_p]);
           if(!empty($post[$guide_ct_p]))
-            $guide_ct = $post[$guide_ct_p];
+            $guide_ct = $this->filterBreak($post[$guide_ct_p]);
 
           $str = 'exp-'.$i.'-';
           $exp = [];
           for($j = 1; $j <= 10; $j++){
             $id = $str . $j;
             if(isset($post[$id])){
-              $exp[$j] = $post[$id];
+              $exp[$j] = $this->filterBreak($post[$id]);
             }else
               $exp[$j] = '';
           }
@@ -329,7 +379,7 @@
           $image_ct_p = "image_main-".$i;
 
           if(!empty($post[$main_ct_p]))
-            $main_ct = $post[$main_ct_p];
+            $main_ct = $this->filterBreak($post[$main_ct_p]);
           if(!empty($file[$image_ct_p]['name'])){
             $image_ct = $file[$image_ct_p]['name'];
             $this->uploadFileLesson($file[$image_ct_p]['name'], $file[$image_ct_p]['tmp_name'], $file[$image_ct_p]['size'],$file[$image_ct_p]['error'], 'image');
@@ -346,7 +396,7 @@
             $id2 = $str2 . $j;
             $id3 = $str3 . $j;
             if(isset($post[$id1])){
-              $sub[$j] = $post[$id1];
+              $sub[$j] = $this->filterBreak($post[$id1]);
             }else
               $sub[$j] = '';
 

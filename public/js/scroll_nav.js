@@ -7,13 +7,14 @@ function scrollFunction() {
 
   var myButton = document.getElementById("btn_scroll_top");
   var top_before  = document.getElementById("hor-nav").style.height;
-  console.log(top_before)
+  // console.log(top_before)
 
-  let ver_nav = document.getElementById('ver_nav');
+  let ver_nav   = document.getElementById('ver_nav');
   let ver_nav_2 = document.getElementById("ver_nav_2")
-  let cal = document.getElementById("cal")
-  let qs_right = document.getElementById("qs_right")
-  let hor_nav = document.getElementById("hor-nav")
+  let cal       = document.getElementById("cal")
+  let qs_right  = document.getElementById("qs_right")
+  let hor_nav   = document.getElementById("hor-nav")
+  let search_box   = document.getElementById("hidden_search")
 
   // console.log("typeof hor_nav: " + hor_nav))
   // console.log("typeof ver_nav: " + ver_nav))
@@ -25,6 +26,9 @@ function scrollFunction() {
     
       if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 20) {
 
+          if(search_box != null ){
+            search_box.style.top = "40px" 
+          }
 
           if(hor_nav != null){
             hor_nav.style.position = "fixed"
@@ -48,6 +52,10 @@ function scrollFunction() {
 
       } 
       else {
+
+          if(search_box != null ){
+            search_box.style.top = "80px" 
+          }
 
           if(hor_nav != null){
             hor_nav.style.position = "relative"

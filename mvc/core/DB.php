@@ -62,6 +62,10 @@
 
   }
 
+  protected function filterBreak($str){
+    return preg_replace("/\r\n/", "<br>\n", $str);
+  }
+
   }
       
 

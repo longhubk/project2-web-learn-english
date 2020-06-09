@@ -21,7 +21,8 @@
       // var_dump($_SESSION);
       $this->view("master_h", [
         "page"    => "content_main",
-        "allTuts" => $this->tut_db->getAllTutorial(),
+        "allTutsIndex" => $this->tut_db->getAllTutorialIndex(),
+        "is_lock" => $this->tut_db->getIsLockTutUser($_SESSION['member_id']),
         "tut_qs"  => $this->tut_db->loadQuestion(),
         "avatar"  => $this->user_db->getUserAvatar(),
       ]);

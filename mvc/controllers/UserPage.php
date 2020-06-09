@@ -24,7 +24,7 @@
         $info = $this->user_db->getUserInfo($_COOKIE['member_login']);
         $this->view("master_h", [
           "page"      => "content_user",
-          "allTuts"   => $this->tut_db->getAllTutorial(),
+          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "login_res" => "OK",
           "avatar"    => $this->user_db->getUserAvatar(),
@@ -48,7 +48,7 @@
       }
         $this->view("master_h", [
           "page"      => "content_user",
-          "allTuts"   => $this->tut_db->getAllTutorial(),
+          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "avatar"    => $this->user_db->getUserAvatar(),
           "menu_user" => $this->user_db->getUserMenu(),
@@ -73,7 +73,7 @@
         $info = $this->user_db->getUserInfo($_COOKIE['member_login']);
         $this->view("master_h", [
           "page"      => "content_user",
-          "allTuts"   => $this->tut_db->getAllTutorial(),
+          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "avatar"    => $this->user_db->getUserAvatar(),
           "menu_user" => $this->user_db->getUserMenu(),
@@ -93,7 +93,7 @@
         $info = $this->user_db->getUserInfo($_COOKIE['member_login']);
         $this->view("master_h", [
           "page"      => "change_pass",
-          "allTuts"   => $this->tut_db->getAllTutorial(),
+          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "avatar"    => $this->user_db->getUserAvatar(),
           "menu_user" => $this->user_db->getUserMenu(),
@@ -107,7 +107,7 @@
 
         $this->view("master_h", [
           "page"      => "friend_user",
-          "allTuts"   => $this->tut_db->getAllTutorial(),
+          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "avatar"    => $this->user_db->getUserAvatar(),
           "menu_user" => $this->user_db->getUserMenu(),
@@ -122,7 +122,7 @@
 
         $this->view("master_h", [
           "page"      => "my_friend",
-          "allTuts"   => $this->tut_db->getAllTutorial(),
+          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "avatar"    => $this->user_db->getUserAvatar(),
           "menu_user" => $this->user_db->getUserMenu(),
@@ -145,6 +145,7 @@
         ]);
     }
 
+
     public function getFriendList(){
       $this->middlewareUserPage('../Home');
       $res = '';
@@ -157,10 +158,75 @@
           header('Location:../Home/');
       }
       $this->view("master_blank", [
-          "page"      	 => "get_list_friend",
+          "page"         => "get_list_friend",
           "friend_list"  => $name_friend,
           "last_active"  => $last_active,
           "count_unseen"  => $count_unseen,
+      ]);
+    }
+    
+    public function getFriendListId(){
+      $this->middlewareUserPage('../Home');
+      $res = '';
+      $id_friend  = $this->user_db->getListFriendByUserId($_SESSION['member_id']);
+
+      $this->view("master_blank", [
+          "page"         => "get_friend_id",
+          "friend_list"  => $id_friend,
+      ]);
+    }
+
+
+    public function getNotifyFriendRequest(){
+      $this->middlewareUserPage('../Home');
+      $res = '';
+        $res  = $this->user_db->countRequestFriend($_SESSION['member_id']);
+
+      $this->view("master_blank", [
+          "page"         => "get_id_lesson",
+          "id_lesson"  => $res,
+      ]);
+    }
+
+    public function getUserListId(){
+      $this->middlewareUserPage('../Home');
+      $res = '';
+        $id_user  = $this->user_db->getListUserNotMe($_SESSION['member_id']);
+      $this->view("master_blank", [
+          "page"         => "get_user_id",
+          "user_list"  => $id_user,
+      ]);
+    }
+
+    public function addUserToMyFriend(){
+      $this->middlewareUserPage('../Home');
+      $res = '';
+      $res  = $this->user_db->getSendFriendRequest($_SESSION['member_id'], $_POST['us_want_id']);
+      $this->view("master_blank", [
+          "page"         => "get_id_lesson",
+          "id_lesson"  => $res,
+      ]);
+    }
+
+
+    public function acceptRequest(){
+      $this->middlewareUserPage('../Home');
+      $res = '';
+      $res  = $this->user_db->getAcceptRequest($_SESSION['member_id'], $_POST['us_want_id']);
+      $this->view("master_blank", [
+          "page"         => "get_id_lesson",
+          "id_lesson"  => $res,
+      ]);
+    }
+
+
+    public function removeRequest(){
+      $this->middlewareUserPage('../Home');
+      $res = '';
+      $res  = $this->user_db->getRemoveRequest($_SESSION['member_id'], $_POST['us_want_id']);
+      $this->view("master_blank", [
+          "page"         => "get_id_lesson",
+          "id_lesson"  => $res,
       ]);
     }
 	
@@ -208,6 +274,43 @@
 
     }
 
+    
+	public function userChart(){
+      $this->middlewareUserPage('../Home');
+      $res = '';
+      $pointLesson = $this->user_db->getUserPointLesson($_SESSION['member_id']);
+      $pointTest = $this->user_db->getUserPointTest($_SESSION['member_id']);
+
+      $this->view("master_h", [
+          "page"        => "user_chart",
+          'point_les' => $pointLesson,
+          'point_test' => $pointTest,
+          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
+          "tut_qs"    => $this->tut_db->loadQuestion(),
+          "avatar"    => $this->user_db->getUserAvatar(),
+          "menu_user" => $this->user_db->getUserMenu(),
+      ]);
+
+    }
+
+	public function list_friend_request(){
+      $this->middlewareUserPage('../Home');
+      $res                 = '';
+      $list_friend_request = $this->user_db->getUserListFriendRequest($_SESSION['member_id']);
+      $list_my_request     = $this->user_db->getUserListMyRequest($_SESSION['member_id']);
+
+      $this->view("master_h", [
+          "page"           => "list_friend_request",
+          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
+          "tut_qs"         => $this->tut_db->loadQuestion(),
+          "avatar"         => $this->user_db->getUserAvatar(),
+          "menu_user"      => $this->user_db->getUserMenu(),
+          "friend_request" => $list_friend_request,
+          "my_request"     => $list_my_request,
+      ]);
+
+    }
+
 
 	public function getCountMesTwoPeople(){
       $this->middlewareUserPage('../Home');
@@ -224,6 +327,23 @@
       ]);
 
     }
+
+      public function getFindFriendForUser(){
+      $this->middlewareUserPage('../Home');
+      $res = '';
+      if(isset($_POST)){
+        $res = $this->user_db->findFriendForUser($_SESSION['member_id']);
+      }
+
+      $this->view("master_blank", [
+          "page"        => "get_list_user",
+          'list_user' => $res,
+          'text_search' => $_POST['text_search'],
+      ]);
+
+    }
+
+    
 
   }
 

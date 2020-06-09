@@ -21,7 +21,7 @@
       }
       $this->view("master_h", [
         "page"          => "doc_main",
-        // "allTuts"       => $this->tut_db->getAllTutorial(),
+        // "allTutsIndex"       => $this->tut_db->getAllTutorialIndex(),
         "tut_qs"        => $this->tut_db->loadQuestion(),
         "avatar"        => $this->user_db->getUserAvatar(),
         "allDocCatalog" => $this->doc_db->getAllDocCatalog(),
@@ -37,7 +37,7 @@
       }
       $this->view("master_h", [
         "page"          => "doc_main",
-        // "allTuts"       => $this->tut_db->getAllTutorial(),
+        // "allTutsIndex"       => $this->tut_db->getAllTutorialIndex(),
         "tut_qs"        => $this->tut_db->loadQuestion(),
         "avatar"        => $this->user_db->getUserAvatar(),
         "all_doc"       => $this->doc_db->getAllDocsOfCatalog($doc_ca_name),

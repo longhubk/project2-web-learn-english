@@ -1,7 +1,7 @@
 <div id="log-1" class="login-container-2">
   <form class="login-form animate animate2" method="POST" action="./Register/Login">
     <div class="login-img">
-      <i onclick="closeLogin()" class="fas fa-user"></i>
+      <img onclick="closeLogin()" class="img-50" src='public/icon/user_icon.png' >
     </div>
     <div class="login-main">
       <label class="login-label">Username:</label>

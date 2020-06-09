@@ -26,6 +26,7 @@
   <meta name="theme-color" content="#ffffff">
 
   <link href = "./public/css/admin.css"     rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/loading.css"     rel = "stylesheet" type = "text/css">
   <link href = "./public/css/admin_user.css"     rel = "stylesheet" type = "text/css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <script src = './public/js/JQuery/jquery-3.4.1.js'  type = "text/javascript"></script>

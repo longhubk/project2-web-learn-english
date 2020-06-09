@@ -44,56 +44,126 @@
         $has_question = false;
         echo "
           <table class='test_table'>
-          <tr class='first_row'><td><a href='TestPage'>".$all_test[$i][1]."</a></td><td>
+          <tr class='first_row'>
+            <td class='title_content'>
+              <a href='TestPage'>".$all_test[$i][1]."</a>
+            </td>
+            <td>
+              <img title='show question' id='show_lesson-".$i."' class='icon-96 show_question ' src='public/icon/eye_icon.png'>
 
-          <img title='show question' id='show_lesson-".$i."' class='icon-96 show_question ' src='public/icon/eye_icon.png'>
+              <a title='update test' href='./HomeAdmin/getUpdateTest/".$all_test[$i][0]."/".$all_test[$i][7]."'><img class=' icon-96 setting_question' src='public/icon/setting_icon.png'></a>
 
-          <a title='update test' href='./HomeAdmin/getUpdateTest/".$all_test[$i][0]."/".$all_test[$i][7]."'><img class=' icon-96 setting_question' src='public/icon/setting_icon.png'></a></td>
-
+              <img title='edit test' id='edit_test-".$i."' class=' icon-96 setting_question' src='public/icon/edit_icon.png'>
+            </td>
+          </tr>
         ";
         
         echo "<tr>";
         for($j = 0; $j < sizeof($num_question); $j++){
           if($num_question[$j][0] == $all_test[$i][0]){
-            echo "<td>Number question</td> ";
-            echo "<td>".$num_question[$j][1]."</td>";
+            echo "<td class='title_content'>Number question</td>
+                  <td>".$num_question[$j][1]."</td>";
             $has_question = true;
           }
         }
         if(!$has_question)
-            echo "<td>Number question</td><td>0</td>";
-
-        
-
-        
-        echo "</td></tr><tr>";
+          echo "<td class='title_content'>Number question</td>
+                <td>0</td>
+              </tr>";
 
 
         for($j = 0; $j < sizeof($name_ad); $j++){
           if($name_ad[$j][0] == $all_test[$i][5]){
-            echo "<td>Modify by</td>";
-            echo "<td>".$name_ad[$j][1]."</td>";
+
+            echo "<tr>
+                    <td class='title_content'>Modify by</td>
+                    <td>".$name_ad[$j][1]."</td>
+                  </tr>";
+
           }
           else{
-            echo "<td>Modify by</td>";
-            echo "<td>Unknown</td>";
+            echo "<tr>
+                    <td class='title_content'>Modify by</td>
+                    <td>Unknown</td>
+                  </tr>";
           }
         }
-        echo "</tr><tr>";
 
-        echo "<td>Date modify</td>";
-        echo "<td>".$all_test[$i][6]."</td>";
+        echo "
+            <tr>
+              <td class='title_content'>Date modify</td>
+              <td>".$all_test[$i][6]."</td>
+            </tr>
 
-        echo "</tr><tr>";
+            <tr>
+              <td class='title_content'>Time test</td>
+              <td>".$all_test[$i][2]."</td>
+            </tr>
 
-        echo "<td>Level</td>";
-        echo "<td>".$all_test[$i][7]."</td></tr>";
-        echo "</table>";
+            <tr>
+              <td class='title_content'>Level</td>
+              <td>".$all_test[$i][7]."</td>
+            </tr>
+
+            <tr>
+              <td class='title_content'>Description</td>
+              <td class='des_test'>".$all_test[$i][4]."</td>
+            </tr>
+
+        </table>";
+
+        echo "<div id='toggle_edit_test-".$i."'>";
+        ?>
+        <form method="POST" action="./HomeAdmin/postEditTest">
+        <table class="toggle_edit_test_table">
+          <tr class="first_row">
+            <td class="first_column">Edit</td>
+            <td><input type='submit' value='Save'></td>
+          </tr>
+        <?php
+          echo "<input type='hidden' name='test_id' value='".$all_test[$i][0]."'>";
+              echo "
+                  <tr>
+                    <td class='title_content'>New name test</td>
+                    <td><input type='text' name='new_name_test' value='".$all_test[$i][1]."'></td>
+                  </tr>
+                  
+                  <tr>
+                    <td class='title_content'>New time</td>
+                    <td><input type='number' max='60' min='5' name='new_time_test' value='".$all_test[$i][2]."'></td>
+                  </tr>
+
+                  
+                  <tr>
+                    <td class='title_content'>Number question</td>
+                    <td><input type='number' max='60' min='5' name='new_num_test' value='".$all_test[$i][3]."'></td>
+                  </tr>
+
+
+                  <tr>
+                    <td class='title_content'>New Level</td>
+                    <td><input type='number' max='4' min='0' name='new_level_test' value='".$all_test[$i][7]."'></td>
+                  </tr>
+
+                  <tr>
+                    <td>New description</td>
+                    <td><textarea type='text' name='new_des_test' > ".$all_test[$i][4]."</textarea></td>
+                  </tr>
+
+                  ";
+        ?>
+          </form>
+
+        </table>
+        </div><br>
+
+        <?php
+
 
         echo "<div class='toggle_lesson' id='toggle_lesson-".$i."'>";
         ?>
 
-        <table>
+        <table class='view_question_table'>
           <tr class="first_row">
             <td class="first_column">Name</td>
             <td>Question</td>
@@ -131,6 +201,7 @@
   ?>
 
 
+    <div class="clear"></div>
 
   <img title='add new test' id='btn_add_tut' class="icon-120" src='public/icon/plus_green_icon.png'>
 
@@ -164,7 +235,7 @@
 
         <td><input type="number" name='test_time' placeholder="Enter time of test(minutes)" max= '60' min='5' value="15"></td>
 
-        <td><textarea name="test_description" class='test_area_des'></textarea></td>
+        <td><textarea name="test_description" class='test_area_des' placeholder="Enter new description of this test..."></textarea></td>
 
         <td><input type="submit" value='add new test'></td>
       </tr>

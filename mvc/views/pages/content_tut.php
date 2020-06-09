@@ -24,18 +24,51 @@
       }
     ?>
 
+    <?php
+      if(isset($data['allTutsIndex']) && !isset($data['tutContent'])){
 
-      <?php 
-        if(isset($data['tut_guide'])){
-          echo" <div class='tips'>";
-          echo "<h3>Hướng dẫn học:</h3>";
-          $tut_guide = $data['tut_guide'];
-          foreach ($tut_guide as $step => $content){
-            echo "<p> $step: $content</p>";
-          }
-          echo "</div>";
+        $all_tut = $data['allTutsIndex'];
+        // var_dump($all_tut);
+        for($i = 0; $i < sizeof($all_tut); $i++){
+          echo "<div class='each_tut_show'>
+            <div class='tut_img'>
+              <img class='img_tut_show  img-100' src='public/img/tutorial/".$all_tut[$i][7]."'>
+            </div>
+
+            <div class='tut_cont'>
+              <div class='title'>
+                <a href='Tut/One/".$all_tut[$i][5]."'>";
+                  echo $all_tut[$i][1];
+                echo "</a>
+              </div>
+              <div class='des_tut'>";
+                echo $all_tut[$i][8];
+              echo"</div>
+              <div class='tut_level'>";
+                echo "Cấp độ: ". $all_tut[$i][4];
+              echo "</div>
+            </div>
+          
+          </div><br>";
         }
-      ?>
+      }
+      
+    
+    ?>
+
+
+
+    <?php 
+      if(isset($data['tut_guide'])){
+        echo" <div class='tips'>";
+        echo "<h3>Hướng dẫn học:</h3>";
+        $tut_guide = $data['tut_guide'];
+        foreach ($tut_guide as $step => $content){
+          echo "<p> $step: $content</p>";
+        }
+        echo "</div>";
+      }
+    ?>
 
     <?php 
 

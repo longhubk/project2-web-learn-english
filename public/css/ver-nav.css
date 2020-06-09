@@ -17,6 +17,18 @@
     transition: all 0.2s ease; */
   
 }
+
+  .ver-bar .clock_contain {
+    height: 30%;
+    background-color: rgb(180, 180, 180);
+  }
+
+
+  .ver-bar .clock_contain #status{
+    color: red;
+    font-size: 20px;
+  }
+
 .ver-bar:hover{
   overflow-y: auto;
 }
@@ -53,6 +65,8 @@
     top: 50px;
   }
   .ver-bar ul li a {font-size: 18px;}
+
+
   
 }
 @media only screen and (max-height: 500px) {

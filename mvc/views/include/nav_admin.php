@@ -20,7 +20,7 @@
         </span>
         <ul>
           <li><a href="./HomeAdmin/getViewUser">View User</a></li>
-          <li><a href="./HomeAdmin/getUpdateUser">Change User</a></li>
+          <li><a href="./HomeAdmin/getSendNotifyToUser">Notify User</a></li>
           
         </ul>
 

@@ -2,23 +2,12 @@
 <div class="main-container">
   <div class="video-card">
 
-    <!-- <h1>Test Page </h1> -->
-    <!-- <p>Đây là bài thi thi của bạn</p> -->
-    <div id='status'></div>
-        <button id='disable_redirect' style="display: none;"></button>
+    <h1>ARE YOU READY </h1>
+    <p>Bạn đã sẵn sàng chưa !</p>
+    <img src='public/gif/ready_to_test.gif'>
 
-    <?php
+    
 
-      if(isset($data['time_test']))
-        $time_test = $data['time_test'];
-      
-      if(isset($data['test_qs'])){
-        $test_qs = $data['test_qs'];
-        echo "<div>Num question: <span id='num_qs_test' >".sizeof($test_qs)."</span></div>";
-        echo "<div>Time : <span id='time_test' >".$time_test."</span> (phut)</div>";
-      }
-    ?>
-    <button id='btn_trigger'>start</button>
     <div id='toggle_start'>
     <form id='submit_test_form' method="POST" action="./TestPage/Check/<?php 
       if(isset($data['test_id'])) echo $data['test_id'];
@@ -36,6 +25,7 @@
         $content_qs = $test_qs[$i][2];
         $ans        = [];
 
+        echo "<div id='test_qs_".$id_qs."' name='test_qs_".$id_qs."'>";
         echo "<div class='title_qs'>".$name_qs . $content_qs . "</div>";
         echo "<div class='answer_qs'>";
         for($j = 1; $j <= 4; $j++){
@@ -45,6 +35,7 @@
           
           echo "<div class='each_ans'><input type='checkbox' id='ans_show-".$i."-".$j."' name='isRight_".$j."-".$id_qs."' value='true'> <label for='ans_show-".$i."-".$j."'>" . $ans[$j] . "</label></div><br>";
         }
+        echo "</div>";
         echo "</div>";
 
       }

@@ -5,7 +5,7 @@
   
     if(isset($data['id_lesson_update'])){
       $les_id = $data['id_lesson_update'];
-      echo " Do you want to update lesson: " . $les_id . "<br>";
+      echo " Do you want to update lesson: <span id='les_up_id'>" . $les_id . "</span><br>";
     }
 
     if(isset($data['res_update'])){
@@ -29,16 +29,16 @@
         echo "<div id='ct_main-".$content_id."'>
               <hr>
               <lab> Content ".($i+1)."</label><br><br>
-              <table id='content_".($i+1)."'>
+              <table class='table_update_content' id='content_".($i+1)."'>
               <tr>
-                <td> Main content</td>
+                <td class='title_content'> Main content</td>
                 <td class='input_content' > 
                   <textarea   name='main_content-".$content_id."' >".$content_main."</textarea>
                 </td>
               </tr>
 
               <tr>
-                <td> Guide content</td>
+                <td class='title_content' > Guide content</td>
                 <td class='input_content' > 
                   <textarea   name='guide_content-".$content_id."' >".$content_guide."</textarea>
                 </td>
@@ -50,7 +50,7 @@
           if(!empty($exp[$j])){
             echo "
               <tr>
-                <td> Example ".$j."</td>
+                <td class='title_content'> Example ".$j."</td>
                 <td class='input_content'><textarea  name='example_".$j."-".$content_id."' >".$exp[$j]."</textarea>
                 </td>
               </tr>
@@ -62,6 +62,7 @@
         echo "</table>
             <img class='icon-96' id='add_ex2_".($i+1)."' data-content_id='".$content_id."' src='public/icon/plus_green_icon.png'>
             <img class='icon-96' id='rm_ex2_".($i+1)."'  src='public/icon/minus_red_icon.png'>
+            <img class='icon-96' id='delete_ct_".$les_id."-".$content_id."'  src='public/icon/delete_2.png'>
         </div>";
       }
 

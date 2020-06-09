@@ -376,6 +376,55 @@
     }
 
 
+    public function getContentIdToDelete(){
+      $this->middlewareAdmin();
+      $res = "fail";
+      if(isset($_POST)){
+        if(!empty($_POST)){
+          $res = $this->tut_db->getContentIdByLessonId($_POST['les_id']);
+        }
+        
+      }
+      $this->view("master_blank", [
+        "page"        => "get_mes_history",
+        "content_id" => $res,
+      ]);
+    }
+
+
+    public function getDeleteContent(){
+      $this->middlewareAdmin();
+      $res = "fail";
+      if(isset($_POST)){
+        if(!empty($_POST)){
+          $res = $this->tut_db->getDeleteContentById($_POST['les_id'], $_POST['content_id']);
+        }
+        
+      }
+      $this->view("master_blank", [
+        "page"        => "get_mes_history",
+        "delete_res" => $res,
+      ]);
+    }
+
+    
+    public function postEditTest(){
+      $this->middlewareAdmin();
+      $res = "fail";
+      if(isset($_POST)){
+        if(!empty($_POST)){
+          $res = $this->test_db->getEditTestById($_POST);
+        }
+      }
+      if($res)
+        header("Location:../HomeAdmin/getViewTest");
+
+      $this->view("master_admin", [
+        "page"       => "content_admin_view_test",
+        "upload_res" => $res,
+      ]);
+    }
+
 
   }
 

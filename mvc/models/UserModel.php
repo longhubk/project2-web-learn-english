@@ -55,10 +55,90 @@
       return $res;
 
     }
+    public function getListUserNotMe($my_id){
+      $qr   = "SELECT id FROM users WHERE id != '$my_id'";
+      return $this->queryAllArray($qr);
+    }
+
+    public function getAcceptRequest($my_id, $friend_id){
+      $qr   = "UPDATE friends SET status = 'friend' WHERE (user_id = '$my_id' AND my_friend_id = '$friend_id') OR ( user_id = '$friend_id' AND my_friend_id = '$my_id')";
+      $res = mysqli_query($this->con, $qr);
+      if($res) return "ok";
+      else return "fail";
+    }
+
+    public function getRemoveRequest($my_id, $friend_id){
+      $qr   = "UPDATE friends SET status = 'unfriend' WHERE (user_id = '$my_id' AND my_friend_id = '$friend_id') OR ( user_id = '$friend_id' AND my_friend_id = '$my_id')";
+      $res = mysqli_query($this->con, $qr);
+      if($res) return "ok";
+      else return "fail";
+    }
+
+    public function findFriendForUser($us_id){
+
+      $friend_id = $this->getListFriendByUserId($us_id);
+      $qr   = "SELECT id, name FROM users WHERE user_type != 'admin' AND id != '$us_id'";
+      $res = $this->queryAllArray($qr);
+      for($i = 0; $i <sizeof($res); $i++){
+        $res[$i][2] = "un_friend";
+        for($j = 0; $j < sizeof($friend_id); $j++){
+          if($res[$i][0] == $friend_id[$j][0]){
+            $res[$i][2] = "friend";
+            break;
+          }
+        }
+      }
+      return $res;
+    }
+
 
     public function getNameAdminModify(){
       $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
       return $this->queryAllArray($qr);
+    }
+
+    public function getUserListFriendRequest($user_id){
+      $qr   = "SELECT my_friend_id name FROM friends WHERE user_id = '$user_id' AND status = 'have_rq'";
+      $res = $this->queryAllArray($qr);
+      for($i = 0; $i < sizeof($res); $i++){
+        $fr_id = $res[$i][0];
+        $qr1 = "SELECT name FROM users WHERE id = '$fr_id' ";
+        $res1 = $this->queryAssoc($qr1, 'name');
+        if($res1) $res[$i][1] = $res1;
+      }
+      return $res;
+    }
+
+    public function getUserListMyRequest($user_id){
+      $qr   = "SELECT my_friend_id name FROM friends WHERE user_id = '$user_id' AND status = 'send_rq'";
+      $res = $this->queryAllArray($qr);
+      for($i = 0; $i < sizeof($res); $i++){
+        $fr_id = $res[$i][0];
+        $qr1 = "SELECT name FROM users WHERE id = '$fr_id' ";
+        $res1 = $this->queryAssoc($qr1, 'name');
+        if($res1) $res[$i][1] = $res1;
+      }
+      return $res;
+    }
+
+    public function getSendFriendRequest($my_id, $us_want_id){
+
+      $qr1   = "INSERT INTO friends VALUES('$my_id', $us_want_id, 'send_rq')";
+      $qr2   = "INSERT INTO friends VALUES('$us_want_id', $my_id, 'have_rq')";
+      $res1 = mysqli_query($this->con, $qr1);
+      $res2 = mysqli_query($this->con, $qr2);
+
+      if($res1 && $res2) return "ok";
+      else return "fail";
+    }
+
+
+    public function getAcceptFriendRequest($my_id, $us_want_id){
+
+      $qr   = "UPDATE friends SET status = 'friend' WHERE (user_id = '$my_id' AND my_friend_id = '$us_want_id') OR (user_id = '$us_want_id' AND my_friend_id = '$my_id')";
+      $res = mysqli_query($this->con, $qr);
+      if($res) return "ok";
+      else return "fail";
     }
 
     public function blockUserById($user_id){
@@ -288,6 +368,10 @@
         return $this->queryAllArray($qr);
 
       }
+      public function countRequestFriend($user_id){
+        $qr    = "SELECT * FROM friends WHERE user_id = '$user_id' AND status = 'have_rq'";
+        return $this->queryNumRow($qr);
+      }
 
       public function checkIsLogin($user_name){
 
@@ -305,6 +389,31 @@
       public function getListFriendByUserId($user_id){ 
         $qr    = "SELECT my_friend_id FROM friends WHERE user_id = '$user_id' AND status = 'friend' GROUP BY my_friend_id "; 
         return $this->queryAllArray($qr);
+      }
+
+      public function getUserPointLesson($user_id){ 
+        $qr    = "SELECT lesson_id, point, last_date_test FROM user_lesson WHERE user_id = '$user_id' "; 
+        $res =  $this->queryAllArray($qr);
+        for($i = 0; $i < sizeof($res); $i++){
+          $les_id = $res[$i][0];
+          $qr1    = "SELECT title_lesson FROM lesson_tut WHERE lesson_id = '$les_id'"; 
+          $res1 = $this->queryAssoc($qr1, 'title_lesson');
+          array_push($res[$i], $res1);
+        }
+        return $res;
+      }
+
+
+      public function getUserPointTest($user_id){ 
+        $qr    = "SELECT test_id, total_score, last_date_test FROM user_tests WHERE user_id = '$user_id' "; 
+        $res =  $this->queryAllArray($qr);
+        for($i = 0; $i < sizeof($res); $i++){
+          $test_id = $res[$i][0];
+          $qr1    = "SELECT test_name FROM test WHERE test_id = '$test_id'"; 
+          $res1 = $this->queryAssoc($qr1, 'test_name');
+          array_push($res[$i], $res1);
+        }
+        return $res;
       }
 
       public function countMessageTwoPeople($user_id, $friend_id){ 

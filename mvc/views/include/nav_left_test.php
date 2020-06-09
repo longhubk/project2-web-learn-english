@@ -1,0 +1,57 @@
+<div id="ver_nav" class="ver-bar">
+
+  <div class='clock_contain'>
+
+
+    
+    <button id='disable_redirect' style="display: none;"></button>
+
+    <?php
+
+      
+      echo "<table>"; 
+      if(isset($data['test_qs'])){
+        $test_qs = $data['test_qs'];
+        echo "<tr>
+        <td>Number question</td>
+        <td id='num_qs_test' >".sizeof($test_qs)."</td>
+        </tr>
+        ";
+
+      }
+
+      if(isset($data['time_test'])){
+        $time_test = $data['time_test'];
+        echo "<tr>
+          <td>Time</td>
+          <td><div id='status'> ".$time_test." m : 0 s  </div></td>
+        </tr>";
+        // echo "<div>Time : <span id='time_test' >".$time_test."</span> (phút)</div>";
+
+        echo "<tr>
+              <td colspan='2'><button id='btn_trigger'>start</button> </td>
+          </tr>";
+      }
+      echo "</table>";
+      
+    ?>
+
+  </div>
+
+  <div class='list_question'>
+    <ul>
+      <?php
+        if(isset($data['test_qs'])){
+          $test_qs = $data['test_qs'];
+          if(!empty($test_qs)){
+            for($i = 0; $i < sizeof($test_qs); $i++){
+                $id_qs      = $test_qs[$i][0];
+                $name_qs    = $test_qs[$i][1];
+              echo "<li><label>".$name_qs."</label> <input type='checkbox' name='check_box_qs' ></li>";
+            }
+          }
+        }
+      ?>
+    </ul>
+  </div>
+</div>
