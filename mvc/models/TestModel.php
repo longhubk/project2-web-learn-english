@@ -2,25 +2,14 @@
 <?php 
   class TestModel extends DB{
 
-    private $path = "./mvc/models/data/";
-
-    // public function __construct()
-    // {
-    //   $this->path = "./mvc/models/data/";
-    // }
 
     public function loadTestQuestion($test_id){
-      // return parent::readJsonData("$this->path"."test_question/grammar_qs.json");
-
       $qr = "SELECT * FROM test_qs WHERE test_id = $test_id ";
       return $this->queryAllArray($qr);
     }
 
-    public function loadAllTest(){
-      // return parent::readJsonData("$this->path"."test_question/test_all.json");
-    }
     
-    public function loadAllTestAdmin(){
+    public function loadAllTest(){
       $qr = "SELECT * FROM test";
       return $this->queryAllArray($qr);
     }
@@ -178,8 +167,7 @@
 
     public function getRegisterTest($test_id, $cookie){
       $qr1 = "SELECT * FROM users WHERE name = '$cookie'";
-      $rows = mysqli_query($this->con, $qr1);
-      $res1 = mysqli_fetch_assoc($rows);
+      $res1 = $this->queryAssocAll($qr1);
       $feedback = [];
       $test_turn = 0;
       $user_id = "";
@@ -195,17 +183,15 @@
 
 
       $qr2 = "SELECT * FROM user_tests WHERE test_id = $test_id AND user_id = $user_id";
-      $row2 = mysqli_query($this->con, $qr2);
-      $num_row = mysqli_num_rows($row2);
+      $num_row = $this->queryNumRow($qr2);
       $insert = true;
       if($num_row > 0){
         $insert = false;
-        $res2 = mysqli_fetch_assoc($row2);
+        $res2 = $this->queryAssocAll($qr2);
         if($res2['num_turn']  > 0){
           $test_turn = $res2['num_turn'] - 1;
           $feedback[1] = "had_to_test";
           $feedback[5] = $test_turn;
-          
         }
         else{
           $feedback[1] = "has_no_turn";

@@ -142,6 +142,8 @@ li.tutorial{
   padding         : 5px 10px 3px 10px;
   background-color: gray;
   border          : none;
+  height: 100%;
+  width: 100%;
 }
 
 #hor-nav #menu-li button:focus{

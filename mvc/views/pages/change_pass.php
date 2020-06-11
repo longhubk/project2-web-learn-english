@@ -11,14 +11,15 @@
   <div class="user_info_page">
 
     <div class="input_info">
-      <form method="POST" action="./UserPage/changepw">
+      <form method="POST" action="./UserPage/change_pass">
 
         <div class="input_item">
           <div class="item_label">
             <label>Old Password:</label>
           </div>
           <div class="item_input">
-            <input type="password" name="old_pass">
+            <input type="password" name="old_pass" placeholder="Enter your old password">
+            <span></span>
           </div>
         </div>
 
@@ -27,20 +28,27 @@
             <label>New Password:</label>
           </div>
           <div class="item_input">
-            <input type="password" name="new_pass">
+            <input type="password" name="new_pass" placeholder="Enter your new password">
           </div>
         </div>
+
 
         <div class="input_item">
           <div class="item_label">
             <label>New Password Again:</label>
           </div>
           <div class="item_input">
-            <input type="password" name="new_pass_again">
+            <input type="password" name="ne w_pass_again" placeholder="Enter new password again">
           </div>
         </div>
 
         <button class="submit_more" type="submit" name="change_pw">Update</button>
+        <?php
+          if(isset($data['pass_update'])){
+            echo "<div class='label_res'>".$data['pass_update']."</div>";
+          }
+        
+        ?>
 
       </form>
     </div>

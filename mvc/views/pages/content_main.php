@@ -10,7 +10,7 @@
       // if(isset($data['is_lock']))
       //   var_dump($data['is_lock']);
       // echo "<br><br>";
-      // var_dump($data['allTutsIndex'])
+      // var_dump($data['allTuts'])
     ?>
       <div class='slide_item'>
         <img class="intro" src="public/img/Welcome1.jpg">

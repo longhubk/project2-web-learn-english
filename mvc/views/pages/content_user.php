@@ -1,18 +1,19 @@
 <div class='main-container'>
   <?php
-  // include "../controllers/uploadAvatar.php";
-  // if(isset($_POST["birthday"])){
-  //   echo $_POST["birthday"] . "<br>";
-  //   echo $_POST["gender"] . "<br>";
-    
 
-  // }
   // var_dump($_SESSION);
   if (isset($_COOKIE['member_login']))
     echo "<h1>Hello " . $_COOKIE['member_login'] . "</h1><h2>Đây là Trang cá nhân của bạn</h2>";
   else
     echo "<h1>You are not login</h1>";
+    
+  if(isset($data['info'])){
+      $info = $data['info'];
+      // var_dump($info);
+  }
   ?>
+  
+
 
   <p class="notification_avt">Hãy cập nhật nhật thông tin của bạn: </p>
   <div class="user_info_page">
@@ -20,21 +21,23 @@
     <div class="input_info">
       <form method="POST" action="./UserPage/updateInfo">
 
+
         <div class="input_item">
           <div class="item_label">
             <label>First Name:</label>
           </div>
           <div class="item_input">
-            <input type="text" name="f_name" <?php if(isset($data['info']['f_name'])) echo "value ='". $data['info']['f_name']."'" ?>>
+            <input type="text" name="f_name" <?php if(!empty($info['fname'])) echo "value ='". $info['fname']."'" ?>>
           </div>
         </div>
+
 
         <div class="input_item">
           <div class="item_label">
             <label>Last Name:</label>
           </div>
           <div class="item_input">
-            <input type="text" name="l_name" <?php if(isset($data['info']['l_name'])) echo "value ='". $data['info']['l_name']."'" ?>>
+            <input type="text" name="l_name" <?php if(!empty($info['lname'])) echo "value ='". $info['lname']."'" ?>>
           </div>
         </div>
 
@@ -43,7 +46,7 @@
             <label>Birth Day:</label>
           </div>
           <div class="item_input">
-            <input type="date" name="birthday" <?php if(isset($data['info']['birthday'])) echo "value ='". $data['info']['birthday']."'" ?>>
+            <input type="date" name="birthday" <?php if(!empty($info['birthday'])) echo "value ='". $info['birthday']."'" ?>>
 
           </div>
         </div>
@@ -53,11 +56,11 @@
             <label>Gender:</label>
           </div>
           <div class="item_input">
-            <input type="radio" value="male" name="gender" <?php if(isset($data['info']['gender'])){ if($data['info']['gender'] == 'male') echo "checked";} ?>>
+            <input type="radio" value="male" name="gender" <?php if(!empty($info['gender'])) {if($info['gender'] == 'male') echo "checked";}?>>
             <label>Male</label>
-            <input type="radio" value="female" name="gender" <?php if(isset($data['info']['gender'])){ if($data['info']['gender'] == 'female') echo "checked";} ?>>
+            <input type="radio" value="female" name="gender"<?php if(!empty($info['gender'])) {if($info['gender'] == 'female') echo "checked";} ?>>
             <label>Female</label>
-            <input type="radio" value="other" name="gender" <?php if(isset($data['info']['gender'])){ if($data['info']['gender'] == 'other') echo "checked";} ?>>
+            <input type="radio" value="other" name="gender" <?php if(!empty($info['gender'])) { if($info['gender'] == 'other') echo "checked";} ?>>
             <label>Other</label>
           </div>
         </div>
@@ -67,7 +70,7 @@
             <label>School/University:</label>
           </div>
           <div class="item_input">
-            <input type="text" name="school" <?php if(isset($data['info']['school'])) echo "value ='". $data['info']['school']."'" ?>>
+            <input type="text" name="school" <?php if(!empty($info['school'])) echo "value ='". $info['school']."'" ?>>
           </div>
         </div>
 
@@ -76,7 +79,7 @@
             <label>Toeic Score:</label>
           </div>
           <div class="item_input">
-            <input type="number" name="toeic_score" min="0" max="990" <?php if(isset($data['info']['toeic'])) echo "value ='". $data['info']['toeic']."'" ?>>
+            <input type="number" name="toeic_score" min="0" max="990" <?php if(!empty($info['toeic'])) echo "value ='". $info['toeic']."'" ?>>
           </div>
         </div>
 
@@ -101,6 +104,11 @@
           <label id="rp_input_file" for="file_rp">Choose Image</label>
           <input id="submit_avt" type="submit" name='upload' value="upload">
         </form>
+        <?php
+          if(isset($data['res_upload']))
+            echo "<div class='label_res'>" .$data['res_upload'] . "</div>";
+        ?>
+
       </div>
     </div>
   </div>

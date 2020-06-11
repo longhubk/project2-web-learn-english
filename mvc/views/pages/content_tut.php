@@ -25,9 +25,9 @@
     ?>
 
     <?php
-      if(isset($data['allTutsIndex']) && !isset($data['tutContent'])){
+      if(isset($data['allTuts']) && !isset($data['tutContent'])){
 
-        $all_tut = $data['allTutsIndex'];
+        $all_tut = $data['allTuts'];
         // var_dump($all_tut);
         for($i = 0; $i < sizeof($all_tut); $i++){
           echo "<div class='each_tut_show'>
@@ -132,7 +132,62 @@
           // echo "<button id='btn_scroll'>scroll</button>";
           // echo "<button id='btn_auto_scroll'>auto scroll</button>";
           }
+
+          // if(isset($data['audio'])){
+          //   $aud = "public/audio/". $data['audio'];
+          //   echo "<audio controls> <source src='$aud' type='audio/mp3'></audio>";
+          // }
+          // $out = '';
+          // if(isset($data['sub_audio'])){
+          //   $out = "<ul class='toggle_tab'>
+          //     <li>En Script</li>
+          //     <li>Vn Script</li>
+          //     <li>Quiz</li>
+          //   </ul>";
+          // }
+
+          // if(isset($data['en_sub_aud'])){
+          //   $en_sub = $data['en_sub_aud'];
+          //   $out .= "<div class=' tab tab_en_sc>";
+          //   $out .= "<ul>";
+          //   for($i = 0; $i <sizeof($en_sub); $i++){
+          //     $out .= "<li><span>".$en_sub['people']."</span>:<span>".$en_sub['content']."</span></li>";
+          //   }
+          //   $out .= "</ul></div>";
+          // }
+          // if(isset($data['vi_sub_aud'])){
+          //   $vi_sub = $data['vi_sub_aud'];
+          //   $out .= "<div class=' tab tab_vi_sc'>";
+          //   $out .= "<ul>";
+          //   for($i = 0; $i <sizeof($vi_sub); $i++)
+          //     $out .= "<li><span>".$vi_sub['people']."</span>:<span>".$vi_sub['content']."</span></li>";
+
+          //   $out .= "</ul></div>";
+          // }
+
+          // if(isset($data['quiz_aud'])){
+          //   $quiz = $data['quiz_aud'];
+          //   $out .= "<div class='tab tab_quiz'>";
+          //   $out .= "<ul>";
+
+          //   for($i = 0; $i <sizeof($quiz); $i++){
+
+          //     $out .= "<li><span>".$quiz['people']."</span>:<span>".$quiz['content']."</span></li>";
+          //     for($j = 1; $j <= 4; $j++){
+          //       $out .= "<input type='checkbox' name='ans_quiz-".$quiz['id']."'><label>"
+          //     }
+
+          //   }
+
+          //   $out .= "</ul></div>";
+
+          // }
+             
+
+
           ?>
+          
+
 
 
     </div>

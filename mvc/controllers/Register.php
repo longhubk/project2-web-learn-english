@@ -2,19 +2,11 @@
   <?php 
   class Register extends Controller{
 
-    public $user_db;
-    public $tut_db;
-
-    public function __construct()
-    {
-      $this->user_db = $this->model("UserModel");
-      $this->tut_db  = $this->model("TutorialModel");
-    }
     public function Init(){
       // var_dump($_SESSION);
       $this->view("master_h", [
         "page"       => "content_main",
-        "allTutsIndex"    => $this->tut_db->getAllTutorialIndex(),
+        "allTuts"    => $this->tut_db->getAllTutorialIndex(),
         "tut_qs"     => $this->tut_db->loadQuestion(),
         "login_part" => "log_in",
       
@@ -45,7 +37,7 @@
           header("Location:../Home/");
         $this->view("master_h", [
           "page"      => "login_success",
-          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
+          "allTuts"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "login_res" => "Login Successfully",
           "avatar"    => $this->user_db->getUserAvatar(),
@@ -54,7 +46,7 @@
       else{
           $this->view("master_h", [
             "page"       => "content_main",
-            "allTutsIndex"    => $this->tut_db->getAllTutorialIndex(),
+            "allTuts"    => $this->tut_db->getAllTutorialIndex(),
             "tut_qs"     => $this->tut_db->loadQuestion(),
             "login_part" => "log_in",
             "state"      => $res
@@ -79,7 +71,7 @@
       $this->tut_db->updateTutorialNewSignUp($us_id, $all_tut);
       $this->view("master_h", [
         "page"      => "login_success",
-        "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
+        "allTuts"   => $this->tut_db->getAllTutorialIndex(),
         "tut_qs"    => $this->tut_db->loadQuestion(),
         "login_res" => "Sign Up Successfully"
       ]);
@@ -87,7 +79,7 @@
     }else{
       $this->view("master_h", [
         "page"        => "content_main",
-        "allTutsIndex"     => $this->tut_db->getAllTutorialIndex(),
+        "allTuts"     => $this->tut_db->getAllTutorialIndex(),
         "tut_qs"      => $this->tut_db->loadQuestion(),
         "signup_part" => "sign_up",
         "sign_err"    => $res
@@ -100,7 +92,7 @@
         header("Location:../Home/");
         $this->view("master_h", [
           "page"       => "content_main",
-          "allTutsIndex"    => $this->tut_db->getAllTutorialIndex(),
+          "allTuts"    => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"     => $this->tut_db->loadQuestion(),
       
         ]);

@@ -7,6 +7,7 @@
     protected $password   = "PtOGOOZuHq7aV4Pi";
     protected $dbname     = "speakmore";
     protected $username   = "root";
+    protected $path = "./mvc/models/data/";
 
     function __construct(){
       $this->con = mysqli_connect($this->serverName, $this->username, $this->password);
@@ -28,6 +29,12 @@
       return $res;
     }
 
+    protected function queryAssocAll($qr){
+      $rows = mysqli_query($this->con, $qr);
+      $res = mysqli_fetch_assoc($rows);
+      return $res;
+    }
+
     protected function queryAssoc($qr, $tr){
       $rows = mysqli_query($this->con, $qr);
       $res = mysqli_fetch_assoc($rows);
@@ -37,6 +44,11 @@
     protected function queryNumRow($qr){
       $rows = mysqli_query($this->con, $qr);
       $res = mysqli_num_rows($rows);
+      return $res;
+    }
+
+    protected function queryOne($qr){
+      $res = mysqli_query($this->con, $qr);
       return $res;
     }
 

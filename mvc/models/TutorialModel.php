@@ -1,30 +1,8 @@
 <?php 
   class TutorialModel extends DB{
 
-    private $path = "./mvc/models/data/";
+    
 
-    // public function __construct()
-    // {
-    //   parent::__construct();
-    //   $this->path = "./mvc/models/data/";
-    // }
-
-    // public function getTutKnowledge($getTutorial){
-    //   return parent::readJsonData("$this->path" ."core_knowledge/" . $getTutorial . ".json");
-    // }
-
-
-    // private function queryAssoc($qr, $tr){
-    //   $rows = mysqli_query($this->con, $qr);
-    //   $res = mysqli_fetch_assoc($rows);
-    //   return $res[$tr];
-    // }
-
-    // protected function queryAllArray($qr){
-    //   $rows = mysqli_query($this->con, $qr);
-    //   $res = mysqli_fetch_all($rows);
-    //   return $res;
-    // }
 
     public function getTutKnowledge($getTutorial){
       $qr   = "SELECT lesson_id FROM lesson_tut WHERE name_lesson = '$getTutorial'";
@@ -86,13 +64,6 @@
     }
 
 
-    
-    // public function getAllTutorialIndex(){
-    //   // return parent::readJsonData("$this->path"."tutorials/all_tutorial.json");
-    //   $qr   = "SELECT tut_name, tut_query FROM tutorials";
-    //   return $this->queryAllArray($qr);
-    // }
-
     public function getAllTutorialIndex(){
       $qr   = "SELECT * FROM tutorials";
       return $this->queryAllArray($qr);
@@ -102,6 +73,7 @@
       $qr   = "SELECT status, tut_id FROM user_tuts WHERE user_id = '$us_id'";
       return $this->queryAllArray($qr);
     }
+
     private function getTutIdByTutName($tut_name){
       $qr   = "SELECT id FROM tutorials WHERE tut_query = '$tut_name'";
       return $this->queryAssoc($qr, 'id');
@@ -268,6 +240,7 @@
       else return false;
 
     }
+    
     public function getEditLessonById($post){
 
       $id_les = $post['id_les_edit'];

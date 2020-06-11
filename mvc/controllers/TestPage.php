@@ -4,15 +4,15 @@
       $_SESSION['last_post'] = [];
   class TestPage extends Controller{
 
-    public $tut_db;
-    public $user_db;
-    public $test_db;
-    public function __construct()
-    {
-      $this->tut_db  = $this->model("TutorialModel");
-      $this->user_db = $this->model("UserModel");
-      $this->test_db = $this->model("TestModel");
-    }
+    // public $tut_db;
+    // public $user_db;
+    // public $test_db;
+    // public function __construct()
+    // {
+    //   $this->tut_db  = $this->model("TutorialModel");
+    //   $this->user_db = $this->model("UserModel");
+    //   $this->test_db = $this->model("TestModel");
+    // }
     private function middlewareTest($back, $test = 'none'){
       if(empty($_SESSION['member_id'])){
 
@@ -35,12 +35,12 @@
 
         $this->view("master_test", [
           "page"      => "test_index",
-          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
+          "allTuts"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "login_res" => "OK",
           "avatar"    => $this->user_db->getUserAvatar(),
           "menu_user" => $this->user_db->getUserMenu(),
-          "all_test"  => $this->test_db->LoadAllTestAdmin(),
+          "all_test"  => $this->test_db->loadAllTest(),
           "test_turn"  => $this->test_db->getTestTurnById($_COOKIE['member_login']),
 
         ]);
@@ -51,7 +51,7 @@
 
         $this->view("master_test", [
           "page"      => "test_page",
-          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
+          "allTuts"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "login_res" => "OK",
           "avatar"    => $this->user_db->getUserAvatar(),
@@ -77,7 +77,7 @@
 
         $this->view("master_test", [
           "page"      => "test_res",
-          "allTutsIndex"   => $this->tut_db->getAllTutorialIndex(),
+          "allTuts"   => $this->tut_db->getAllTutorialIndex(),
           "tut_qs"    => $this->tut_db->loadQuestion(),
           "login_res" => "OK",
           "avatar"    => $this->user_db->getUserAvatar(),

@@ -3,25 +3,13 @@
 
 
 
-    public $user_db;
-    public $tut_db;
-    public $lesson_db;
-    public $test_db;
-    public function __construct()
-    {
-      $this->user_db   = $this->model("UserModel");
-      $this->tut_db    = $this->model("TutorialModel");
-      $this->lesson_db = $this->model("LessonModel");
-      $this->test_db   = $this->model("TestModel");
-    }
     private function middlewareAdmin(){
       if(empty($_SESSION['member_id'])){
         if(!empty($_COOKIE['member_login']))
           $this->user_db->checkSession($_COOKIE['member_login'], '');
         else
-           header('Location:Register/');
+          header('Location:Register/');
       }
-
       if($_SESSION['user_type'] !== 'admin')
         header("Location:Home/");
     }
@@ -211,7 +199,7 @@
       $this->view("master_admin", [
         "page"         => "content_admin_view_test",
         "avatar"       => $this->user_db->getUserAvatar(),
-        "all_test"     => $this->test_db->loadAllTestAdmin(),
+        "all_test"     => $this->test_db->loadAllTest(),
         "all_question" => $this->test_db->loadAllQuestionForTest(),
         "admin_modify" => $this->user_db->getNameAdminModify(),
         "num_question" => $this->test_db->getNumberQuestionOfAllTest(),
@@ -261,7 +249,7 @@
       $this->view("master_admin", [
         "page"           => "content_admin_new_test",
         "avatar"         => $this->user_db->getUserAvatar(),
-        "all_test"       => $this->test_db->loadAllTestAdmin(),
+        "all_test"       => $this->test_db->loadAllTest(),
         "num_qs_current" => $this->test_db->loadNumberQuestionCurrent(1),
 
       ]);

@@ -1,16 +1,6 @@
 <?php 
   class Docs extends Controller{
 
-    public $doc_db;
-    public $user_db;
-    public $tut_db;
-
-    public function __construct()
-    {
-      $this->doc_db      = $this->model("DocModel");
-      $this->user_db     = $this->model("UserModel");
-      $this->tut_db     = $this->model("TutorialModel");
-    }
 
     public function Init(){
       if(!isset($_SESSION['member_id'])){
@@ -21,7 +11,7 @@
       }
       $this->view("master_h", [
         "page"          => "doc_main",
-        // "allTutsIndex"       => $this->tut_db->getAllTutorialIndex(),
+        // "allTuts"       => $this->tut_db->getAllTutorialIndex(),
         "tut_qs"        => $this->tut_db->loadQuestion(),
         "avatar"        => $this->user_db->getUserAvatar(),
         "allDocCatalog" => $this->doc_db->getAllDocCatalog(),
@@ -37,7 +27,7 @@
       }
       $this->view("master_h", [
         "page"          => "doc_main",
-        // "allTutsIndex"       => $this->tut_db->getAllTutorialIndex(),
+        // "allTuts"       => $this->tut_db->getAllTutorialIndex(),
         "tut_qs"        => $this->tut_db->loadQuestion(),
         "avatar"        => $this->user_db->getUserAvatar(),
         "all_doc"       => $this->doc_db->getAllDocsOfCatalog($doc_ca_name),

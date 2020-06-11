@@ -192,7 +192,8 @@
   <ul id="hor-nav" class="hori-nav">
     <li id="menu-li" title="menu">
       <button onclick="toggleSideBar()">
-        <i class="material-icons">menu</i>
+        <!-- <i class="material-icons">menu</i> -->
+        <img alt='Menu' class="icon-20" src='public/icon/menu_icon.png'>
       </button>
     </li>
     <li id="home-li">
@@ -219,15 +220,15 @@
         <?php
 
 
-      if(isset($data['allTutsIndex'])){
-        $allTutsIndex = $data['allTutsIndex'];
-        for($i = 0; $i < sizeof($allTutsIndex); $i++){
+      if(isset($data['allTuts'])){
+        $allTuts = $data['allTuts'];
+        for($i = 0; $i < sizeof($allTuts); $i++){
 
-          echo "<a href='./Tut/One/".$allTutsIndex[$i][5]."'>".$allTutsIndex[$i][1];
+          echo "<a href='./Tut/One/".$allTuts[$i][5]."'>".$allTuts[$i][1];
 
           if(!empty($data['is_lock'])){
             $is_lock = $data['is_lock'];
-            if($is_lock[$i][1] == $allTutsIndex[$i][0] && $is_lock[$i][0] == 'lock')   
+            if($is_lock[$i][1] == $allTuts[$i][0] && $is_lock[$i][0] == 'lock')   
               echo "<img class='icon-20' src='public/icon/lock_icon.png'>";
           }
           

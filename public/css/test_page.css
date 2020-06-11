@@ -9,7 +9,7 @@
   /* border: 1px solid violet; */
   margin: 5px;
 }
-.main-container .video-card .test_result .label_res{
+.label_res{
   /* border: 1px solid gray; */
   color: red;
   font-weight: bold;
