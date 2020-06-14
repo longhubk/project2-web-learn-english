@@ -30,7 +30,7 @@
       $test_level = $data['test_level'];
 
       // echo "test_id = ". $test_id;
-      echo "<form id='update_test' method='POST' action='./HomeAdmin/postUpdateTest/".$test_id."/".$test_level."'>"; 
+      echo "<form id='update_test' method='POST' action='./AdminPage/postUpdateTest/".$test_id."/".$test_level."'>"; 
 
       for($i = 0; $i < sizeof($content_test); $i++){
 
@@ -94,7 +94,7 @@
       }
     }
   ?>
-      <a id='btn_add_qs' href='HomeAdmin/getNewTestQuestion/'>Add more question..</a><br><br>
+      <a id='btn_add_qs' href='AdminPage/getNewTestQuestion/'>Add more question..</a><br><br>
       <div class="update_content">
           <input type='submit' value='update test'>
       </div>

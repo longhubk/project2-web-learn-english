@@ -43,7 +43,7 @@
 
   <div class="add_new_user">
 
-    <form method='POST' action='./HomeAdmin/postNewUser'>
+    <form method='POST' action='./AdminPage/postNewUser'>
       <input type="text" name='new_tut_name' placeholder="Enter new name of tutorial">
       <input type="submit" value='add new tutorial'>
     </form>

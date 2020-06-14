@@ -23,7 +23,7 @@ $(document).ready(() => {
           if(confirm('Are you sure to delete this lesson?')){
             // console.log("deleted")
             $.ajax({
-              url : "./HomeAdmin/getDeleteLesson",
+              url : "./AdminPage/getDeleteLesson",
               method: 'POST',
               data : {tutId: tut_arr_id[i], lesId: les_arr_id[j]},
               success : (data) => {

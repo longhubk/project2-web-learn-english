@@ -6,7 +6,7 @@ $(document).ready(() => {
     let ct_arr = []
     console.log('let_up_id ' + les_id)
     $.ajax({
-      url : "HomeAdmin/getContentIdToDelete",
+      url : "AdminPage/getContentIdToDelete",
       method : 'POST',
       data : {les_id : les_id},
       success : (data) => {
@@ -22,7 +22,7 @@ $(document).ready(() => {
             console.log(ct_id + "clicked")
             if(confirm("Are you sure to delete this content?")){
               $.ajax({
-                url : "HomeAdmin/getDeleteContent",
+                url : "AdminPage/getDeleteContent",
                 method : 'POST',
                 data : {content_id : ct_arr[i], les_id: les_id},
                 success : (data2) => {

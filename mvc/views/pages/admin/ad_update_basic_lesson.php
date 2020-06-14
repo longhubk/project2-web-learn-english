@@ -24,7 +24,7 @@
     if(isset($data['content_lesson'])){
       $content_less = $data['content_lesson'];
       $tut_level = $data['tut_level'];
-      echo "<form method='POST' action='./HomeAdmin/postUpdateLesson/".$les_id."/".$tut_level."' enctype='multipart/form-data' >"; 
+      echo "<form method='POST' action='./AdminPage/postUpdateLesson/".$les_id."/".$tut_level."' enctype='multipart/form-data' >"; 
 
       for($i = 0; $i < sizeof($content_less); $i++){
         $content_id   = $content_less[$i][0];

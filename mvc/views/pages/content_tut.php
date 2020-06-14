@@ -17,17 +17,16 @@
     ?>
 
     <?php
-      if(isset($data['img_les'])){
-        $extension = $data['img_les'];
-        // $tut_img = $data['img_les'] . $extension;
+      if(isset($data['info_les'])){
+        $extension = $data['info_les']['image'];
         echo "<img class='intro' src='./public/img/$extension'>";
       }
     ?>
 
     <?php
-      if(isset($data['allTuts']) && !isset($data['tutContent'])){
+      if(isset($data['all_tuts']) && !isset($data['tutContent'])){
 
-        $all_tut = $data['allTuts'];
+        $all_tut = $data['all_tuts'];
         // var_dump($all_tut);
         for($i = 0; $i < sizeof($all_tut); $i++){
           echo "<div class='each_tut_show'>
@@ -37,7 +36,7 @@
 
             <div class='tut_cont'>
               <div class='title'>
-                <a href='Tut/One/".$all_tut[$i][5]."'>";
+                <a href='TutorialPage/Lesson/".$all_tut[$i][5]."'>";
                   echo $all_tut[$i][1];
                 echo "</a>
               </div>
@@ -103,8 +102,8 @@
 
       <!-- <iframe id='player' width="560" height="315" src="https://www.youtube.com/embed/LfJPA8GwTdk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
           <?php   
-          if(isset($data['vid_les'])){
-            $vid_src = "public/video/".$data['vid_les'];
+          if(isset($data['info_les'])){
+            $vid_src = "public/video/".$data['info_les']['video'];
             echo "
             <div class='video_src'>
             <video id='video_les' controls >

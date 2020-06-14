@@ -42,7 +42,7 @@
       echo "</button>";
     }else{
       echo "<button id='btn_login' class='login'>";
-      echo "<a href='index.php?homepage=" .$_COOKIE['member_login']. "'>Home Page</a>";
+      echo "<a href='index.php?homepage=" .$_COOKIE['member_login']. "'>HomePage Page</a>";
       echo "</button>";
     }
     

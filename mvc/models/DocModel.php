@@ -1,6 +1,6 @@
 
 <?php 
-  class DocModel extends DB{
+  class DocModel extends Database{
 
 
     private function getDocCatalogIdByName($name){

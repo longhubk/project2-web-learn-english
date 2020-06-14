@@ -8,7 +8,7 @@
     ?>
 
 
-  <form action="./HomeAdmin/postAppendTest" method="POST">
+  <form action="./AdminPage/postAppendTest" method="POST">
     <table class="table_control">
       <tr class="first_row">
         <td>Choose test</td>
@@ -111,7 +111,7 @@
     </div>
 
     <?php
-    echo "<br><a id='dynamic_link'  href='HomeAdmin/getUpdateTest/".$data['all_test'][0][0]."/".$data['all_test'][0][7]."'>Update this test..</a><br><br> ";
+    echo "<br><a id='dynamic_link'  href='AdminPage/getUpdateTest/".$data['all_test'][0][0]."/".$data['all_test'][0][7]."'>Update this test..</a><br><br> ";
     ?>
     <div class="update_content">
       <input  type="submit" name='insert_test' value='append'><br><br>

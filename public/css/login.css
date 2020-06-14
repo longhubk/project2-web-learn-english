@@ -18,16 +18,22 @@ button:hover , input[type="submit"]:hover{
 .login-form{
   background-color: #fefefe;
   margin          : 8% auto 10% auto;
-  width           : 28%;
+  width           : 370px;
   padding         : 2%;
   border-radius   : 20px;
 }
+
 .login-form .login-main{
   padding: 20px;
 }
+
 .login-form .login-main .login-label{
   padding: 10px 0px 5px 0px;
   display: block;
+}
+
+.login-form .login-main .check_remember #remember_me:hover{
+  text-decoration: underline;
 }
 .login-img{
   padding        : 3%;

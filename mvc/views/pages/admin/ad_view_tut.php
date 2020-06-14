@@ -13,13 +13,13 @@
       var_dump($data['post_new_tut']);
     }
 
-    if( isset($data['all_tutorial']) && 
+    if( isset($data['all_tuts']) && 
         isset($data['num_lesson']) &&
         isset($data['all_lesson']) &&
         isset($data['admin_modify'])){
 
       $num_lesson = $data['num_lesson'];
-      $all_tut    = $data['all_tutorial'];
+      $all_tut    = $data['all_tuts'];
       $name_ad    = $data['admin_modify'];
       $all_lesson = $data['all_lesson'];
 
@@ -44,7 +44,7 @@
 
         echo "<table class='tut_table'>";
 
-        echo "<tr class='first_row'><td><a href='Tut/One/".$all_tut[$i][5]."'>".$all_tut[$i][1]."</a></td><td>";
+        echo "<tr class='first_row'><td><a href='TutorialPage/Lesson/".$all_tut[$i][5]."'>".$all_tut[$i][1]."</a></td><td>";
 
         
 
@@ -86,9 +86,9 @@
         if(isset($data['all_topic'])){
           $all_topic = $data['all_topic'];
           for($k = 0; $k < sizeof($all_topic); $k++){
-            if($all_tut[$i][4] == $all_topic[$k][1]){
+            if($all_tut[$i][4] == $all_topic[$k][0]){
               echo "<tr><td>Topic</td>";
-              echo"<td>".$all_topic[$k][0]."</td></tr>";
+              echo"<td>".$all_topic[$k][1]."</td></tr>";
             }
           }
         }
@@ -207,7 +207,7 @@
                 if(isset($data['all_topic'])){
                   $all_top = $data['all_topic'];
                   for($k = 0; $k < sizeof($all_top); $k++){
-                    echo "<option value='".$all_top[$k][1]."'>".$all_top[$k][0]."</option>";
+                    echo "<option value='".$all_top[$k][0]."'>".$all_top[$k][1]."</option>";
                   }
                 }
                 ?>
@@ -275,7 +275,7 @@
   <div class="clear"></div>
 
 
-  <!-- <img title='add new tutorial' id='btn_add_tut' class="icon-120" src='public/icon/plus_green_icon.png'> -->
+  <img title='add new tutorial' id='btn_add_tut' class="icon-120" src='public/icon/plus_green_icon.png'>
 
   <div class="add_new_tut">
 
@@ -296,7 +296,7 @@
               if(isset($data['all_topic'])){
                 $all_top = $data['all_topic'];
                 for($i = 0; $i < sizeof($all_top); $i++){
-                  echo "<option value='".$all_top[$i][1]."'>".$all_top[$i][0]."</option>";
+                  echo "<option value='".$all_top[$i][0]."'>".$all_top[$i][1]."</option>";
                 }
               }
               ?>

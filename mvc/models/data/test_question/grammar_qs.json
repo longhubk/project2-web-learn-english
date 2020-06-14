@@ -60,7 +60,7 @@
   },
   "qs-6": {
     "name" : "Câu 6",
-    "question": "Tìm từ sai trong câu sau: When did i came back home on night? ",
+    "question": "Tìm từ sai trong câu sau: When did i came back HomePage on night? ",
     "note": "chọn tất cả những đáp án phù hợp !",
     "answer":{
       "as-id": "as_qs_6",

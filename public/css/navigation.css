@@ -129,11 +129,11 @@ li.tutorial{
   margin-right: 5px;
 }
 
-#home-li a{
+#HomePage-li a{
   background-color: rgb(28, 155, 233);
 }
 
-#home-li a:hover{
+#HomePage-li a:hover{
   background-color: rgb(129, 194, 31); 
 }
 

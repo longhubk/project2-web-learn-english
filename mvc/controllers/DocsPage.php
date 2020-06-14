@@ -1,5 +1,5 @@
 <?php 
-  class Docs extends Controller{
+  class DocsPage extends Controller{
 
 
     public function Init(){
@@ -7,11 +7,11 @@
         if(isset($_COOKIE['member_login']))
           $this->user_db->checkSession($_COOKIE['member_login'], '');
         else
-          header('Location:Register/');
+          header('Location:RegisterPage/');
       }
-      $this->view("master_h", [
-        "page"          => "doc_main",
-        // "allTuts"       => $this->tut_db->getAllTutorialIndex(),
+      $this->view("master_home", [
+        "page"          => "content_doc",
+        // "all_tuts"       => $this->tut_db->getAllTutorial(),
         "tut_qs"        => $this->tut_db->loadQuestion(),
         "avatar"        => $this->user_db->getUserAvatar(),
         "allDocCatalog" => $this->doc_db->getAllDocCatalog(),
@@ -23,11 +23,11 @@
         if(isset($_COOKIE['member_login']))
           $this->user_db->checkSession($_COOKIE['member_login'], '');
         else
-          header('Location:Register/');
+          header('Location:RegisterPage/');
       }
-      $this->view("master_h", [
-        "page"          => "doc_main",
-        // "allTuts"       => $this->tut_db->getAllTutorialIndex(),
+      $this->view("master_home", [
+        "page"          => "content_doc",
+        // "all_tuts"       => $this->tut_db->getAllTutorial(),
         "tut_qs"        => $this->tut_db->loadQuestion(),
         "avatar"        => $this->user_db->getUserAvatar(),
         "all_doc"       => $this->doc_db->getAllDocsOfCatalog($doc_ca_name),

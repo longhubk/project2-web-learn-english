@@ -1,6 +1,6 @@
 
 <?php 
-  class TestModel extends DB{
+  class TestModel extends Database{
 
 
     public function loadTestQuestion($test_id){

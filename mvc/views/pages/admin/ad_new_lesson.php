@@ -7,11 +7,11 @@
         var_dump($data['post_up']);
     ?>
 
-  <!-- <a href="./HomeAdmin/getLessonOfTutorial">test</a> -->
+  <!-- <a href="./AdminPage/getLessonOfTutorial">test</a> -->
 
 
 
-  <form action="./HomeAdmin/postNewLesson" method="POST" enctype="multipart/form-data">
+  <form action="./AdminPage/postNewLesson" method="POST" enctype="multipart/form-data">
     <table class="table_control">
       <tr class="first_row">
         <td>Choose Tutorial</td>
@@ -24,10 +24,10 @@
         <td>
           <select name="choose_tut" id="select_tut">
             <?php
-              if(isset($data['all_tutorial'])){
-                $all_tut = $data['all_tutorial'];
+              if(isset($data['all_tuts'])){
+                $all_tut = $data['all_tuts'];
                 for($i = 0; $i < sizeof($all_tut); $i++){
-                  echo "<option value='".$all_tut[$i][1]."'>".$all_tut[$i][0]."</option>";
+                  echo "<option value='".$all_tut[$i][0]."'>".$all_tut[$i][1]."</option>";
                 }
               }
               ?>
@@ -39,7 +39,7 @@
               if(isset($data['all_lesson'])){
                 $all_les = $data['all_lesson'];
                 for($i = 0; $i < sizeof($all_les); $i++){
-                  echo "<option value='".$all_les[$i][1]."'>".$all_les[$i][0]."</option>";
+                  echo "<option value='".$all_les[$i][0]."'>".$all_les[$i][2]."</option>";
                 }
               }
               ?>
@@ -51,8 +51,8 @@
         <td>
           <span id='tut_level'>
             <?php
-              if(isset($data["all_tutorial"])){
-                echo $data["all_tutorial"][0][2];
+              if(isset($data["all_tuts"])){
+                echo $data["all_tuts"][0][6];
               }
             ?>
           </span>

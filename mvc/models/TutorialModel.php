@@ -1,5 +1,5 @@
 <?php 
-  class TutorialModel extends DB{
+  class TutorialModel extends Database{
 
     
 
@@ -34,24 +34,9 @@
       return $this->queryAllArray($qr);
     }
 
-    public function getImageLesson($getTutorial){
-      $qr   = "SELECT image FROM lesson_tut WHERE name_lesson = '$getTutorial'";
-      return $this->queryAssoc($qr,'image');
-    }
-
-    public function getVideoLesson($getTutorial){
-      $qr   = "SELECT video FROM lesson_tut WHERE name_lesson = '$getTutorial'";
-      return $this->queryAssoc($qr,'video');
-    }
-
-    public function getAudioLesson($getTutorial){
-      $qr   = "SELECT audio FROM lesson_tut WHERE name_lesson = '$getTutorial'";
-      return $this->queryAssoc($qr,'audio');
-    }
-
-    public function getTitleLesson($getTutorial){
-      $qr   = "SELECT title_lesson FROM lesson_tut WHERE name_lesson = '$getTutorial'";
-      return $this->queryAssoc($qr,'title_lesson');
+    public function getInfoLesson($getTutorial){
+      $qr   = "SELECT image,video, audio, title_lesson FROM lesson_tut WHERE name_lesson = '$getTutorial'";
+      return $this->queryAssocAll($qr);
     }
 
     public function loadGuide(){
@@ -64,7 +49,7 @@
     }
 
 
-    public function getAllTutorialIndex(){
+    public function getAllTutorial(){
       $qr   = "SELECT * FROM tutorials";
       return $this->queryAllArray($qr);
     }
@@ -100,8 +85,8 @@
       return $resAll;
     }
 
-    public function loadAllAdmin($name_tb, $name_col, $name_id){
-      $qr   = "SELECT $name_col, $name_id FROM $name_tb";
+    public function loadAllTopic(){
+      $qr   = "SELECT * FROM topics";
       return $this->queryAllArray($qr);
     }
 
@@ -112,11 +97,6 @@
 
     public function getNumberLessonOfAllTut(){
       $qr   = "SELECT tut_id, COUNT(lesson_id) FROM lesson_tut GROUP BY tut_id";
-      return $this->queryAllArray($qr);
-    }
-
-    public function loadAllInfoTutorial(){
-      $qr   = "SELECT * FROM tutorials";
       return $this->queryAllArray($qr);
     }
 
@@ -240,7 +220,7 @@
       else return false;
 
     }
-    
+
     public function getEditLessonById($post){
 
       $id_les = $post['id_les_edit'];

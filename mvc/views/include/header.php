@@ -94,7 +94,7 @@
   <div id="top_head" class="header">
 
     <div title="SpeakMore Web Learn English" class="logo-icon">
-      <a href="./Home"><img id="img-icon" src='./public/img/triceratop.png'><span id='logo_tx'>SPEAK <span id='logo_bg'>MORE</span></span></a>
+      <a href="./HomePage"><img id="img-icon" src='./public/img/triceratop.png'><span id='logo_tx'>SPEAK <span id='logo_bg'>MORE</span></span></a>
     </div>
 
     <marquee id="run_text" behavior="scroll" direction="left" scrolldelay='130'>
@@ -115,7 +115,7 @@
 
       if ($show_btn_login) {
         echo "<button id='btn_login' class='login'>";
-        echo "<a href='./Register/Login'>Log In</a>";
+        echo "<a href='./RegisterPage/Login'>Log In</a>";
         echo "</button>";
       } else {
         if(!empty($data['avatar'])){
@@ -138,7 +138,7 @@
         }
         else{
           echo "<button id='btn_login' class='login'>";
-            echo "<a href='./HomeAdmin'>Admin Page</a>";
+            echo "<a href='./AdminPage'>Admin Page</a>";
           echo "</button>";
         }
       }
@@ -146,11 +146,11 @@
 
       if (!empty($_COOKIE['member_login'])) {
         echo "<button class='signup'>";
-        echo "<a href='./Register/LogOut'>Log out</a>";
+        echo "<a href='./RegisterPage/LogOut'>Log out</a>";
         echo "</button>";
       } else {
         echo "<button class='signup'>";
-        echo "<a href='./Register/SignUp'>Sign Up</a>";
+        echo "<a href='./RegisterPage/SignUp'>Sign Up</a>";
         echo "</button>";
       }
       $_GET["hello"] = true;
@@ -196,10 +196,10 @@
         <img alt='Menu' class="icon-20" src='public/icon/menu_icon.png'>
       </button>
     </li>
-    <li id="home-li">
-      <a href="./Home">
-        <img title="HOME" class="icon-20" src='public/icon/home_color_icon.png'>
-        <span class="text_nav text_to_hide home_hide">HOME</span>
+    <li id="HomePage-li">
+      <a href="./HomePage">
+        <img title="HomePage" class="icon-20" src='public/icon/home_color_icon.png'>
+        <span class="text_nav text_to_hide home_hide">HomePage</span>
       </a>
     </li>
     <li id='notify-li'>
@@ -210,7 +210,7 @@
 
     </li>
     <li class="tutorial">
-      <a href="./Tut/All" class="dropbtn">
+      <a href="./TutorialPage/all_tutorials" class="dropbtn">
         <img title="TEST" class="icon-25" src='public/icon/lesson_icon.png'>
         <span class="text_nav text_to_hide tut_hide">TUTORIALS
           <!-- <i class="fa fa-caret-down"></i> -->
@@ -220,15 +220,15 @@
         <?php
 
 
-      if(isset($data['allTuts'])){
-        $allTuts = $data['allTuts'];
-        for($i = 0; $i < sizeof($allTuts); $i++){
+      if(isset($data['all_tuts'])){
+        $all_tuts = $data['all_tuts'];
+        for($i = 0; $i < sizeof($all_tuts); $i++){
 
-          echo "<a href='./Tut/One/".$allTuts[$i][5]."'>".$allTuts[$i][1];
+          echo "<a href='./TutorialPage/Lesson/".$all_tuts[$i][5]."'>".$all_tuts[$i][1];
 
           if(!empty($data['is_lock'])){
             $is_lock = $data['is_lock'];
-            if($is_lock[$i][1] == $allTuts[$i][0] && $is_lock[$i][0] == 'lock')   
+            if($is_lock[$i][1] == $all_tuts[$i][0] && $is_lock[$i][0] == 'lock')   
               echo "<img class='icon-20' src='public/icon/lock_icon.png'>";
           }
           
@@ -248,7 +248,7 @@
       </a>
     </li>
     <li>
-      <a href="./Docs">
+      <a href="./DocsPage">
         <!-- <i title="DOCUMENTATIONS" class="fa fa-book-open hide"></i> -->
         <img title="TEST" class="icon-20" src='public/icon/document_color_2.png'>
         <span class="text_nav text_to_hide doc_hide">DOCUMENTATIONS</span>

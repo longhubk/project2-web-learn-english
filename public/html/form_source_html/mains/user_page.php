@@ -2,7 +2,7 @@
 <?php 
     include "../../php/uploadAvatar.php";
     if (isset($_COOKIE['member_login']))
-      echo "<h1>Hello " . $_COOKIE['member_login'] . " This is your home page</h1>";
+      echo "<h1>Hello " . $_COOKIE['member_login'] . " This is your HomePage page</h1>";
     else
       echo "<h1>You are not login</h1>";
 ?>

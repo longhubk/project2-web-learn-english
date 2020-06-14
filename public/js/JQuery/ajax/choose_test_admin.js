@@ -9,7 +9,7 @@ $(document).ready(() =>{
     // alert('val change to ' + val)
     global_test_id = val
     $.ajax({
-      url     : "./HomeAdmin/getCurrentNumQuestionOfEachTest",
+      url     : "./AdminPage/getCurrentNumQuestionOfEachTest",
       type    : 'POST',
       data : {'id' : val},
       success : (res) =>{
@@ -30,7 +30,7 @@ $(document).ready(() =>{
 
             // console.log("g_id"+ global_test_id)
             // console.log("g_level"+ global_test_level)
-            $('#dynamic_link').attr('href', 'HomeAdmin/getUpdateTest/'+ global_test_id + "/" + global_test_level)
+            $('#dynamic_link').attr('href', 'AdminPage/getUpdateTest/'+ global_test_id + "/" + global_test_level)
 
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {

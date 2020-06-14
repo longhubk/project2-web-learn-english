@@ -51,7 +51,7 @@
             <td>
               <img title='show question' id='show_lesson-".$i."' class='icon-96 show_question ' src='public/icon/eye_icon.png'>
 
-              <a title='update test' href='./HomeAdmin/getUpdateTest/".$all_test[$i][0]."/".$all_test[$i][7]."'><img class=' icon-96 setting_question' src='public/icon/setting_icon.png'></a>
+              <a title='update test' href='./AdminPage/getUpdateTest/".$all_test[$i][0]."/".$all_test[$i][7]."'><img class=' icon-96 setting_question' src='public/icon/setting_icon.png'></a>
 
               <img title='edit test' id='edit_test-".$i."' class=' icon-96 setting_question' src='public/icon/edit_icon.png'>
             </td>
@@ -114,7 +114,7 @@
 
         echo "<div id='toggle_edit_test-".$i."'>";
         ?>
-        <form method="POST" action="./HomeAdmin/postEditTest">
+        <form method="POST" action="./AdminPage/postEditTest">
         <table class="toggle_edit_test_table">
           <tr class="first_row">
             <td class="first_column">Edit</td>
@@ -207,7 +207,7 @@
 
   <div class="add_new_tut">
 
-    <form method='POST' action='./HomeAdmin/postNewTest'>
+    <form method='POST' action='./AdminPage/postNewTest'>
       <table class="new_test_table">
       <tr class="first_row">
         <td>New Name Of Test</td>

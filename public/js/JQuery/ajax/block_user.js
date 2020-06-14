@@ -20,7 +20,7 @@ $(document).ready(() =>{
               
               $.ajax({
                 method: "POST",
-                url : "HomeAdmin/getBlockUser/",
+                url : "AdminPage/getBlockUser/",
                 data : {'user_id' : arr_user[i]},
 
                 success: (res) =>{

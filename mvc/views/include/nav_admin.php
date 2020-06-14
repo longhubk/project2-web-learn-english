@@ -7,8 +7,8 @@
         </span>
 
         <ul>
-          <li><a href="./HomeAdmin/getNewLesson">Write Lesson</a></li>
-          <li><a href="./HomeAdmin/getViewTutorial">View Tutorial</a></li>
+          <li><a href="./AdminPage/getNewLesson">Write Lesson</a></li>
+          <li><a href="./AdminPage/getViewTutorial">View Tutorial</a></li>
           
         </ul>
 
@@ -19,8 +19,8 @@
           User Control
         </span>
         <ul>
-          <li><a href="./HomeAdmin/getViewUser">View User</a></li>
-          <li><a href="./HomeAdmin/getSendNotifyToUser">Notify User</a></li>
+          <li><a href="./AdminPage/getViewUser">View User</a></li>
+          <li><a href="./AdminPage/getSendNotifyToUser">Notify User</a></li>
           
         </ul>
 
@@ -30,9 +30,9 @@
           Document Control
         </span>
         <ul>
-          <li><a href="./HomeAdmin/getNewDocument">New Document</a></li>
-          <li><a href="./HomeAdmin/getUpdateDoc">Update Document</a></li>
-          <li><a href="./HomeAdmin/getViewDoc">View Document</a></li>
+          <li><a href="./AdminPage/getNewDocument">New Document</a></li>
+          <li><a href="./AdminPage/getUpdateDoc">Update Document</a></li>
+          <li><a href="./AdminPage/getViewDoc">View Document</a></li>
           
         </ul>
 
@@ -43,9 +43,9 @@
         </span>
 
         <ul>
-          <li><a href="./HomeAdmin/getNewTestQuestion">New Test</a></li>
-          <!-- <li><a href="./HomeAdmin/getUpdateTest">Update Test</a></li> -->
-          <li><a href="./HomeAdmin/getViewTest">View Test</a></li>
+          <li><a href="./AdminPage/getNewTestQuestion">New Test</a></li>
+          <!-- <li><a href="./AdminPage/getUpdateTest">Update Test</a></li> -->
+          <li><a href="./AdminPage/getViewTest">View Test</a></li>
           
         </ul>
 

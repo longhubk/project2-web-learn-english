@@ -1,5 +1,5 @@
 <?php 
-  class UserModel extends DB{
+  class UserModel extends Database{
 
     private function InsertUser($username, $password, $email){
       $qr = "INSERT INTO users(name, password, email) VALUES('$username', '$password', '$email')";
@@ -231,7 +231,7 @@
        //}
     }
 
-    public function updatePass($un, $old_pass, $new_pass){
+    public function updatePass($un, $old_pass, $new_pass, $new_pass_ag){
 
       $qr     = "SELECT password FROM users WHERE name = '$un'";
       $res   = $this->queryAssocAll($qr);
@@ -241,6 +241,7 @@
           $options = ['cost' => 11];
           $out = $this->checkPassword($new_pass);
           if($old_pass == $new_pass) return "Your password not change!";
+          if($new_pass !== $new_pass_ag) return "Your 2 passwords not match!";
           if(empty($out)){
             $new_pass     = password_hash($new_pass, PASSWORD_BCRYPT, $options);
             $qr2 = "UPDATE users SET password = '$new_pass' WHERE name = '$un'";
@@ -320,6 +321,9 @@
       setcookie('member_login', "", time() - (10 * 365 * 24 * 60 * 60), "/");
       $_SESSION['member_id'] = "";
       $_SESSION['user_type'] = "";
+      if(empty($_SESSION['member_id']) && empty($_SESSION['user_type']))
+        return "ok";
+      else return "fail";
     }
 
 

@@ -60,7 +60,7 @@ $(document).ready( () =>{
     let val = $('#select_tut').val()
     // alert('val change to ' + val)
     $.ajax({
-      url     : "./HomeAdmin/getLessonOfTutorial",
+      url     : "./AdminPage/getLessonOfTutorial",
       type    : 'POST',
       data : {'id' : val},
       success : (res) =>{
@@ -92,7 +92,7 @@ $(document).ready( () =>{
 
     let val = $('#select_tut').val()
     $.ajax({
-      url     : "./HomeAdmin/getTutLevel",
+      url     : "./AdminPage/getTutLevel",
       type    : 'POST',
       data : {'id' : val},
       success : (res) =>{

@@ -1,6 +1,6 @@
 <div id="log-1" class="login-container-2">
 
-  <form id="sign_up" class="login-form animate animate2" method="POST" action="./Register/SignUp">
+  <form id="sign_up" class="login-form animate animate2" method="POST" action="./RegisterPage/SignUp">
     <div class="login-img">
       <!-- <i onclick="closeLogin()" class="fas fa-user"></i> -->
       <img onclick="closeLogin()" class="img-50" src='public/icon/user_icon.png' >
@@ -27,7 +27,16 @@
         <span class="error_log"><?php if (isset($data['sign_err'][4])) echo $data['sign_err'][4]; ?></span><br>
       </div>
       <input type="submit" name="signup" value="sign up">
+
+
     </div>
+
+    <div class="login-btn-2">
+      <span class="login-sign-up">
+        <a href="./RegisterPage/Login">Login, I have an account.</a>
+      </span>
+    </div>
+
   </form>
 
 </div>
