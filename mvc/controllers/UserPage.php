@@ -14,7 +14,7 @@
           "tut_qs"    => $this->tut_qs,
           "avatar"    => $this->avatar,
           "menu_user" => $this->user_db->getUserMenu(),
-          "isAdmin"   => $this->user_db->checkIsAdmin($_COOKIE['member_login']),
+          // "isAdmin"   => $this->user_db->checkIsAdmin($_COOKIE['member_login']),
       ];
     }
 
@@ -156,6 +156,8 @@
           "friend_list"  => $id_friend,
       ]);
     }
+
+
 
 
     public function getNotifyFriendRequest(){

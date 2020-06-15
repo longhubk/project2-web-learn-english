@@ -35,7 +35,14 @@
 <body>
   <div class="admin_header">
       <div class="admin_back" title="go back to speakmore page"><a href="./HomePage/"><img class="icon-100" src='public/icon/home_color_icon.png'></a></div>
-      <div class="admin_logo"><a href="./AdminPage/">SpeakMore Admin</a></div>
+      <div class="admin_logo"><a href="./AdminPage/">SpeakMore <?php
+        if($_SESSION['user_type'] == 'admin'){
+          echo "Admin";
+        }
+        else if($_SESSION['user_type'] == 'teacher'){
+          echo "Teacher";
+        }
+      ?> </a></div>
       <!-- <p>Hello</p> -->
 
       <div class="admin_info">

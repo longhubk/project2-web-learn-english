@@ -12,9 +12,9 @@
       $this->test_turn  = $this->test_db->getTestTurnById($_COOKIE['member_login']);
 
       $this->view_arr = [
-          "all_tuts"   => $this->all_tuts,
-          "avatar"    => $this->avatar,
-          "tut_qs"    => $this->tut_qs,
+          "all_tuts" => $this->all_tuts,
+          "avatar"   => $this->avatar,
+          "tut_qs"   => $this->tut_qs,
       ];
     }
     private function middlewareTest($back, $test = 'none'){
@@ -34,13 +34,11 @@
     public function Init($lock = ''){
         $this->middlewareTest('RegisterPage/');
         if($lock = 'lock'){
-          
         }
       $view_more = [
         "page"      => "test_index",
         "all_test"  => $this->all_test,
-        "test_turn"  => $this->test_turn,
-
+        "test_turn" => $this->test_turn,
       ];
       $this->render('master_test',$view_more);
 
@@ -91,8 +89,7 @@
         $res = $this->test_db->getRegisterTest($_POST['test_id'], $_COOKIE['member_login']);
       }
       if(empty($_SESSION['test'])){
-          // echo "set session test";
-          $_SESSION['test'] = $_COOKIE['member_login'] ."-".$_POST['test_id'];
+        $_SESSION['test'] = $_COOKIE['member_login'] ."-".$_POST['test_id'];
       }
   
       $this->view("master_empty", [

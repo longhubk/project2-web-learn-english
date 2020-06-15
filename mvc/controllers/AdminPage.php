@@ -1,10 +1,18 @@
 <?php 
   class AdminPage extends Controller{
 
-
+    protected $all_user;
     public function __construct()
     {
+      
       parent::__construct();
+      if($_SESSION['user_type'] == "admin"){
+        $this->all_user = $this->user_db->loadAllUser();
+      }
+      else if($_SESSION['user_type'] == 'teacher'){
+        $this->all_user = $this->user_db->loadAllStudent();
+      }
+
       $this->view_arr = [
           "avatar"    => $this->avatar,
       ];
@@ -17,7 +25,10 @@
         else
           header('Location:RegisterPage/');
       }
-      if($_SESSION['user_type'] !== 'admin')
+      if(($_SESSION['user_type'] !== 'admin' &&
+        $_SESSION['user_type'] !== 'teacher') ||
+        $this->user_db->checkIsAdmin($_COOKIE['member_login']) == false
+      )
         header("Location:HomePage/");
     }
 
@@ -178,25 +189,71 @@
       $this->middlewareAdmin();
       $view_more = [
         "page"     => "ad_view_user",
-        "all_user" => $this->user_db->loadAllUser(),
+        "all_user" => $this->all_user,
       ];
       $this->render('master_admin',$view_more);
     }
 
     public function getBlockUser(){
       $this->middlewareAdmin();
-      if(isset($_POST)){
-        $user_id = $_POST['user_id'];
-        $res = $this->user_db->blockUserById($user_id);
-      }
-      else
-        header("Location:../HomePage/");
+      $res = 'fail';
+      if(isset($_POST))
+        $res = $this->user_db->blockUserById($_POST['user_id']);
 
       $this->view("master_empty", [
-        "page"     => "get_block_user",
-        "res_block" => $res,
+          "page"      => "get_id_lesson",
+          "id_lesson" => $res,
       ]);
     }
+
+    public function getUnBlockUser(){
+      $this->middlewareAdmin();
+      $res = 'fail';
+      if(isset($_POST))
+        $res = $this->user_db->unBlockUserById($_POST['user_id']);
+
+      $this->view("master_empty", [
+          "page"      => "get_id_lesson",
+          "id_lesson" => $res,
+      ]);
+    }
+
+    public function getDownPermission(){
+      $this->middlewareAdmin();
+      $res = 'fail';
+      if(isset($_POST))
+        $res = $this->user_db->downPermissionTeacher($_POST['user_id']);
+
+      $this->view("master_empty", [
+          "page"      => "get_id_lesson",
+          "id_lesson" => $res,
+      ]);
+    }
+
+    public function getUpPermission(){
+      $this->middlewareAdmin();
+      $res = 'fail';
+      if(isset($_POST))
+        $res = $this->user_db->upPermissionUser($_POST['user_id']);
+
+      $this->view("master_empty", [
+          "page"      => "get_id_lesson",
+          "id_lesson" => $res,
+      ]);
+    }
+
+    public function getDeleteUser(){
+      $this->middlewareAdmin();
+      $res = 'fail';
+      if(isset($_POST))
+        $res = $this->user_db->deleteUserById($_POST['user_id']);
+
+      $this->view("master_empty", [
+          "page"      => "get_id_lesson",
+          "id_lesson" => $res,
+      ]);
+    }
+
 
     public function getViewTest(){
       $this->middlewareAdmin();

@@ -1,14 +1,22 @@
 .admin_container .user_view{
 
   border: 1px solid rebeccapurple;
+  display: flex;
+  align-items: center;
 
 }
 .admin_container .user_view .user_name{
 
   border: 1px solid royalblue;
-  display: inline-block;
-  width: 50%;
+  /* display: inline-block; */
+  width: 35%;
 
+}
+
+.admin_container .user_view .user_type{
+  border: 1px solid royalblue;
+  /* display: block; */
+  width: 15%;
 }
 .admin_container .user_view .option_user{
 

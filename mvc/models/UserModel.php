@@ -38,12 +38,21 @@
     
 
     public function loadAllUser(){
+      $qr   = "SELECT id, name, is_block, user_type FROM users WHERE user_type != 'admin'";
+      return $this->queryAllArray($qr);
+    }
+
+    public function loadAllStudent(){
       $qr   = "SELECT id, name, is_block FROM users WHERE user_type = 'user'";
       return $this->queryAllArray($qr);
-
     }
+
     public function getListUserNotMe($my_id){
-      $qr   = "SELECT id FROM users WHERE id != '$my_id'";
+
+      $qr   = "SELECT id FROM users WHERE id != '$my_id' AND id != 'admin' AND id != 'teacher'";
+      if($_SESSION['user_type'] == 'admin'){
+        $qr   = "SELECT id FROM users WHERE id != '$my_id' AND id !='admin' ";
+      }
       return $this->queryAllArray($qr);
     }
 
@@ -135,12 +144,39 @@
       else return "fail";
     }
 
+    public function unBlockUserById($user_id){
+      $qr   = "UPDATE `users` SET `is_block` = 'false' WHERE `users`.`id` = $user_id";
+      $row = mysqli_query($this->con, $qr);
+      if($row) return "ok";
+      else return "fail";
+    }
+
+
+    public function downPermissionTeacher($user_id){
+      $qr   = "UPDATE `users` SET `user_type` = 'user' WHERE `users`.`id` = $user_id";
+      $row = mysqli_query($this->con, $qr);
+      if($row) return "ok";
+      else return "fail";
+    }
+
+    public function upPermissionUser($user_id){
+      $qr   = "UPDATE `users` SET `user_type` = 'teacher' WHERE `users`.`id` = $user_id";
+      $row = mysqli_query($this->con, $qr);
+      if($row) return "ok";
+      else return "fail";
+    }
+
+    public function deleteUserById($user_id){
+      $qr   = "DELETE FROM `users` WHERE `users`.`id` = $user_id";
+      $row = mysqli_query($this->con, $qr);
+      if($row) return "ok";
+      else return "fail";
+    }
 
     public function checkIsAdmin($cookie){
-      
       $qr   = "SELECT user_type FROM users WHERE name = '$cookie'";
       $res = $this->queryAssoc($qr, 'user_type');
-      if($res == 'admin') return true;
+      if($res == 'admin' || $res == 'teacher') return true;
       else return false;
 
     }

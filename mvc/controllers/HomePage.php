@@ -8,6 +8,7 @@
           "all_tuts"   => $this->all_tuts,
           "avatar"    => $this->avatar,
           "tut_qs"    => $this->tut_qs,
+          "home_btn"  => "home",
       ];
     }
 

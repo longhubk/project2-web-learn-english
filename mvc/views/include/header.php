@@ -106,54 +106,58 @@
   
     <div class="login-container">
       <?php
-      $show_btn_login = true;
-      if (!empty($_COOKIE['member_login'])) {
-        $show_btn_login = false;
-      } else {
-        $show_btn_login = true;
-      }
+      // $show_btn_login = true;
+      // if (!empty($_COOKIE['member_login'])) {
+      //   $show_btn_login = false;
+      // } else {
+      //   $show_btn_login = true;
+      // }
 
-      if ($show_btn_login) {
-        echo "<button id='btn_login' class='login'>";
-        echo "<a href='./RegisterPage/Login'>Log In</a>";
-        echo "</button>";
-      } else {
+      if(empty($_SESSION['member_id'])) {
+        echo "<button id='btn_login' class='login'>
+                <a href='./RegisterPage/Login'>Log In</a>
+              </button>";
+      } 
+      else{
+
         if(!empty($data['avatar'])){
           $name_avt = $data['avatar'];
           $directory_avatar = "./public/img/uploads/" . $name_avt;
           echo "<img id='sm_avt' title='". $_COOKIE["member_login"]."' class='small-avt' src='". $directory_avatar ."'>" ;
         }
-        $show_user_btn = true;
 
-        if(isset($data['isAdmin'])){
-          if($data['isAdmin']){
-            $show_user_btn = false;
-          }
+
+        if($_SESSION['user_type'] == 'admin' && !isset($data['home_btn'])){
+          echo "<button id='btn_login' class='login'>
+                  <a href='./AdminPage'>Admin Page</a>
+              </button>";
         }
-        if($show_user_btn)
+        else if($_SESSION['user_type'] == 'teacher' && !isset($data['home_btn'])){
+          echo "<button id='btn_login' class='login'>
+                  <a href='./AdminPage'>Teacher Page</a>
+              </button>";
+        }
+        else
         {
-          echo "<button id='btn_login' class='login'>";
-            echo "<a href='./UserPage'>User Page</a>";
-          echo "</button>";
-        }
-        else{
-          echo "<button id='btn_login' class='login'>";
-            echo "<a href='./AdminPage'>Admin Page</a>";
-          echo "</button>";
+          echo "<button id='btn_login' class='login'>
+                  <a href='./UserPage'>User Page</a>
+              </button>";
         }
       }
 
 
-      if (!empty($_COOKIE['member_login'])) {
-        echo "<button class='signup'>";
-        echo "<a href='./RegisterPage/LogOut'>Log out</a>";
-        echo "</button>";
-      } else {
-        echo "<button class='signup'>";
-        echo "<a href='./RegisterPage/SignUp'>Sign Up</a>";
-        echo "</button>";
+      if(!empty($_SESSION['member_id'])) {
+        echo "<button class='signup'>
+                <a href='./RegisterPage/LogOut'>Log out</a>
+              </button>";
+      }else{
+        echo "<button class='signup'>
+                <a href='./RegisterPage/SignUp'>Sign Up</a>
+              </button>";
       }
-      $_GET["hello"] = true;
+
+      // $_GET["hello"] = true;
+
       ?>
     </div>
 
@@ -165,7 +169,7 @@
         <select>
           <option value="en">English</option>
           <option value="vn">Vietnamese</option>
-          <option value="ja">Japanese</option>
+          <option value="jp">Japanese</option>
         </select>
       </div>
     </div>
@@ -199,12 +203,12 @@
     <li id="HomePage-li">
       <a href="./HomePage">
         <img title="HomePage" class="icon-20" src='public/icon/home_color_icon.png'>
-        <span class="text_nav text_to_hide home_hide">HomePage</span>
+        <span class="text_nav text_to_hide home_hide">Home</span>
       </a>
     </li>
     <li id='notify-li'>
       <a href="./Notify">
-        <img title="NOTIFICATIONS" class="icon-23" src='public/icon/notification_yellow_icon.png'>
+        <img title="NOTIFICATIONS" class="icon-23" src='public/icon/bell_icon_2.png'>
         <span class="text_nav text_to_hide notify_hide">NOTIFICATIONS</span>
       </a>
 
