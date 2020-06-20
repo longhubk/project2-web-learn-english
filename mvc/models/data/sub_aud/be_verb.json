@@ -1,0 +1,259 @@
+[
+
+  {
+    "name" : "Aimee",
+    "en_sub": "So Todd, where are you from?",
+    "vi_sub": "Vậy Todd, Bạn đến từ đâu ?"
+  },
+
+  {
+    "name" : "Todd",
+    "en_sub": "I am from the U.S., I am from San Francisco. It's on the west coast.",
+    "vi_sub": "Tôi đến từ Hợp chúng quốc Hoa Kì. Tôi tới từ San Francisco. Nó nằm ở bờ biển tây."
+  },
+  {
+    "name" : "Aimee",
+    "en_sub": "And what do you do?",
+    "vi_sub": "Anh làm nghề gì"
+  },
+
+
+  {
+    "name" : "Todd",
+    "en_sub": "I'm an English teacher. Also, I create Elllo. I work on Elllo a lot.",
+    "vi_sub": "Tôi là một giáo viên tiếng anh. Tôi cũng là người sáng lập Ello. Phần lớn tôi làm việc tại Ello,"
+  },
+
+  {
+    "name" : "Aimee",
+    "en_sub": "Okay. How old are you?",
+    "vi_sub": "Được rồi, Anh bao nhiêu tuổi?"
+  },
+
+  {
+    "name" : "Todd",
+    "en_sub": "I am 47. Yeah. I am old.",
+    "vi_sub": "Tôi 47 tuổi.Vâng, tôi già rồi."
+  },
+
+  {
+    "name" : "Aimee",
+    "en_sub": "No. That's not old. Who is your best friend?",
+    "vi_sub": "Không, Anh không già. Ai là bạn thân nhất của anh?"
+  }, 
+
+  {
+    "name" : "Todd",
+    "en_sub": "My best friend is Don, he is a teacher too. He lives in America..",
+    "vi_sub": "Bạn thân nhất của tôi là Don, anh ấy cũng là một giáo viên. Anh ấy sống ở Mỹ"
+  },
+
+
+  {
+    "name" : "Aimee",
+    "en_sub": "And are you married?.",
+    "vi_sub": "Và anh đã kết hôn chưa?."
+  },
+
+
+  {
+    "name" : "Todd",
+    "en_sub": "No, I am not married. I am still single..",
+    "vi_sub": "Chưa. Tôi chưa kết hôn. Tôi vẫn sống độc thân."
+  },
+
+  {
+    "name" : "Aimee",
+    "en_sub": "Where is your mum from?.",
+    "vi_sub": "Mẹ anh đến từ đâu?."
+  },
+
+  {
+    "name" : "Todd",
+    "en_sub": "My mom is from California, she is from Los Angeles..",
+    "vi_sub": "Mẹ tôi đến từ California, bà ấy từ Los Angeles.. "
+  },
+
+  {
+    "name" : "Aimee",
+    "en_sub": "And what does she do?.",
+    "vi_sub": "Và bà ấy làm gì?."
+  },
+
+
+  {
+    "name" : "Todd",
+    "en_sub": "She is a manager, she works in a clothing store..",
+    "vi_sub": "Bà ấy làm một quản lý, bà làm việc tại cửa hàng quần áo.."
+  },
+
+
+  {
+    "name" : "Aimee",
+    "en_sub": "Where is your dad from?.",
+    "vi_sub": "Bố anh đến từ đâu?"
+  },
+
+  {
+    "name" : "Todd",
+    "en_sub": "My dad is from San Francisco. He is not from Los Angeles, but he met my mother in Los Angeles..",
+    "vi_sub": "Bố tôi đến từ San Francisco. Ông ấy không đến từ Los Angeles, nhưng ông ấy gặp mẹ tôi ở Los Angeles.."
+  },
+
+  {
+    "name" : "Aimee",
+    "en_sub": "And what does he do?.",
+    "vi_sub": "Và ông ấy làm nghề gì?."
+  },
+
+  {
+    "name" : "Todd",
+    "en_sub": "He is also a manager, he works for a tree cutting company. They cut trees..",
+    "vi_sub": "Ông ấy cũng làm một quản lý, ông ấy làm việc tại một công ty cắt cây. Họ cắt các cây.."
+  },
+
+
+  {
+    "name" : "Aimee",
+    "en_sub": "Wow. That sounds exciting..",
+    "vi_sub": "Wow. Nó có vẻ thú vị.."
+  },
+
+
+  {
+    "name" : "Todd",
+    "en_sub": "Yeah, cool job..",
+    "vi_sub": "Phải, công việc thật ngầu.."
+  },
+
+  {
+    "name" : "Aimee",
+    "en_sub": "Is it dangerous?.",
+    "vi_sub": "Nó có nguy hiểm không?."
+  },
+
+  {
+    "name" : "Todd",
+    "en_sub": "It is, a little dangerous. A little. And Aimee, what about you? Where are you from?.",
+    "vi_sub": "Nó cũng một chút nguy hiểm. Một chút. Và Aimee, Còn bạn thì sao? Bạn đến từ đâu.?"
+  },
+
+  {
+    "name" : "Aimee",
+    "en_sub": "I'm from Glasgow, on the west coast of Scotland in the United Kingdom..",
+    "vi_sub": "Tôi đến từ Glasgow, trên bờ biển tây của Scotland thuộc vương quốc Anh.."
+  },
+
+
+  {
+    "name" : "Todd",
+    "en_sub": "Nice. And what do you do?.",
+    "vi_sub": "Tuyệt. Và bạn làm nghề gì?."
+  },
+
+
+  {
+    "name" : "Aimee",
+    "en_sub": "I'm also a teacher..",
+    "vi_sub": "Tôi cũng làm một giáo viên.."
+  },
+
+  {
+    "name" : "Todd",
+    "en_sub": "Nice. What do you teach?.",
+    "vi_sub": "Tuyệt. bạn dạy cái gì?."
+  },
+
+  {
+    "name" : "Aimee",
+    "en_sub": "I teach English",
+    "vi_sub": "Tôi dạy tiếng Anh."
+  },
+
+  {
+    "name" : "Todd",
+    "en_sub": "Oh, me too.",
+    "vi_sub": "Xin Chao LiLi"
+  },
+
+  {
+    "name" : "Aimee",
+    "en_sub": "It's fun, isn't it?",
+    "vi_sub": "Nó thật thú vị, phải không?"
+  },
+  {
+    "name" : "Todd",
+    "en_sub": "It is. It is very fun. Excuse me, can I ask, how old are you?",
+    "vi_sub": "Đúng đó. Nó rất là thú vị. Xin lỗi, tôi có thể hỏi, bạn bao nhiêu tuổi?"
+  },
+
+  {
+    "name" : "Aimee",
+    "en_sub": "Of course, you can ask. I'm 34.",
+    "vi_sub": "Dĩ nhiên, bạn có thể hỏi. Tôi 34 tuổi."
+  },
+
+  {
+    "name" : "Todd",
+    "en_sub": "Okay. Very young. Very young. Where is your mom from?",
+    "vi_sub": "Được rồi, rất là trẻ, rất trẻ. Mẹ bạn đến từ đâu?"
+  },
+
+  {
+    "name" : "Aimee",
+    "en_sub": "My mum is also from Glasgow.",
+    "vi_sub": "Mẹ thôi cũng đến từ Glasgow."
+  },
+  {
+    "name" : "Todd",
+    "en_sub": "Oh, nice. What does she do?",
+    "vi_sub": "Ồ, tốt, bà ấy làm nghề gì? "
+  },
+  {
+    "name" : "Aimee",
+    "en_sub": "Well, she's retired now, but she was a nurse",
+    "vi_sub": "Vâng, Hiện tại bà ấy nghỉ hưu rồi, nhưng bầ ấy đã từng làm y tá."
+  },
+  {
+    "name" : "Todd",
+    "en_sub": "Oh nice. And is your dad from Glasgow?",
+    "vi_sub": "Ồ tốt, Và bố bạn cũng đến từ Glasgow chứ."
+  },
+  {
+    "name" : "Aimee",
+    "en_sub": "Yes, he is.",
+    "vi_sub": "Đúng vậy, ông ấy cũng thế."
+  },
+  {
+    "name" : "Todd",
+    "en_sub": "What does he do?",
+    "vi_sub": "Bố bạn làm nghề gì?"
+  },
+  {
+    "name" : "Aimee",
+    "en_sub": "He's also retired, but he used to be a teacher.",
+    "vi_sub": "Ông ấy cũng nghỉ hưu rồi, nhưng ông ấy đã từng là giáo viên."
+  },
+  {
+    "name" : "Todd",
+    "en_sub": "Oh wow. Many teachers.",
+    "vi_sub": "Ồ, nhiều giáo viên nhỉ."
+  },
+  {
+    "name" : "Aimee",
+    "en_sub": "Yes. Looks like it.",
+    "vi_sub": "Vâng, đúng là vậy."
+  },
+  {
+    "name" : "Todd",
+    "en_sub": "Well, thanks Aimee. Nice talking to you.",
+    "vi_sub": "Tốt, cảm ơn Aimee, Rất vui vì cuộc nói chuyện với bạn."
+  },
+  {
+    "name" : "Aimee",
+    "en_sub": "You too, Todd.",
+    "vi_sub": "Tôi cũng vậy, Todd."
+  }
+
+
+]

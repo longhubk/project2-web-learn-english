@@ -24,6 +24,12 @@ function scrollFunction() {
   // console.log("typeof my button: " + myButton))
     
     
+      // if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) { 
+      //     if(video.play){
+      //       video.pause()
+      //     }
+      // }
+    
       if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 20) {
 
           if(search_box != null ){
@@ -50,8 +56,10 @@ function scrollFunction() {
             myButton.style.display = "block";
           }
 
+
       } 
       else {
+
 
           if(search_box != null ){
             search_box.style.top = "80px" 

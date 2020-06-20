@@ -28,8 +28,34 @@ function call_Interval(){
   
 }
 
-let x =  ''
 let video = document.getElementById('video_les')
+
+let x =  ''
+// VisSense.VisMon.Builder(VisSense(video))
+// .on('fullyvisible', function() {
+//     myVideo.play();
+// })
+// .on('hidden', function() {
+//     myVideo.pause();
+// })
+// .build()
+// .start();
+
+// $("#video_les").each(function () {
+//   var myVideo = document.getElementById(this.id);
+
+//   VisSense.VisMon.Builder(VisSense(myVideo, { fullyvisible: 0.75 }))
+//   .on('fullyvisible', function(monitor) {
+//     myVideo.play();
+//   })
+//   .on('hidden', function(monitor) {
+//     myVideo.pause();
+//   }).build().start();
+// });
+
+// let video2 = $('#video_les')$('#main_scroll').on('appear', video2.play)
+// .on('disappear', video2.pause);
+
 video.onplay = function(){
   x = setInterval(
     ()=>{
@@ -58,21 +84,22 @@ video.onplay = function(){
       arr_time.forEach((item) => {
         if(curr_time >= Number(item.start) && curr_time < Number(item.end)){
           let id = "en-"+item.start + "-" + item.end
+          let id2 = "vi-"+item.start + "-" + item.end
           console.log('scroll to --------->' + id);
           let child = document.getElementById(id)
-          // $('#main_scroll').scrollTo(100)
+          let child2 = document.getElementById(id2)
+          let other_child = document.getElementsByClassName('sub_vid')
+          for(let i = 0; i < other_child.length; i++){
+            other_child[i].classList.remove('active_vi')
+            other_child[i].classList.remove('active_en')
+          }
+          child.classList.add('active_en')
+          child2.classList.add('active_vi')
 
-          var yourHeight = 450;
-
-          // scroll to your element
-          // node.scrollIntoView(true);
           child.scrollIntoView()
-
-          // now account for fixed header
           var scrolledY = window.scrollY;
-
           if(scrolledY){
-            window.scroll(0, scrolledY - yourHeight);
+            window.scroll(0, scrolledY - 500);
           }
           
         }

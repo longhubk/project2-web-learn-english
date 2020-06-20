@@ -34,10 +34,66 @@
       return $this->queryAllArray($qr);
     }
 
-    public function getInfoLesson($getTutorial){
-      $qr   = "SELECT image,video, audio, title_lesson FROM lesson_tut WHERE name_lesson = '$getTutorial'";
+    public function getInfoLesson($name_lesson){
+      $qr   = "SELECT image, video, audio, title_lesson, name_lesson FROM lesson_tut WHERE name_lesson = '$name_lesson'";
       return $this->queryAssocAll($qr);
     }
+
+    public function getSubAudio($name_lesson){
+      return parent::readJsonData("$this->path"."sub_aud/" . $name_lesson . ".json");
+      // $qr   = "SELECT image, video, audio, title_lesson FROM lesson_tut WHERE name_lesson = '$name_lesson'";
+      // return $this->queryAssocAll($qr);
+    }
+
+    
+
+    public function getQuizAudio($name_lesson){
+      return parent::readJsonData("$this->path"."quiz_aud/" . $name_lesson . ".json");
+    }
+
+    public function countQuizPoint($arr_quiz, $name_lesson){
+      $point = 0;
+      $arr_right = parent::readJsonData("$this->path"."quiz_aud/" . $name_lesson . ".json");
+      for($i = 0; $i < sizeof($arr_right); $i++){
+        $arr_right_each = (array)$arr_right[$i];
+        $count = 0;
+        for($j = 0; $j < sizeof($arr_right_each['ans']); $j++){
+          $arr_ans = (array)$arr_right_each['ans'][$j];
+          if($arr_ans['is_right'] == $arr_quiz[$i][$j]){
+            $count++;
+          }
+        }
+        if($count == 4){
+          $point++;
+        }
+      }
+      $qr1 = "SELECT lesson_id FROM lesson_tut WHERE name_lesson = '$name_lesson'";
+      $lesson_id = $this->queryAssoc($qr1, 'lesson_id');
+
+      $user_id = $_SESSION['member_id'];
+      $qr = "SELECT point  FROM user_lesson WHERE user_id = '$user_id' AND lesson_id = '$lesson_id'";
+      $old_point = 0;
+      $update = false;
+      if($this->queryNumRow($qr) > 0){
+        $old_point = $this->queryAssoc($qr, 'point');
+        $update = true;
+      }
+      else{
+        $qr3 = "INSERT INTO user_lesson VALUE('$user_id', '$lesson_id', '$point', now())";
+        $res_ins = mysqli_query($this->con, $qr3);
+      }
+
+
+      if($point > $old_point && $update){
+        $qr2 = "UPDATE user_lesson SET point = ".$point." WHERE user_id = '$user_id' AND lesson_id = '$lesson_id'";
+        $res_up = mysqli_query($this->con, $qr2);
+      }
+
+
+      return $point;
+      
+    }
+
 
     public function loadGuide(){
       return parent::readJsonData("$this->path"."guide_listen.json");

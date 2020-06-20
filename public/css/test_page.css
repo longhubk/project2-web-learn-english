@@ -25,6 +25,16 @@
 .main-container .video-card .qs_contain{
   /* border: 1px solid green; */
   margin: 5px;
+  
+    box-sizing         : border-box;
+  
+    -webkit-user-select: none;
+    -khtml-user-select : none;
+    -moz-user-select   : none;
+    -ms-user-select    : none;
+    -o-user-select     : none;
+    user-select        : none; /*_prevent copy text on website*/
+
 }
 .main-container .video-card .qs_contain .title_qs{
   /* border: 1px solid brown; */

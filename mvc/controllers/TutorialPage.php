@@ -50,8 +50,10 @@
         $tutKnowledge =  $this->tut_db->getTutKnowledgeBasic($tut_lesson);
       }
 
-      $info_les      = $this->tut_db->getInfoLesson($tut_lesson);
-      $tut_content      = $this->tut_db->getTutContent($tut_name);
+      $info_les    = $this->tut_db->getInfoLesson($tut_lesson);
+      $tut_content = $this->tut_db->getTutContent($tut_name);
+      $sub_aud     = $this->tut_db->getSubAudio($tut_lesson);
+      $quiz_aud    = $this->tut_db->getQuizAudio($tut_lesson);
 
       $view_more = [
         "page"         => $page,
@@ -62,8 +64,22 @@
         "tut_guide"    => $this->tut_db->loadGuide(),
         "info_les"     => $info_les,
         "tutContent"   => $tut_content,
+        "sub_aud"      => $sub_aud,
+        "quiz_aud"     => $quiz_aud,
       ];
       $this->render('master_home',$view_more);
+    }
+
+    public function checkQuiz(){
+      $res = 'fail';
+      if(isset($_POST['arr_quiz'])){
+        $res = $this->tut_db->countQuizPoint($_POST['arr_quiz'], $_POST['name_les']);
+      }
+      $view_more = [
+        "page"      => "get_id_lesson", 
+        "id_lesson" => $res,
+      ];
+      $this->render('master_empty',$view_more);
     }
   
   }

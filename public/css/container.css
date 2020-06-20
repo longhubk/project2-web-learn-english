@@ -1,13 +1,6 @@
 
 *{
   box-sizing         : border-box;
-
-  -webkit-user-select: none;
-  -khtml-user-select : none;
-  -moz-user-select   : none;
-  -ms-user-select    : none;
-  -o-user-select     : none;
-  user-select        : none; /*_prevent copy text on website*/
 }
 a{
   text-decoration: none;
@@ -192,8 +185,64 @@ audio:focus{
   justify-content: center;
 }
 
+
 .main-container .video-card .verb-video .video_src #video_les{
   height: 30vw;
+}
+
+.main-container .video-card .verb-video .toggle_tab{
+  /* border: 1px solid red; */
+  list-style-type: none;
+  display: flex;
+  margin-bottom: 0;
+  background-color: rgb(179, 179, 179);
+}
+
+.main-container .video-card .verb-video .tab{
+  display: none;
+  min-height: 450px;
+  max-height: 450px;
+  overflow-y: auto;
+  margin-top: 0;
+  padding: 5px;
+}
+
+.main-container .video-card .verb-video .tab ul{
+  list-style-type: none;
+}
+
+
+.main-container .video-card .verb-video .tab ul #res_quiz{
+  font-weight: bolder;
+  color: red;
+}
+.main-container .video-card .verb-video .tab ul li{
+  margin: 5px 0;
+  font-family: cursive;
+}
+
+.main-container .video-card .verb-video .tab ul li .label_input_quiz:hover{
+  text-decoration: underline; 
+}
+
+.main-container .video-card .verb-video .active{
+  display: block;
+  background-color: white;
+  margin-top: 0;
+}
+
+
+.main-container .video-card .verb-video .toggle_tab li button{
+  background-color: rgb(179, 179, 179);
+  border: none;
+  outline: none;
+  padding: 10px 10px;
+}
+.main-container .video-card .verb-video .toggle_tab li button.active{
+  background-color: white;
+  border: none;
+  outline: none;
+  padding: 10px 10px;
 }
 
 .main-container .video-card .verb-video .subtitle{
@@ -207,10 +256,23 @@ audio:focus{
   background-color: whitesmoke;
 }
 
-.main-container .video-card .verb-video .subtitle #main_scroll li{
+.main-container .video-card .verb-video .subtitle #main_scroll{
+  list-style-type: none;
+}
+
+.main-container .video-card .verb-video .subtitle #main_scroll li.sub_vid{
   margin: 20px 10px;
   font-family: cursive;
 }
+
+.main-container .video-card .verb-video .subtitle #main_scroll li.active_en{
+  background-color: #CCFF99;
+}
+
+.main-container .video-card .verb-video .subtitle #main_scroll li.active_vi{
+  background-color: rgb(187, 150, 28);
+}
+
 .main-container .video-card .verb-video .subtitle:hover{
   overflow-y: scroll;
 }

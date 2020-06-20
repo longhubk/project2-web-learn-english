@@ -58,6 +58,7 @@
     }
   
   ?>
+  <div id='info_user' style="display: none;"></div>
 
   <div class="add_new_user">
 

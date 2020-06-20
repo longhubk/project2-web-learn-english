@@ -32,6 +32,7 @@ function fetchUserId(){
 				let id_qr3 = "#block-"+id_tmp
 				let id_qr4 = "#up_permission-"+id_tmp
 				let id_qr5 = "#delete_user-"+id_tmp
+				let id_qr6 = "#info-"+id_tmp
 
 				$(document).on('click', id_qr3, () =>{	
 					let user_id = $(id_qr3).attr('id')
@@ -42,6 +43,24 @@ function fetchUserId(){
             data : {'user_id' : real_user_id},
 						success : (data) =>{
 							if(data.trim() == "ok") location.reload()
+						}
+					})
+        })
+
+				$(document).on('click', id_qr6, () =>{	
+					let user_id = $(id_qr6).attr('id')
+					let real_user_id = user_id.split('-')[1]
+					$.ajax({
+            url : "AdminPage/getViewInfoUser/",
+						method : 'POST',
+            data : {'user_id' : real_user_id},
+						success : (data) =>{
+              // if(data.trim() == "ok"){
+
+              $('#info_user').html($data)
+              $('#info_user').show()
+
+              // location.reload()
 						}
 					})
         })
