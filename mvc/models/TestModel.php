@@ -29,6 +29,10 @@
       $qr   = "SELECT test_time FROM test WHERE test_id = '$test_id'";
       return $this->queryAssoc($qr, 'test_time');
     }
+
+    public function getTestGuide(){
+      return parent::readJsonData("$this->path"."test_guide.json");
+    }
     
     public function getTestTurnById($us_name){
       

@@ -10,11 +10,13 @@
     {
       parent::__construct();
       $this->test_turn  = $this->test_db->getTestTurnById($_COOKIE['member_login']);
+      $this->test_guide  = $this->test_db->getTestGuide();
 
       $this->view_arr = [
           "all_tuts" => $this->all_tuts,
           "avatar"   => $this->avatar,
           "tut_qs"   => $this->tut_qs,
+          "test_guide" => $this->test_guide,
       ];
     }
     private function middlewareTest($back, $test = 'none'){

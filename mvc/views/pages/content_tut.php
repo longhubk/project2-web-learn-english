@@ -103,11 +103,10 @@
   ?>
 
     <div class="verb-video" >
-      <h3>Video có phụ đề:</h3>
-
-      <!-- <iframe id='player' width="560" height="315" src="https://www.youtube.com/embed/LfJPA8GwTdk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+      
           <?php   
           if(isset($data['info_les'])){
+            echo "<h3>Video có phụ đề:</h3>";
             $vid_src = "public/video/".$data['info_les']['video'];
             echo "
             <div class='video_src'>
@@ -136,8 +135,8 @@
           // echo "<button id='btn_scroll'>scroll</button>";
           // echo "<button id='btn_auto_scroll'>auto scroll</button>";
           }
-          echo "<h3>Audio Conversation:</h3>";
           if(!empty($data['info_les']['audio'])){
+            echo "<h3>Audio Conversation:</h3>";
             $aud = "public/audio/". $data['info_les']['audio'];
             echo "<audio controls> <source src='$aud' type='audio/mp3'></audio>";
           }
@@ -153,7 +152,7 @@
             </ul>";
           }
 
-          if(isset($data['sub_aud'])){
+          if(!empty($data['sub_aud'])){
             $en_sub = $data['sub_aud'];
 
             $out .= "<div class='tab active' id='tab_en_sc'>";
@@ -168,7 +167,7 @@
             $out .= "</ul></div>";
           }
 
-          if(isset($data['sub_aud'])){
+          if(!empty($data['sub_aud'])){
             $vi_sub = $data['sub_aud'];
 
             $out .= "<div class='tab' id='tab_vi_sc'>";
@@ -184,7 +183,7 @@
             $out .= "</ul></div>";
           }
 
-          if(isset($data['quiz_aud'])){
+          if(!empty($data['quiz_aud'])){
             $quiz = $data['quiz_aud'];
             $out .= "<div class='tab' id='tab_quiz'>";
             $out .= "<ul>";

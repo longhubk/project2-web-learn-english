@@ -58,7 +58,6 @@
     }
   
   ?>
-  <div id='info_user' style="display: none;"></div>
 
   <div class="add_new_user">
 
@@ -69,4 +68,8 @@
 
   </div>
 
+</div>
+
+<div id='info_user_contain'>
+    <div id='info_user'></div>
 </div>

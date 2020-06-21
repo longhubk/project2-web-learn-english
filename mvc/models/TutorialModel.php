@@ -40,15 +40,21 @@
     }
 
     public function getSubAudio($name_lesson){
-      return parent::readJsonData("$this->path"."sub_aud/" . $name_lesson . ".json");
-      // $qr   = "SELECT image, video, audio, title_lesson FROM lesson_tut WHERE name_lesson = '$name_lesson'";
-      // return $this->queryAssocAll($qr);
+      $file_dir = "$this->path"."sub_aud/" . $name_lesson . ".json";
+      if(file_exists($file_dir))
+        return parent::readJsonData($file_dir);
+      else
+        return "";
     }
 
-    
 
     public function getQuizAudio($name_lesson){
-      return parent::readJsonData("$this->path"."quiz_aud/" . $name_lesson . ".json");
+
+      $file_dir = "$this->path"."quiz_aud/" . $name_lesson . ".json";
+      if(file_exists($file_dir))
+        return parent::readJsonData($file_dir);
+      else
+        return "";
     }
 
     public function countQuizPoint($arr_quiz, $name_lesson){

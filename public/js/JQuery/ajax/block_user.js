@@ -57,12 +57,17 @@ function fetchUserId(){
 						success : (data) =>{
               // if(data.trim() == "ok"){
 
-              $('#info_user').html($data)
-              $('#info_user').show()
+              $('#info_user').html(data)
+              $('#info_user_contain').slideDown(500)
+
 
               // location.reload()
 						}
-					})
+          })
+        })
+
+				$(document).on('click', '#info_user_contain', () =>{	
+          $('#info_user_contain').slideUp(300)
         })
 
 				$(document).on('click', id_qr1, () =>{	

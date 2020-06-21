@@ -2,9 +2,9 @@
 <div class="main-container">
   <div class="video-card">
     <?php
-      if(isset($data['title_les'])){
-        $title_les = $data['title_les'];
-            echo "<h1>$title_les</h1>";
+      if(isset($data['info_les']['title_lesson'])){
+        $title_les = $data['info_les']['title_lesson'];
+          echo "<h1>$title_les</h1>";
       }
       
     ?>

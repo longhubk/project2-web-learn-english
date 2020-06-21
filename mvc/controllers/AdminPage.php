@@ -253,6 +253,16 @@
           "id_lesson" => $res,
       ]);
     }
+    public function getViewInfoUser(){
+      $this->middlewareAdmin();
+      $res = 'fail';
+      if(isset($_POST))
+        $res = $this->user_db->getInfoUser($_POST['user_id']);
+      $this->view("master_empty", [
+          "page"      => "get_info_user",
+          "info_user" => $res,
+      ]);
+    }
 
 
     public function getViewTest(){

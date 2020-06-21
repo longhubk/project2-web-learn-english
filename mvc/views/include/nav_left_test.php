@@ -52,15 +52,6 @@
           }
         }
         else
-        if(isset($data['all_test'])){
-          $all_test = $data['all_test'];
-          if(!empty($all_test)){
-            for($i = 0; $i < sizeof($all_test); $i++){
-              $name_test    = $all_test[$i][1];
-              echo "<li id='test-small".$i."'><label>".$name_test."</label></li>";
-            }
-          }
-        }
       ?>
     </ul>
   </div>

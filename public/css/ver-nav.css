@@ -70,6 +70,7 @@
   width           : 200px;
   border-radius: 3px;
   transition: all ease 0.3s;
+  color: white;
 }
 .ver-bar ul li a{
   text-decoration: none;

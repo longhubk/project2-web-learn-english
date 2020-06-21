@@ -2,15 +2,27 @@
   <div id="qs_right" class="question">
     <div class="qs_content">
 
-      <p id="txtSuggest" class="qs-title">Top Question</p>
+      <?php 
+      if(isset($data['test_guide']))
+        echo "<p id='txtSuggest' class='qs-title'>Hướng dẫn</p>";
+      else
+        echo "<p id='txtSuggest' class='qs-title'>Top bài viết</p>";
+      ?>
+
       <ol class="qs-list">
-        
         <?php 
+      
+          if(isset($data['test_guide'])){
+            $test_guide = $data['test_guide'];
+            foreach($test_guide as $name_guide => $guide)
+              echo "<li>$guide</li>";
+
+          }
+          else
           if(isset($data['tut_qs'])){
             $tut_question = $data['tut_qs'];
-            foreach($tut_question as $name_user => $question){
+            foreach($tut_question as $name_user => $question)
               echo "<li><a href='#'> $question</a></li>";
-            }
           }
           ?>
       </ol>

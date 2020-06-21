@@ -9,6 +9,16 @@
 				}
 			}
 			else
+      if(isset($data['all_test'])){
+        $all_test = $data['all_test'];
+          if(!empty($all_test)){
+            for($i = 0; $i < sizeof($all_test); $i++){
+              $name_test    = $all_test[$i][1];
+              echo "<li id='test-small".$i."'><label>".$name_test."</label></li>";
+            }
+          }
+				}
+			else
 			if(isset($data['tutContent'])){
 				$tutContent = $data['tutContent'];
 				// var_dump($tutContent);
@@ -18,14 +28,19 @@
 				
 			}
 			else
-			// else
-			// if(isset($data['all_tuts'])){
-			// 	$all_tuts = $data['all_tuts'];
-			// 	for($i = 0; $i < sizeof($all_tuts); $i++)
-			// 		echo "<li><a href='./TutorialPage/Lesson/".$all_tuts[$i][1]."'>".$all_tuts[$i][0]."</a></li>";
-				
-			// }
-
+			if(isset($data['allDocCatalog'])){
+				$allDocCatalog = $data['allDocCatalog'];
+				for($i = 0; $i < sizeof($allDocCatalog); $i++)
+					echo "<li><a href='./DocsPage/".$allDocCatalog[$i][2]."'>".$allDocCatalog[$i][1]."</a></li>";
+			}
+			else
+			if(isset($data['all_doc_list'])){
+				$allDocList = $data['all_doc_list'];
+				$doc_ca_name = $data['doc_ca_name'];
+				for($i = 0; $i < sizeof($allDocList); $i++)
+					echo "<li><a href='./DocsPage/Read/".$doc_ca_name."/".$allDocList[$i][5]."'>".$allDocList[$i][3]."</a></li>";
+			}
+			else
 			if(isset($data['all_tuts'])){
 				$all_tuts = $data['all_tuts'];
 
@@ -48,12 +63,6 @@
 				
 			}
 
-			else
-			if(isset($data['allDocCatalog'])){
-				$allDocCatalog = $data['allDocCatalog'];
-				for($i = 0; $i < sizeof($allDocCatalog); $i++)
-					echo "<li><a href='./DocsPage/expands/".$allDocCatalog[$i][2]."'>".$allDocCatalog[$i][1]."</a></li>";
-			}
 
 		?>
 	</ul>

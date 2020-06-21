@@ -23,3 +23,32 @@
   border: 1px solid brown;
   margin: 0 5px;
 }
+
+#info_user_contain{
+  display: none;
+  /* border: 1px solid red; */
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000000;
+  background-color: rgba(204, 204, 204, 0.4);
+  /* opacity: 0.5; */
+
+}
+
+#info_user_contain #info_user{
+  border: 1px solid rgb(177, 177, 177);
+  width: 300px;
+
+  margin: auto;
+  margin-top: 13%;
+  border-radius: 10px;
+  background-color: white;
+  padding: 40px;
+  /* opacity: 1; */
+}
+
+#info_user_contain #info_user table{
+  width: 100%;
+}

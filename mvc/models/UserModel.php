@@ -385,7 +385,7 @@
       } 
 
       public function getUserMenu(){
-        return parent::readJsonData("./mvc/models/data/tutorials/menu_user.json");
+        return parent::readJsonData("./mvc/models/data/menu_user.json");
       }
 
       public function getListUserById($user_name, $us_find){
@@ -563,6 +563,11 @@
         return $friend_name;
 
       }
+      public function getInfoUser($user_id){
+        $qr    = "SELECT * FROM info_users WHERE user_id = '$user_id'";
+        return $this->queryAssocAll($qr);
+      }
+
       public function updateUserInfo($un, $f_name, $l_name, $birth, $gender, $school, $toeic){
 
       $id     = $this->getUserId($un);

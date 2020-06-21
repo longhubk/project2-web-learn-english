@@ -11,8 +11,8 @@
       $this->is_lock = $this->tut_db->getIsLockTutUser($_SESSION['member_id']);
 
       $this->view_arr = [
-          "all_tuts"   => $this->all_tuts,
-          "avatar"    => $this->avatar,
+          "all_tuts" => $this->all_tuts,
+          "avatar"   => $this->avatar,
       ];
     }
     public function Init(){
