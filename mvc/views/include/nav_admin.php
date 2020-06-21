@@ -30,8 +30,7 @@
           Document Control
         </span>
         <ul>
-          <li><a href="./AdminPage/getNewDocument">New Document</a></li>
-          <li><a href="./AdminPage/getUpdateDoc">Update Document</a></li>
+          <li><a href="./AdminPage/getNewDocContent">Write Document</a></li>
           <li><a href="./AdminPage/getViewDoc">View Document</a></li>
           
         </ul>

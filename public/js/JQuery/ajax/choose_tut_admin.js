@@ -113,6 +113,37 @@ $(document).ready( () =>{
 
   })
 
+  $('#choose_number_doc').on('keyup click', () => {
+    let val = $('#choose_number_doc').val()
+
+      $('#content_add_main').html('')
+
+      for(let i = 1; i <= val; i++){
+      $append = "";
+      $append += "<hr>";
+      $append += "<div>Content "+i+" :</div>";
+      $append += "<table id='content_"+i+"' class='table_new_content_les'>";
+
+      $append += "<tr>"
+      $append += "<td class='title_content'>Text Content</td>"
+      $append += "<td class='input_content'><textarea name='text_content-"+i+"'></textarea>";
+      $append += "</tr>"
+
+
+      $append += "<tr>"
+      $append += "<td class='title_content'>Image</td>"
+      $append += "<td class='input_content'><input type='file' accept='.jpg,.png,.gif,.  jpeg' name='image_doc-"+i+"'></td>"
+      $append +="</tr>"
+
+      $append += "</table>"
+
+      $('#content_add_main').append($append)
+      $('#content_'+i).hide(500).show(500)
+    }
+  })
+
+
+
 
   $('#choose_number').on('keyup click', () => {
     let val = $('#choose_number').val()

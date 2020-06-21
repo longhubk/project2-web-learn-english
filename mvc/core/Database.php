@@ -78,7 +78,45 @@
     return preg_replace("/\r\n/", "<br>\n", $str);
   }
 
+  protected function uploadFile($f_name, $ft_name, $f_size, $f_err, $f_Ext_Allowed, $f_dir){
+        $res = false;
+        $f_Ext        = explode('.', $f_name);
+        $f_Actual_Ext = strtolower(end($f_Ext));
+        $f_new_name   = $f_name;
+
+        $f_des = $f_dir . $f_new_name;
+  
+        $out = '';
+        
+        if(in_array($f_Actual_Ext, $f_Ext_Allowed)){
+          if($f_err == 0){
+            if($f_size < 5000000){
+              move_uploaded_file($ft_name, $f_des);
+              $this->check_name_file_exist($f_Ext[0], $f_Ext_Allowed, $f_Actual_Ext, $f_dir);
+            }else
+              $out = "file bigger than 5M";
+          }else
+            $out = "There are error";
+        }
+        else
+          $out = "you can not upload file that is not allowed extensions";
+      return $out;
   }
+
+  protected function check_name_file_exist($f_name, $f_Ext_Allowed, $f_Actual_Ext, $f_dir){
+    foreach($f_Ext_Allowed as $ext){
+      if($ext !== $f_Actual_Ext){
+        $f_name_check = $f_dir . $f_name . $ext;
+
+        if(file_exists($f_name_check)){
+          unlink($f_name_check);
+          echo "Deleted your old file ".$f_name." <br>";
+        }
+      }
+    }
+  }
+
+}
       
 
 

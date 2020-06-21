@@ -167,10 +167,10 @@
       return $this->queryAllArray($qr);
     }
     
-    public function uploadFile($file){
-      $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
-      return $this->queryAllArray($qr);
-    }
+    // public function uploadFile($file){
+    //   $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
+    //   return $this->queryAllArray($qr);
+    // }
 
     public function getContentByLessonId($les_id){
       $qr   = "SELECT * FROM content_lesson WHERE lesson_id = '$les_id'";
@@ -231,15 +231,19 @@
         $qr2 = '';
         if($value['error'] == 0){
           $keys = explode('-', $key);
-
           $kind = explode('_',$keys[0]);
-          $type = '';
-          if($kind[0] == 'image' || $kind[0] == 'img'){
-            $type = 'image';
-          }
-          else $type = 'music';
 
-          $this->uploadFileLesson($value['name'],$value['tmp_name'], $value['size'],$value['error'], $type);
+          $f_Ext_Allowed = [];
+          $f_dir = '';
+          if($kind[0] == 'image' || $kind[0] == 'img'){
+            $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
+            $f_dir         = "./public/img/basic_img/";
+          }
+          else {
+            $f_Ext_Allowed = array('mp3', 'wav');
+            $f_dir = "./public/audio/";
+          }
+          $this->uploadFile($value['name'],$value['tmp_name'], $value['size'],$value['error'], $f_Ext_Allowed, $f_dir);
 
           $qr2 = 'UPDATE basic_content_lesson SET '.$keys[0].' = "'.$value['name'].'" WHERE content_id = '.$keys[1];
           $up = mysqli_query($this->con, $qr2);
@@ -342,7 +346,9 @@
       if($file_les['select_img_les']['error'] == 0){
         $file_img = $file_les['select_img_les'];
         $file_name = $file_img['name'];
-        $this->uploadFileLesson($file_img['name'], $file_img['tmp_name'], $file_img['size'],$file_img['error'],"image_les");
+        $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
+        $f_dir         = "./public/img/";
+        $this->uploadFile($file_img['name'], $file_img['tmp_name'], $file_img['size'],$file_img['error'], $f_Ext_Allowed, $f_dir);
       }
 
       $qr = "INSERT INTO `lesson_tut` (`lesson_id`, `tut_id`, `name_lesson`, `title_lesson`, `image`) VALUES (NULL, '$post_les[tut_lesson]', '$post_les[new_lesson_name]', '$post_les[new_lesson_title]', '$file_name');";
@@ -408,7 +414,9 @@
             $main_ct = $this->filterBreak($post[$main_ct_p]);
           if(!empty($file[$image_ct_p]['name'])){
             $image_ct = $file[$image_ct_p]['name'];
-            $this->uploadFileLesson($file[$image_ct_p]['name'], $file[$image_ct_p]['tmp_name'], $file[$image_ct_p]['size'],$file[$image_ct_p]['error'], 'image');
+            $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
+            $f_dir         = "./public/img/";
+            $this->uploadFile($file[$image_ct_p]['name'], $file[$image_ct_p]['tmp_name'], $file[$image_ct_p]['size'],$file[$image_ct_p]['error'], $f_Ext_Allowed, $f_dir);
 
           }
 
@@ -428,13 +436,17 @@
 
             if(isset($file[$id2]['name'])){
               $aud[$j] = $file[$id2]['name'];
-              $this->uploadFileLesson($file[$id2]['name'], $file[$id2]['tmp_name'], $file[$id2]['size'],$file[$id2]['error'], 'music');
+              $f_Ext_Allowed = array('mp3', 'wav');
+              $f_dir = "./public/audio/";
+              $this->uploadFile($file[$id2]['name'], $file[$id2]['tmp_name'], $file[$id2]['size'],$file[$id2]['error'], $f_Ext_Allowed, $f_dir);
             }else
               $aud[$j] = '';
 
             if(isset($file[$id3]['name'])){
               $img[$j] = $file[$id3]['name'];
-              $this->uploadFileLesson($file[$id3]['name'], $file[$id3]['tmp_name'], $file[$id3]['size'],$file[$id3]['error'], 'image');
+              $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
+              $f_dir         = "./public/img/basic_img/";
+              $this->uploadFile($file[$id3]['name'], $file[$id3]['tmp_name'], $file[$id3]['size'],$file[$id3]['error'], $f_Ext_Allowed, $f_dir);
             }else
               $img[$j] = '';
           }
@@ -451,60 +463,6 @@
     }
 
 
-    private function uploadFileLesson($f_name, $ft_name, $f_size, $f_err, $f_type){
-        $res = false;
-        $f_Ext        = explode('.', $f_name);
-        $f_Actual_Ext = strtolower(end($f_Ext));
-        // $f_new_name   = $f_Ext[0] . "." . $f_Actual_Ext;
-        $f_new_name   = $f_name;
-        // $f_Actual_Ext = [];
-        $f_des        = '';
-        if($f_type == 'music'){
-          $f_Ext_Allowed = array('mp3', 'wav');
-          $f_des         = "./public/audio/" . $f_new_name;
-        }
-        if($f_type == 'image'){
-          $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
-          $f_des         = "./public/img/basic_img/" . $f_new_name;
-        }
-        if($f_type == 'image_les'){
-          $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
-          $f_des         = "./public/img/" . $f_new_name;
-        }
-    
-        $out = '';
-        if(in_array($f_Actual_Ext, $f_Ext_Allowed)){
-          if($f_err == 0){
-            if($f_size < 5000000){
-              move_uploaded_file($ft_name, $f_des);
-              $this->check_name_file_exist($f_Ext[0], $f_Ext_Allowed, $f_Actual_Ext, $f_type);
-            }else
-              $out = "file bigger than 5M";
-          }else
-            $out = "There are error";
-        }
-          $out = "you can not upload file that is not allowed extensions";
-      return $out;
-    }
-
-    private function check_name_file_exist($f_name, $f_Ext_Allowed, $f_Actual_Ext, $f_type){
-      foreach($f_Ext_Allowed as $ext){
-        if($ext !== $f_Actual_Ext){
-          $f_name_check = '';
-          if($f_type == 'music')
-            $f_name_check = "./public/audio/".$f_name .".". $ext;
-          if($f_type == 'image')
-            $f_name_check = "./public/img/basic_img/".$f_name .".". $ext;
-          if($f_type == 'image_les')
-            $f_name_check = "./public/img/".$f_name .".". $ext;
-
-          if(file_exists($f_name_check)){
-            unlink($f_name_check);
-            echo "Deleted your old file ".$f_name." <br>";
-          }
-        }
-      }
-    }
 
     public function getMenuUser(){
       return parent::readJsonData("$this->path"."tutorials/menu_user.json");

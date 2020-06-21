@@ -71,21 +71,12 @@
           $doc_img = $doc_vid = $doc_aud = '';
           if(!empty($doc_ct[$i][3]))
             $doc_img  = "public/img/doc_img/" . $doc_ct[$i][3];
-          if(!empty($doc_ct[$i][4]))
-            $doc_vid  = "public/video/doc/" . $doc_ct[$i][4];
-          if(!empty($doc_ct[$i][5]))
-            $doc_aud  = "public/audio/doc/" . $doc_ct[$i][5];
 
           $out .=  "
             <div class='each_doc_ct'>
               <p>".$doc_text."</p>";
           if(file_exists($doc_img))
             $out .= "<img class='intro' src='$doc_img'>";
-          if(file_exists($doc_vid))
-            $out .= "<video id='video_les' controls > <source src='".$doc_vid."' type='video/mp4'></video>";
-          if(file_exists($doc_aud))
-            $out .= "<audio controls> <source src='".$doc_aud."' type='audio/mp3'></audio>";
-
 
           $out .="</div>";
 

@@ -38,7 +38,7 @@
     
 
     public function loadAllUser(){
-      $qr   = "SELECT id, name, is_block, user_type FROM users WHERE user_type != 'admin'";
+      $qr   = "SELECT id, name, is_block, user_type, avatar FROM users WHERE user_type != 'admin'";
       return $this->queryAllArray($qr);
     }
 
@@ -319,36 +319,19 @@
         $f_Actual_Ext  = strtolower(end($f_Ext));
         $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
         $f_new_name    = $_COOKIE['member_login'] . "." . $f_Actual_Ext;
-        $f_des         = "./public/img/uploads/" . $f_new_name;
-    
-        if(in_array($f_Actual_Ext, $f_Ext_Allowed)){
-          if($f_err == 0){
-            if($f_size < 5000000){
-              move_uploaded_file($ft_name, $f_des);
-              $up_avt = $this->updateAvatar($f_new_name);
-              $this->check_name_file_exist($_COOKIE['member_login'], $f_Ext_Allowed, $f_Actual_Ext);
-              $res = $up_avt ? "ok" : "fail";
-            }else
-              $res = "file bigger than 5M";
-          }else
-            $res = "There are error";
-        }else
-          $res = "you can not upload file that is not image";
+        $f_dir         = "./public/img/uploads/";
+
+        $res = $this->uploadFile($f_new_name, $ft_name, $f_size, $f_err, $f_Ext_Allowed, $f_dir);
+        if(empty($res)){
+          $up_avt = $this->updateAvatar($f_new_name);
+          if($up_avt)
+            $res = "ok";
+          else $res = "fail";
+        }
       }
       return $res;
     }
 
-    private function check_name_file_exist($f_name, $f_Ext_Allowed, $f_Actual_Ext){
-      foreach($f_Ext_Allowed as $ext){
-        if($ext != $f_Actual_Ext){
-          $f_name_check = "./public/img/uploads/".$f_name .".". $ext;
-          if(file_exists($f_name_check)){
-            unlink($f_name_check);
-            echo "Deleted your old avatar <br>";
-          }
-        }
-      }
-    }
     public function userLogout($user_name) {
 
       $qr = "UPDATE users SET is_login = 'false' WHERE name = '$user_name'";

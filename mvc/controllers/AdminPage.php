@@ -2,10 +2,13 @@
   class AdminPage extends Controller{
 
     protected $all_user;
+    protected $all_doc;
     public function __construct()
     {
       
       parent::__construct();
+      $this->all_doc = $this->doc_db->getAllDoc();
+
       if($_SESSION['user_type'] == "admin"){
         $this->all_user = $this->user_db->loadAllUser();
       }
@@ -35,10 +38,10 @@
     public function Init(){
       $this->middlewareAdmin();
       $view_more = [
-        "page"         => "ad_new_lesson",
-        "all_tuts" => $this->all_tuts,
-        "all_lesson"   => $this->all_lesson,
-        "all_topic"    => $this->all_topic,
+        "page"       => "ad_new_lesson",
+        "all_tuts"   => $this->all_tuts,
+        "all_lesson" => $this->all_lesson,
+        "all_topic"  => $this->all_topic,
       ];
       $this->render('master_admin',$view_more);
     }
@@ -46,9 +49,18 @@
     public function getNewLesson(){
       $this->middlewareAdmin();
       $view_more =  [
-        "page"         => "ad_new_lesson",
-        "all_tuts" => $this->all_tuts,
-        "all_lesson"   => $this->all_lesson,
+        "page"       => "ad_new_lesson",
+        "all_tuts"   => $this->all_tuts,
+        "all_lesson" => $this->all_lesson,
+      ];
+      $this->render('master_admin',$view_more);
+    }
+
+    public function getNewDocContent(){
+      $this->middlewareAdmin();
+      $view_more =  [
+        "page"            => "ad_new_doc_content",
+        "all_doc"         => $this->all_doc,
       ];
       $this->render('master_admin',$view_more);
     }
@@ -58,7 +70,7 @@
         $res = $this->tut_db->getAllLessonOfTutorialById($_POST['id']);
 
       $this->view("master_empty", [
-        "page" => "get_lesson_of_tutorial",
+        "page"        => "get_lesson_of_tutorial",
         "data_lesson" => $res,
       ]);
     }
@@ -69,7 +81,7 @@
         $res = $this->tut_db->getTutLevelById($_POST['id']);
       }
       $this->view("master_empty", [
-        "page" => "get_tut_level",
+        "page"      => "get_tut_level",
         "tut_level" => $res,
       ]);
     }
@@ -101,8 +113,8 @@
       $res = false;
       if(isset($_POST)){
         if($tut_level > 0){
-          $page = "ad_update_lesson";
-          $res = $this->tut_db->updateLessonById($_POST);
+          $page                      = "ad_update_lesson";
+          $res                       = $this->tut_db->updateLessonById($_POST);
           $content_less_after_update = $this->tut_db->getContentByLessonId($lesson_id);
         }
         else{
@@ -178,6 +190,31 @@
 
       $view_more = [
         "page"         => "ad_new_lesson",
+        "update_state" => $res,
+        "post_up"      => $_POST,
+      ];
+      $this->render('master_admin',$view_more);
+
+    }
+
+    public function postNewContentDoc(){
+      $this->middlewareAdmin();
+      $res = false;
+      if(isset($_FILES)){
+        var_dump($_FILES);
+      }
+      if(isset($_POST)){
+
+        var_dump($_POST);
+        if(!empty($_POST)){
+          $res = $this->doc_db->insertDocContent($_POST, $_FILES);
+        }
+      }
+      if(isset($_POST))
+        header("Location:../AdminPage/getNewDocContent");
+
+      $view_more = [
+        "page"         => "ad_new_doc_content",
         "update_state" => $res,
         "post_up"      => $_POST,
       ];

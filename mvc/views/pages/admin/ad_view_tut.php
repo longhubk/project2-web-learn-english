@@ -118,7 +118,7 @@
                 $count_les_tut++;
                 echo "<td class='center'>".$count_les_tut. " </td><td>" .$all_lesson[$j][3] . "</td>" ;
 
-                echo "<td class='center'><a title='update lesson' href='./HomeAdmin/getUpdateLesson/".$all_lesson[$j][0]."/".$all_tut[$i][6]."'><img class='icon-96-center' src='public/icon/setting_icon.png'></a></td>";
+                echo "<td class='center'><a title='update lesson' href='./AdminPage/getUpdateLesson/".$all_lesson[$j][0]."/".$all_tut[$i][6]."'><img class='icon-96-center' src='public/icon/setting_icon.png'></a></td>";
 
                 echo "<td class='center'><img class='icon-96-center' id='delete_lesson-".$all_lesson[$j][0]."-".$all_tut[$i][0]."' src='public/icon/delete_icon.png'></a></td>";
 
@@ -140,7 +140,7 @@
           echo "<div class='toggle_edit_les' id='toggle_edit_les-".$i."-".$j."'>" 
         ?>
 
-          <form method='POST' action='./HomeAdmin/postEditTutorial' >
+          <form method='POST' action='./AdminPage/postEditTutorial' >
 
           <input type="hidden" name='id_les_edit' value="<?php echo $all_lesson[$j][0];?>">
 
@@ -185,7 +185,7 @@
 
         <?php echo "<div class='toggle_edit' id='toggle_edit-".$i."'>" ?>
 
-          <form method='POST' action='./HomeAdmin/postEditTutorial' >
+          <form method='POST' action='./AdminPage/postEditTutorial' >
 
           <input type="hidden" name='id_tut_edit' value="<?php echo $all_tut[$i][0];?>">
           <table class="add_lesson_table">
@@ -229,7 +229,7 @@
 
         <?php echo "<div class='toggle_lesson' id='toggle_add_lesson-".$i."'>" ?>
 
-          <form method='POST' action='./HomeAdmin/postNewTutorial' enctype="multipart/form-data">
+          <form method='POST' action='./AdminPage/postNewTutorial' enctype="multipart/form-data">
           <table class="add_lesson_table">
             <tr class="first_row">
             </tr>
@@ -279,7 +279,7 @@
 
   <div class="add_new_tut">
 
-    <form method='POST' action='./HomeAdmin/postNewTutorial'>
+    <form method='POST' action='./AdminPage/postNewTutorial'>
       <table class="new_test_table">
 
         <tr class="first_row">
