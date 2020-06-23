@@ -13,6 +13,7 @@
       $this->view_arr = [
           "all_tuts" => $this->all_tuts,
           "avatar"   => $this->avatar,
+          "all_doc"  => $this->all_doc,
       ];
     }
     public function Init(){
@@ -26,7 +27,6 @@
       if(!empty($_SESSION['member_id']))
       $view_more = [
         "page"    => "content_tut",
-        "tut_qs"  => $this->tut_qs,
         "is_lock" => $this->is_lock,
       ];
       $this->render('master_home',$view_more);
@@ -57,7 +57,6 @@
 
       $view_more = [
         "page"         => $page,
-        "tut_qs"       => $this->tut_qs,
         "tut_name"     => $tut_name,
         "tutKnowledge" => $tutKnowledge,
         "tut_sub"      => $this->tut_db->loadSub(),

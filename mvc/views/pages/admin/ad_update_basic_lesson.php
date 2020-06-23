@@ -1,5 +1,6 @@
   
 <div class="admin_container">
+  <div id='debug_div'></div>
   <h2 class="title_ad_page">Update Basic Lesson:</h2>
   <?php 
   
@@ -24,6 +25,7 @@
     if(isset($data['content_lesson'])){
       $content_less = $data['content_lesson'];
       $tut_level = $data['tut_level'];
+      echo "<div style='display:none;' id='max_id_ct_basic'>".$content_less[sizeof($content_less)-1][0]."</div>";
       echo "<form method='POST' action='./AdminPage/postUpdateLesson/".$les_id."/".$tut_level."' enctype='multipart/form-data' >"; 
 
       for($i = 0; $i < sizeof($content_less); $i++){
@@ -38,6 +40,7 @@
         echo "<br><hr><br>
         <div id='content-".$content_id."'>
           <b>Content ".($i+1)." :</b><br>
+          <img class='icon-120' id='del_ct_bs-".$content_id."' src='public/icon/delete_icon.png'>
           <table class='table_new_les_basic'>
           <tr>
             <td>Image main</td>

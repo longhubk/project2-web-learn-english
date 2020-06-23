@@ -42,7 +42,7 @@
         <table id='content_1' class='table_new_content_les'>
           <tr>
             <td class='title_content'>Text Content</td>
-            <td class="input_content"><textarea type="text" name='main_content-1'></textarea></td>
+            <td class="input_content"><textarea class='doc_area' type="text" name='text_content-1'></textarea></td>
           </tr>
 
           <tr>

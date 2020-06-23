@@ -11,7 +11,7 @@
 
       $this->view_arr = [
           "all_tuts"   => $this->all_tuts,
-          "tut_qs"    => $this->tut_qs,
+          "all_doc"    => $this->all_doc,
           "avatar"    => $this->avatar,
           "menu_user" => $this->user_db->getUserMenu(),
           // "isAdmin"   => $this->user_db->checkIsAdmin($_COOKIE['member_login']),

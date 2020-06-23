@@ -28,10 +28,10 @@
 				
 			}
 			else
-			if(isset($data['allDocCatalog'])){
-				$allDocCatalog = $data['allDocCatalog'];
-				for($i = 0; $i < sizeof($allDocCatalog); $i++)
-					echo "<li><a href='./DocsPage/".$allDocCatalog[$i][2]."'>".$allDocCatalog[$i][1]."</a></li>";
+			if(isset($data['allDocCategory'])){
+				$allDocCategory = $data['allDocCategory'];
+				for($i = 0; $i < sizeof($allDocCategory); $i++)
+					echo "<li><a href='./DocsPage/".$allDocCategory[$i][2]."'>".$allDocCategory[$i][1]."</a></li>";
 			}
 			else
 			if(isset($data['all_doc_list'])){

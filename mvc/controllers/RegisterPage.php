@@ -7,9 +7,9 @@
       parent::__construct();
 
       $this->view_arr = [
-          "all_tuts"   => $this->all_tuts,
-          "avatar"    => $this->avatar,
-          "tut_qs"    => $this->tut_qs,
+          "all_tuts" => $this->all_tuts,
+          "avatar"   => $this->avatar,
+          "all_doc"  => $this->all_doc,
       ];
     }
     private function middlewareRegister(){

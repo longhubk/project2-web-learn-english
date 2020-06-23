@@ -11,6 +11,7 @@
     protected $all_topic;
     protected $avatar;
     protected $tut_qs;
+    protected $all_doc;
 
     protected $view_arr;
 
@@ -22,12 +23,13 @@
       $this->doc_db  = $this->model("DocModel");
 
 
+      $this->all_doc    = $this->doc_db->getAllDoc();
       $this->tut_qs     = $this->tut_db->loadQuestion();
       $this->avatar     = $this->user_db->getUserAvatar();
       $this->all_tuts   = $this->tut_db->getAllTutorial();
       $this->all_test   = $this->test_db->loadAllTest();
       $this->all_lesson = $this->tut_db->loadAllLessonForTutorial();
-      $this->all_topic = $this->tut_db->loadAllTopic();
+      $this->all_topic  = $this->tut_db->loadAllTopic();
     }
 
     protected function model($model){

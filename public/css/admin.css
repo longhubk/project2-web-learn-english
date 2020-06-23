@@ -203,6 +203,9 @@ select {
   background-color: #9aa199;
   color: black;
 }
+.admin_container table .input_content textarea.doc_area{
+  height: 140px;
+}
 
 .admin_container table.toggle_edit_test_table tr td textarea{
   width: 100%;

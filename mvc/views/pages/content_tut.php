@@ -24,7 +24,7 @@
     <?php
       if(isset($data['info_les'])){
         $extension = $data['info_les']['image'];
-        echo "<img class='intro' src='./public/img/$extension'>";
+        echo "<img class='intro' src='./public/img/les_img/$extension'>";
       }
     ?>
 
@@ -109,6 +109,7 @@
             echo "<h3>Video có phụ đề:</h3>";
             $vid_src = "public/video/".$data['info_les']['video'];
             echo "
+            <div class='video_frame'>
             <div class='video_src'>
             <video id='video_les' controls >
 
@@ -125,18 +126,18 @@
             // var_dump($tut_subtitle);
             for($i = 0; $i < sizeof($tut_subtitle); $i++){
                   $tut_sub = (array)$tut_subtitle[$i];
-                  echo "<li class='sub_vid' id='en-".$tut_sub['start']. "-".$tut_sub['end']."' style='color: green;'>".$tut_sub['en_text']."</li>";
+                  echo "<li class='sub_vid en_color' id='en-".$tut_sub['start']. "-".$tut_sub['end']."' >".$tut_sub['en_text']."</li>";
 
-                  echo "<li class='sub_vid' id='vi-".$tut_sub['start']. "-".$tut_sub['end']."' style='color: blue;'>".$tut_sub['vi_text']."</li>";
+                  echo "<li class='sub_vid vi_color' id='vi-".$tut_sub['start']. "-".$tut_sub['end']."'>".$tut_sub['vi_text']."</li>";
 
             }
             echo "</ul>";
-          echo "</div>";
+          echo "</div></div>";
           // echo "<button id='btn_scroll'>scroll</button>";
           // echo "<button id='btn_auto_scroll'>auto scroll</button>";
           }
           if(!empty($data['info_les']['audio'])){
-            echo "<h3>Audio Conversation:</h3>";
+            echo "<h3>Đoạn hội thoại song ngữ:</h3>";
             $aud = "public/audio/". $data['info_les']['audio'];
             echo "<audio controls> <source src='$aud' type='audio/mp3'></audio>";
           }
@@ -200,7 +201,7 @@
               }
               $out .= "</li>";
             }
-            $out .= "<button id='btn_submit_quiz'>Submit Quiz</button><br>";
+            $out .= "<div class='btn_contain'><button id='btn_submit_quiz'>Submit Quiz</button></div><br>";
             $out .= "<div id='res_quiz'></div>";
 
             $out .= "</ul></div>";

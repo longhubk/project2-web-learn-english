@@ -315,19 +315,17 @@
       $res = "";
       if(isset($_POST['upload'])){
 
-        $f_Ext         = explode('.', $f_name);
-        $f_Actual_Ext  = strtolower(end($f_Ext));
+        // $f_Ext         = explode('.', $f_name);
+        // $f_Actual_Ext  = strtolower(end($f_Ext));
         $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
-        $f_new_name    = $_COOKIE['member_login'] . "." . $f_Actual_Ext;
+        $new_name    = $_COOKIE['member_login'];
         $f_dir         = "./public/img/uploads/";
 
-        $res = $this->uploadFile($f_new_name, $ft_name, $f_size, $f_err, $f_Ext_Allowed, $f_dir);
-        if(empty($res)){
-          $up_avt = $this->updateAvatar($f_new_name);
-          if($up_avt)
-            $res = "ok";
-          else $res = "fail";
-        }
+        $f_new_name = $this->uploadFile($f_name, $ft_name, $new_name, $f_size, $f_err, $f_Ext_Allowed, $f_dir);
+        $up_avt = $this->updateAvatar($f_new_name);
+        if($up_avt)
+          $res = "ok";
+        else $res = "fail";
       }
       return $res;
     }

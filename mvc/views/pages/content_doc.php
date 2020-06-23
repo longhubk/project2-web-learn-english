@@ -4,11 +4,11 @@
     <!-- <h1>This is doc main</h1> -->
     <?php 
       
-      if(isset($data['all_doc'])){
-        $all_doc = $data['all_doc'];
+      if(isset($data['all_doc_page'])){
+        $all_doc = $data['all_doc_page'];
         
-        if(isset($data['doc_catalog_name']))
-          echo "<h1>".$data['doc_catalog_name']."</h1>";
+        if(isset($data['doc_Category_name']))
+          echo "<h1>".$data['doc_Category_name']."</h1>";
         $doc_ca_name = $data['doc_ca_name'];
 
         for($i = 0; $i < sizeof($all_doc); $i++){
@@ -39,9 +39,9 @@
                 echo $doc_date;
               echo"</div>
 
-              <div class='des_tut'>post by:";
+              <div class='des_tut'>Đăng bởi<i> ";
                 echo $doc_ad_name;
-              echo"</div>
+              echo"</i></div>
 
               <div class='des_tut'>";
                 echo $doc_des;

@@ -17,10 +17,10 @@
     ?>
 
     <?php
-      if(isset($data['img_les'])){
-        $extension = $data['ext_les'];
+      if(isset($data['info_les']['image'])){
+        $extension = $data['info_les']['image'];
         // $tut_img = $data['img_les'] . $extension;
-        echo "<img class='intro' src='./public/img/$extension'>";
+        echo "<img class='intro' src='./public/img/les_img/$extension'>";
       }
     ?>
 

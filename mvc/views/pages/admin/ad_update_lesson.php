@@ -1,5 +1,6 @@
   
 <div class="admin_container">
+ 
   <h2 class="title_ad_page" >Update Lesson:</h2>
   <?php 
   
@@ -28,7 +29,7 @@
 
         echo "<div id='ct_main-".$content_id."'>
               <hr>
-              <lab> Content ".($i+1)."</label><br><br>
+              <label> Content ".($i+1)."</label><br><br>
               <table class='table_update_content' id='content_".($i+1)."'>
               <tr>
                 <td class='title_content'> Main content</td>

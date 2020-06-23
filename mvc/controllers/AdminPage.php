@@ -2,12 +2,14 @@
   class AdminPage extends Controller{
 
     protected $all_user;
-    protected $all_doc;
+    
+    protected $all_doc_ca;
     public function __construct()
     {
       
       parent::__construct();
-      $this->all_doc = $this->doc_db->getAllDoc();
+      
+      $this->all_doc_ca = $this->doc_db->getAllDocCategory();
 
       if($_SESSION['user_type'] == "admin"){
         $this->all_user = $this->user_db->loadAllUser();
@@ -149,6 +151,71 @@
 
       $this->render('master_admin',$view_more);
     }
+
+    public function getViewDoc(){
+      $this->middlewareAdmin();
+      $view_more =  [
+        "page"       => "ad_view_doc",
+        "all_doc"    => $this->all_doc,
+        "all_doc_ca" => $this->all_doc_ca,
+      ];
+
+      $this->render('master_admin',$view_more);
+    }
+
+    public function postNewDoc(){
+      $this->middlewareAdmin();
+      $res = false;
+      if(!empty($_POST['new_doc_name'])){
+        $res = $this->doc_db->createNewDoc($_POST, $_FILES['img_doc']);
+        if($res)
+          header("Location:../AdminPage/getViewDoc");
+      }
+
+      $view_more = [
+        "page"         => "ad_view_doc",
+        "post_new_doc" => $_POST,
+        "res_new_doc"  => $res,
+      ];
+      $this->render('master_admin',$view_more);
+    }
+    public function getUpdateDoc($doc_ca_id, $doc_id){
+      $this->middlewareAdmin();
+      $content_doc = $this->doc_db->getContentDocById($doc_id);
+      $view_more = [
+        "page"        => "ad_update_doc",
+        "doc_ca_id"   => $doc_ca_id,
+        "doc_id"      => $doc_ca_id,
+        "content_doc" => $content_doc,
+      ];
+      $this->render('master_admin', $view_more);
+
+    }
+    public function postUpdateDoc($doc_ca_id,$doc_id){
+      $this->middlewareAdmin();
+      $res = 'fail';
+      if(isset($_POST) && isset($_FILES)){
+        var_dump($_FILES);
+        var_dump($_POST);
+        $res = $this->doc_db->updateDocContent($_POST, $_FILES);
+
+        if($res == 'ok')
+          header("Location: ../../getUpdateDoc/".$doc_ca_id."/".$doc_id."");
+      }
+
+      $content_doc = $this->doc_db->getContentDocById($doc_id);
+      $view_more = [
+        "page"           => "ad_update_doc",
+        "doc_ca_id"      => $doc_ca_id,
+        "doc_id"         => $doc_ca_id,
+        "content_doc"    => $content_doc,
+        "res_update_doc" => $res,
+      ];
+
+      $this->render('master_admin', $view_more);
+
+    }
+
 
     public function postNewTutorial(){
       $this->middlewareAdmin();
@@ -499,6 +566,35 @@
       ]);
     }
 
+    public function getDeleteContentBasic(){
+      $this->middlewareAdmin();
+      $res = "fail";
+      if(isset($_POST)){
+        if(!empty($_POST)){
+          $res = $this->tut_db->getDeleteContentBasicById($_POST['content_id']);
+        }
+        
+      }
+      $this->view("master_empty", [
+        "page"       => "get_mes_history",
+        "delete_res" => $res,
+      ]);
+    }
+
+    public function getDeleteContentDoc(){
+      $this->middlewareAdmin();
+      $res = "fail";
+      if(isset($_POST)){
+        if(!empty($_POST)){
+          $res = $this->doc_db->getDeleteContentDocById($_POST['content_id']);
+        }
+        
+      }
+      $this->view("master_empty", [
+        "page"       => "get_mes_history",
+        "delete_res" => $res,
+      ]);
+    }
     
     public function postEditTest(){
       $this->middlewareAdmin();

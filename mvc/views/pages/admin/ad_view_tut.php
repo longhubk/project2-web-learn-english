@@ -246,7 +246,7 @@
           <tr>
             <td>Image new lesson</td>
             <td>
-              <input type="file" name="select_img_les" >
+              <input type="file" name="select_img_les" accept='.jpg,.png,.gif,.jpeg' >
             </td>
           </tr>
           <tr>
