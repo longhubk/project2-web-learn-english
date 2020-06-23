@@ -73,14 +73,12 @@ video.onplay = function(){
       let arr_time = []
       for(let i = 0; i < elements.length; i++){
         let curr = elements[i].split('-');
-        
         if(curr[0] == 'en' ){
           let obj = {start : curr[1], end : curr[2]}
           arr_time.push(obj)
         }
       }
       console.log(arr_time)
-
       arr_time.forEach((item) => {
         if(curr_time >= Number(item.start) && curr_time < Number(item.end)){
           let id = "en-"+item.start + "-" + item.end
@@ -101,12 +99,8 @@ video.onplay = function(){
           if(scrolledY){
             window.scroll(0, scrolledY - 500);
           }
-          
         }
       })
-
-      
-
     },1000
   )
 

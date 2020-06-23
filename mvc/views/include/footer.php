@@ -41,6 +41,7 @@
         </div>
       </div>
       <p class="copyright">Copyright © 2020 Thanh Long Nguyen</p>
+      <p class='copyright'>Data:<a href= 'http://elllo.org/'>http:/elllo.org</a></p>
     </div>
 
 
