@@ -1,6 +1,6 @@
 <ul id="hor-nav" class="hori-nav">
   <li id="menu-li" title="menu"><button onclick= "toggleSideBar()"><i class="material-icons">menu</i></button></li>
-  <li id="home-li"><a href="index.php"><i class="fa fa-fw fa-home"></i>HOME</a></li>
+  <li id="HomePage-li"><a href="index.php"><i class="fa fa-fw fa-HomePage"></i>HomePage</a></li>
   <li><a href="#">NOTIFICATIONS</a></li> 
   <li class="tutorial">
     <a href="index.php?tutorial=all_tutorial" class="dropbtn">

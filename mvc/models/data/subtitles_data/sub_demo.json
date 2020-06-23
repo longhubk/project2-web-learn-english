@@ -1,0 +1,137 @@
+[
+
+  {
+    "start" : 2,
+    "end"   : 4,
+    "vi_text"  : "Xin chào tất cả mọi người",
+    "en_text"  : "Hello every one!"
+  },
+  {
+    "start" : 5,
+    "end"   : 7,
+    "vi_text"  : "Tên cô là Sally",
+    "en_text"  : "My name is Sally"
+  },
+  {
+    "start" : 8,
+    "end"   : 13,
+    "vi_text"  : "Hôm nay chúng ta cùng học bài ĐỘNG TỪ BE",
+    "en_text"  : "Today, Let's study Be verb"
+  },
+  {
+    "start" : 15,
+    "end"   : 16,
+    "vi_text"  : "Động từ be",
+    "en_text"  : "Be Verb"
+  },
+  {
+    "start" : 17,
+    "end"   : 25,
+    "vi_text"  : "Động từ be có 3 dạng ở thì hiện tại",
+    "en_text"  : "The be verb has three form in the present tense"
+  },
+  {
+    "start" : 26,
+    "end"   : 30,
+    "vi_text"  : "Am.... Is..... Are",
+    "en_text"  : "Am.... Is..... Are..."
+  },
+  {
+    "start" : 31,
+    "end"   : 35,
+    "vi_text"  : "Cùng tìm hiểu một số ví dụ",
+    "en_text"  : "Les's look at some example"
+  },
+  {
+    "start" : 36,
+    "end"   : 41,
+    "vi_text"  : "Tôi là một bác sĩ",
+    "en_text"  : "I am a teacher"
+  },
+  {
+    "start" : 43,
+    "end"   : 48,
+    "vi_text"  : "Bạn là một học sinh",
+    "en_text"  : "You are a student"
+  },
+  {
+    "start" : 51,
+    "end"   : 59,
+    "vi_text"  : "Anh ấy là một người đàn ông tốt",
+    "en_text"  : "He is a nice man"
+  }, 
+  {
+    "start" : 60,
+    "end"   : 65,
+    "vi_text"  : "Cô ấy rất thông minh",
+    "en_text"  : "She is very smart"
+  },
+
+  {
+    "start" : 69,
+    "end"   : 73,
+    "vi_text"  : "Cùng tìm hiểu I(tôi)",
+    "en_text"  : "'Let's look at I"
+  },
+
+  {
+    "start" : 74,
+    "end"   : 79,
+    "vi_text"  : "I(tôi). Sử dụng am và am not cho đại từ I",
+    "en_text"  : "I. Use am and am not for the pronoun I"
+  },
+
+
+  {
+    "start" : 82,
+    "end"   : 87,
+    "vi_text"  : "Thứ nhất. Tôi là người Mỹ",
+    "en_text"  : "One. I am American"
+  },
+
+  {
+    "start" : 90,
+    "end"   : 96,
+    "vi_text"  : "Thứ hai. Tôi không mệt",
+    "en_text"  : "Two. I am not tired"
+  },
+
+  {
+    "start" : 97,
+    "end"   : 103,
+    "vi_text"  : "Thứ ba. Tôi hạnh phúc",
+    "en_text"  : "Three. T'm happy (am = 'm)"
+  },
+
+  {
+    "start" : 110,
+    "end"   : 113,
+    "vi_text"  : "Trở lại với I(tôi)",
+    "en_text"  : "Back to I"
+  },
+
+  {
+    "start" : 114,
+    "end"   : 117,
+    "vi_text"  : "Được rồi bắt đầu nào",
+    "en_text"  : "Ok, starting again"
+
+  },
+
+  {
+    "start" : 114,
+    "end"   : 130,
+    "vi_text"  : "I(tôi). Sử dụng am và am no cho đại từ I(tôi)",
+    "en_text"  : "I, Use am and am not for pronoun I"
+
+  },
+
+  {
+    "start" : 114,
+    "end"   : 130,
+    "vi_text"  : "I(tôi). Sử dụng am và am no cho đại từ I(tôi)",
+    "en_text"  : "I, Use am and am not for pronoun I"
+
+  }
+
+]

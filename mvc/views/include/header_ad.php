@@ -26,15 +26,23 @@
   <meta name="theme-color" content="#ffffff">
 
   <link href = "./public/css/admin.css"     rel = "stylesheet" type = "text/css">
+  <link href = "./public/css/loading.css"     rel = "stylesheet" type = "text/css">
   <link href = "./public/css/admin_user.css"     rel = "stylesheet" type = "text/css">
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
   <script src = './public/js/JQuery/jquery-3.4.1.js'  type = "text/javascript"></script>
-  <script src='https://kit.fontawesome.com/a076d05399.js'></script>
+  <!-- <script src='https://kit.fontawesome.com/a076d05399.js'></script> -->
 </head>
 <body>
   <div class="admin_header">
-      <div class="admin_back" title="go back to speakmore page"><a href="./Home/"><img class="icon-100" src='public/icon/home_color_icon.png'></a></div>
-      <div class="admin_logo"><a href="./HomeAdmin/">SpeakMore Admin</a></div>
+      <div class="admin_back" title="go back to speakmore page"><a href="./HomePage/"><img class="icon-100" src='public/icon/home_color_icon.png'></a></div>
+      <div class="admin_logo"><a href="./AdminPage/">SpeakMore <?php
+        if($_SESSION['user_type'] == 'admin'){
+          echo "Admin";
+        }
+        else if($_SESSION['user_type'] == 'teacher'){
+          echo "Teacher";
+        }
+      ?> </a></div>
       <!-- <p>Hello</p> -->
 
       <div class="admin_info">
@@ -43,7 +51,7 @@
             $name_avt = $data['avatar'];
             $directory_avatar = "./public/img/uploads/" . $name_avt;
             echo "<img title='". $_COOKIE["member_login"]."' class='small-avt' src='". $directory_avatar ."'>" ;
-            echo "<a title='go to home page' href='./UserPage/'>".$_COOKIE['member_login']."</a>";
+            echo "<a title='go to HomePage page' href='./UserPage/'>".$_COOKIE['member_login']."</a>";
           }
         ?>
       </div>

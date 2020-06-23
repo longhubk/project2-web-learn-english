@@ -1,30 +1,8 @@
 <?php 
-  class TutorialModel extends DB{
+  class TutorialModel extends Database{
 
-    private $path = "./mvc/models/data/";
+    
 
-    // public function __construct()
-    // {
-    //   parent::__construct();
-    //   $this->path = "./mvc/models/data/";
-    // }
-
-    // public function getTutKnowledge($getTutorial){
-    //   return parent::readJsonData("$this->path" ."core_knowledge/" . $getTutorial . ".json");
-    // }
-
-
-    // private function queryAssoc($qr, $tr){
-    //   $rows = mysqli_query($this->con, $qr);
-    //   $res = mysqli_fetch_assoc($rows);
-    //   return $res[$tr];
-    // }
-
-    // protected function queryAllArray($qr){
-    //   $rows = mysqli_query($this->con, $qr);
-    //   $res = mysqli_fetch_all($rows);
-    //   return $res;
-    // }
 
     public function getTutKnowledge($getTutorial){
       $qr   = "SELECT lesson_id FROM lesson_tut WHERE name_lesson = '$getTutorial'";
@@ -56,35 +34,121 @@
       return $this->queryAllArray($qr);
     }
 
-    public function getImageLesson($getTutorial){
-      $qr   = "SELECT image FROM lesson_tut WHERE name_lesson = '$getTutorial'";
-      return $this->queryAssoc($qr,'image');
+    public function getInfoLesson($name_lesson){
+      $qr   = "SELECT image, video, audio, title_lesson, name_lesson FROM lesson_tut WHERE name_lesson = '$name_lesson'";
+      return $this->queryAssocAll($qr);
     }
 
-    public function getTitleLesson($getTutorial){
-      $qr   = "SELECT title_lesson FROM lesson_tut WHERE name_lesson = '$getTutorial'";
-      return $this->queryAssoc($qr,'title_lesson');
+    public function getSubAudio($name_lesson){
+      $file_dir = "$this->path"."sub_aud/" . $name_lesson . ".json";
+      if(file_exists($file_dir))
+        return parent::readJsonData($file_dir);
+      else
+        return "";
     }
+
+
+    public function getQuizAudio($name_lesson){
+
+      $file_dir = "$this->path"."quiz_aud/" . $name_lesson . ".json";
+      if(file_exists($file_dir))
+        return parent::readJsonData($file_dir);
+      else
+        return "";
+    }
+
+    public function countQuizPoint($arr_quiz, $name_lesson){
+      $point = 0;
+      $arr_right = parent::readJsonData("$this->path"."quiz_aud/" . $name_lesson . ".json");
+      for($i = 0; $i < sizeof($arr_right); $i++){
+        $arr_right_each = (array)$arr_right[$i];
+        $count = 0;
+        for($j = 0; $j < sizeof($arr_right_each['ans']); $j++){
+          $arr_ans = (array)$arr_right_each['ans'][$j];
+          if($arr_ans['is_right'] == $arr_quiz[$i][$j]){
+            $count++;
+          }
+        }
+        if($count == 4){
+          $point++;
+        }
+      }
+      $qr1 = "SELECT lesson_id FROM lesson_tut WHERE name_lesson = '$name_lesson'";
+      $lesson_id = $this->queryAssoc($qr1, 'lesson_id');
+
+      $user_id = $_SESSION['member_id'];
+      $qr = "SELECT point  FROM user_lesson WHERE user_id = '$user_id' AND lesson_id = '$lesson_id'";
+      $old_point = 0;
+      $update = false;
+      if($this->queryNumRow($qr) > 0){
+        $old_point = $this->queryAssoc($qr, 'point');
+        $update = true;
+      }
+      else{
+        $qr3 = "INSERT INTO user_lesson VALUE('$user_id', '$lesson_id', '$point', now())";
+        $res_ins = mysqli_query($this->con, $qr3);
+      }
+
+
+      if($point > $old_point && $update){
+        $qr2 = "UPDATE user_lesson SET point = ".$point." WHERE user_id = '$user_id' AND lesson_id = '$lesson_id'";
+        $res_up = mysqli_query($this->con, $qr2);
+      }
+
+
+      return $point;
+      
+    }
+
 
     public function loadGuide(){
       return parent::readJsonData("$this->path"."guide_listen.json");
     }
     
     public function loadSub(){
-      return parent::readJsonData("$this->path"."subtitles_data/video1_sub_data.json");
+      // return parent::readJsonData("$this->path"."subtitles_data/video1_sub_data.json");
+      return parent::readJsonData("$this->path"."subtitles_data/sub_demo.json");
     }
 
 
-    
     public function getAllTutorial(){
-      // return parent::readJsonData("$this->path"."tutorials/all_tutorial.json");
-      $qr   = "SELECT tut_name, tut_query FROM tutorials";
+      $qr   = "SELECT * FROM tutorials";
       return $this->queryAllArray($qr);
     }
 
+    public function getIsLockTutUser($us_id){
+      $qr   = "SELECT status, tut_id FROM user_tuts WHERE user_id = '$us_id'";
+      return $this->queryAllArray($qr);
+    }
 
-    public function loadAllAdmin($name_tb, $name_col, $name_id){
-      $qr   = "SELECT $name_col, $name_id FROM $name_tb";
+    private function getTutIdByTutName($tut_name){
+      $qr   = "SELECT id FROM tutorials WHERE tut_query = '$tut_name'";
+      return $this->queryAssoc($qr, 'id');
+    }
+
+    public function checkIsLockInThisTutorial($us_id, $tut_name){
+      $tut_id = $this->getTutIdByTutName($tut_name);
+      $qr   = "SELECT status FROM user_tuts WHERE user_id = '$us_id' AND tut_id = '$tut_id'";
+      return $this->queryAssoc($qr, 'status');
+    }
+
+
+    public function updateTutorialNewSignUp($us_id, $tut){
+      $res = [];
+      for($i = 0; $i < sizeof($tut); $i++){
+        $tut_id = $tut[$i][0];
+        $qr   = "INSERT INTO user_tuts VALUES('$us_id','$tut_id','lock','false')";
+        $res[$i] = mysqli_query($this->con, $qr);
+      }
+      $resAll = true;
+      for($i = 0; $i < sizeof($res); $i++){
+        $resAll = $resAll && $res[$i];
+      }
+      return $resAll;
+    }
+
+    public function loadAllTopic(){
+      $qr   = "SELECT * FROM topics";
       return $this->queryAllArray($qr);
     }
 
@@ -98,23 +162,22 @@
       return $this->queryAllArray($qr);
     }
 
-    public function loadAllInfoTutorial(){
-      $qr   = "SELECT * FROM tutorials";
-      return $this->queryAllArray($qr);
-    }
-
     public function loadAllLessonForTutorial(){
       $qr   = "SELECT * FROM lesson_tut";
       return $this->queryAllArray($qr);
     }
     
-    public function uploadFile($file){
-      $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
-      return $this->queryAllArray($qr);
-    }
+    // public function uploadFile($file){
+    //   $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
+    //   return $this->queryAllArray($qr);
+    // }
 
     public function getContentByLessonId($les_id){
       $qr   = "SELECT * FROM content_lesson WHERE lesson_id = '$les_id'";
+      return $this->queryAllArray($qr);
+    }
+    public function getContentIdByLessonId($les_id){
+      $qr   = "SELECT content_id FROM content_lesson WHERE lesson_id = '$les_id'";
       return $this->queryAllArray($qr);
     }
 
@@ -122,6 +185,53 @@
       $qr   = "SELECT * FROM basic_content_lesson WHERE lesson_id = '$les_id'";
       return $this->queryAllArray($qr);
     }
+
+    public function getDeleteContentById($les_id, $ct_id){
+      $qr   = "DELETE FROM content_lesson WHERE content_id = '$ct_id' AND lesson_id = '$les_id'";
+      $res =  mysqli_query($this->con, $qr);
+      if($res) return 'ok';
+      else return 'fail';
+    }
+
+    public function getDeleteContentBasicById($ct_id){
+      $f_dir_img = './public/img/basic_img/';
+      $f_dir_aud = './public/audio/';
+        
+      $qr_img_main = "SELECT image_main FROM basic_content_lesson WHERE content_id = '$ct_id' ";
+        $img_main = $this->queryAssoc($qr_img_main, 'image_main');
+        
+      $f_dir4 = $f_dir_img . $img_main;
+      if(file_exists($f_dir4))
+        unlink($f_dir4);
+      
+      for($i = 1; $i <= 3; $i++){
+        $srt_img = "img_" . $i;
+        $srt_aud = "aud_" . $i;
+        $qr_img = "SELECT ".$srt_img." FROM basic_content_lesson WHERE content_id = '$ct_id' ";
+        $img_f = $this->queryAssoc($qr_img, $srt_img);
+
+        $qr_aud = "SELECT ".$srt_aud." FROM basic_content_lesson WHERE content_id = '$ct_id' ";
+        $aud_f = $this->queryAssoc($qr_aud, $srt_aud);
+
+        $f_dir2 = $f_dir_img . $img_f;
+        $f_dir3 = $f_dir_aud . $aud_f;
+
+        if(file_exists($f_dir2))
+          unlink($f_dir2);
+        if(file_exists($f_dir3))
+          unlink($f_dir3);
+
+      }
+      
+
+      $qr   = "DELETE FROM basic_content_lesson WHERE content_id = '$ct_id'";
+      $res = $this->queryOne($qr);
+
+      if($res) return 'ok';
+      else return 'fail';
+
+    }
+
 
     public function updateLessonById($post_ct){
       $res = true;
@@ -160,17 +270,24 @@
         $qr2 = '';
         if($value['error'] == 0){
           $keys = explode('-', $key);
-
           $kind = explode('_',$keys[0]);
-          $type = '';
+          $stt = $kind[1];
+          $f_Ext_Allowed = [];
+          $f_dir = '';
+          $new_name = '';
           if($kind[0] == 'image' || $kind[0] == 'img'){
-            $type = 'image';
+            $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
+            $f_dir         = "./public/img/basic_img/";
+            $new_name = 'img_basic_les_' . $keys[1] . "_" .$stt;
           }
-          else $type = 'music';
+          else {
+            $f_Ext_Allowed = array('mp3', 'wav');
+            $f_dir = "./public/audio/";
+            $new_name = 'aud_basic_les_' . $keys[1] . "_" .$stt;
+          }
+          $f_new_name = $this->uploadFile($value['name'],$value['tmp_name'],$new_name, $value['size'],$value['error'], $f_Ext_Allowed, $f_dir);
 
-          $this->uploadFileLesson($value['name'],$value['tmp_name'], $value['size'],$value['error'], $type);
-
-          $qr2 = 'UPDATE basic_content_lesson SET '.$keys[0].' = "'.$value['name'].'" WHERE content_id = '.$keys[1];
+          $qr2 = 'UPDATE basic_content_lesson SET '.$keys[0].' = "'.$f_new_name.'" WHERE content_id = '.$keys[1];
           $up = mysqli_query($this->con, $qr2);
           // echo $qr2 . "<br>";
 
@@ -211,6 +328,7 @@
       else return false;
 
     }
+
     public function getEditLessonById($post){
 
       $id_les = $post['id_les_edit'];
@@ -243,6 +361,11 @@
       }
 
       $qr   = "DELETE FROM `lesson_tut` WHERE `lesson_tut`.`lesson_id` = '$les_id'";
+      $qr_img = "SELECT image FROM lesson_tut WHERE lesson_id = '$les_id'";
+      $img_les = $this->queryAssoc($qr_img, 'image');
+      $f_dir = "./public/img/les_img/" . $img_les;
+      if(file_exists($f_dir))
+        unlink($f_dir);
       $exe  = mysqli_query($this->con, $qr);
 
 
@@ -265,17 +388,37 @@
     }
 
     public  function createNewLesson($post_les, $file_les){
+
+      $qr1 = "SELECT MAX(lesson_id) AS max_id FROM lesson_tut";
+      $max_id = $this->queryAssoc($qr1, 'max_id');
       
       $file_name = "";
+
+
       if($file_les['select_img_les']['error'] == 0){
         $file_img = $file_les['select_img_les'];
+        $new_name_lesson = $this->stripVN($post_les['new_lesson_name']);
         $file_name = $file_img['name'];
-        $this->uploadFileLesson($file_img['name'], $file_img['tmp_name'], $file_img['size'],$file_img['error'],"image_les");
+        $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
+        $f_dir         = "./public/img/les_img/";
+
+        $qr = "INSERT INTO `lesson_tut` (`lesson_id`, `tut_id`, `name_lesson`, `title_lesson`, `image`) VALUES (NULL, '$post_les[tut_lesson]', '$new_name_lesson', '$post_les[new_lesson_title]', '$file_name');";
+        $res = mysqli_query($this->con, $qr);
+
+        $qr_id = "SELECT lesson_id FROM lesson_tut WHERE name_lesson = '$new_name_lesson' ";
+        $lesson_id = $this->queryAssoc($qr_id, 'lesson_id');
+
+        $new_name = 'img_les_' . ($lesson_id);
+
+        $f_new_name = $this->uploadFile($file_img['name'], $file_img['tmp_name'], $new_name, $file_img['size'],$file_img['error'], $f_Ext_Allowed, $f_dir);
+
+        $qr_update_img = "UPDATE lesson_tut SET image = '$f_new_name' WHERE lesson_id = '$lesson_id'";
+        $res1 = $this->queryOne($qr_update_img);
       }
 
-      $qr = "INSERT INTO `lesson_tut` (`lesson_id`, `tut_id`, `name_lesson`, `title_lesson`, `image`) VALUES (NULL, '$post_les[tut_lesson]', '$post_les[new_lesson_name]', '$post_les[new_lesson_title]', '$file_name');";
+
+
       
-      $res = mysqli_query($this->con, $qr);
       if($res)
         return true;
       else
@@ -290,6 +433,10 @@
       $tut_level = $post['tut_level_input'];
       $num_content = $post['number_content'];
       if($tut_level > 0){
+
+        // foreach($post as $key => $val){
+        //   $val = $this->filterBreak($val);
+        // }
         
         for($i = 1; $i <= $num_content; $i++){
           $main_ct    = '';
@@ -298,16 +445,16 @@
           $guide_ct_p = "guide_content-".$i;
 
           if(!empty($post[$main_ct_p]))
-            $main_ct = $post[$main_ct_p];
+            $main_ct = $this->filterBreak($post[$main_ct_p]);
           if(!empty($post[$guide_ct_p]))
-            $guide_ct = $post[$guide_ct_p];
+            $guide_ct = $this->filterBreak($post[$guide_ct_p]);
 
           $str = 'exp-'.$i.'-';
           $exp = [];
           for($j = 1; $j <= 10; $j++){
             $id = $str . $j;
             if(isset($post[$id])){
-              $exp[$j] = $post[$id];
+              $exp[$j] = $this->filterBreak($post[$id]);
             }else
               $exp[$j] = '';
           }
@@ -327,12 +474,29 @@
           $image_ct   = '';
           $main_ct_p  = "content_main-".$i;
           $image_ct_p = "image_main-".$i;
+          $qr_max = "SELECT MAX(content_id) AS max_id FROM basic_content_lesson";
+          $max_id = $this->queryAssoc($qr_max, 'max_id');
 
-          if(!empty($post[$main_ct_p]))
-            $main_ct = $post[$main_ct_p];
+          $qr = 'INSERT INTO basic_content_lesson VALUES(NULL, "'.$les_id.'","","","","","","","","","","","")';
+          $rows = mysqli_query($this->con, $qr); 
+
+          $qr_id = "SELECT content_id FROM basic_content_lesson WHERE image_main = '' ";
+          $ct_new_id = $this->queryAssoc($qr_id, 'content_id');
+
+          if(!empty($post[$main_ct_p])){
+            $main_ct = $this->filterBreak($post[$main_ct_p]);
+            $qr = "UPDATE basic_content_lesson SET content_main = '$main_ct' WHERE content_id = '$ct_new_id' ";
+            $res2 = $this->queryOne($qr); 
+          }
           if(!empty($file[$image_ct_p]['name'])){
             $image_ct = $file[$image_ct_p]['name'];
-            $this->uploadFileLesson($file[$image_ct_p]['name'], $file[$image_ct_p]['tmp_name'], $file[$image_ct_p]['size'],$file[$image_ct_p]['error'], 'image');
+            $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
+            $f_dir         = "./public/img/basic_img/";
+            $new_name = "img_basic_les_" . ($ct_new_id) . "_main";
+            $image_ct = $this->uploadFile($file[$image_ct_p]['name'], $file[$image_ct_p]['tmp_name'],$new_name, $file[$image_ct_p]['size'],$file[$image_ct_p]['error'], $f_Ext_Allowed, $f_dir);
+
+            $qr = "UPDATE basic_content_lesson SET image_main = '$image_ct' WHERE content_id = '$ct_new_id' ";
+            $res2 = $this->queryOne($qr); 
 
           }
 
@@ -341,31 +505,49 @@
           $str3 = 'img-'.$i.'-';
           $sub = $aud = $img = [];
 
+
+
           for($j = 1; $j <= 3; $j++){
             $id1 = $str1 . $j;
             $id2 = $str2 . $j;
             $id3 = $str3 . $j;
             if(isset($post[$id1])){
-              $sub[$j] = $post[$id1];
+              $sub[$j] = $this->filterBreak($post[$id1]);
             }else
               $sub[$j] = '';
+            $str_sub = 'sub_' . $j;
+              
+            $qr = "UPDATE basic_content_lesson SET ".$str_sub." = '".$sub[$j]."' WHERE content_id = '$ct_new_id' ";
+            $res2 = $this->queryOne($qr); 
 
             if(isset($file[$id2]['name'])){
               $aud[$j] = $file[$id2]['name'];
-              $this->uploadFileLesson($file[$id2]['name'], $file[$id2]['tmp_name'], $file[$id2]['size'],$file[$id2]['error'], 'music');
+              $str_aud = 'aud_' . $j;
+              $f_Ext_Allowed = array('mp3', 'wav');
+              $f_dir = "./public/audio/";
+              $new_name = 'aud_basic_les_' . ($ct_new_id) . "_" . $j;
+              $aud[$j] = $this->uploadFile($file[$id2]['name'], $file[$id2]['tmp_name'],$new_name, $file[$id2]['size'],$file[$id2]['error'], $f_Ext_Allowed, $f_dir);
+
+            $qr = "UPDATE basic_content_lesson SET ".$str_aud." = '".$aud[$j]."' WHERE content_id = '$ct_new_id' ";
+              $res2 = $this->queryOne($qr); 
             }else
               $aud[$j] = '';
 
             if(isset($file[$id3]['name'])){
               $img[$j] = $file[$id3]['name'];
-              $this->uploadFileLesson($file[$id3]['name'], $file[$id3]['tmp_name'], $file[$id3]['size'],$file[$id3]['error'], 'image');
+              $str_img = 'img_'. $j;
+              $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
+              $f_dir         = "./public/img/basic_img/";
+              $new_name = 'img_basic_les_' . ($ct_new_id) . "_" . $j;
+              $img[$j] = $this->uploadFile($file[$id3]['name'], $file[$id3]['tmp_name'],$new_name, $file[$id3]['size'],$file[$id3]['error'], $f_Ext_Allowed, $f_dir);
+
+            $qr = "UPDATE basic_content_lesson SET ".$str_img." = '".$img[$j]."' WHERE content_id = '$ct_new_id' ";
+              $res2 = $this->queryOne($qr); 
             }else
               $img[$j] = '';
           }
 
-          $qr = 'INSERT INTO basic_content_lesson VALUES(NULL, "' .$les_id .'","' .$image_ct. '","'.$img[1].'","'.$img[2].'","'.$img[3].'","'.$main_ct.'","'.$sub[1].'","'. $sub[2].'","'.$sub[3]. '","' . $aud[1]. '","'. $aud[2].'","' .$aud[3].'")';
 
-          $rows = mysqli_query($this->con, $qr);
 
           if(!$rows) return false;
         }
@@ -375,60 +557,6 @@
     }
 
 
-    private function uploadFileLesson($f_name, $ft_name, $f_size, $f_err, $f_type){
-        $res = false;
-        $f_Ext        = explode('.', $f_name);
-        $f_Actual_Ext = strtolower(end($f_Ext));
-        // $f_new_name   = $f_Ext[0] . "." . $f_Actual_Ext;
-        $f_new_name   = $f_name;
-        // $f_Actual_Ext = [];
-        $f_des        = '';
-        if($f_type == 'music'){
-          $f_Ext_Allowed = array('mp3', 'wav');
-          $f_des         = "./public/audio/" . $f_new_name;
-        }
-        if($f_type == 'image'){
-          $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
-          $f_des         = "./public/img/basic_img/" . $f_new_name;
-        }
-        if($f_type == 'image_les'){
-          $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
-          $f_des         = "./public/img/" . $f_new_name;
-        }
-    
-        $out = '';
-        if(in_array($f_Actual_Ext, $f_Ext_Allowed)){
-          if($f_err == 0){
-            if($f_size < 5000000){
-              move_uploaded_file($ft_name, $f_des);
-              $this->check_name_file_exist($f_Ext[0], $f_Ext_Allowed, $f_Actual_Ext, $f_type);
-            }else
-              $out = "file bigger than 5M";
-          }else
-            $out = "There are error";
-        }
-          $out = "you can not upload file that is not allowed extensions";
-      return $out;
-    }
-
-    private function check_name_file_exist($f_name, $f_Ext_Allowed, $f_Actual_Ext, $f_type){
-      foreach($f_Ext_Allowed as $ext){
-        if($ext !== $f_Actual_Ext){
-          $f_name_check = '';
-          if($f_type == 'music')
-            $f_name_check = "./public/audio/".$f_name .".". $ext;
-          if($f_type == 'image')
-            $f_name_check = "./public/img/basic_img/".$f_name .".". $ext;
-          if($f_type == 'image_les')
-            $f_name_check = "./public/img/".$f_name .".". $ext;
-
-          if(file_exists($f_name_check)){
-            unlink($f_name_check);
-            echo "Deleted your old file ".$f_name." <br>";
-          }
-        }
-      }
-    }
 
     public function getMenuUser(){
       return parent::readJsonData("$this->path"."tutorials/menu_user.json");

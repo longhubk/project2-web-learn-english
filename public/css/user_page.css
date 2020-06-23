@@ -2,6 +2,41 @@
   margin: 0 0 0 20px;
   color : rgb(53, 149, 50);
 }
+
+.main-container .user_info_page .table_style1{
+  border-collapse: collapse;
+  width: 40%;
+}
+
+.main-container .user_info_page .table_style1 tr td{
+  border: 1px solid gray;
+  padding: 10px;
+}
+
+.main-container .user_info_page .table_style1 tr.first_row{
+  background-color: grey;
+  color : white;
+  
+}
+
+
+.main-container .user_info_page_2 .table_style2{
+  border-collapse: collapse;
+  width: 80%;
+  margin: 20px 10px;
+}
+
+.main-container .user_info_page_2 .table_style2 tr td{
+  border: 1px solid gray;
+  padding: 10px;
+}
+
+.main-container .user_info_page_2 .table_style2 tr.first_row{
+  background-color: grey;
+  color : white;
+  
+}
+
 .user_info_page{
   /* border: 1px solid blue; */
   margin         : 0 10px;

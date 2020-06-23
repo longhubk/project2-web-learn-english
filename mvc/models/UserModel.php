@@ -1,64 +1,140 @@
 <?php 
-  class UserModel extends DB{
+  class UserModel extends Database{
 
     private function InsertUser($username, $password, $email){
       $qr = "INSERT INTO users(name, password, email) VALUES('$username', '$password', '$email')";
-      $result = false;
-      if(mysqli_query($this->con, $qr)){
-        $result = true;
-      }
-      return $result;
+      $res = mysqli_query($this->con, $qr);
+      if($res) return true;
+      else return false;
 
     }
     public function getUserType($un){
       $qr   = "SELECT user_type FROM users WHERE name = '$un'";
-      $rows = mysqli_query($this->con, $qr);
-      $res  = mysqli_fetch_array($rows);
-      return $res['user_type'];
+      return $this->queryAssoc($qr, 'user_type');
     }
     public function checkLogin($un, $pas){
-      $qr     = "SELECT * FROM users WHERE name = '$un'";
-      $res   = $this->queryAllArray($qr);
+      $qr     = "SELECT name, password FROM users WHERE name = '$un'";
+      $res   = $this->queryAssocAll($qr);
       $num_row   = $this->queryNumRow($qr);
 
       $kq     = false;
       $errors = [];
 
       if($res && $num_row == 1){
-          if(password_verify( $pas, $res[0][2])){
+          if(password_verify( $pas, $res['password'])){
             $kq = true;
             return $kq;
           }
           else
             $errors[0] = "Password wrong";
-          if($un !== $res[0][1])
-            $errors[1] = "UserName wrong";
+          if($un !== $res['name'])
+            $errors[1] = "Username wrong";
       }else{
-        $errors[0] = "Password or username is wrong or your are logined";
+        $errors[1] = "Username wrong";
       }
       return $errors;
 
     }
     
-    public function loadAllTutorial(){
-      $qr   = "SELECT * FROM tutorials";
-      $rows = mysqli_query($this->con, $qr);
-      $res = mysqli_fetch_array($rows);
-      return $res;
-
-    }
 
     public function loadAllUser(){
-      $qr   = "SELECT id, name, is_block FROM users WHERE user_type = 'user'";
-      $rows = mysqli_query($this->con, $qr);
-      $res = mysqli_fetch_all($rows);
-      return $res;
-
+      $qr   = "SELECT id, name, is_block, user_type, avatar FROM users WHERE user_type != 'admin'";
+      return $this->queryAllArray($qr);
     }
+
+    public function loadAllStudent(){
+      $qr   = "SELECT id, name, is_block FROM users WHERE user_type = 'user'";
+      return $this->queryAllArray($qr);
+    }
+
+    public function getListUserNotMe($my_id){
+
+      $qr   = "SELECT id FROM users WHERE id != '$my_id' AND id != 'admin' AND id != 'teacher'";
+      if($_SESSION['user_type'] == 'admin'){
+        $qr   = "SELECT id FROM users WHERE id != '$my_id' AND id !='admin' ";
+      }
+      return $this->queryAllArray($qr);
+    }
+
+    public function getAcceptRequest($my_id, $friend_id){
+      $qr   = "UPDATE friends SET status = 'friend' WHERE (user_id = '$my_id' AND my_friend_id = '$friend_id') OR ( user_id = '$friend_id' AND my_friend_id = '$my_id')";
+      $res = mysqli_query($this->con, $qr);
+      if($res) return "ok";
+      else return "fail";
+    }
+
+    public function getRemoveRequest($my_id, $friend_id){
+      $qr   = "UPDATE friends SET status = 'unfriend' WHERE (user_id = '$my_id' AND my_friend_id = '$friend_id') OR ( user_id = '$friend_id' AND my_friend_id = '$my_id')";
+      $res = mysqli_query($this->con, $qr);
+      if($res) return "ok";
+      else return "fail";
+    }
+
+    public function findFriendForUser($us_id){
+
+      $friend_id = $this->getListFriendByUserId($us_id);
+      $qr   = "SELECT id, name FROM users WHERE user_type != 'admin' AND id != '$us_id'";
+      $res = $this->queryAllArray($qr);
+      for($i = 0; $i <sizeof($res); $i++){
+        $res[$i][2] = "un_friend";
+        for($j = 0; $j < sizeof($friend_id); $j++){
+          if($res[$i][0] == $friend_id[$j][0]){
+            $res[$i][2] = "friend";
+            break;
+          }
+        }
+      }
+      return $res;
+    }
+
 
     public function getNameAdminModify(){
       $qr   = "SELECT id, name FROM users WHERE user_type = 'admin'";
       return $this->queryAllArray($qr);
+    }
+
+    public function getUserListFriendRequest($user_id){
+      $qr   = "SELECT my_friend_id name FROM friends WHERE user_id = '$user_id' AND status = 'have_rq'";
+      $res = $this->queryAllArray($qr);
+      for($i = 0; $i < sizeof($res); $i++){
+        $fr_id = $res[$i][0];
+        $qr1 = "SELECT name FROM users WHERE id = '$fr_id' ";
+        $res1 = $this->queryAssoc($qr1, 'name');
+        if($res1) $res[$i][1] = $res1;
+      }
+      return $res;
+    }
+
+    public function getUserListMyRequest($user_id){
+      $qr   = "SELECT my_friend_id name FROM friends WHERE user_id = '$user_id' AND status = 'send_rq'";
+      $res = $this->queryAllArray($qr);
+      for($i = 0; $i < sizeof($res); $i++){
+        $fr_id = $res[$i][0];
+        $qr1 = "SELECT name FROM users WHERE id = '$fr_id' ";
+        $res1 = $this->queryAssoc($qr1, 'name');
+        if($res1) $res[$i][1] = $res1;
+      }
+      return $res;
+    }
+
+    public function getSendFriendRequest($my_id, $us_want_id){
+
+      $qr1   = "INSERT INTO friends VALUES('$my_id', $us_want_id, 'send_rq')";
+      $qr2   = "INSERT INTO friends VALUES('$us_want_id', $my_id, 'have_rq')";
+      $res1 = mysqli_query($this->con, $qr1);
+      $res2 = mysqli_query($this->con, $qr2);
+
+      if($res1 && $res2) return "ok";
+      else return "fail";
+    }
+
+
+    public function getAcceptFriendRequest($my_id, $us_want_id){
+
+      $qr   = "UPDATE friends SET status = 'friend' WHERE (user_id = '$my_id' AND my_friend_id = '$us_want_id') OR (user_id = '$us_want_id' AND my_friend_id = '$my_id')";
+      $res = mysqli_query($this->con, $qr);
+      if($res) return "ok";
+      else return "fail";
     }
 
     public function blockUserById($user_id){
@@ -68,111 +144,119 @@
       else return "fail";
     }
 
+    public function unBlockUserById($user_id){
+      $qr   = "UPDATE `users` SET `is_block` = 'false' WHERE `users`.`id` = $user_id";
+      $row = mysqli_query($this->con, $qr);
+      if($row) return "ok";
+      else return "fail";
+    }
+
+
+    public function downPermissionTeacher($user_id){
+      $qr   = "UPDATE `users` SET `user_type` = 'user' WHERE `users`.`id` = $user_id";
+      $row = mysqli_query($this->con, $qr);
+      if($row) return "ok";
+      else return "fail";
+    }
+
+    public function upPermissionUser($user_id){
+      $qr   = "UPDATE `users` SET `user_type` = 'teacher' WHERE `users`.`id` = $user_id";
+      $row = mysqli_query($this->con, $qr);
+      if($row) return "ok";
+      else return "fail";
+    }
+
+    public function deleteUserById($user_id){
+      $qr   = "DELETE FROM `users` WHERE `users`.`id` = $user_id";
+      $row = mysqli_query($this->con, $qr);
+      if($row) return "ok";
+      else return "fail";
+    }
 
     public function checkIsAdmin($cookie){
-      
       $qr   = "SELECT user_type FROM users WHERE name = '$cookie'";
-      $rows = mysqli_query($this->con, $qr);
-      $res = mysqli_fetch_assoc($rows);
-      // var_dump( $res );
-      if($res['user_type'] == 'admin')
-        return true;
-      else
-        return false;
+      $res = $this->queryAssoc($qr, 'user_type');
+      if($res == 'admin' || $res == 'teacher') return true;
+      else return false;
 
     }
     public function getAdminId($cookie){
-      
       if($this->checkIsAdmin($cookie)){
-
         $qr   = "SELECT id FROM users WHERE name = '$cookie'";
-        $rows = mysqli_query($this->con, $qr); 
-        $res = mysqli_fetch_assoc($rows);
-        if($res)
-          return $res['id'];
+        return $this->queryAssoc($qr, 'id');
       }
       return false;
     }
-    public function checkUserNameExist($un){
+    private function checkUserNameExist($un){
       $qr   = "SELECT * FROM users WHERE name = '$un'";
-      $rows = mysqli_query($this->con, $qr);
-      $num_row = mysqli_num_rows($rows);
-      if($num_row > 0)
-        return true;
-      else 
-        return false;
+      $num_row = $this->queryNumRow($qr);
+      if($num_row > 0) return true;
+      else return false;
     }
-    public function checkEmailExist($email){
+    private function checkEmailExist($email){
       $qr   = "SELECT * FROM users WHERE email = '$email'";
-      $rows = mysqli_query($this->con, $qr);
-      $num_row = mysqli_num_rows($rows);
-      if($num_row > 0)
-        return true;
-      else 
-        return false;
+      $num_row = $this->queryNumRow($qr);
+      if($num_row > 0) return true;
+      else return false;
+    }
+
+    private function checkPassword($pas){
+        $res = "";
+        if(empty($pas))
+          $res = "password is require";
+        else if(strlen($pas) < 8)
+          $res = "password must have more than 8 characters";
+        else if(!preg_match("/[a-z]/", $pas))
+          $res = "password must contain at least 1 lowercase letter";
+        else if(!preg_match("/[A-Z]/", $pas))
+          $res = "password must contain at least 1 uppercase letter";
+        else if(!preg_match("/[A-Z]/", $pas))
+          $res = "password must contain at least 1 uppercase letter";
+        else if(!preg_match("/[0-9]/", $pas))
+          $res = "password must contain at least 1 number";
+        else if(!preg_match("/[@_$&*#]/", $pas))
+          $res = "password must contain at least 1 special letter";
+      return $res;
     }
     public function checkSignUp($un, $pas, $pas_ag, $email, $agree){
         $sign_err = [];
         //if(!empty($un) && !empty($pas) && !empty($pas_ag) && !empty($email) && !empty($agree)){
           
-        if(empty($un)){
+ //_--------------------Username----------------------------       
+        if(empty($un))
           $sign_err[0] = "username is require";
-          
-        }else
-        if($this->checkUserNameExist($un)){
+        else if($this->checkUserNameExist($un))
           $sign_err[0] = "username have existed";
-        }
-        else
-        if(!preg_match("/^[a-zA-Z0-9]*$/", $un))
+        else if(!preg_match("/^[a-zA-Z0-9]*$/", $un))
           $sign_err[0] = "username just contain a-z and A-Z or number";
-        
-        if(empty($email)){
+
+ //_--------------------Email-------------------------------       
+        if(empty($email))
           $sign_err[1] = "email is require";
-        }else
-        if($this->checkEmailExist($email))
+        else if($this->checkEmailExist($email))
           $sign_err[1] = "email is have existed";
-        else
-        if(!filter_var($email, FILTER_VALIDATE_EMAIL))
+        else if(!filter_var($email, FILTER_VALIDATE_EMAIL))
           $sign_err[1] = "email is invalid format";
 
-        if(empty($pas))
-          $sign_err[2] = "password is require";
-        else
-        if(strlen($pas) < 8)
-          $sign_err[2] = "password must have more than 8 characters";
-        else 
-        if(!preg_match("/[a-z]/", $pas))
-          $sign_err[2] = "password must contain at least 1 lowercase letter";
-        else 
-        if(!preg_match("/[A-Z]/", $pas))
-          $sign_err[2] = "password must contain at least 1 uppercase letter";
-        else 
-        if(!preg_match("/[A-Z]/", $pas))
-          $sign_err[2] = "password must contain at least 1 uppercase letter";
-        else 
-        if(!preg_match("/[0-9]/", $pas))
-          $sign_err[2] = "password must contain at least 1 number";
-        else 
-        if(!preg_match("/[@_$&*#]/", $pas))
-          $sign_err[2] = "password must contain at least 1 special letter";
+ //_--------------------Password----------------------------       
+          $sign_err[2] = $this->checkPassword($pas);
 
-
-        if(empty($pas_ag)){
+ //_--------------------Password again---------------------       
+        if(empty($pas_ag))
           $sign_err[3] = "password again is require";
-        }else
-        if($pas_ag != $pas)
+        else if($pas_ag != $pas)
           $sign_err[3] = "password not match";
 
-        if(empty($agree)){
+ //_--------------------Agree license---------------------       
+        if(empty($agree))
           $sign_err[4] = "you have to agree the license and agreement";
-        }
+        
     
         if(empty($sign_err[0]) &&
           empty($sign_err[1]) &&
           empty($sign_err[2]) &&
           empty($sign_err[3]) &&
-          empty($sign_err[4])
-        ){
+          empty($sign_err[4])){
           $options = ['cost' => 11];
           $pas     = password_hash($pas, PASSWORD_BCRYPT, $options);
           $res     = $this->InsertUser($un, $pas, $email);
@@ -182,15 +266,37 @@
           return $sign_err;
        //}
     }
+
+    public function updatePass($un, $old_pass, $new_pass, $new_pass_ag){
+
+      $qr     = "SELECT password FROM users WHERE name = '$un'";
+      $res   = $this->queryAssocAll($qr);
+      $out = [];
+      if($res){
+        if(password_verify( $old_pass, $res['password'])){
+          $options = ['cost' => 11];
+          $out = $this->checkPassword($new_pass);
+          if($old_pass == $new_pass) return "Your password not change!";
+          if($new_pass !== $new_pass_ag) return "Your 2 passwords not match!";
+          if(empty($out)){
+            $new_pass     = password_hash($new_pass, PASSWORD_BCRYPT, $options);
+            $qr2 = "UPDATE users SET password = '$new_pass' WHERE name = '$un'";
+            $res2 = $this->queryOne($qr2);
+            if($res2) $out = "Update password success !";
+            else $out = 'Update fail !';
+          } 
+        }else
+        $out = 'Old password is wrong !!!';
+
+      }
+      return $out;
+
+    }
+
     public function getUserAvatar(){
       if(isset($_COOKIE['member_login'])){
         $qr  = "SELECT avatar FROM users WHERE name='". $_COOKIE['member_login'] ."'";
-        $res = mysqli_query($this->con, $qr);
-        $ret = "";
-        while($avt = mysqli_fetch_array($res)){
-          $ret = $avt['avatar'];
-        }
-        return $ret;
+        return $this->queryAssoc($qr, 'avatar');
       }
       else return "";
     }
@@ -203,47 +309,27 @@
         $res = mysqli_query($this->con, $qr);
         return $res ? true : false;
         
-
     }
     
     public function uploadAvatar($f_name, $ft_name, $f_size, $f_type, $f_err){
-      $res = false;
+      $res = "";
       if(isset($_POST['upload'])){
 
-        $f_Ext         = explode('.', $f_name);
-        $f_Actual_Ext  = strtolower(end($f_Ext));
+        // $f_Ext         = explode('.', $f_name);
+        // $f_Actual_Ext  = strtolower(end($f_Ext));
         $f_Ext_Allowed = array('jpg', 'png', 'jpeg', 'gif');
-        $f_new_name    = $_COOKIE['member_login'] . "." . $f_Actual_Ext;
-        $f_des         = "./public/img/uploads/" . $f_new_name;
-    
-        if(in_array($f_Actual_Ext, $f_Ext_Allowed)){
-          if($f_err == 0){
-            if($f_size < 5000000){
-              move_uploaded_file($ft_name, $f_des);
-              $up_avt = $this->updateAvatar($f_new_name);
-              $this->check_name_file_exist($_COOKIE['member_login'], $f_Ext_Allowed, $f_Actual_Ext);
-              $res = $up_avt ? true : false;
-            }else
-              echo "file bigger than 5M";
-          }else
-            echo "There are error";
-        }else
-          echo "you can not upload file that is not image";
+        $new_name    = $_COOKIE['member_login'];
+        $f_dir         = "./public/img/uploads/";
+
+        $f_new_name = $this->uploadFile($f_name, $ft_name, $new_name, $f_size, $f_err, $f_Ext_Allowed, $f_dir);
+        $up_avt = $this->updateAvatar($f_new_name);
+        if($up_avt)
+          $res = "ok";
+        else $res = "fail";
       }
       return $res;
     }
 
-    private function check_name_file_exist($f_name, $f_Ext_Allowed, $f_Actual_Ext){
-      foreach($f_Ext_Allowed as $ext){
-        if($ext != $f_Actual_Ext){
-          $f_name_check = "./public/img/uploads/".$f_name .".". $ext;
-          if(file_exists($f_name_check)){
-            unlink($f_name_check);
-            echo "Deleted your old avatar <br>";
-          }
-        }
-      }
-    }
     public function userLogout($user_name) {
 
       $qr = "UPDATE users SET is_login = 'false' WHERE name = '$user_name'";
@@ -252,23 +338,24 @@
       setcookie('member_login', "", time() - (10 * 365 * 24 * 60 * 60), "/");
       $_SESSION['member_id'] = "";
       $_SESSION['user_type'] = "";
+      if(empty($_SESSION['member_id']) && empty($_SESSION['user_type']))
+        return "ok";
+      else return "fail";
     }
 
 
     public function checkSession($un, $re){
     
           $qr = "SELECT * FROM users WHERE name = '$un'";
-          $res = mysqli_query($this->con, $qr);
+          $res = $this->queryAllArray($qr);
 
           $qr2 = "UPDATE users SET is_login = 'true' WHERE name = '$un'";
           $res2 = mysqli_query($this->con, $qr2);
 
           if($res){
-            while($row = mysqli_fetch_array($res)){
-              $_SESSION["member_id"] = $row['id'];
-              $_SESSION["user_type"] = $row['user_type'];
-              
-            }
+              $_SESSION["member_id"] = $res[0][0];
+              $_SESSION["user_type"] = $res[0][5];
+
             if(!empty($re)){
               setcookie("member_login",$un ,time() + (10 * 365 * 24 * 60 * 60), '/');
             }
@@ -279,7 +366,7 @@
       } 
 
       public function getUserMenu(){
-        return parent::readJsonData("./mvc/models/data/tutorials/menu_user.json");
+        return parent::readJsonData("./mvc/models/data/menu_user.json");
       }
 
       public function getListUserById($user_name, $us_find){
@@ -287,6 +374,10 @@
         $qr    = "SELECT name, id FROM users WHERE name != '$user_name' AND user_type != 'admin' AND name = '$us_find'";
         return $this->queryAllArray($qr);
 
+      }
+      public function countRequestFriend($user_id){
+        $qr    = "SELECT * FROM friends WHERE user_id = '$user_id' AND status = 'have_rq'";
+        return $this->queryNumRow($qr);
       }
 
       public function checkIsLogin($user_name){
@@ -305,6 +396,31 @@
       public function getListFriendByUserId($user_id){ 
         $qr    = "SELECT my_friend_id FROM friends WHERE user_id = '$user_id' AND status = 'friend' GROUP BY my_friend_id "; 
         return $this->queryAllArray($qr);
+      }
+
+      public function getUserPointLesson($user_id){ 
+        $qr    = "SELECT lesson_id, point, last_date_test FROM user_lesson WHERE user_id = '$user_id' "; 
+        $res =  $this->queryAllArray($qr);
+        for($i = 0; $i < sizeof($res); $i++){
+          $les_id = $res[$i][0];
+          $qr1    = "SELECT title_lesson FROM lesson_tut WHERE lesson_id = '$les_id'"; 
+          $res1 = $this->queryAssoc($qr1, 'title_lesson');
+          array_push($res[$i], $res1);
+        }
+        return $res;
+      }
+
+
+      public function getUserPointTest($user_id){ 
+        $qr    = "SELECT test_id, total_score, last_date_test FROM user_tests WHERE user_id = '$user_id' "; 
+        $res =  $this->queryAllArray($qr);
+        for($i = 0; $i < sizeof($res); $i++){
+          $test_id = $res[$i][0];
+          $qr1    = "SELECT test_name FROM test WHERE test_id = '$test_id'"; 
+          $res1 = $this->queryAssoc($qr1, 'test_name');
+          array_push($res[$i], $res1);
+        }
+        return $res;
       }
 
       public function countMessageTwoPeople($user_id, $friend_id){ 
@@ -428,15 +544,18 @@
         return $friend_name;
 
       }
+      public function getInfoUser($user_id){
+        $qr    = "SELECT * FROM info_users WHERE user_id = '$user_id'";
+        return $this->queryAssocAll($qr);
+      }
+
       public function updateUserInfo($un, $f_name, $l_name, $birth, $gender, $school, $toeic){
 
       $id     = $this->getUserId($un);
       $qr1    = "SELECT * FROM info_users WHERE user_id = '$id'";
-      $check  = mysqli_query($this->con, $qr1);
-      $numrow = mysqli_num_rows($check);
-      if($numrow == 0){
-        $qr2 = "INSERT INTO info_users(user_id, fname, lname, birthday, gender, school, toeic) 
-        VALUE( '$id','$f_name', '$l_name', '$birth', '$gender', '$school', '$toeic')";
+      $num_row = $this->queryNumRow($qr1);
+      if($num_row == 0){
+        $qr2 = "INSERT INTO info_users(user_id, fname, lname, birthday, gender, school, toeic) VALUE( '$id','$f_name', '$l_name', '$birth', '$gender', '$school', '$toeic')";
         $res = mysqli_query($this->con, $qr2);
         return $res ? true : false;
       }else{
@@ -455,30 +574,17 @@
 
       }
       private function getUserId($username){
-        $qr1   = "SELECT id FROM users WHERE name = '$username'";
-        $resid = mysqli_query($this->con, $qr1);
-        $id    = mysqli_fetch_assoc($resid)['id'];
-        return $id;
+        $qr   = "SELECT id FROM users WHERE name = '$username'";
+        return $this->queryAssoc($qr, 'id');
       }
 
       public function getUserInfo($username){
         $id      = $this->getUserId($username);
-        $qr2     = "SELECT * FROM info_users WHERE user_id = '$id'";
-        $resinfo = mysqli_query($this->con, $qr2);
-        $numrow  = mysqli_num_rows($resinfo);
-        $resArr  = [];
-        if($numrow > 0){
-          $row = mysqli_fetch_assoc($resinfo);
-
-          $resArr['f_name']   = $row['fname'];
-          $resArr['l_name']   = $row['lname'];
-          $resArr['birthday'] = $row['birthday'];
-          $resArr['gender']   = $row['gender'];
-          $resArr['school']   = $row['school'];
-          $resArr['toeic']    = $row['toeic'];
-  
-        }
-        return $resArr;
+        $qr      = "SELECT * FROM info_users WHERE user_id = '$id'";
+        $num_row = $this->queryNumRow($qr);
+        if($num_row > 0)
+          return $this->queryAssocAll($qr);
+        else return [];
 
       }
 

@@ -4,14 +4,19 @@
       $_SESSION['last_post'] = [];
   class TestPage extends Controller{
 
-    public $tut_db;
-    public $user_db;
-    public $test_db;
+    protected $test_turn;
+
     public function __construct()
     {
-      $this->tut_db  = $this->model("TutorialModel");
-      $this->user_db = $this->model("UserModel");
-      $this->test_db = $this->model("TestModel");
+      parent::__construct();
+      $this->test_turn  = $this->test_db->getTestTurnById($_COOKIE['member_login']);
+      $this->test_guide  = $this->test_db->getTestGuide();
+
+      $this->view_arr = [
+          "all_tuts" => $this->all_tuts,
+          "avatar"   => $this->avatar,
+          "test_guide" => $this->test_guide,
+      ];
     }
     private function middlewareTest($back, $test = 'none'){
       if(empty($_SESSION['member_id'])){
@@ -19,7 +24,7 @@
         if(!empty($_COOKIE['member_login']))
           $this->user_db->checkSession($_COOKIE['member_login'], '');
         else
-           header('Location:'.$back);
+          header('Location:'.$back);
       }
       if($test == 'test'){
         if(empty($_SESSION['test']))
@@ -27,41 +32,37 @@
       }
 
     }
-    public function Init(){
-        $this->middlewareTest('Register/');
+    public function Init($lock = ''){
+        $this->middlewareTest('RegisterPage/');
+        if($lock = 'lock'){
+        }
+      $view_more = [
+        "page"      => "test_index",
+        "all_test"  => $this->all_test,
+        "test_turn" => $this->test_turn,
+      ];
+      $this->render('master_test',$view_more);
 
-        $this->view("master_test", [
-          "page"      => "test_index",
-          "allTuts"   => $this->tut_db->getAllTutorial(),
-          "tut_qs"    => $this->tut_db->loadQuestion(),
-          "login_res" => "OK",
-          "avatar"    => $this->user_db->getUserAvatar(),
-          "menu_user" => $this->user_db->getUserMenu(),
-          "all_test"  => $this->test_db->LoadAllTestAdmin(),
-          "test_turn"  => $this->test_db->getTestTurnById($_COOKIE['member_login']),
-
-        ]);
     }
 
     public function Test($test_id){
-      $this->middlewareTest('../../Register/', 'test');
+      $this->middlewareTest('../../RegisterPage/', 'test');
+      $time_test = $this->test_db->getTimeTestById($test_id);
+      $test_qs   = $this->test_db->LoadTestQuestion($test_id);
 
-        $this->view("master_test", [
-          "page"      => "test_page",
-          "allTuts"   => $this->tut_db->getAllTutorial(),
-          "tut_qs"    => $this->tut_db->loadQuestion(),
-          "login_res" => "OK",
-          "avatar"    => $this->user_db->getUserAvatar(),
-          "menu_user" => $this->user_db->getUserMenu(),
-          "test_qs"   => $this->test_db->LoadTestQuestion($test_id),
-          "test_id"   => $test_id,
-          "time_test"   => $this->test_db->getTimeTestById($test_id),
-          // "post_last" => $_SESSION['last_post'],
+      $view_more = [
+        "page"      => "test_page",
+        "all_test"  => $this->all_test,
+        "time_test" => $time_test,
+        "test_qs"   => $test_qs,
+        "test_id"   => $test_id,
 
-        ]);
+      ];
+      $this->render('master_test',$view_more);
     }
+
     public function Check($test_id){
-      $this->middlewareTest('../../Register/');
+      $this->middlewareTest('../../RegisterPage/');
       $res  = '';
       if(!empty($_POST)){
         $res = $this->test_db->calculatePoint($_POST, $test_id);
@@ -71,20 +72,16 @@
       else{
         header("Location:../../TestPage/");
       }
+      $test_qs   = $this->test_db->LoadTestQuestion($test_id);
 
-        $this->view("master_test", [
-          "page"      => "test_res",
-          "allTuts"   => $this->tut_db->getAllTutorial(),
-          "tut_qs"    => $this->tut_db->loadQuestion(),
-          "login_res" => "OK",
-          "avatar"    => $this->user_db->getUserAvatar(),
-          "menu_user" => $this->user_db->getUserMenu(),
-          "test_res"  => $res,
-          "test_qs"   => $this->test_db->LoadTestQuestion($test_id),
-          "test_id"   => $test_id,
-          "post_test" => $_POST,
-
-        ]);
+      $view_more = [
+        "page"      => "test_res",
+        "post_test" => $_POST,
+        "test_id"   => $test_id,
+        "test_qs"   => $test_qs,
+        "test_res"  => $res,
+      ];
+      $this->render('master_test',$view_more);
     }
 
     public function registerTest(){
@@ -93,11 +90,10 @@
         $res = $this->test_db->getRegisterTest($_POST['test_id'], $_COOKIE['member_login']);
       }
       if(empty($_SESSION['test'])){
-          // echo "set session test";
-          $_SESSION['test'] = $_COOKIE['member_login'] ."-".$_POST['test_id'];
+        $_SESSION['test'] = $_COOKIE['member_login'] ."-".$_POST['test_id'];
       }
   
-      $this->view("master_blank", [
+      $this->view("master_empty", [
         "page" => "get_register_test",
         "res_register" => $res,
         "res_session" => $_SESSION['test'],

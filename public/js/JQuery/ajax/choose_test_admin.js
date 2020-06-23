@@ -9,7 +9,7 @@ $(document).ready(() =>{
     // alert('val change to ' + val)
     global_test_id = val
     $.ajax({
-      url     : "./HomeAdmin/getCurrentNumQuestionOfEachTest",
+      url     : "./AdminPage/getCurrentNumQuestionOfEachTest",
       type    : 'POST',
       data : {'id' : val},
       success : (res) =>{
@@ -30,7 +30,7 @@ $(document).ready(() =>{
 
             // console.log("g_id"+ global_test_id)
             // console.log("g_level"+ global_test_level)
-            $('#dynamic_link').attr('href', 'HomeAdmin/getUpdateTest/'+ global_test_id + "/" + global_test_level)
+            $('#dynamic_link').attr('href', 'AdminPage/getUpdateTest/'+ global_test_id + "/" + global_test_level)
 
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -72,7 +72,7 @@ $(document).ready(() =>{
       let outPut = '';
       for(let i = 1; i <= val; i++){
 
-        outPut += "<hr><table class='table_new_content'>"
+        outPut += "<hr><table id='table_test_"+i+"' class='table_new_content'>"
 
         outPut += "<tr class='first_row'><td class='first_column'>Question "+i+" </td><td class='middle_column'>Content</td><td class='last_column'>Right answer</td></tr>"
 
@@ -84,8 +84,10 @@ $(document).ready(() =>{
             outPut += "<tr><td class='first_column'>Answer "+j+"</td><td class='middle_column input_content'> <textarea  name='ans_"+j+"-"+i+"'></textarea></td><td class='last_column'><input class='check_content' value='true' type='checkbox' name='isRight_"+j+"-"+i+"'></td><tr></tr>"
           }
         outPut += "</table>"
+
+        $('#content_add_main').append(outPut)
+        // $('#table_test_'+i).fadeOut(500).fadeIn(5000)
       }
-      $('#content_add_main').append(outPut)
 
     }
 

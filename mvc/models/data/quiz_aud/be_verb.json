@@ -1,0 +1,110 @@
+[
+  {
+    "id" : 0,
+    "name" : "Cau 1: Where is he from? ",
+    "ans" : [
+
+      {
+      "ans_ct" : "The east coast",
+      "is_right" : false
+      },
+
+      {
+      "ans_ct" : "The west coast",
+      "is_right" : true
+      },
+
+      {
+      "ans_ct" : "The north coast",
+      "is_right" : false
+      },
+
+      {
+      "ans_ct" : "The south coast",
+      "is_right" : false
+      }
+    ]
+  },
+
+  {
+
+    "id" : 1,
+    "name" : "Cau 2: How old is she? ",
+    "ans" : [
+
+      {
+      "ans_ct" : "46",
+      "is_right" : false
+      },
+
+      {
+      "ans_ct" : "47",
+      "is_right" : false
+      },
+
+      {
+      "ans_ct" : "34",
+      "is_right" : true
+      },
+
+      {
+      "ans_ct" : "36",
+      "is_right" : false
+      }
+    ]
+  },
+
+  {
+    "id" : 2,
+    "name" : "Cau 3: Where is her mother from ? ",
+    "ans" : [
+
+      {
+      "ans_ct" : "Edinburgh",
+      "is_right" : false
+      },
+
+      {
+      "ans_ct" : "Aberdeen",
+      "is_right" : false
+      },
+
+      {
+      "ans_ct" : "Glasgow",
+      "is_right" : true
+      },
+
+      {
+      "ans_ct" : "BangKok",
+      "is_right" : false
+      }
+    ]
+  },
+
+  {
+  "id" : 3,
+    "name" : "Cau 4: Who is a cut tree manager? ",
+    "ans" : [
+
+      {
+      "ans_ct" : "His mom",
+      "is_right" : false
+      },
+
+      {
+      "ans_ct" : "His dad",
+      "is_right" : true
+      },
+
+      {
+      "ans_ct" : "Her mom",
+      "is_right" : false
+      },
+
+      {
+      "ans_ct" : "Her dad",
+      "is_right" : false
+      }
+    ]
+  }
+]

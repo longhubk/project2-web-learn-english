@@ -1,20 +1,42 @@
 
 fetchFriend()
+let id_m = ''
+let id = new Array()
 
 setInterval(() => {
 	updateLastActive()
 	fetchFriend()
 	update_chat_history_realtime()
+	fetch_friend_request()
 },3000)
 
 
+function fetch_friend_request(){
+  $.ajax({
+    url : 'UserPage/getNotifyFriendRequest',
+    method : 'POST',
+    success : (data) => {
+			// console.log('data-friend '+data)
+			console.log('fioashfdiasfisdhf dahofdh sum--->' + data)
+			if(data.trim() > 0){
+
+				let notify = ''
+				notify = "<img title='NOTIFICATIONS' class='icon-23' src='public/icon/notification_yellow_icon.png'><span class='text_nav text_to_hide notify_hide'>NOTIFICATIONS</span><span id='num_notify'>"+data+"</span>"
+
+				$('#notify-li a').html(notify)
+    	}
+    }
+  })
+}
 
 function fetchFriend(){
   $.ajax({
     url : 'UserPage/getFriendList',
     method : 'POST',
     success : (data) => {
-      $('#friend_detail').html(data)
+			// console.log('data-friend '+data)
+			$('#friend_detail').html(data)
+
     }
   })
 }
@@ -57,22 +79,52 @@ function create_chat_dialog(friend_id, friend_name){
 
 	// })
 
+function fetchFriendId(){
+  $.ajax({
+    url : 'UserPage/getFriendListId',
+    method : 'POST',
+    success : (data) => {
+    	let res = data.trim()
+			console.log('list-friend-id '+res)
+			// $('#friend_detail').html(data 
+			let arr_id = res.split(',')
 
-	$(document).on('click', '.start_chat', () =>{
-		$('#friend_model_detail').slideToggle()
-		// console.log('hello')
-		var idFriend = $('.start_chat').data("tofriendid");
-		// var id_btn = "#chat_to-" + idFriend;
-		// $(id_btn).html('Close Chat')
-		console.log('friend_id: '+ idFriend)
-		var nameFriend = $('.start_chat').data("tofriendname");
-		console.log('friend_name: '+ nameFriend)
-		create_chat_dialog(idFriend, nameFriend);
-		auto_scroll_message()
-		$('#user_dialog_'+idFriend).slideToggle();
-	})
+			for(let i = 0; i < arr_id.length; i++){
+				console.log(arr_id[i])
+				str = '#chat_to-'+arr_id[i]
+				id_m = arr_id[i]
+				nextLoad()
+			}
+    }
+  })
+}
 
 	
+	fetchFriendId()
+
+	function nextLoad(){
+		console.log("next load" +id_m)
+
+				let id_qr = "#chat_to-"+id_m
+
+				$(document).on('click', id_qr, () =>{	
+					$('#friend_model_detail').slideToggle()
+					// console.log('hello')
+					var idFriend = $(id_qr).data("tofriendid");
+					// var idFriend = $('.start_chat').attr("id");
+					var id_btn = "#chat_to-" + idFriend;
+					// $(id_btn).html('Close Chat')t
+					console.log('friend_id: '+ idFriend)
+					var nameFriend = $(id_qr).data("tofriendname");
+					console.log('friend_name: '+ nameFriend)
+					create_chat_dialog(idFriend, nameFriend);
+					auto_scroll_message()
+					$('#user_dialog_'+idFriend).slideToggle();
+				})
+
+	}
+
+
 
 
 	$(document).on('click', '.chat_send', (evt) =>{

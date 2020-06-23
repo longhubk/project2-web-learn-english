@@ -8,7 +8,7 @@
       }
     ?>
     
-    <img id="intro" src="public/img/Welcome.jpg">
+    <img id="intro" src="public/img/login_success.jpg">
 
     </div>
   </div>

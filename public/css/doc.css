@@ -1,0 +1,11 @@
+.main-container .video-card .doc_ct_contain .each_doc_ct p{
+  /* border: 1px solid red; */
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: rgb(240, 240, 240);
+  border-radius: 10px;
+  font-size: 18px;
+
+  padding: 10px;
+}

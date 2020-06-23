@@ -14,7 +14,7 @@ function closeLogin(){
 
   $(window).click(function(e){
     if(e.target.id == "log-1")
-      window.location.href = ("./Home")
+      window.location.href = ("./HomePage")
   })
 
 

@@ -1,26 +1,15 @@
 
 <?php 
-  class TestModel extends DB{
+  class TestModel extends Database{
 
-    private $path = "./mvc/models/data/";
-
-    // public function __construct()
-    // {
-    //   $this->path = "./mvc/models/data/";
-    // }
 
     public function loadTestQuestion($test_id){
-      // return parent::readJsonData("$this->path"."test_question/grammar_qs.json");
-
       $qr = "SELECT * FROM test_qs WHERE test_id = $test_id ";
       return $this->queryAllArray($qr);
     }
 
-    public function loadAllTest(){
-      // return parent::readJsonData("$this->path"."test_question/test_all.json");
-    }
     
-    public function loadAllTestAdmin(){
+    public function loadAllTest(){
       $qr = "SELECT * FROM test";
       return $this->queryAllArray($qr);
     }
@@ -40,6 +29,10 @@
       $qr   = "SELECT test_time FROM test WHERE test_id = '$test_id'";
       return $this->queryAssoc($qr, 'test_time');
     }
+
+    public function getTestGuide(){
+      return parent::readJsonData("$this->path"."test_guide.json");
+    }
     
     public function getTestTurnById($us_name){
       
@@ -49,6 +42,35 @@
       $qr   = "SELECT test_id, num_turn FROM user_tests WHERE user_id = '$us_id'";
       return $this->queryAllArray($qr);
     }
+
+
+    private function updateByNameId($key, $val, $where, $id){
+      $qr   = "UPDATE `test` SET $key = '$val' WHERE $where = '$id'";
+      $res =  mysqli_query($this->con, $qr);
+      if($res) return true;
+      else return false;
+    }
+
+
+
+    public function getEditTestById($post){
+      $test_id = $post['test_id'];
+      $test_name = $post['new_name_test']; 
+      $test_time = $post['new_time_test']; 
+      $test_des = $post['new_des_test'];
+      $test_num = $post['new_num_test'];
+      $test_lev = $post['new_level_test'];
+
+      $res1 = $this->updateByNameId('test_name', $test_name, 'test_id', $test_id);
+      $res2 = $this->updateByNameId('test_time', $test_time, 'test_id', $test_id);
+      $res3 = $this->updateByNameId('num_qs', $test_num, 'test_id', $test_id);
+      $res4 = $this->updateByNameId('description', $test_des, 'test_id', $test_id);
+      $res5 = $this->updateByNameId('test_level', $test_lev, 'test_id', $test_id);
+
+      return $res1 && $res2 && $res3 && $res4 && $res5;
+    }
+
+
 
     public function updateTestById($post_ct){
       $res = true;
@@ -149,8 +171,7 @@
 
     public function getRegisterTest($test_id, $cookie){
       $qr1 = "SELECT * FROM users WHERE name = '$cookie'";
-      $rows = mysqli_query($this->con, $qr1);
-      $res1 = mysqli_fetch_assoc($rows);
+      $res1 = $this->queryAssocAll($qr1);
       $feedback = [];
       $test_turn = 0;
       $user_id = "";
@@ -166,17 +187,15 @@
 
 
       $qr2 = "SELECT * FROM user_tests WHERE test_id = $test_id AND user_id = $user_id";
-      $row2 = mysqli_query($this->con, $qr2);
-      $num_row = mysqli_num_rows($row2);
+      $num_row = $this->queryNumRow($qr2);
       $insert = true;
       if($num_row > 0){
         $insert = false;
-        $res2 = mysqli_fetch_assoc($row2);
+        $res2 = $this->queryAssocAll($qr2);
         if($res2['num_turn']  > 0){
           $test_turn = $res2['num_turn'] - 1;
           $feedback[1] = "had_to_test";
           $feedback[5] = $test_turn;
-          
         }
         else{
           $feedback[1] = "has_no_turn";
@@ -229,9 +248,10 @@
 
         $count_num_qs = sizeof($res);
         $point = 0;
-        $store = [];
+        $store = $result = [];
         $i = 0;
         $j = 1;
+
 
         foreach($post as $key => $value){
           $val[$i] = [];
@@ -280,15 +300,65 @@
         if($update){
           $qr3 = "UPDATE `user_tests` SET `total_score` = '$point' WHERE `user_tests`.`user_id` = '$us_id' AND `user_tests`.`test_id` = '$test_id'";
           $row = mysqli_query($this->con, $qr3);
-        }
-        
+          
+          $qr4 = "UPDATE user_tests SET last_date_test = now() WHERE user_id = '$us_id' AND test_id = '$test_id'";
+          
+          $real_point = 0;
+          $real_point = ($point / $count_num_qs);
+          
+          $result[3] = $this->updateTutUserAccess($real_point);
 
-        $result = $point . '/' . $count_num_qs;
+        }
+        else{
+          $result[3] = 5;
+        }
+
+        $result[1] = $point ;
+        $result[2] = $count_num_qs;
+
         // echo $result;
         return $result;
         
     }
-      public function changeDataTest($num_qs){
+
+    protected function updateTutUserAccess($real_point){
+          if($real_point < 1 && $real_point > 0.7){
+            $res =  $this->getTutorialByLevel(4);
+            if($res) return 4;
+          }
+          else if($real_point <= 0.7 && $real_point > 0.5){
+            $res = $this->getTutorialByLevel(3);
+            if($res) return 3;
+          }
+          else if($real_point <= 0.5 && $real_point > 0.3){
+            $res = $this->getTutorialByLevel(2);
+            if($res) return 2;
+          }
+          else if($real_point <= 0.3 && $real_point > 0){
+            $res = $this->getTutorialByLevel(1);
+            if($res) return 1;
+          }else{
+            return 0; 
+          }
+
+    }
+
+    private function getTutorialByLevel($tut_level){
+      $qr1 = "SELECT id FROM tutorials WHERE tut_level <= '$tut_level'";
+      $tut_id = $this->queryAllArray($qr1);
+      $us_id = $_SESSION['member_id'];
+      if($tut_id){
+        for($i = 0; $i < sizeof($tut_id); $i++){
+          $id = $tut_id[$i][0];
+          $qr2 = "UPDATE user_tuts SET status = 'unlock' WHERE user_id = '$us_id' AND tut_id = '$id'";
+          $res = mysqli_query($this->con, $qr2);
+          if(!$res) return false;
+        }
+        return true;
+      }
+    }
+
+      public function getTutIdByIdByLevel_2($qs_level){
         // $res = "";
         $page_next = $_POST['page_next']+1;
         // if($_SESSION['last_post'][$page_next-2]['page_next'] !== $page_next) //_don't push again
@@ -298,6 +368,7 @@
         $i = 0;
         $str = 'as_qs_';
         $count_filled = 0;
+        $num_qs = 4;
         // $size = sizeof($_POST);
         while($num_qs--){
           foreach($_POST as $key => $value){

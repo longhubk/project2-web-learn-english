@@ -2,9 +2,9 @@
 <div class="main-container">
   <div class="video-card">
     <?php
-      if(isset($data['title_les'])){
-        $title_les = $data['title_les'];
-            echo "<h1>$title_les</h1>";
+      if(isset($data['info_les']['title_lesson'])){
+        $title_les = $data['info_les']['title_lesson'];
+          echo "<h1>$title_les</h1>";
       }
       
     ?>
@@ -17,10 +17,10 @@
     ?>
 
     <?php
-      if(isset($data['img_les'])){
-        $extension = $data['ext_les'];
+      if(isset($data['info_les']['image'])){
+        $extension = $data['info_les']['image'];
         // $tut_img = $data['img_les'] . $extension;
-        echo "<img class='intro' src='./public/img/$extension'>";
+        echo "<img class='intro' src='./public/img/les_img/$extension'>";
       }
     ?>
 
@@ -84,27 +84,39 @@
   ?>
 
     <div class="verb-video" >
-      <h3>Video có phụ đề:</h3>
+    <h3>Video có phụ đề:</h3>
 
-      <iframe id='player' width="560" height="315" src="https://www.youtube.com/embed/LfJPA8GwTdk" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      
-          <?php   
-          if(isset($data['tut_sub'])){
-            echo "<div class='subtitle'>";
-              echo "<ul id = 'main_scroll'>";
-            $tut_subtitle = $data['tut_sub'];
-            $id = 0;
-            foreach($tut_subtitle as $eng_sub => $vi_sub){
-              echo "<li id='en-$id' style='color: green;'>$eng_sub</li> <br>";
-              echo "<li id='vn-$id' style='color: blue;'>$vi_sub</li> <br>";
-              $id++;
-            }
-            echo "</ul>";
-          echo "</div>";
-          echo "<button id='btn_scroll'>scroll</button>";
-          echo "<button id='btn_auto_scroll'>auto scroll</button>";
-          }
-          ?>
+
+    <?php   
+    if(isset($data['info_les'])){
+      $vid_src = "public/video/".$data['info_les']['video'];
+      echo "
+      <div class='video_src'>
+      <video id='video_les' controls >
+
+        <source src='".$vid_src."' type='video/mp4'>
+      </video>
+      </div>
+      ";
+    }
+
+    if(isset($data['tut_sub'])){
+      echo "<div class='subtitle'>";
+        echo "<ul id = 'main_scroll'>";
+      $tut_subtitle =  $data['tut_sub'];
+      // var_dump($tut_subtitle);
+      for($i = 0; $i < sizeof($tut_subtitle); $i++){
+            $tut_sub = (array)$tut_subtitle[$i];
+            echo "<li id='en-".$tut_sub['start']. "-".$tut_sub['end']."' style='color: green;'>".$tut_sub['en_text']."</li>";
+
+            echo "<li id='vi-".$tut_sub['start']. "-".$tut_sub['end']."' style='color: blue;'>".$tut_sub['vi_text']."</li>";
+
+      }
+      echo "</ul>";
+    echo "</div>";
+
+    }
+    ?>
 
 
     </div>

@@ -1,22 +1,30 @@
     <script src = "./public/js/calendar.js"         type = "text/javascript"></script>
-    <script src = "./public/js/scroll_nav.js"       type = "text/javascript"></script>
     <script src = "./public/js/login.js"            type = "text/javascript"></script>
     <script src = "./public/js/search.js"           type = "text/javascript"></script>
     <script src = "./public/js/scroll_script.js"    type = "text/javascript"></script>
+    <script src = "./public/js/scroll_nav.js"       type = "text/javascript"></script>
     <script src = "./public/js/scroll_top.js"       type = "text/javascript"></script>
-    <script src = "./public/js/test.js"       type = "text/javascript"></script>
+    <script src = "./public/js/test.js"             type = "text/javascript"></script>
+    <script src = "./public/js/test_lesson.js"      type = "text/javascript"></script>
     <script src = './public/js/youtube_api.js'      type = "text/javascript"></script>
     <script src = './public/js/JQuery/hide_btn.js'  type = "text/javascript"></script>
-    <script src = './public/js/JQuery/slide_show.js' type = "text/javascript"></script>
+    <script src = './public/js/JQuery/slide_show.js'type = "text/javascript"></script>
     <script src = './public/js/toggle_side_bar.js'  type = "text/javascript"></script>
     <script src = './public/js/JQuery/basic_lesson.js'     type = "text/javascript"></script>
     <script src = './public/js/JQuery/prompt_enter_test.js'     type = "text/javascript"></script>
     <script src = './public/js/JQuery/chat/find_friend.js'     type = "text/javascript"></script>
     <script src = './public/js/JQuery/chat/chat.js'     type = "text/javascript"></script>
+    <script src = './public/js/JQuery/chat/search.js'     type = "text/javascript"></script>
     <script src = './public/js/JQuery/dis_input.js'     type = "text/javascript"></script>
+    <script src = './public/js/JQuery/disable_href_anchor.js'     type = "text/javascript"></script>
 
 
-    <button onclick="topScroll()" id='btn_scroll_top' title='go to top'><img class='icon-20' src='public/icon/go_to_top.png'></button>
+    <button onclick="topScroll()" id='btn_scroll_top' title='go to top'><img class='icon-25' src='public/icon/go_to_top.png'></button>
+
+    <div id='hidden_search'>
+      <p>This is search hidden</p>
+    </div>
+
     <div class="footer">
       <div class="info_foot">
         <div class="info_contact">
@@ -34,5 +42,7 @@
       </div>
       <p class="copyright">Copyright © 2020 Thanh Long Nguyen</p>
     </div>
+
+
   </body>
 </html>

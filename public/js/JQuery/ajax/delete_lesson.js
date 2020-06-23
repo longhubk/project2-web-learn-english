@@ -1,6 +1,10 @@
 $(document).ready(() => {
 
+  
+  if($('#tut_id').length && $('#les_id').length){
+
   let tut_id = $("#tut_id").html()
+  
   let les_id = $("#les_id").html()
 
   let tut_arr_id = tut_id.split(',')
@@ -19,7 +23,7 @@ $(document).ready(() => {
           if(confirm('Are you sure to delete this lesson?')){
             // console.log("deleted")
             $.ajax({
-              url : "./HomeAdmin/getDeleteLesson",
+              url : "./AdminPage/getDeleteLesson",
               method: 'POST',
               data : {tutId: tut_arr_id[i], lesId: les_arr_id[j]},
               success : (data) => {
@@ -41,7 +45,11 @@ $(document).ready(() => {
         })
 
         $(edit_les).click(() => {
-          $(toggle_edit_les).slideToggle()
+          if($(toggle_edit_les).is(':visible'))
+            $(toggle_edit_les).fadeOut(400)
+          else
+          $(toggle_edit_les).fadeIn(500)
+
           for(let k = 0; k < tut_arr_id.length; k++){
             for(let m = 0; m < les_arr_id.length; m++){
               let other_edit_les = "#edit_lesson-"+k+"-"+m;
@@ -60,5 +68,6 @@ $(document).ready(() => {
       }
     }
     
+  }
 
 })

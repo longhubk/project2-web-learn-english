@@ -29,7 +29,7 @@ $(document).ready( () =>{
         global_num_ex = $(id_ct).length
       }
       if(num_ex < 10){
-        append += "<tr><td>Example "+(num_ex+1)+"</td><td class='input_content'><textarea   name='example_"+(num_ex+1)+"-"+content_id+"'></textarea></td></tr>";
+        append += "<tr><td class='title_content'>Example "+(num_ex+1)+"</td><td class='input_content'><textarea   name='example_"+(num_ex+1)+"-"+content_id+"'></textarea></td></tr>";
         console.log(append)
         $(id_tb).append(append)
       }
@@ -60,7 +60,7 @@ $(document).ready( () =>{
     let val = $('#select_tut').val()
     // alert('val change to ' + val)
     $.ajax({
-      url     : "./HomeAdmin/getLessonOfTutorial",
+      url     : "./AdminPage/getLessonOfTutorial",
       type    : 'POST',
       data : {'id' : val},
       success : (res) =>{
@@ -92,7 +92,7 @@ $(document).ready( () =>{
 
     let val = $('#select_tut').val()
     $.ajax({
-      url     : "./HomeAdmin/getTutLevel",
+      url     : "./AdminPage/getTutLevel",
       type    : 'POST',
       data : {'id' : val},
       success : (res) =>{
@@ -113,6 +113,37 @@ $(document).ready( () =>{
 
   })
 
+  $('#choose_number_doc').on('keyup click', () => {
+    let val = $('#choose_number_doc').val()
+
+      $('#content_add_main').html('')
+
+      for(let i = 1; i <= val; i++){
+      $append = "";
+      $append += "<hr>";
+      $append += "<div>Content "+i+" :</div>";
+      $append += "<table id='content_"+i+"' class='table_new_content_les'>";
+
+      $append += "<tr>"
+      $append += "<td class='title_content'>Text Content</td>"
+      $append += "<td class='input_content'><textarea name='text_content-"+i+"'></textarea>";
+      $append += "</tr>"
+
+
+      $append += "<tr>"
+      $append += "<td class='title_content'>Image</td>"
+      $append += "<td class='input_content'><input type='file' accept='.jpg,.png,.gif,.  jpeg' name='image_doc-"+i+"'></td>"
+      $append +="</tr>"
+
+      $append += "</table>"
+
+      $('#content_add_main').append($append)
+      $('#content_'+i).hide(500).show(500)
+    }
+  })
+
+
+
 
   $('#choose_number').on('keyup click', () => {
     let val = $('#choose_number').val()
@@ -127,7 +158,7 @@ $(document).ready( () =>{
       $append = "";
       $append += "<hr>";
       $append += "<div>Content "+i+" :</div>";
-      $append += "<table id='content_"+i+"'>";
+      $append += "<table id='content_"+i+"' class='table_new_content_les'>";
 
       $append += "<tr>"
       $append += "<td class='title_content'>Main Content</td>"
@@ -151,6 +182,7 @@ $(document).ready( () =>{
       $append += "<img class='icon-96' id='rm_ex_"+i+"' src='public/icon/minus_red_icon.png'>";
 
       $('#content_add_main').append($append)
+      $('#content_'+i).hide(500).show(500)
     }
   }
     else{
@@ -159,7 +191,7 @@ $(document).ready( () =>{
         $append = ""
 
         $append += '<hr>'
-        $append += '<table class="table_new_les_basic">'
+        $append += '<table  id="content_'+i+'" class="table_new_les_basic">'
 
         $append += "<div >Content "+i+" :</div>"
         $append += "<tr><td class='title_content'>Image Main</td>"
@@ -188,6 +220,7 @@ $(document).ready( () =>{
             $append += "</tr>"
           }
         $append += '</table>'
+        // $('#content_'+i).hide(1000).slideToggle(5000)
         $('#content_add_main').append($append)
       }
     }
