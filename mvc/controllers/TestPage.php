@@ -26,6 +26,7 @@
         else
           header('Location:'.$back);
       }
+      else if($this->user_db->getStateUser($_SESSION['member_id']) == 'true') header('Location: HomePage');
       if($test == 'test'){
         if(empty($_SESSION['test']))
         header("Location:../../TestPage/");

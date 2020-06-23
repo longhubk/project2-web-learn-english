@@ -329,6 +329,10 @@
       }
       return $res;
     }
+    public function getStateUser($us_id){
+      $qr = "SELECT is_block FROM users WHERE id = '$us_id'";
+      return $this->queryAssoc($qr, 'is_block');
+    }
 
     public function userLogout($user_name) {
 
